@@ -12,8 +12,6 @@
 
 - [Proof of concept](/firstLastName)
 
-- [Stundenplan creator for one of my userscripts](/Stundenplan%20v2.0)
-
 - [Find out from where you are](/name)
 
 - [Convert hex to rgb and vice versa](/hexToRgb)
