@@ -2,6 +2,8 @@
 
 - [Game by me](/123boom)
 
+- [Game by me but using canvas](/123boom%20canvas)
+
 - [Find the least common multiple (lcm) of x numbers](/lcm)
 
 - [Find the highest common factor (hcf) of x numbers](/hcf)
