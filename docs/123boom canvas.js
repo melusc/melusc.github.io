@@ -123,8 +123,8 @@
     ctx.fillText('Restart?', width / 2, height / 2);
   };
 
-  addEventListener('click', e => {
-    var rect = canvas.getBoundingClientRect();
+  canvas.addEventListener('click', e => {
+    const rect = canvas.getBoundingClientRect();
 
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -135,7 +135,7 @@
       if (
         x >= width * 0.02 &&
         x <= width * 0.42 &&
-        y >= height * 0.05 &&
+        y >= height * 0.05 + 60 &&
         y <= height * 0.95
       ) {
         if (isBoom) {
@@ -147,7 +147,7 @@
       } else if (
         x >= width * 0.58 &&
         x <= width * 0.98 &&
-        y >= height * 0.05 &&
+        y >= height * 0.05 + 60 &&
         y <= height * 0.95
       ) {
         if (!isBoom) {
@@ -177,4 +177,40 @@
       document.fonts.add(font_quicksand);
       init();
     });
+
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    if (
+      /* Left button */
+      (failedScreen === false &&
+        x >= width * 0.02 &&
+        x <= width * 0.42 &&
+        y >= height * 0.05 + 60 &&
+        y <= height * 0.95) ||
+      /* Right button */
+      (failedScreen === false &&
+        x >= width * 0.58 &&
+        x <= width * 0.98 &&
+        y >= height * 0.05 + 60 &&
+        y <= height * 0.95) ||
+      /* Restart button */
+      (failedScreen === true &&
+        x >= width * 0.15 &&
+        x <= width * 0.85 &&
+        y >= height * 0.2 &&
+        y <= height * 0.8)
+    ) {
+      canvas.classList.add('pointer');
+    } else {
+      removePointer();
+    }
+  });
+
+  const removePointer = () => void canvas.classList.remove('pointer');
+  canvas.addEventListener('blur', removePointer);
+  canvas.addEventListener('mouseleave', removePointer);
 }
