@@ -167,18 +167,14 @@
   canvas.width = width = innerWidth;
   canvas.height = height = innerHeight;
 
-  const font = new FontFace(
-    'Quicksand',
-    'url(fonts/Quicksand-VariableFont_wght.ttf)',
-    {
-      family: 'Quicksand',
-      style: 'normal',
-      weight: '200',
-    }
-  );
-
-  font.load().then(() => {
-    document.fonts.add(font);
-    init();
-  });
+  new FontFace('Quicksand', 'url(fonts/Quicksand-VariableFont_wght.ttf)', {
+    family: 'Quicksand',
+    style: 'normal',
+    weight: '200',
+  })
+    .load()
+    .then(font_quicksand => {
+      document.fonts.add(font_quicksand);
+      init();
+    });
 }
