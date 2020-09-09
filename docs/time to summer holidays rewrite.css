@@ -1,0 +1,27 @@
+html {
+  font-family: Quicksand;
+  font-size: 2.2em;
+  color: #111;
+}
+
+.outer-vertical-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: table;
+}
+.vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.orange {
+  color: #ff851b;
+}
+@font-face {
+  font-family: Quicksand;
+  font-weight: 200;
+  src: url(fonts/Quicksand-VariableFont_wght.ttf);
+}
