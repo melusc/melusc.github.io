@@ -3,6 +3,10 @@
 {
   const summerDate = new Date( '07/08/2021 14:40:00 GMT+0200' ); // MM/DD/YYYY ...
 
+  /**
+   * Runs every second and sets a timeout until the next second by itself as that is more exact than intervals
+   * @returns {void}
+   */
   const setTime = () => {
     const totalSeconds = ( summerDate.getTime() - Date.now() ) / 1000;
 
@@ -11,35 +15,54 @@
     const minutes = Math.floor( ( totalSeconds % ( 60 * 60 ) ) / 60 );
     const seconds = Math.floor( totalSeconds % 60 );
 
+    /* If for example minutes doesn't changehours can't have changed either */
     setText( {
+      id: 'seconds',
+      val: seconds,
+      text: 'second',
+    } )
+    && setText( {
+      id: 'minutes',
+      val: minutes,
+      text: 'minute',
+    } )
+    && setText( {
+      id: 'hours',
+      val: hours,
+      text: 'hour',
+    } )
+    && setText( {
       id: 'days',
       val: days,
       text: 'day',
       leadingZero: false,
     } );
-    setText( {
-      id: 'hours',
-      val: hours,
-      text: 'hour',
-    } );
-    setText( {
-      id: 'minutes',
-      val: minutes,
-      text: 'minute',
-    } );
-    setText( {
-      id: 'seconds',
-      val: seconds,
-      text: 'second',
-    } );
 
+    /*
+     * Gets current date,
+     * sets date to 1 second in the futur, at 0ms
+     * and sets a timeout until then
+     */
     const dateZeroMilliSeconds = new Date();
-    dateZeroMilliSeconds.setSeconds( dateZeroMilliSeconds.getSeconds() + 1, 0 );
-    setTimeout( () => {
-      setTime();
-    }, dateZeroMilliSeconds.getTime() - Date.now() );
+    dateZeroMilliSeconds.setSeconds(
+      dateZeroMilliSeconds.getSeconds() + 1,
+      0
+    );
+    setTimeout(
+      setTime,
+      dateZeroMilliSeconds.getTime() - Date.now()
+    );
   };
 
+  /**
+   * Automatically updates the right span with the new values
+   * @param {object} object0 All the values
+   * @param {string} object0.id The id of the span
+   * @param {string|number} object0.val The value to fill the span with
+   * @param {string} object0.text The value the name of the value (minute/hour), adds an "s" to the end if object.val isn't 1
+   * @param {boolean} [object0.leadingZero=true] Pad the number to two digits with a leading zero, disable by setting to false
+   * @returns {boolean} True means the value has changed
+   */
   const setText = ( { id, val, text, leadingZero } ) => {
     const el = document.getElementById( id );
     const string = leadingZero ?? true
@@ -57,16 +80,11 @@
       displayEl.textContent = display === false
         ? ''
         : display;
+
+      return true;
     }
+    return false;
   };
 
   setTime();
-
-  const dateZeroMilliSeconds = new Date();
-  dateZeroMilliSeconds.setSeconds( dateZeroMilliSeconds.getSeconds() + 1, 0 );
-  // Run always at 0 ms ( is off by a bit though due to slight inaccuracies )
-
-  setTimeout( () => {
-    setTime();
-  }, dateZeroMilliSeconds.getTime() - Date.now() );
 }
