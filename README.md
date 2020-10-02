@@ -8,7 +8,7 @@
 
 - [Find the highest common factor (hcf) of x numbers](https://melusc.github.io/hcf)
 
-- [Countdown to summer holidays](https://melusc.github.io/time%20to%20summer%20holidays%20rewrite)
+- [Countdown to summer holidays](https://melusc.github.io/time%20until%20summer%20holidays%20react/)
 
 - [A counter](https://melusc.github.io/counter)
 
