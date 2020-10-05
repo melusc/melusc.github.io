@@ -8,7 +8,9 @@
 
 - [Find the highest common factor (hcf) of x numbers](https://melusc.github.io/hcf)
 
-- [25 + 5 clock (FreeCodeCamp challenge)](https://melusc.github.io/25-plus-5-clock/)
+- [25 + 5 clock (freeCodeCamp challenge)](https://melusc.github.io/25-plus-5-clock/)
+
+- [Random quote (freeCodeCamp challenge)](https://melusc.github.io/random%20quote/)
 
 - [Countdown to summer holidays](https://melusc.github.io/time%20until%20summer%20holidays%20react/)
 
