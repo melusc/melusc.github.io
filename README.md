@@ -8,6 +8,8 @@
 
 - [Find the highest common factor (hcf) of x numbers](https://melusc.github.io/hcf)
 
+- [Sort keys of JSON alphabetically](https://melusc.github.io/sort-json-keys)
+
 - [25 + 5 clock (freeCodeCamp challenge)](https://melusc.github.io/25-plus-5-clock/)
 
 - [Random quote (freeCodeCamp challenge)](https://melusc.github.io/random%20quote/)
