@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link href="./style.css" type="text/css" rel="stylesheet" />
+    <script src="./script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="horizontal-vertical-center">
+        <div class="inner" >
+          <div class="row">
+            <div id="hex">
+              <label class="block">Hex</label>
+              <input maxlength="7" value="#" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="rgb-rows" id="rgb">
+              <label class="block">Rgb</label>
+              <input
+                type="tel"
+                min="0"
+                max="255"
+                maxlength="3"
+                placeholder="R"
+              />
+              <input
+                type="tel"
+                min="0"
+                max="255"
+                maxlength="3"
+                placeholder="G"
+              />
+              <input
+                type="tel"
+                min="0"
+                max="255"
+                maxlength="3"
+                placeholder="B"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="rainbow-text-outer">
+              <div class="rainbow-text" id="rand">Random colour</div>
+              <div class="rainbow"></div>
+              <div class="rainbow2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

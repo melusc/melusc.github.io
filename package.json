@@ -1,0 +1,19 @@
+{
+  "name": "melusc.github.io",
+  "version": "1.0.0",
+  "directories": {
+    "doc": "docs"
+  },
+  "private": true,
+  "author": "lusc",
+  "license": "ISC",
+  "devDependencies": {
+    "csso-cli": "^3.0.0",
+    "eslint": "^7.15.0",
+    "html-minifier-terser": "^5.1.1",
+    "prettier": "^2.2.1",
+    "sass": "^1.30.0",
+    "uglify-es": "^3.3.9",
+    "uglify-js": "^3.12.1"
+  }
+}

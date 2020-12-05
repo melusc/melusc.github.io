@@ -22,7 +22,7 @@
 
 - [Find out from where you are](https://melusc.github.io/name)
 
-- [Convert hex to rgb and vice versa](https://melusc.github.io/hexToRgb)
+- [Convert hex to rgb and vice versa](https://melusc.github.io/hexToRgb2)
 
 - [Css trickery](https://melusc.github.io/Brille)
 

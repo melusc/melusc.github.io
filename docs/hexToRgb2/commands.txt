@@ -1,0 +1,11 @@
+uglifyjs -c -m -o ./script.js --ecma 8 -- src/script.js
+
+npx html-minifier-terser -c ../../html-min-terser.json --input-dir ./src --output-dir ./ --file-ext html
+
+csso -i src/style.css -o style.css --stat
+
+sass src/style.scss src/style.css --no-source-map
+
+# run above in /hexToRgb2
+# mainly for me to not have to remember
+# won't put these in package.json as a script because at some point there'd be too many
