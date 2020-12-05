@@ -1,5 +1,11 @@
 # Projects
 
+- [Convert hex to rgb and vice versa](https://melusc.github.io/hexToRgb2)
+
+- [Sort keys of JSON alphabetically](https://melusc.github.io/sort-json-keys)
+
+- [Countdown to summer holidays](https://melusc.github.io/time%20until%20summer%20holidays%20react/)
+
 - [Game by me](https://melusc.github.io/123boom)
 
 - [Game by me but using canvas](https://melusc.github.io/123boom%20canvas)
@@ -8,21 +14,15 @@
 
 - [Find the highest common factor (hcf) of x numbers](https://melusc.github.io/hcf)
 
-- [Sort keys of JSON alphabetically](https://melusc.github.io/sort-json-keys)
-
 - [25 + 5 clock (freeCodeCamp challenge)](https://melusc.github.io/25-plus-5-clock/)
 
 - [Random quote (freeCodeCamp challenge)](https://melusc.github.io/random%20quote/)
-
-- [Countdown to summer holidays](https://melusc.github.io/time%20until%20summer%20holidays%20react/)
 
 - [A counter](https://melusc.github.io/counter)
 
 - [Proof of concept](https://melusc.github.io/firstLastName)
 
 - [Find out from where you are](https://melusc.github.io/name)
-
-- [Convert hex to rgb and vice versa](https://melusc.github.io/hexToRgb2)
 
 - [Css trickery](https://melusc.github.io/Brille)
 
