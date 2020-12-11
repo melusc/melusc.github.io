@@ -8,7 +8,7 @@
         | ( vals[ 1 ] << 8 )
         | vals[ 2 ] )
         .toString( 16 )
-        .toUpperCase()
+        .toLowerCase() // for me it would already be lowercase but just to be sure i call toLowerCase anyway
         .padStart(
           6,
           '0'
