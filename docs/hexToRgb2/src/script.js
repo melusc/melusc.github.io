@@ -105,7 +105,7 @@
 
   const hex = new URL( location ).searchParams.get( 'hex' );
   if ( typeof hex === 'string' ) {
-    hexInput.value = `#${ hex.toUpperCase() }`;
+    hexInput.value = `#${ hex.toLowerCase() }`;
     handleHexInput();
   }
   else {
