@@ -20,7 +20,7 @@
 
   const validLengths = [ 3, 6 ];
   const handleHexInput = ( e = {} ) => {
-    const isPopstate = typeof e.type === 'string' && e.type === 'popstate';
+    const isPopstate = e.type === 'popstate';
 
     if ( isPopstate ) {
       const url = new URL( location );
@@ -66,16 +66,7 @@
   };
 
   const updateURL = hex => {
-    const url = new URL( location );
-    url.searchParams.set(
-      'hex',
-      hex
-    );
-    history.pushState(
-      {},
-      '',
-      url
-    );
+    location.hash = hex;
   };
 
   const increase = e => {
@@ -103,8 +94,8 @@
   const hexInput = document.querySelector( '#hex > input' );
   const bodyStyle = document.body.style;
 
-  const hex = new URL( location ).searchParams.get( 'hex' );
-  if ( typeof hex === 'string' ) {
+  const hex = location.hash.slice( 1 );
+  if ( hex ) {
     hexInput.value = `#${ hex.toLowerCase() }`;
     handleHexInput();
   }
