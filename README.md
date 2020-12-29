@@ -10,6 +10,8 @@
 
 - [Game by me but using canvas](https://melusc.github.io/123boom%20canvas)
 
+- [Animated triangle using requestAnimationFrame](https://melusc.github.io/animatedTriangle)
+
 - [Find the least common multiple (lcm) of x numbers](https://melusc.github.io/lcm)
 
 - [Find the highest common factor (hcf) of x numbers](https://melusc.github.io/hcf)
