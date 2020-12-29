@@ -1,11 +1,20 @@
 'use strict';
 
 /* global preact: false */
+/* eslint-disable class-methods-use-this */
 
 const { render, Component, h } = preact;
 
 class Main extends Component {
-  static render(
+  constructor() {
+    super();
+    this.state = {
+      posX: 0,
+      colour: 0,
+    };
+  }
+
+  render(
     _props, { posX, colour }
   ) {
     return h(
@@ -55,7 +64,7 @@ class Main extends Component {
 
     this.setState( { posX, colour } );
 
-    requestAnimationFrame( this.frame );
+    requestAnimationFrame( this.frame.bind( this ) );
   }
 
   componentDidMount() {
