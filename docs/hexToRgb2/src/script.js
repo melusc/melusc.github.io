@@ -1,4 +1,5 @@
 'use strict';
+
 ( () => {
   const handleRgbInput = () => {
     const vals = inputs.map( e => +e.value );
@@ -20,13 +21,12 @@
 
   const validLengths = [ 3, 6 ];
   const handleHexInput = ( e = {} ) => {
-    const isPopstate = e.type === 'popstate';
+    const isHashChange = e.type === 'hashchange';
 
-    if ( isPopstate ) {
-      const url = new URL( location );
-      const hex = url.searchParams.get( 'hex' );
+    if ( isHashChange ) {
+      const hex = location.hash;
       if ( typeof hex === 'string' ) {
-        hexInput.value = `#${ hex }`;
+        hexInput.value = hex;
       }
     }
     let val = hexInput.value.trim().match( /[a-f0-9]+$/i );
@@ -42,7 +42,7 @@
       }
       bodyStyle.backgroundColor = `#${ val }`;
 
-      if ( isPopstate === false ) {
+      if ( !isHashChange ) {
         updateURL( val );
       }
 
@@ -123,7 +123,7 @@
   );
 
   addEventListener(
-    'popstate',
+    'hashchange',
     handleHexInput
     // updates input and then updates rgb inputs directly
   );
