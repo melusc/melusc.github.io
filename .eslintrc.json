@@ -6,7 +6,8 @@
   "extends": ["eslint:recommended"],
   "globals": {},
   "parserOptions": {
-    "ecmaVersion": 11
+    "ecmaVersion": 11,
+    "sourceType": "module"
   },
   "rules": {
     "accessor-pairs": [
