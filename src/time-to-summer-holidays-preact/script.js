@@ -25,39 +25,19 @@ import { render, Component, h } from 'https://esm.run/preact';
 
   class Root extends Component {
     render() {
-      return h(
-        'div',
-        null,
-        h(
-          'span',
-          null,
-          this.state.days
-        ),
-        ' days, ',
-        h(
-          'span',
-          null,
-          this.state.hours
-        ),
-        ' hours, ',
-        h(
-          'span',
-          null,
-          this.state.minutes
-        ),
-        ' minutes and ',
-        h(
-          'span',
-          null,
-          this.state.seconds
-        ),
-        ' seconds to ',
-        h(
-          'span',
-          null,
-          'summer holidays'
-        )
-      );
+      const { state } = this;
+      // eslint-disable-next-line no-undef
+      return html`<div>
+        <span>${ state.days }</span>
+        ${ ' days, ' }
+        <span>${ state.hours }</span>
+        ${ ' hours, ' }
+        <span>${ state.minutes }</span>
+        ${ ' minutes and ' }
+        <span>${ state.seconds }</span>
+        ${ ' seconds to ' }
+        <span>summer holidays</span>
+      </div>`;
     }
 
     componentDidMount() {
@@ -76,11 +56,11 @@ import { render, Component, h } from 'https://esm.run/preact';
         2,
         '0'
       );
-      const hours = `${ Math.floor( ( totalSeconds / 60 / 60 ) % 24 ) }`.padStart(
+      const hours = `${ Math.floor( ( totalSeconds / ( 60 * 60 ) ) % 24 ) }`.padStart(
         2,
         '0'
       );
-      const days = Math.floor( totalSeconds / 60 / 60 / 24 );
+      const days = Math.floor( totalSeconds / ( 60 * 60 * 24 ) );
 
       this.setState( { seconds, minutes, hours, days } );
 
