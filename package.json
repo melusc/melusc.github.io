@@ -4,17 +4,34 @@
   "directories": {
     "doc": "docs"
   },
+  "scripts": {
+    "sass:w": "sass src:src --watch",
+    "sass": "sass src:src",
+    "serve": "serve docs",
+    "build": "gulp build",
+    "build:w": "gulp build_watch"
+  },
   "private": true,
   "author": "lusc",
   "license": "ISC",
   "devDependencies": {
-    "csso-cli": "^3.0.0",
-    "eslint": "^7.15.0",
-    "html-minifier-terser": "^5.1.1",
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/eslint-parser": "^7.12.1",
+    "@babel/eslint-plugin": "^7.12.1",
+    "@babel/plugin-syntax-class-properties": "^7.12.1",
+    "babel-plugin-htm": "^3.0.0",
+    "eslint": "^7.17.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-svgmin": "^3.0.0",
+    "gulp-terser": "^2.0.1",
+    "npm": "^6.14.10",
     "prettier": "^2.2.1",
-    "sass": "^1.30.0",
+    "sass": "^1.32.2",
     "serve": "^11.3.2",
-    "uglify-es": "^3.3.9",
-    "uglify-js": "^3.12.1"
+    "yargs": "^16.2.0"
   }
 }
