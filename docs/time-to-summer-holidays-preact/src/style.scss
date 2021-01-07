@@ -34,20 +34,20 @@ $transition-dur: 0.75s;
       }
 
       > #dark {
-        opacity: 1;
+        opacity: 0;
       }
       > #light {
-        opacity: 0;
+        opacity: 1;
       }
     }
 
     &:checked {
       + svg {
         > #dark {
-          opacity: 0;
+          opacity: 1;
         }
         > #light {
-          opacity: 1;
+          opacity: 0;
         }
 
         transform: rotate(360deg * 3);

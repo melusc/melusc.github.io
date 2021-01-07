@@ -31,19 +31,19 @@
   transition: opacity 0.75s ease-in-out;
 }
 .theme-toggle input + svg > #dark {
-  opacity: 1;
+  opacity: 0;
 }
 .theme-toggle input + svg > #light {
-  opacity: 0;
+  opacity: 1;
 }
 .theme-toggle input:checked + svg {
   transform: rotate(1080deg);
 }
 .theme-toggle input:checked + svg > #dark {
-  opacity: 0;
+  opacity: 1;
 }
 .theme-toggle input:checked + svg > #light {
-  opacity: 1;
+  opacity: 0;
 }
 
 #root {
