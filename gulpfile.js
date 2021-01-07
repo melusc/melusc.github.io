@@ -97,7 +97,7 @@ function minJS() {
           passes: 3,
         },
         format: {
-          quote_style: 0,
+          quote_style: 1,
         },
       } ) )
       .pipe( dest( PATHS.DEST ) );
