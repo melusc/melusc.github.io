@@ -4,7 +4,7 @@
 
 - [Sort keys of JSON alphabetically](https://melusc.github.io/sort-json-keys)
 
-- [Countdown to summer holidays](https://melusc.github.io/time%20until%20summer%20holidays%20react/)
+- [Countdown to summer holidays](https://melusc.github.io/time-to-summer-holidays-preact/)
 
 - [Game by me](https://melusc.github.io/123boom)
 

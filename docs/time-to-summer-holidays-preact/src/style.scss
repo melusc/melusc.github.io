@@ -1,0 +1,127 @@
+$transition-dur: 0.75s;
+
+.center-content {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.theme-toggle {
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: var(--svg-margin);
+  cursor: pointer;
+  transform-origin: center;
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  input {
+    display: none;
+
+    + svg {
+      transform: rotate(0);
+      transition: transform $transition-dur ease-in-out;
+      transform-origin: center;
+      width: var(--svg-size);
+      height: var(--svg-size);
+
+      > #dark,
+      > #light {
+        transition: opacity $transition-dur ease-in-out;
+      }
+
+      > #dark {
+        opacity: 1;
+      }
+      > #light {
+        opacity: 0;
+      }
+    }
+
+    &:checked {
+      + svg {
+        > #dark {
+          opacity: 0;
+        }
+        > #light {
+          opacity: 1;
+        }
+
+        transform: rotate(360deg * 3);
+      }
+    }
+  }
+}
+
+#root {
+  margin-right: var(--root-margin);
+  margin-left: var(--root-margin);
+
+  span {
+    color: #0000;
+    background-image: linear-gradient(90deg, #4f97ff, #275efe);
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-size: 1.3em;
+  }
+}
+
+body.light {
+  background-color: #fff;
+  color: #24292e;
+}
+body:not(.light) {
+  background-color: #0d1117;
+  color: #c9d1d9;
+}
+body {
+  transition: ease-in-out $transition-dur background-color,
+    ease-in-out $transition-dur color;
+  text-align: center;
+  font: var(--font-size) 'Open sans', sans-serif;
+}
+
+@mixin responsive-media($min-width) {
+  @media (min-width: $min-width) {
+    :root {
+      @content;
+    }
+  }
+}
+
+@font-face {
+  font-family: 'Open sans';
+  src: url('./OpenSans-Light.woff2') format('woff2');
+}
+
+:root {
+  --svg-size: 18.75vw;
+  --svg-margin: 20px 25px;
+  --font-size: 60px;
+  --root-margin: 25px;
+}
+@include responsive-media(840px) {
+  --svg-size: 10vw;
+  --svg-margin: 15px 20px;
+  --font-size: 50px;
+  --root-margin: 20px;
+}
+@include responsive-media(1100px) {
+  --svg-size: 5vw;
+  --svg-margin: 8px 10px;
+  --font-size: 40px;
+}
+@include responsive-media(1360px) {
+  --svg-size: 3vw;
+  --svg-margin: 5px 7px;
+  --font-size: 30px;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
