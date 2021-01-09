@@ -34,7 +34,7 @@ function build() {
   return compSCSS();
 }
 
-function buildWatch() {
+function start() {
   build();
 
   watch(
@@ -166,4 +166,4 @@ exports.compJS = compJS;
 exports.compSCSS = compSCSS;
 exports.minHTML = minHTML;
 
-exports.build_watch = buildWatch;
+exports.start = start;
