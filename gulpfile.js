@@ -14,15 +14,18 @@ const sourcemaps = require( 'gulp-sourcemaps' );
 sass.compiler = require( 'sass' );
 
 const PATHS = {
-  JS: './src/**/*.js',
-  SCSS: './src/**/*.scss',
-  CSS_NOT: './src/**/_*.css',
-  SVG: './src/**/*.svg',
-  SVG_NOT: './src/**/*.min.svg',
-  HTML: './src/**/*.html',
+  JS: [ './src/**/*.js' ],
+  SCSS: [ './src/**/*.scss' ],
+  SVG: [ './src/**/*.svg', '!./src/**/*.min.svg' ],
+  HTML: [ './src/**/*.html' ],
   DEST: './docs',
   SOURCEMAPS_DEST: './',
   SVG_DEST: './src',
+  FAVICONS: [
+    './src/**/favicon.min.svg',
+    './src/**/favicon.ico',
+    './src/**/favicon.png',
+  ],
 };
 
 function build() {
@@ -38,15 +41,19 @@ function start() {
   build();
 
   watch(
-    [ PATHS.JS ],
+    PATHS.JS,
     compJS
   );
   watch(
-    [ PATHS.SCSS ],
+    PATHS.SCSS,
     compSCSS
   );
   watch(
-    [ PATHS.SVG ],
+    PATHS.HTML,
+    minHTML
+  );
+  watch(
+    PATHS.SVG,
     minSvg
   );
 }
@@ -98,10 +105,7 @@ function compJS() {
 }
 
 function compSCSS() {
-  const progress = src(
-    PATHS.SCSS,
-    { ignore: PATHS.CSS_NOT }
-  )
+  const progress = src( PATHS.SCSS )
     .pipe( sourcemaps.init() )
 
     .pipe( sass() );
@@ -116,10 +120,7 @@ function compSCSS() {
 }
 
 function minSvg() {
-  return src(
-    PATHS.SVG,
-    { ignore: PATHS.SVG_NOT }
-  )
+  src( PATHS.SVG )
     .pipe( svgmin( {
       multipass: true,
       precision: 3,
@@ -158,6 +159,17 @@ function minSvg() {
       path.extname = '.min.svg';
     } ) )
     .pipe( dest( PATHS.SVG_DEST ) );
+
+  return src( PATHS.FAVICONS )
+    .pipe( rename( path => {
+      if ( path.basename.endsWith( '.min' ) ) {
+        path.basename = path.basename.slice(
+          0,
+          -4
+        );
+      }
+    } ) )
+    .pipe( dest( PATHS.DEST ) );
 }
 
 exports.default = exports.build = build;
