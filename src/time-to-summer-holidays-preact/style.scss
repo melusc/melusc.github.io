@@ -5,6 +5,11 @@ $text-dark: #c9d1d9;
 $bg-light: #fff;
 $text-light: #24292e;
 
+* {
+  transition-duration: $transition-dur;
+  transition-timing-function: ease-in-out;
+}
+
 .center-content {
   display: flex;
   min-height: 100vh;
@@ -28,14 +33,14 @@ $text-light: #24292e;
 
     + svg {
       transform: rotate(0);
-      transition: transform $transition-dur ease-in-out;
+      transition-property: transform;
       transform-origin: center;
       width: var(--svg-size);
       height: var(--svg-size);
 
       > #dark,
       > #light {
-        transition: opacity $transition-dur ease-in-out;
+        transition-property: opacity;
       }
 
       > #dark {
@@ -73,6 +78,32 @@ $text-light: #24292e;
     font-size: 1.3em;
   }
 }
+.gh-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+  transform-origin: 130px 106px;
+}
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20%,
+  60% {
+    transform: rotate(10deg);
+  }
+  40%,
+  80% {
+    transform: rotate(-25deg);
+  }
+}
+@media (max-width: 500px) {
+  .gh-corner:hover .octo-arm {
+    animation: none;
+  }
+  .gh-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
 
 .gh-corner {
   position: absolute;
@@ -82,10 +113,11 @@ $text-light: #24292e;
   height: calc(var(--svg-size) * 2);
 
   * {
-    transition: fill $transition-dur ease-in-out;
+    transition-property: fill;
   }
 }
-.gh-corner-octocat {
+.octo-arm,
+.octo-body {
   fill: $bg-dark;
 }
 .gh-corner-bg {
@@ -96,7 +128,8 @@ body.light {
   color: $text-light;
   background-position: bottom right;
 
-  .gh-corner-octocat {
+  .octo-arm,
+  .octo-body {
     fill: $bg-light;
   }
   .gh-corner-bg {
@@ -113,8 +146,6 @@ body {
   $bg-size: 200% + $gradient-width * 1.2;
 
   transition-property: background-color, color, background-position;
-  transition-duration: $transition-dur;
-  transition-timing-function: ease-in-out;
   background-image: linear-gradient(
     $bg-angle,
     $bg-light 50% - $gradient-width,
