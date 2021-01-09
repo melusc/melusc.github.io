@@ -14,8 +14,8 @@
 
   const handleRgbInput = () => {
     const vals = inputs.map( e => +e.value );
-    if ( vals.every( e => e < 256 && e > 0 ) ) {
-      const newVal = `#${ (
+    if ( vals.every( e => e < 256 && e >= 0 ) ) {
+      let newVal = (
         (
           vals[ 0 ] << 16 )
           | ( vals[ 1 ] << 8 )
@@ -26,9 +26,18 @@
         .padStart(
           6,
           '0'
-        ) }`;
+        );
 
-      updateURL( bodyStyle.backgroundColor = hexInput.value = newVal );
+      // eslint-disable-next-line prefer-named-capture-group
+      if ( ( /(?:(\w)\1){3}/ ).test( newVal ) ) {
+        newVal = newVal.replace(
+          // eslint-disable-next-line prefer-named-capture-group
+          /(\w)\1/g, // we already know it's only [a-f0-9]
+          '$1'
+        );
+      }
+
+      updateURL( bodyStyle.backgroundColor = hexInput.value = `#${ newVal }` );
     }
   };
 
@@ -52,29 +61,30 @@
         }
       }
     }
-    let val = hexInput.value.trim().match( /^#(?<val>[a-f0-9]+)$/i )?.groups?.val;
+    const origVal = hexInput.value.trim().match( /^#?(?<val>[a-f0-9]+)$/i )?.groups?.val;
 
-    if ( typeof val === 'string' && validLengths[ val.length ] ) {
-      if ( val.length === 3 ) {
-        val = val
-          .split( '' )
-          .map( e => e + e )
-          .join( '' );
+    if ( typeof origVal === 'string' && validLengths[ origVal.length ] ) {
+      let properLengthVal = origVal;
+      if ( properLengthVal.length === 3 ) {
+        properLengthVal = properLengthVal.replace(
+          /\w/g, // we already know it's only [a-fA-F0-9]
+          '$&$&'
+        );
       }
-      bodyStyle.backgroundColor = `#${ val }`;
+      bodyStyle.backgroundColor = `#${ origVal }`;
 
       if ( !isHashChange ) {
-        updateURL( val );
+        updateURL( origVal );
       }
 
-      val = parseInt(
-        val,
+      let parsedVal = parseInt(
+        properLengthVal,
         16
       );
 
       for ( let i = 2; i >= 0; --i ) {
-        inputs[ i ].value = val & 255;
-        val >>= 8;
+        inputs[ i ].value = parsedVal & 255;
+        parsedVal >>= 8;
       }
     }
   };
@@ -130,13 +140,14 @@
     handleHexInput
   );
 
-  document.getElementById( 'rgb' ).addEventListener(
+  const rgbInputs = document.getElementById( 'rgb' );
+
+  rgbInputs.addEventListener(
     'input',
     handleRgbInput
   );
 
-  document
-    .getElementById( 'rgb' )
+  rgbInputs
     .addEventListener(
       'wheel',
       handleScroll,
