@@ -155,7 +155,6 @@ function minSvg() {
       ],
     } ) )
     .pipe( rename( path => {
-      console.log( path );
       path.extname = '.min.svg';
     } ) )
     .pipe( dest( PATHS.SVG_DEST ) );
