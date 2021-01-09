@@ -126,7 +126,7 @@ $text-light: #24292e;
 
 body.light {
   color: $text-light;
-  background-position: bottom right;
+  background-position: top left;
 
   .octo-arm,
   .octo-body {
@@ -138,10 +138,10 @@ body.light {
 }
 body {
   color: $text-dark;
-  background-position: top left;
+  background-position: bottom right;
 }
 body {
-  $bg-angle: -35deg;
+  $bg-angle: 135deg;
   $gradient-width: 3.5%;
   $bg-size: 200% + $gradient-width * 1.2;
 
