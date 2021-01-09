@@ -1,4 +1,9 @@
+@use 'sass:math';
 $transition-dur: 0.75s;
+$bg-dark: #0d1117;
+$text-dark: #c9d1d9;
+$bg-light: #fff;
+$text-light: #24292e;
 
 .center-content {
   display: flex;
@@ -70,16 +75,29 @@ $transition-dur: 0.75s;
 }
 
 body.light {
-  background-color: #fff;
-  color: #24292e;
-}
-body:not(.light) {
-  background-color: #0d1117;
-  color: #c9d1d9;
+  color: $text-light;
+  background-position: bottom right;
 }
 body {
-  transition: ease-in-out $transition-dur background-color,
-    ease-in-out $transition-dur color;
+  color: $text-dark;
+  background-position: top left;
+}
+body {
+  $bg-angle: -35deg;
+  $gradient-width: 3.5%;
+  $bg-size: 200% + $gradient-width * 1.2;
+
+  transition-property: background-color, color, background-position;
+  transition-duration: $transition-dur;
+  transition-timing-function: ease-in-out;
+  background-image: linear-gradient(
+    $bg-angle,
+    $bg-light 50% - $gradient-width,
+    $bg-light,
+    $bg-dark,
+    $bg-dark 50% + $gradient-width
+  );
+  background-size: $bg-size $bg-size;
   text-align: center;
   font: var(--font-size) 'Open sans', sans-serif;
 }
