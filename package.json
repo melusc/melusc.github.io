@@ -8,7 +8,7 @@
     "sass:w": "sass src:src --watch",
     "sass": "sass src:src",
     "serve": "serve docs",
-    "build": "gulp build",
+    "build": "gulp build --production",
     "build:w": "gulp build_watch"
   },
   "private": true,
