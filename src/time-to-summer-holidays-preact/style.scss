@@ -74,9 +74,34 @@ $text-light: #24292e;
   }
 }
 
+.gh-corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--svg-size) * 2);
+  height: calc(var(--svg-size) * 2);
+
+  * {
+    transition: fill $transition-dur ease-in-out;
+  }
+}
+.gh-corner-octocat {
+  fill: $bg-dark;
+}
+.gh-corner-bg {
+  fill: $bg-light;
+}
+
 body.light {
   color: $text-light;
   background-position: bottom right;
+
+  .gh-corner-octocat {
+    fill: $bg-light;
+  }
+  .gh-corner-bg {
+    fill: $bg-dark;
+  }
 }
 body {
   color: $text-dark;
