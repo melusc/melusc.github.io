@@ -3,48 +3,52 @@
 
 const { src, dest, watch } = require( 'gulp' );
 const csso = require( 'gulp-csso' );
-const npm = require( 'npm' );
 const babel = require( 'gulp-babel' );
 const svgmin = require( 'gulp-svgmin' );
 const { argv } = require( 'yargs' );
 const htmlmin = require( 'gulp-htmlmin' );
 const terser = require( 'gulp-terser' );
+const sass = require( 'gulp-sass' );
+const rename = require( 'gulp-rename' );
+const sourcemaps = require( 'gulp-sourcemaps' );
+sass.compiler = require( 'sass' );
+
 const PATHS = {
   JS: './src/**/*.js',
-  CSS: './src/**/*.css',
+  SCSS: './src/**/*.scss',
   CSS_NOT: './src/**/_*.css',
   SVG: './src/**/*.svg',
+  SVG_NOT: './src/**/*.min.svg',
   HTML: './src/**/*.html',
   DEST: './docs',
+  SOURCEMAPS_DEST: './',
+  SVG_DEST: './src',
 };
 
-function build( shouldCompSCSS = true ) {
-  if ( argv.production ) {
-    minJS();
-  }
-  else {
-    compJS();
-  }
+function build() {
+  compJS();
+
   minSvg();
   minHTML();
 
-  if ( shouldCompSCSS ) {
-    return compSCSS()
-      .then( () => {
-        minCSS();
-      } );
-  }
-  return minCSS();
+  return compSCSS();
 }
 
 function buildWatch() {
-  build()
-    .then( () => {
-      watch(
-        [ PATHS.JS, PATHS.CSS, PATHS.SVG ],
-        () => build( false )
-      );
-    } );
+  build();
+
+  watch(
+    [ PATHS.JS ],
+    compJS
+  );
+  watch(
+    [ PATHS.SCSS ],
+    compSCSS
+  );
+  watch(
+    [ PATHS.SVG ],
+    minSvg
+  );
 }
 
 function minHTML() {
@@ -67,62 +71,55 @@ function minHTML() {
     .pipe( dest( PATHS.DEST ) );
 }
 
-function compSCSS( cb ) {
-  return new Promise( resolve => {
-    npm.load( () => {
-      npm.run(
-        'sass',
-        () => {
-          if ( cb ) {
-            cb();
-          }
-          resolve();
-        }
-      );
-    } );
-  } );
-}
-
 function compJS() {
-  return src( PATHS.JS )
-    .pipe( babel() )
-    .pipe( dest( PATHS.DEST ) );
-}
+  const progress = src( PATHS.JS )
+    .pipe( sourcemaps.init() )
 
-function minJS() {
+    .pipe( babel() );
+
   if ( argv.production ) {
-    return src( PATHS.JS )
-      .pipe( babel() )
-      .pipe( terser( {
-        // https://terser.org/docs/api-reference
-        ecma: 2020,
-        compress: {
-          drop_console: true,
-          keep_fargs: false,
-          passes: 3,
-        },
-        format: {
-          quote_style: 1,
-        },
-      } ) )
-      .pipe( dest( PATHS.DEST ) );
+    progress.pipe( terser( {
+      // https://terser.org/docs/api-reference
+      ecma: 2020,
+      compress: {
+        drop_console: true,
+        keep_fargs: false,
+        passes: 3,
+      },
+      format: {
+        quote_style: 1,
+      },
+    } ) );
   }
-  return src( PATHS.JS )
-    .pipe( babel() )
+
+  return progress
+    .pipe( sourcemaps.write( PATHS.SOURCEMAPS_DEST ) )
     .pipe( dest( PATHS.DEST ) );
 }
 
-function minCSS() {
-  return src(
-    PATHS.CSS,
+function compSCSS() {
+  const progress = src(
+    PATHS.SCSS,
     { ignore: PATHS.CSS_NOT }
   )
-    .pipe( csso() )
+    .pipe( sourcemaps.init() )
+
+    .pipe( sass() );
+
+  if ( argv.production ) {
+    progress.pipe( csso() );
+  }
+
+  return progress
+    .pipe( sourcemaps.write( PATHS.SOURCEMAPS_DEST ) )
     .pipe( dest( PATHS.DEST ) );
 }
 
 function minSvg() {
-  return src( PATHS.SVG )
+  return src(
+    PATHS.SVG,
+    { ignore: PATHS.SVG_NOT }
+  )
     .pipe( svgmin( {
       multipass: true,
       precision: 3,
@@ -152,16 +149,21 @@ function minSvg() {
         },
         { removeScriptElement: true },
         { removeDimensions: true },
+        { removeAttrs: {
+          attrs: [ 'class' ],
+        } },
       ],
     } ) )
-    .pipe( dest( PATHS.DEST ) );
+    .pipe( rename( path => {
+      console.log( path );
+      path.extname = '.min.svg';
+    } ) )
+    .pipe( dest( PATHS.SVG_DEST ) );
 }
 
 exports.default = exports.build = build;
 exports.minSvg = minSvg;
-exports.minCSS = minCSS;
 exports.compJS = compJS;
-exports.minJS = minJS;
 exports.compSCSS = compSCSS;
 exports.minHTML = minHTML;
 
