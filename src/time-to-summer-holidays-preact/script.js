@@ -2,12 +2,23 @@
 import { render, Component, h } from 'https://esm.run/preact';
 
 ( () => {
-  document.getElementById( 'theme-toggle' ).addEventListener(
+  const themeToggle = document.getElementById( 'theme-toggle' );
+  themeToggle.addEventListener(
     'change',
     () => {
-      document.body.classList.toggle( 'light' );
+      document.body.classList[ themeToggle.checked
+        ? 'remove'
+        : 'add' ]( 'light' );
     }
   );
+
+  const themeShouldBeDark = matchMedia
+    ? matchMedia( '(prefers-color-scheme: dark)' ).matches
+    : true;
+  document.body.classList[ themeShouldBeDark
+    ? 'remove'
+    : 'add' ]( 'light' );
+  themeToggle.checked = themeShouldBeDark;
 
   const summerHolidays = new Date(
     2021,
