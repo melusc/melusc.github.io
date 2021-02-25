@@ -1,6 +1,3 @@
-/* globals exports: false, require: false */
-/* eslint-disable camelcase */
-
 const { src, dest, watch } = require( 'gulp' );
 const csso = require( 'gulp-csso' );
 const babel = require( 'gulp-babel' );
