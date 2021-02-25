@@ -3,13 +3,37 @@
     "browser": true,
     "es2020": true
   },
-  "extends": ["eslint:recommended"],
+  "extends": ["eslint:recommended", "preact"],
   "globals": {},
+  "overrides": [
+    {
+      "env": {
+        "es2020": true,
+        "node": true
+      },
+      "files": ["./*.js"],
+      "rules": {
+        "camelcase": "off"
+      }
+    }
+  ],
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": 11,
     "sourceType": "module"
   },
+  "plugins": ["@babel"],
   "rules": {
+    "@babel/no-invalid-this": "error",
+    "@babel/no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true
+      }
+    ],
+    "@babel/object-curly-spacing": ["error", "always"],
+    "@babel/semi": ["error", "always"],
     "accessor-pairs": [
       "error",
       {
@@ -140,7 +164,7 @@
     ],
     "no-implicit-globals": "error",
     "no-implied-eval": "error",
-    "no-invalid-this": "error",
+    "no-invalid-this": "off",
     "no-iterator": "error",
     "no-label-var": "error",
     "no-lone-blocks": "error",
@@ -176,13 +200,7 @@
     "no-unmodified-loop-condition": "error",
     "no-unneeded-ternary": "error",
     "no-unreachable-loop": "error",
-    "no-unused-expressions": [
-      "error",
-      {
-        "allowShortCircuit": true,
-        "allowTernary": true
-      }
-    ],
+    "no-unused-expressions": "off",
     "no-useless-backreference": "error",
     "no-useless-call": "error",
     "no-useless-catch": "error",
@@ -193,7 +211,7 @@
     "no-useless-return": "error",
     "no-var": "error",
     "no-whitespace-before-property": "error",
-    "object-curly-spacing": ["error", "always"],
+    "object-curly-spacing": "off",
     "object-shorthand": "error",
     "operator-assignment": ["error", "always"],
     "operator-linebreak": ["error", "before"],
@@ -242,7 +260,7 @@
     "radix": "error",
     "require-await": "error",
     "rest-spread-spacing": ["error", "never"],
-    "semi": ["error", "always"],
+    "semi": "off",
     "semi-spacing": ["error"],
     "semi-style": ["error", "last"],
     "space-before-blocks": ["error", "always"],
