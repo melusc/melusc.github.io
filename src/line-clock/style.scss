@@ -41,7 +41,6 @@ html {
 }
 
 .clock-row {
-  // padding: 0 10px;
   border: 1.5px solid $text;
   border-radius: 2px;
   margin: 0 2px;
@@ -57,7 +56,6 @@ html {
 
   * {
     line-height: $line-height;
-    // padding: 0 10px;
     border-radius: 100%;
   }
 }
@@ -65,8 +63,6 @@ html {
 .active {
   color: $blue;
   transition: color cubic-bezier(0.17, 0.67, 0.83, 0.67) 0.3s;
-
-  // background-color: lighten($bg, 3%);
 }
 @font-face {
   font-family: 'Open Sans';

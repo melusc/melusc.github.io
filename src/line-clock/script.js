@@ -23,7 +23,7 @@ class App extends Component {
     _props, { hour1, hour2, min1, min2, sec1, sec2 }
   ) => <div class="clock">
     <Range to={2} active={hour1} />
-    <Range to={4} active={hour2} />
+    <Range to={9} active={hour2} />
     <div class="colon">:</div>
     <Range to={5} active={min1} />
     <Range to={9} active={min2} />
