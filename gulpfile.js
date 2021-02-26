@@ -1,4 +1,4 @@
-const { src, dest, watch } = require( 'gulp' );
+const { src, dest, watch, parallel } = require( 'gulp' );
 const csso = require( 'gulp-csso' );
 const babel = require( 'gulp-babel' );
 const svgmin = require( 'gulp-svgmin' );
@@ -25,18 +25,19 @@ const PATHS = {
   ],
 };
 
-function build() {
-  compJS();
+const build = parallel(
+  compJS,
+  minSvg,
+  minHTML,
+  compSCSS
+);
 
-  minSvg();
-  minHTML();
+const start = parallel(
+  build,
+  watchFn
+);
 
-  return compSCSS();
-}
-
-function start() {
-  build();
-
+function watchFn() {
   watch(
     PATHS.JS,
     compJS
@@ -54,7 +55,6 @@ function start() {
     minSvg
   );
 }
-
 function minHTML() {
   return src( PATHS.HTML )
     .pipe( htmlmin( {
