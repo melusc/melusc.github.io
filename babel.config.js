@@ -1,8 +1,3 @@
-/*
-  globals
-  module: false
-*/
-
 module.exports = {
   plugins: [
     '@babel/plugin-syntax-class-properties',
@@ -12,7 +7,4 @@ module.exports = {
       pragmaFrag: 'Fragment',
     } ],
   ],
-  /* generatorOpts: {
-    minified: true,
-  }, */
 };

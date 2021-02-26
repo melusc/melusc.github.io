@@ -1,19 +1,5 @@
 {
-  "name": "melusc.github.io",
-  "version": "1.0.0",
-  "directories": {
-    "doc": "docs"
-  },
-  "scripts": {
-    "sass:w": "sass src:src --watch",
-    "sass": "sass src:src",
-    "serve": "serve docs",
-    "build": "gulp build --production",
-    "start": "gulp start"
-  },
-  "private": true,
   "author": "lusc",
-  "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.13.0",
     "@babel/core": "^7.13.1",
@@ -37,5 +23,19 @@
     "sass": "^1.32.8",
     "serve": "^11.3.2",
     "yargs": "^16.2.0"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "license": "ISC",
+  "name": "melusc.github.io",
+  "private": true,
+  "scripts": {
+    "sass:w": "sass src:src --watch",
+    "sass": "sass src:src",
+    "serve": "serve docs",
+    "build": "gulp build --production",
+    "start": "gulp start"
+  },
+  "version": "1.0.0"
 }
