@@ -1,10 +1,10 @@
 # Projects
 
-- [Convert hex to rgb and vice versa](https://melusc.github.io/hexToRgb2)
+- [Convert hex to rgb and vice versa](https://melusc.github.io/hexToRgb2/)
 
-- [Line clock](https://melusc.github.io/line-clock)
+- [Line clock](https://melusc.github.io/line-clock/)
 
-- [Sort keys of JSON alphabetically](https://melusc.github.io/sort-json-keys)
+- [Sort keys of JSON alphabetically](https://melusc.github.io/sort-json5-keys/)
 
 - [Countdown to summer holidays](https://melusc.github.io/time-to-summer-holidays-preact/)
 
