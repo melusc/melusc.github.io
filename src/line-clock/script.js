@@ -22,14 +22,14 @@ class App extends Component {
   render = (
     _props, { hour1, hour2, min1, min2, sec1, sec2 }
   ) => <div class="clock">
-    <Range to={2} active={hour1} />
-    <Range to={4} active={hour2} />
-    <div class="colon">:</div>
-    <Range to={5} active={min1} />
-    <Range to={9} active={min2} />
-    <div class="colon">:</div>
-    <Range to={5} active={sec1} />
-    <Range to={9} active={sec2} />
+    <Range to={2} active={hour1} rowName="hour1" />
+    <Range to={9} active={hour2} rowName="hour2" />
+    <div class="colon1">:</div>
+    <Range to={5} active={min1} rowName="min1" />
+    <Range to={9} active={min2} rowName="min2" />
+    <div class="colon2">:</div>
+    <Range to={5} active={sec1} rowName="sec1" />
+    <Range to={9} active={sec2} rowName="sec2" />
   </div>
   ;
 
@@ -65,7 +65,9 @@ class App extends Component {
   };
 }
 
-const Range = ( { to, active } ) => <div class={`clock-row active-child-${ active }`}>
+const Range = ( { to, active, rowName } ) => <div class={`clock-row active-child-${ active }${ rowName
+  ? ` ${ rowName }`
+  : '' }`}>
   {Array.from(
     { length: to + 1 },
     (
