@@ -8,9 +8,9 @@
 
 - [Countdown to summer holidays](https://melusc.github.io/time-to-summer-holidays-preact/)
 
-- [Game by me](https://melusc.github.io/123boom)
-
 - [Game by me but using canvas](https://melusc.github.io/123boom%20canvas)
+
+- [Game by me](https://melusc.github.io/123boom)
 
 - [Animated triangle using requestAnimationFrame](https://melusc.github.io/animatedTriangle)
 
@@ -23,10 +23,6 @@
 - [Random quote (freeCodeCamp challenge)](https://melusc.github.io/random%20quote/)
 
 - [A counter](https://melusc.github.io/counter)
-
-- [Proof of concept](https://melusc.github.io/firstLastName)
-
-- [Find out from where you are](https://melusc.github.io/name)
 
 - [Keyboard from html buttons](https://melusc.github.io/htmlKeyboard)
 
