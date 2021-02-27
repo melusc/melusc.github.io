@@ -2,8 +2,8 @@
   "author": "lusc",
   "devDependencies": {
     "@babel/cli": "^7.13.0",
-    "@babel/core": "^7.13.1",
-    "@babel/eslint-parser": "^7.13.4",
+    "@babel/core": "^7.13.8",
+    "@babel/eslint-parser": "^7.13.8",
     "@babel/eslint-plugin": "^7.13.0",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-transform-react-jsx": "^7.12.17",
