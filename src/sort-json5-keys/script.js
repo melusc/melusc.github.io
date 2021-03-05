@@ -1,12 +1,12 @@
 import json5 from 'https://esm.run/json5@2.2.0';
 
 ( () => {
-  const input = document.getElementById( 'input' );
-  const output = document.getElementById( 'output' );
-  const prettyPrintInput = document.getElementById( 'pretty' );
-  const indent = document.getElementById( 'indent' );
-  const errorDiv = document.getElementById( 'errors' );
-  const indentWrapper = document.getElementById( 'indent-wrapper' );
+  const input = document.querySelector( '#input' );
+  const output = document.querySelector( '#output' );
+  const prettyPrintInput = document.querySelector( '#pretty' );
+  const indent = document.querySelector( '#indent' );
+  const errorDiv = document.querySelector( '#errors' );
+  const indentWrapper = document.querySelector( '#indent-wrapper' );
   const indentMax = +indent.max;
   const indentMin = +indent.min;
 
@@ -17,11 +17,13 @@ import json5 from 'https://esm.run/json5@2.2.0';
     shouldIndent = prettyPrintInput.checked;
 
     const indentValue = +indent.value;
-    indent.value = amountIndent = indentValue > indentMax
+    amountIndent = indentValue > indentMax
       ? indentMax
       : indentValue < indentMin
         ? indentMax
         : indentValue;
+
+    indent.value = amountIndent;
 
     indent.disabled = !shouldIndent;
     indentWrapper.classList.toggle(
@@ -29,9 +31,10 @@ import json5 from 'https://esm.run/json5@2.2.0';
       !shouldIndent
     );
   };
+
   updateVals();
 
-  const updateFn = () => {
+  const updateFunction = () => {
     updateVals();
 
     prettify();
@@ -41,8 +44,9 @@ import json5 from 'https://esm.run/json5@2.2.0';
     if ( typeof value !== 'object' ) {
       return value;
     }
+
     if ( Array.isArray( value ) ) {
-      return value.map( e => sortJSON( e ) );
+      return value.map( value => sortJSON( value ) );
     }
 
     const keys = Object.keys( value ).sort( (
@@ -56,12 +60,13 @@ import json5 from 'https://esm.run/json5@2.2.0';
       }
     ) );
 
-    const obj = {};
+    const object = {};
 
     for ( const key of keys ) {
-      obj[ key ] = value[ key ];
+      object[ key ] = value[ key ];
     }
-    return obj;
+
+    return object;
   };
 
   const prettify = () => {
@@ -82,7 +87,7 @@ import json5 from 'https://esm.run/json5@2.2.0';
 
   prettyPrintInput.addEventListener(
     'change',
-    updateFn
+    updateFunction
   );
 
   output.addEventListener(
@@ -95,11 +100,11 @@ import json5 from 'https://esm.run/json5@2.2.0';
 
   indent.addEventListener(
     'change',
-    updateFn
+    updateFunction
   );
   indent.addEventListener(
     'input',
-    updateFn
+    updateFunction
   );
 
   input.addEventListener(
@@ -116,7 +121,7 @@ import json5 from 'https://esm.run/json5@2.2.0';
   */
   addEventListener(
     'load',
-    updateFn,
+    updateFunction,
     { once: true }
   );
 } )();

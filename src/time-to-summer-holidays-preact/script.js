@@ -1,8 +1,7 @@
-/* eslint-disable class-methods-use-this */
 import { render, Component, h } from 'https://esm.run/preact';
 
 ( () => {
-  const themeToggle = document.getElementById( 'theme-toggle' );
+  const themeToggle = document.querySelector( '#theme-toggle' );
   themeToggle.addEventListener(
     'change',
     () => {
@@ -32,7 +31,7 @@ import { render, Component, h } from 'https://esm.run/preact';
 
   const summerHolidaysTime = summerHolidays.getTime();
 
-  const root = document.getElementById( 'root' );
+  const root = document.querySelector( '#root' );
 
   class Root extends Component {
     render() {

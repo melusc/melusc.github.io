@@ -2,7 +2,7 @@
 
 ( () => {
   let hashUpdatedByScript = false;
-  /* keep track of updates to hash
+  /* Keep track of updates to hash
     when the hash updates from the user going
     back or forward in browser history
     this will be false and the script will update the input
@@ -13,37 +13,39 @@
   */
 
   const handleRgbInput = () => {
-    const vals = inputs.map( e => +e.value );
-    if ( vals.every( e => e < 256 && e >= 0 ) ) {
-      let newVal = (
+    const vals = inputs.map( value => +value.value );
+    if ( vals.every( value => value < 256 && value >= 0 ) ) {
+      let newValue = (
         (
           vals[ 0 ] << 16 )
           | ( vals[ 1 ] << 8 )
           | vals[ 2 ]
       )
         .toString( 16 )
-        .toLowerCase() // it seems to always be lowercase but just to be sure
+        .toLowerCase() // It seems to always be lowercase but just to be sure
         .padStart(
           6,
           '0'
         );
 
-      // eslint-disable-next-line prefer-named-capture-group
-      if ( ( /(?:(\w)\1){3}/ ).test( newVal ) ) {
-        newVal = newVal.replace(
-          // eslint-disable-next-line prefer-named-capture-group
-          /(\w)\1/g, // we already know it's only [a-f0-9]
+      if ( ( /(?:(?<first>\w)\1){3}/ ).test( newValue ) ) {
+        newValue = newValue.replace(
+          /(?<first>\w)\1/g, // We already know it's only [a-f0-9]
           '$1'
         );
       }
 
-      updateURL( bodyStyle.backgroundColor = hexInput.value = `#${ newVal }` );
+      const hex = `#${ newValue }`;
+      hexInput.value = hex;
+      bodyStyle.backgroundColor = hex;
+
+      updateURL( hex );
     }
   };
 
-  const validLengths = { 3: true, 6: true };
-  const handleHexInput = ( e = {} ) => {
-    const isHashChange = e.type === 'hashchange';
+  const validLengths = new Set( [ 3, 6 ] );
+  const handleHexInput = ( event_ = {} ) => {
+    const isHashChange = event_.type === 'hashchange';
     if ( isHashChange ) {
       if ( hashUpdatedByScript ) {
         hashUpdatedByScript = false;
@@ -61,41 +63,42 @@
         }
       }
     }
-    const origVal = hexInput.value.trim().match( /^#?(?<val>[a-f0-9]+)$/i )?.groups?.val;
 
-    if ( typeof origVal === 'string' && validLengths[ origVal.length ] ) {
-      let properLengthVal = origVal;
-      if ( properLengthVal.length === 3 ) {
-        properLengthVal = properLengthVal.replace(
-          /\w/g, // we already know it's only [a-fA-F0-9]
+    const origValue = hexInput.value.trim().match( /^#?(?<val>[\da-f]+)$/i )?.groups?.val;
+
+    if ( typeof origValue === 'string' && validLengths.has( origValue.length ) ) {
+      let properLengthValue = origValue;
+      if ( properLengthValue.length === 3 ) {
+        properLengthValue = properLengthValue.replace(
+          /\w/g, // We already know it's only [a-fA-F0-9]
           '$&$&'
         );
       }
-      bodyStyle.backgroundColor = `#${ origVal }`;
+
+      bodyStyle.backgroundColor = `#${ origValue }`;
 
       if ( !isHashChange ) {
-        updateURL( origVal );
+        updateURL( origValue );
       }
 
-      let parsedVal = parseInt(
-        properLengthVal,
+      let parsedValue = Number.parseInt(
+        properLengthValue,
         16
       );
 
-      for ( let i = 2; i >= 0; --i ) {
-        inputs[ i ].value = parsedVal & 255;
-        parsedVal >>= 8;
+      for ( let index = 2; index >= 0; --index ) {
+        inputs[ index ].value = parsedValue & 255;
+        parsedValue >>= 8;
       }
     }
   };
 
   const randomise = () => {
-    // uint8 so [0, 255]
-    crypto.getRandomValues( new Uint8Array( 3 ) ).forEach( (
-      randVal, idx
-    ) => {
-      inputs[ idx ].value = randVal;
-    } );
+    // Uint8 so [0, 255]
+    for ( const [ index, randValue ] of crypto.getRandomValues( new Uint8Array( 3 ) ).entries() ) {
+      inputs[ index ].value = randValue;
+    }
+
     handleRgbInput();
   };
 
@@ -104,18 +107,18 @@
     hashUpdatedByScript = true;
   };
 
-  const handleScroll = e => {
-    if ( e.target.nodeName === 'INPUT' ) {
-      const newVal = +e.target.value - Math.sign( e.deltaY );
-      /* negative because it is more intuitive
+  const handleScroll = event_ => {
+    if ( event_.target.nodeName === 'INPUT' ) {
+      const newValue = +event_.target.value - Math.sign( event_.deltaY );
+      /* Negative because it is more intuitive
        where scrolling up increases,
        scrolling down decreases */
 
-      e.target.value = newVal > 255
+      event_.target.value = newValue > 255
         ? 255
-        : newVal < 0
+        : newValue < 0
           ? 0
-          : newVal; // limit to [0, 255]
+          : newValue; // Limit to [0, 255]
 
       handleRgbInput();
     }
@@ -135,12 +138,12 @@
     randomise();
   }
 
-  document.getElementById( 'hex' ).addEventListener(
+  document.querySelector( '#hex' ).addEventListener(
     'input',
     handleHexInput
   );
 
-  const rgbInputs = document.getElementById( 'rgb' );
+  const rgbInputs = document.querySelector( '#rgb' );
 
   rgbInputs.addEventListener(
     'input',
@@ -153,7 +156,7 @@
       handleScroll,
       { passive: true }
     );
-  document.getElementById( 'rand' ).addEventListener(
+  document.querySelector( '#rand' ).addEventListener(
     'click',
     randomise
   );
@@ -161,6 +164,6 @@
   addEventListener(
     'hashchange',
     handleHexInput
-    // updates input and then updates rgb inputs directly
+    // Updates input and then updates rgb inputs directly
   );
 } )();
