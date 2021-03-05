@@ -36,7 +36,6 @@ const { render, Component, h } = require( 'preact' );
   class Root extends Component {
     render() {
       const { state } = this;
-      // eslint-disable-next-line no-undef
       return <div>
         <span>{ state.days }</span>
         { ' days, ' }

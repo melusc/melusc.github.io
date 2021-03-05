@@ -23,6 +23,7 @@ const babelConfig = {
 };
 
 module.exports = environment => ( {
+  devtool: 'source-map',
   resolve: {
     alias: {
       react: 'preact/compat',
@@ -64,7 +65,7 @@ module.exports = environment => ( {
   },
   optimization: {
     usedExports: true,
-    minimize: true,
+    minimize: environment.production === true,
     minimizer: [
       new TerserPlugin( {
         terserOptions: {
