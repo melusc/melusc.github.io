@@ -1,12 +1,12 @@
 # Projects
 
-- [Convert hex and rgb](https://melusc.github.io/hexToRgb2/)
+- [Convert hex and rgb](https://melusc.github.io/webpack/hexToRgb2/)
 
-- [Line clock](https://melusc.github.io/line-clock/)
+- [Line clock](https://melusc.github.io/webpack/line-clock/)
 
-- [Sort keys of JSON alphabetically](https://melusc.github.io/sort-json5-keys/)
+- [Sort keys of JSON alphabetically](https://melusc.github.io/webpack/sort-json5-keys/)
 
-- [Countdown to summer holidays](https://melusc.github.io/time-to-summer-holidays-preact/)
+- [Countdown to summer holidays](https://melusc.github.io/webpack/time-to-summer-holidays-preact/)
 
 - [Game by me but using canvas](https://melusc.github.io/123boom%20canvas)
 
@@ -16,7 +16,7 @@
 
 - [Find the least common multiple (lcm) of x numbers](https://melusc.github.io/lcm)
 
-- [Find the greatest common divisor (gcd) of any amount of numbers](https://melusc.github.io/gcd/)
+- [Find the greatest common divisor (gcd) of any amount of numbers](https://melusc.github.io/webpack/gcd/)
 
 - [25 + 5 clock (freeCodeCamp challenge)](https://melusc.github.io/25-plus-5-clock/)
 

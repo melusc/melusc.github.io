@@ -1,6 +1,5 @@
-import json5 from 'https://esm.run/json5@2.2.0';
-
 ( () => {
+  const json5 = require( 'json5' );
   const input = document.querySelector( '#input' );
   const output = document.querySelector( '#output' );
   const prettyPrintInput = document.querySelector( '#pretty' );

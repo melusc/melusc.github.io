@@ -1,4 +1,4 @@
-import { render, h, Component } from 'https://esm.run/preact';
+const { render, h, Component } = require( 'preact' );
 
 const init = () => {
   const root = document.querySelector( '#root' );
@@ -20,7 +20,7 @@ class App extends Component {
   };
 
   render = (
-    _props, { hour1, hour2, min1, min2, sec1, sec2 }
+    _properties, { hour1, hour2, min1, min2, sec1, sec2 }
   ) => <div class="clock">
     <Range to={2} active={hour1} />
     <Range to={9} active={hour2} />
@@ -69,9 +69,9 @@ const Range = ( { to, active } ) => <div class={`clock-row active-child-${ activ
   {Array.from(
     { length: to + 1 },
     (
-      _, i
-    ) => <div key={i} class={active === i && 'active'}>
-      {i}
+      _, index
+    ) => <div key={index} class={active === index && 'active'}>
+      {index}
     </div>
   )}
 </div>;

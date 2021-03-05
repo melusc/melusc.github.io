@@ -16,10 +16,13 @@
       }
     },
     {
-      "env": { "mocha": true, "node": true, "es2020": true },
+      "env": {
+        "es2020": true,
+        "mocha": true,
+        "node": true
+      },
       "files": ["./test/**/*.test.js"],
       "rules": {
-        // let prettier handle these
         "function-call-argument-newline": "off",
         "function-paren-newline": "off"
       }
@@ -32,6 +35,12 @@
   },
   "plugins": ["@babel", "unicorn"],
   "rules": {
+    "jest/expect-expect": [
+      "error",
+      {
+        "assertFunctionNames": ["assert"]
+      }
+    ],
     "@babel/no-invalid-this": "error",
     "@babel/no-unused-expressions": [
       "error",
@@ -204,6 +213,12 @@
     "no-sequences": "error",
     "no-throw-literal": "error",
     "no-trailing-spaces": "error",
+    "no-undef": [
+      "error",
+      {
+        "typeof": true
+      }
+    ],
     "no-undef-init": "error",
     "no-unmodified-loop-condition": "error",
     "no-unneeded-ternary": "error",

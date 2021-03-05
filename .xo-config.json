@@ -52,6 +52,12 @@
         "allow": ["+", "!!"]
       }
     ],
+    "no-undef": [
+      "error",
+      {
+        "typeof": true
+      }
+    ],
     "no-unused-expressions": [
       "error",
       {

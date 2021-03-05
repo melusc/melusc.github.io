@@ -1,4 +1,4 @@
-import { render, Component, h } from 'https://esm.run/preact';
+const { render, Component, h } = require( 'preact' );
 
 ( () => {
   const themeToggle = document.querySelector( '#theme-toggle' );
@@ -37,17 +37,17 @@ import { render, Component, h } from 'https://esm.run/preact';
     render() {
       const { state } = this;
       // eslint-disable-next-line no-undef
-      return html`<div>
-        <span>${ state.days }</span>
-        ${ ' days, ' }
-        <span>${ state.hours }</span>
-        ${ ' hours, ' }
-        <span>${ state.minutes }</span>
-        ${ ' minutes and ' }
-        <span>${ state.seconds }</span>
-        ${ ' seconds to ' }
+      return <div>
+        <span>{ state.days }</span>
+        { ' days, ' }
+        <span>{ state.hours }</span>
+        { ' hours, ' }
+        <span>{ state.minutes }</span>
+        { ' minutes and ' }
+        <span>{ state.seconds }</span>
+        { ' seconds to ' }
         <span>summer holidays</span>
-      </div>`;
+      </div>;
     }
 
     componentDidMount() {
@@ -78,7 +78,7 @@ import { render, Component, h } from 'https://esm.run/preact';
     }
   }
   render(
-    h( Root ),
+    <Root />,
     root,
     root.firstElementChild
   );
