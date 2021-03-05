@@ -16,7 +16,7 @@
 
 - [Find the least common multiple (lcm) of x numbers](https://melusc.github.io/lcm)
 
-- [Find the highest common factor (hcf) of x numbers](https://melusc.github.io/hcf)
+- [Find the greatest common divisor (gcd) of any amount of numbers](https://melusc.github.io/gcd/)
 
 - [25 + 5 clock (freeCodeCamp challenge)](https://melusc.github.io/25-plus-5-clock/)
 
