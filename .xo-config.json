@@ -52,6 +52,13 @@
         "allow": ["+", "!!"]
       }
     ],
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true
+      }
+    ],
     "object-curly-spacing": ["error", "always"],
     "operator-linebreak": ["error", "before"],
     "react/jsx-closing-bracket-location": "off",
