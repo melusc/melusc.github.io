@@ -14,6 +14,15 @@
       "rules": {
         "camelcase": "off"
       }
+    },
+    {
+      "env": { "mocha": true, "node": true, "es2020": true },
+      "files": ["./test/**/*.test.js"],
+      "rules": {
+        // let prettier handle these
+        "function-call-argument-newline": "off",
+        "function-paren-newline": "off"
+      }
     }
   ],
   "parser": "@babel/eslint-parser",

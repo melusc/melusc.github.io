@@ -41,7 +41,7 @@
     "sass:w": "sass src:src --watch",
     "serve": "serve docs",
     "start": "gulp start",
-    "test": "xo src/**/*.js && mocha test/**/*.test.js"
+    "test": "xo src/**/*.js"
   },
   "version": "1.0.0"
 }
