@@ -55,7 +55,7 @@
     "sass": "sass src:src",
     "sass:w": "sass src:src --watch",
     "serve": "serve docs",
-    "start": "concurrently npm:webpack:w npm:gulp:w -r",
+    "start": "concurrently npm:webpack:w npm:gulp:w npm:serve",
     "test": "xo src/**/*.js && mocha test/**/*.test.js",
     "webpack:b": "webpack -c webpack-config.js --env=production",
     "webpack:w": "webpack -c webpack-config.js -w"
