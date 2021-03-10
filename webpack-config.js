@@ -38,7 +38,7 @@ module.exports = environment => ( {
       entry.basePath( 'src' ),
       path.resolve(
         __dirname,
-        'src/**/*.js'
+        'src/**/script.js'
       )
     ),
   },
