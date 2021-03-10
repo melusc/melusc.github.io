@@ -40,7 +40,7 @@ const gcd = (
   return divisor;
 };
 
-const calculateArrayGCD = setState => numbers => {
+const gcdArray = setState => numbers => {
   const copiedNumbers = [ ...numbers ];
   while ( copiedNumbers.length > 1 ) {
     copiedNumbers[ 0 ] = gcd(
@@ -57,6 +57,6 @@ const calculateArrayGCD = setState => numbers => {
 };
 
 module.exports = {
-  calculateArrayGCD,
+  gcdArray,
   gcd,
 };

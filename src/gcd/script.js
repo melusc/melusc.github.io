@@ -1,5 +1,5 @@
 import { render, h, Component, createRef } from 'preact';
-import { gcd, calculateArrayGCD } from './functions.js';
+import { gcdArray } from './functions.js';
 
 ( () => {
   const root = document.querySelector( '#root' );
@@ -11,7 +11,7 @@ import { gcd, calculateArrayGCD } from './functions.js';
 
     timeout = 0;
 
-    boundCalculateArrayGCD = calculateArrayGCD( this.setState.bind( this ) );
+    gcdArraySetState = gcdArray( this.setState.bind( this ) );
 
     clearTimeout = () => {
       clearTimeout( this.timeout );
@@ -21,7 +21,7 @@ import { gcd, calculateArrayGCD } from './functions.js';
       this.clearTimeout();
 
       this.timeout = setTimeout(
-        this.boundCalculateArrayGCD,
+        this.gcdArraySetState,
         100,
         arguments_
       );
@@ -135,12 +135,4 @@ import { gcd, calculateArrayGCD } from './functions.js';
     <App />,
     root
   );
-
-  /* global DEBUG: false */
-  typeof exports === 'object'
-    && typeof DEBUG === 'undefined'
-    && ( () => {
-      exports.gcd = gcd;
-      exports.calculateArrayGCD = gcd;
-    } )();
 } )();
