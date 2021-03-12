@@ -12,7 +12,7 @@
 
 - [Game by me](https://melusc.github.io/123boom)
 
-- [Animated triangle using requestAnimationFrame](https://melusc.github.io/animatedTriangle)
+- [Animated triangle using requestAnimationFrame](https://melusc.github.io/webpack/animatedTriangle/)
 
 - [Find the least common multiple (lcm) of x numbers](https://melusc.github.io/webpack/lcm/)
 

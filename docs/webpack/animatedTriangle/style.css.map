@@ -1,0 +1,1 @@
+{"version":3,"sources":["animatedTriangle/style.scss"],"names":[],"mappings":"AAAA,G,CACE,a,CACA,c,CAEF,I,CAAA,I,CAEE,S,CACA,Q,CAEF,I,CACE,wB","file":"style.css","sourcesContent":["svg {\r\n  width: 100vmin;\r\n  height: 100vmin;\r\n}\r\nbody,\r\nhtml {\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\nhtml {\r\n  background-color: steelblue;\r\n}\r\n"]}
