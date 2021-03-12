@@ -21,7 +21,6 @@ const PATHS = {
   SOURCEMAPS_DEST: './',
   SVG: [ './src/**/*.svg', '!./src/**/*.min.svg' ],
   SVG_DEST: './src',
-  TEST: './test/**/*.test.js',
 };
 
 const setDevelopmentEnvironment = done => {
