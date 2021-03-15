@@ -4,7 +4,7 @@
     "@babel/runtime": "^7.13.10",
     "dayjs": "^1.10.4",
     "json5": "^2.2.0",
-    "preact": "^10.5.12"
+    "preact": "^10.5.13"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.10",
@@ -38,7 +38,7 @@
     "sass-loader": "^11.0.1",
     "serve": "^11.3.2",
     "terser-webpack-plugin": "^5.1.1",
-    "webpack": "^5.25.0",
+    "webpack": "^5.25.1",
     "webpack-cli": "^4.5.0",
     "webpack-glob-entry": "^2.1.1",
     "xo": "^0.38.2"
