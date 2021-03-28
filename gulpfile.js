@@ -6,6 +6,9 @@ const sass = require( 'gulp-sass' );
 const rename = require( 'gulp-rename' );
 const sourcemaps = require( 'gulp-sourcemaps' );
 const gulpif = require( 'gulp-if' );
+const postcss = require( 'gulp-postcss' );
+const autoprefixer = require( 'autoprefixer' );
+const lazypipe = require( 'lazypipe' );
 
 sass.compiler = require( 'sass' );
 
@@ -71,13 +74,20 @@ const minHTML = () => src( PATHS.HTML )
   ) )
   .pipe( dest( PATHS.DEST ) );
 
+const postCSSTask = lazypipe()
+  .pipe( csso )
+  .pipe(
+    postcss,
+    [ autoprefixer() ]
+  );
+
 const compSCSS = () => src( PATHS.SCSS )
   .pipe( sourcemaps.init() )
 
   .pipe( sass() )
   .pipe( gulpif(
     process.env.GULP_ENV === 'production',
-    csso()
+    postCSSTask()
   ) )
   .pipe( sourcemaps.write( PATHS.SOURCEMAPS_DEST ) )
   .pipe( dest( PATHS.DEST ) );
