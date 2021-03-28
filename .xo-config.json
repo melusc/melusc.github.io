@@ -10,8 +10,8 @@
       }
     }
   ],
-  "parser": "@babel/eslint-parser",
-  "plugins": ["@babel"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@babel", "@typescript-eslint"],
   "rules": {
     "@babel/no-invalid-this": "error",
     "@babel/no-unused-expressions": [
@@ -21,37 +21,66 @@
         "allowTernary": true
       }
     ],
-    "@babel/object-curly-spacing": ["error", "always"],
+    "@babel/object-curly-spacing": "off",
     "@babel/semi": ["error", "always"],
-    "array-bracket-spacing": ["error", "always"],
-    "brace-style": [
+    "@typescript-eslint/array-type": [
+      "error",
+      {
+        "default": "generic",
+        "readonly": "generic"
+      }
+    ],
+    "@typescript-eslint/brace-style": [
       "error",
       "stroustrup",
       {
         "allowSingleLine": true
       }
     ],
-    "comma-dangle": [
+    "@typescript-eslint/comma-dangle": [
       "error",
       {
         "arrays": "always-multiline",
         "objects": "always-multiline"
       }
     ],
-    "computed-property-spacing": ["error", "always"],
-    "indent": [
+    "@typescript-eslint/indent": [
       "error",
       2,
       {
         "SwitchCase": 1
       }
     ],
+    "@typescript-eslint/no-loop-func": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/object-curly-spacing": ["error", "always"],
+    "@typescript-eslint/quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "array-bracket-spacing": ["error", "always"],
+    "brace-style": "off",
+    "comma-dangle": "off",
+    "computed-property-spacing": ["error", "always"],
+    "import/extensions": "off",
+    "import/no-unassigned-import": [
+      "error",
+      {
+        "allow": ["preact/devtools"]
+      }
+    ],
+    "indent": "off",
+    "max-depth": "off",
     "no-implicit-coercion": [
       "error",
       {
         "allow": ["+", "!!"]
       }
     ],
+    "no-loop-func": "off",
     "no-undef": [
       "error",
       {
@@ -65,8 +94,10 @@
         "allowTernary": true
       }
     ],
-    "object-curly-spacing": ["error", "always"],
+    "no-unused-vars": "off",
+    "object-curly-spacing": "off",
     "operator-linebreak": ["error", "before"],
+    "quotes": "off",
     "react/jsx-closing-bracket-location": "off",
     "react/jsx-closing-tag-location": "off",
     "react/jsx-curly-newline": "off",

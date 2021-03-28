@@ -29,6 +29,7 @@ module.exports = environment => ( {
       react: 'preact/compat',
       'react-dom': 'preact/compat',
     },
+    extensions: [ '.js', '.ts' ],
   },
   mode: environment.production
     ? 'production'
@@ -39,6 +40,20 @@ module.exports = environment => ( {
       path.resolve(
         __dirname,
         'src/**/script.js'
+      )
+    ),
+    ...entry(
+      entry.basePath( 'src' ),
+      path.resolve(
+        __dirname,
+        'src/**/script.ts'
+      )
+    ),
+    ...entry(
+      entry.basePath( 'src' ),
+      path.resolve(
+        __dirname,
+        'src/**/script.tsx'
       )
     ),
   },
@@ -87,22 +102,21 @@ module.exports = environment => ( {
     rules: [
       {
         test: /\.js$/,
-        include: [ path.resolve(
-          __dirname,
-          'src'
-        ) ],
-        exclude: /node_modules/,
         use: [ babelConfig ],
       },
       {
-        test: /\.scss$/,
-        type: 'asset/source',
-        use: [ 'csso-loader', 'sass-loader' ],
+        test: /\.tsx?$/,
+        use: [ 'ts-loader' ],
       },
       {
         test: /\.css$/,
         type: 'asset/source',
         use: [ 'csso-loader' ],
+      },
+      {
+        test: /\.scss$/,
+        type: 'asset/source',
+        use: [ 'sass-loader' ],
       },
     ],
   },

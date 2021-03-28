@@ -3,7 +3,14 @@
     "browser": true,
     "es2020": true
   },
-  "extends": ["eslint:recommended", "preact"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "preact",
+    "xo",
+    "xo-react",
+    "xo-typescript"
+  ],
   "overrides": [
     {
       "env": {
@@ -28,19 +35,14 @@
       }
     }
   ],
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 11,
+    "project": "./tsconfig.json",
     "sourceType": "module"
   },
-  "plugins": ["@babel", "unicorn"],
+  "plugins": ["@babel", "unicorn", "@typescript-eslint"],
   "rules": {
-    "jest/expect-expect": [
-      "error",
-      {
-        "assertFunctionNames": ["assert"]
-      }
-    ],
     "@babel/no-invalid-this": "error",
     "@babel/no-unused-expressions": [
       "error",
@@ -51,6 +53,57 @@
     ],
     "@babel/object-curly-spacing": ["error", "always"],
     "@babel/semi": ["error", "always"],
+    "@typescript-eslint/array-type": [
+      "error",
+      {
+        "default": "generic",
+        "readonly": "generic"
+      }
+    ],
+    "@typescript-eslint/await-thenable": "error",
+    "@typescript-eslint/ban-ts-comment": "error",
+    "@typescript-eslint/brace-style": [
+      "error",
+      "stroustrup",
+      {
+        "allowSingleLine": true
+      }
+    ],
+    "@typescript-eslint/comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline"
+      }
+    ],
+    "@typescript-eslint/indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "@typescript-eslint/member-ordering": "error",
+    "@typescript-eslint/no-extra-parens": [
+      "error",
+      "all",
+      {
+        "conditionalAssign": false,
+        "ignoreJSX": "multi-line",
+        "nestedBinaryExpressions": false,
+        "returnAssign": true
+      }
+    ],
+    "@typescript-eslint/no-loop-func": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/object-curly-spacing": ["error", "always"],
+    "@typescript-eslint/quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
     "accessor-pairs": [
       "error",
       {
@@ -72,22 +125,10 @@
     ],
     "block-scoped-var": "error",
     "block-spacing": ["error", "always"],
-    "brace-style": [
-      "error",
-      "stroustrup",
-      {
-        "allowSingleLine": true
-      }
-    ],
+    "brace-style": "off",
     "camelcase": "error",
     "class-methods-use-this": "error",
-    "comma-dangle": [
-      "error",
-      {
-        "arrays": "always-multiline",
-        "objects": "always-multiline"
-      }
-    ],
+    "comma-dangle": "off",
     "comma-spacing": [
       "error",
       {
@@ -126,17 +167,18 @@
     ],
     "grouped-accessor-pairs": "error",
     "implicit-arrow-linebreak": ["error", "beside"],
-    "indent": [
+    "indent": "off",
+    "jest/expect-expect": [
       "error",
-      2,
       {
-        "SwitchCase": 1
+        "assertFunctionNames": ["assert", "expect"]
       }
     ],
     "key-spacing": "error",
     "keyword-spacing": "error",
     "linebreak-style": ["error", "windows"],
     "lines-between-class-members": ["error", "always"],
+    "max-depth": "off",
     "multiline-ternary": ["error", "always"],
     "newline-per-chained-call": "error",
     "no-array-constructor": "error",
@@ -148,7 +190,6 @@
       }
     ],
     "no-constructor-return": "error",
-    "no-continue": "error",
     "no-div-regex": "error",
     "no-duplicate-imports": "error",
     "no-else-return": "error",
@@ -164,14 +205,7 @@
     "no-extend-native": "error",
     "no-extra-bind": "error",
     "no-extra-label": "error",
-    "no-extra-parens": [
-      "error",
-      "all",
-      {
-        "nestedBinaryExpressions": false,
-        "returnAssign": true
-      }
-    ],
+    "no-extra-parens": "off",
     "no-floating-decimal": "error",
     "no-implicit-coercion": [
       "error",
@@ -186,7 +220,7 @@
     "no-label-var": "error",
     "no-lone-blocks": "error",
     "no-lonely-if": "error",
-    "no-loop-func": "error",
+    "no-loop-func": "off",
     "no-loss-of-precision": "error",
     "no-mixed-operators": "error",
     "no-multi-spaces": "error",
@@ -223,6 +257,7 @@
     "no-unneeded-ternary": "error",
     "no-unreachable-loop": "error",
     "no-unused-expressions": "off",
+    "no-unused-vars": "off",
     "no-useless-backreference": "error",
     "no-useless-call": "error",
     "no-useless-catch": "error",
@@ -280,14 +315,28 @@
     "prefer-spread": "error",
     "prefer-template": "error",
     "quote-props": ["error", "as-needed"],
-    "quotes": [
+    "quotes": "off",
+    "radix": "error",
+    "react/jsx-closing-bracket-location": "off",
+    "react/jsx-closing-tag-location": "off",
+    "react/jsx-curly-newline": "off",
+    "react/jsx-indent": "off",
+    "react/jsx-indent-props": "off",
+    "react/jsx-sort-props": "off",
+    "react/jsx-tag-spacing": [
       "error",
-      "single",
       {
-        "avoidEscape": true
+        "beforeClosing": "never"
       }
     ],
-    "radix": "error",
+    "react/jsx-wrap-multilines": "off",
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": ["class", "stroke-linecap", "stroke-linejoin", "stroke-width"]
+      }
+    ],
+    "react/no-unused-state": "off",
     "require-await": "error",
     "rest-spread-spacing": ["error", "never"],
     "semi": "off",
@@ -305,7 +354,14 @@
     "space-in-parens": ["error", "always"],
     "space-infix-ops": "error",
     "space-unary-ops": "error",
-    "spaced-comment": ["error", "always"],
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "exceptions": ["#__PURE__"],
+        "markers": ["/"]
+      }
+    ],
     "strict": ["error", "global"],
     "switch-colon-spacing": [
       "error",
