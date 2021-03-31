@@ -1,5 +1,7 @@
 # Projects
 
+- [Sudoku solver (not quite finished yet)](https://melusc.github.io/webpack/sudoku/)
+
 - [Convert hex and rgb](https://melusc.github.io/webpack/hexToRgb2/)
 
 - [Line clock](https://melusc.github.io/webpack/line-clock/)
