@@ -140,7 +140,8 @@ const start = series(
   watchFunction
 );
 
-exports.default = exports.build = build;
+exports.default = build;
+exports.build = build;
 exports.minSvg = minSvg;
 exports.compSCSS = compSCSS;
 exports.minHTML = minHTML;

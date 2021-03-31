@@ -74,6 +74,12 @@
     ],
     "indent": "off",
     "max-depth": "off",
+    "no-console": [
+      "warn",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
     "no-implicit-coercion": [
       "error",
       {
@@ -85,6 +91,12 @@
       "error",
       {
         "typeof": true
+      }
+    ],
+    "jest/expect-expect": [
+      "error",
+      {
+        "assertFunctionNames": ["assert", "expect"]
       }
     ],
     "no-unused-expressions": [

@@ -33,6 +33,12 @@
         "function-call-argument-newline": "off",
         "function-paren-newline": "off"
       }
+    },
+    {
+      "files": ["!*.ts!*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
     }
   ],
   "parser": "@typescript-eslint/parser",
@@ -183,6 +189,12 @@
     "newline-per-chained-call": "error",
     "no-array-constructor": "error",
     "no-case-declarations": "error",
+    "no-console": [
+      "warn",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
     "no-constant-condition": [
       "error",
       {

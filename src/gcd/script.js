@@ -59,8 +59,6 @@ import { gcdArray } from './functions.js';
       const originalValue = this.inputRef.current.value;
       let mutatingValue = originalValue;
 
-      console.log( mutatingValue );
-
       mutatingValue = mutatingValue
         // Since fullstops aren't allowed just turn them into commas
         .replace(
