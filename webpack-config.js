@@ -1,5 +1,3 @@
-// webpack-config.js because xo seems to import it by accident
-
 const path = require( 'path' );
 const TerserPlugin = require( 'terser-webpack-plugin' );
 const entry = require( 'webpack-glob-entry' );

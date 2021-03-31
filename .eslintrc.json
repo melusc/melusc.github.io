@@ -28,14 +28,14 @@
         "mocha": true,
         "node": true
       },
-      "files": ["./test/**/*.test.js"],
+      "files": ["./test/**/*.test.js", "./test/**/*.test.ts"],
       "rules": {
-        "function-call-argument-newline": "off",
-        "function-paren-newline": "off"
+        "max-nested-callbacks": "off"
       }
     },
+
     {
-      "files": ["!*.ts!*.tsx"],
+      "files": ["*.js", "*.jsx"],
       "rules": {
         "@typescript-eslint/no-var-requires": "off"
       }

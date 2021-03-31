@@ -8,6 +8,13 @@
       "rules": {
         "camelcase": "off"
       }
+    },
+    {
+      "env": ["es2020", "mocha", "node"],
+      "files": ["./test/**/*.test.js", "./test/**/*.test.ts"],
+      "rules": {
+        "max-nested-callbacks": "off"
+      }
     }
   ],
   "parser": "@typescript-eslint/parser",
