@@ -52,7 +52,7 @@
     "ts-loader": "^8.1.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3",
-    "webpack": "^5.28.0",
+    "webpack": "^5.29.0",
     "webpack-cli": "^4.6.0",
     "webpack-glob-entry": "^2.1.1",
     "xo": "^0.38.2"
@@ -64,7 +64,8 @@
   "name": "melusc.github.io",
   "private": true,
   "scripts": {
-    "build": "npm run test && npm run webpack:b && npm run gulp:b",
+    "build": "npm run test && npm run build-no-test",
+    "build-no-test": "npm run webpack:b && npm run gulp:b",
     "gulp:b": "gulp build",
     "gulp:w": "gulp start",
     "sass": "sass src:src",
