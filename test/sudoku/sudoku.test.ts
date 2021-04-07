@@ -3,16 +3,12 @@ require = require( 'esm' )( module );
 
 import { assert } from 'chai';
 
-import {
-  Sudoku,
-  Cell,
-  validCellIndex
-} from '../../src/sudoku/sudoku';
+import { Sudoku, Cell, validCellIndex } from '../../src/sudoku/sudoku';
 
 import type { SudokuInterface } from '../../src/sudoku/index';
 
 describe(
-  'sudoku.js',
+  'sudoku.ts',
   () => {
     describe(
       'Cell',
@@ -24,21 +20,21 @@ describe(
         } );
 
         it(
-          'Cell should be a function',
+          'Cell should be a function.',
           () => {
             assert.isFunction( Cell );
           }
         );
 
         it(
-          'Cell should return an object',
+          'Cell should return an object.',
           () => {
             assert.isObject( new Cell() );
           }
         );
 
         it(
-          'Cell should return the correct object',
+          'Cell should return the correct object.',
           () => {
             const result = new Cell();
 
@@ -55,7 +51,7 @@ describe(
           '#setContent()',
           () => {
             it(
-              '"1" should mutate #content and #possible',
+              '"1" should mutate #content and #possible.',
               () => {
                 const originalContent = emptyCell.content;
                 const originalPossibleSize = emptyCell.possible.size;
@@ -88,14 +84,14 @@ describe(
           '#setValidity()',
           () => {
             it(
-              'setting the content to "0" should set #valid to false',
+              'setting the content to "0" should set #valid to false.',
               () => {
                 assert.isFalse( emptyCell.setContent( '0' ).valid );
               }
             );
 
             it(
-              'setting the content to "1" should set #valid to true',
+              'setting the content to "1" should set #valid to true.',
               () => {
                 assert.isTrue( emptyCell.setContent( '1' ).valid );
               }
@@ -107,7 +103,7 @@ describe(
           '#clear()',
           () => {
             it(
-              'should properly clear a previously non-empty, invalid cell',
+              'should properly clear a previously non-empty, invalid cell.',
               () => {
                 emptyCell.setContent( 'https://bit.ly/3u6XnPl' ).clear();
 
@@ -122,7 +118,7 @@ describe(
             );
 
             it(
-              'should properly clear a previously non-empty, valid cell',
+              'should properly clear a previously non-empty, valid cell.',
               () => {
                 emptyCell.setContent( '1' ).clear();
 
@@ -144,7 +140,7 @@ describe(
       'Sudoku',
       () => {
         it(
-          'should be a class',
+          'should be a class.',
           () => {
             assert.isFunction( Sudoku );
 
@@ -165,7 +161,7 @@ describe(
           '#setContent()',
           () => {
             it(
-              'should mutate the correct cell',
+              'should mutate the correct cell.',
               () => {
                 emptySudoku.setContent(
                   0,
@@ -189,7 +185,7 @@ describe(
           '#getContent()',
           () => {
             it(
-              '8, 8 should return undefined',
+              '8, 8 should return undefined.',
               () => {
                 assert.isUndefined( emptySudoku.getContent(
                   8,
@@ -199,7 +195,7 @@ describe(
             );
 
             it(
-              '8, 8 should return 4 after setting that cell to 4',
+              '8, 8 should return 4 after setting that cell to 4.',
               () => {
                 assert.strictEqual(
                   emptySudoku.setContent(
@@ -218,80 +214,10 @@ describe(
         );
 
         describe(
-          '#getCells',
-          () => {
-            it(
-              'should return the unmodified cells',
-              () => {
-                const cells = emptySudoku.getCells();
-
-                assert.lengthOf(
-                  cells,
-                  9
-                );
-
-                for ( const row of cells ) {
-                  assert.isObject( row );
-
-                  assert.isString( row.key );
-
-                  assert.lengthOf(
-                    row.content,
-                    9
-                  );
-
-                  for ( const cell of row.content ) {
-                    assert.isUndefined( cell.content );
-
-                    assert.isString( cell.key );
-                  }
-                }
-              }
-            );
-
-            it(
-              'should return the modified cells',
-              () => {
-                const cells = emptySudoku
-                  .setContent(
-                    0,
-                    0,
-                    '2'
-                  )
-                  .setContent(
-                    1,
-                    1,
-                    '4'
-                  )
-                  .setContent(
-                    5,
-                    7,
-                    '2'
-                  )
-                  .getCells();
-
-                assert.strictEqual(
-                  cells[ 0 ].content[ 0 ].content,
-                  '2'
-                );
-                assert.strictEqual(
-                  cells[ 1 ].content[ 1 ].content,
-                  '4'
-                );
-                assert.strictEqual(
-                  cells[ 5 ].content[ 7 ].content,
-                  '2'
-                );
-              }
-            );
-          }
-        );
-
-        describe(
           '#clearCell()',
           () => {
             it(
-              'should clear a previously non-empty cell',
+              'should clear a previously non-empty cell.',
               () => {
                 assert.isUndefined( emptySudoku.setContent(
                   6,
@@ -314,17 +240,19 @@ describe(
           '#clearAllCells()',
           () => {
             it(
-              'should clear a non-empty sudoku',
+              'should clear a non-empty sudoku.',
               () => {
-                emptySudoku.setContent(
-                  6,
-                  6,
-                  '4'
-                ).setContent(
-                  1,
-                  1,
-                  '5'
-                )
+                emptySudoku
+                  .setContent(
+                    6,
+                    6,
+                    '4'
+                  )
+                  .setContent(
+                    1,
+                    1,
+                    '5'
+                  )
                   .setContent(
                     2,
                     4,
@@ -373,22 +301,302 @@ describe(
         );
 
         describe(
+          '#getCol()',
+          () => {
+            it(
+              'should return the correct column and content.',
+              () => {
+                emptySudoku.setContent(
+                  2,
+                  8,
+                  '2'
+                ).setContent(
+                  5,
+                  8,
+                  '4'
+                );
+
+                const col = emptySudoku.getCol( 8 );
+
+                assert.deepStrictEqual(
+                  col.map( cell => cell.content ),
+                  [
+                    undefined,
+                    undefined,
+                    '2',
+                    undefined,
+                    undefined,
+                    '4',
+                    undefined,
+                    undefined,
+                    undefined,
+                  ]
+                );
+              }
+            );
+          }
+        );
+
+        describe(
+          '#getRow()',
+          () => {
+            it(
+              'should return the correct row and content.',
+              () => {
+                emptySudoku
+                  .setContent(
+                    8,
+                    8,
+                    '3'
+                  )
+                  .setContent(
+                    8,
+                    2,
+                    '4'
+                  )
+                  .setContent(
+                    8,
+                    7,
+                    '7'
+                  );
+
+                const row = emptySudoku.getRow( 8 );
+
+                assert.deepStrictEqual(
+                  row.map( cell => cell.content ),
+                  [
+                    undefined,
+                    undefined,
+                    '4',
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    '7',
+                    '3',
+                  ]
+                );
+              }
+            );
+          }
+        );
+
+        describe(
+          '#getCell',
+          () => {
+            it(
+              'should return the correct cell at (0, 0).',
+              () => {
+                assert.deepStrictEqual(
+                  emptySudoku.getCell(
+                    0,
+                    0
+                  ),
+                  emptySudoku.getBlock( 0 )[ 0 ]
+                );
+              }
+            );
+
+            it(
+              'should return the correct cell at (4, 6).',
+              () => {
+                assert.deepStrictEqual(
+                  emptySudoku.getCell(
+                    4,
+                    6
+                  ),
+                  emptySudoku._cells[ 4 ].content[ 6 ] // This is what it does, but there's not a lot to test here anyway.
+                );
+              }
+            );
+          }
+        );
+
+        describe(
+          '#getCells',
+          () => {
+            it(
+              'should return the unmodified cells.',
+              () => {
+                const cells = emptySudoku.getCells();
+
+                assert.lengthOf(
+                  cells,
+                  9
+                );
+
+                for ( const row of cells ) {
+                  assert.isObject( row );
+
+                  assert.isString( row.key );
+
+                  assert.lengthOf(
+                    row.content,
+                    9
+                  );
+
+                  for ( const cell of row.content ) {
+                    assert.isUndefined( cell.content );
+
+                    assert.isString( cell.key );
+                  }
+                }
+              }
+            );
+
+            it(
+              'should return the modified cells.',
+              () => {
+                const sudoku = emptySudoku
+                  .setContent(
+                    0,
+                    0,
+                    '2'
+                  )
+                  .setContent(
+                    1,
+                    1,
+                    '4'
+                  )
+                  .setContent(
+                    5,
+                    7,
+                    '2'
+                  );
+
+                assert.strictEqual(
+                  sudoku.getCell(
+                    0,
+                    0
+                  ).content,
+                  '2'
+                );
+                assert.strictEqual(
+                  sudoku.getCell(
+                    1,
+                    1
+                  ).content,
+                  '4'
+                );
+                assert.strictEqual(
+                  sudoku.getCell(
+                    5,
+                    7
+                  ).content,
+                  '2'
+                );
+              }
+            );
+          }
+        );
+
+        describe(
+          '#getBlock()',
+          () => {
+            it(
+              'should return a array of length 9.',
+              () => {
+                const result = emptySudoku.getBlock( 0 );
+
+                assert.isArray( result );
+                assert.lengthOf(
+                  result,
+                  9
+                );
+              }
+            );
+
+            it(
+              'should return the correct cells.',
+              () => {
+                for ( let row = 0; row < 3; ++row ) {
+                  for ( let col = 0; col < 3; ++col ) {
+                    // Because prettier keeps on removing brackets and eslint complains about mixed operations
+                    const number = row * 3;
+                    emptySudoku.setContent(
+                      row,
+                      col,
+                      `${ number + col + 1 }`
+                    );
+                  }
+                }
+
+                const result = emptySudoku.getBlock( 0 );
+
+                for ( let index = 0; index < 9; ++index ) {
+                  assert.strictEqual(
+                    result[ index ].content,
+                    `${ index + 1 }`
+                  );
+                }
+              }
+            );
+          }
+        );
+
+        describe(
+          '#solve()',
+          () => {
+            it(
+              'should correctly solve an easy sudoku.',
+              () => {
+                const _ = undefined;
+                const sudoku = new Sudoku( [
+                  [ _, 1, _, 3, 8, _, _, 5, 2 ],
+                  [ _, 6, 5, _, _, _, _, 8, 9 ],
+                  [ _, _, _, 5, _, 9 ],
+                  [ _, _, _, 4, 1, _, 8 ],
+                  [ 2, 3, _, _, _, _, _, 4, 6 ],
+                  [ _, _, 8, _, 3, 7 ],
+                  [ _, _, _, 1, _, 8 ],
+                  [ 6, 5, _, _, _, _, 2, 3 ],
+                  [ 7, 8, _, _, 5, 3, _, 1 ],
+                ] );
+
+                sudoku.solve();
+
+                assert.deepStrictEqual(
+                  sudoku.getCells().map( row => row.content.map( cell => cell.content ) ),
+                  [
+                    [ '9', '1', '4', '3', '8', '6', '7', '5', '2' ],
+                    [ '3', '6', '5', '7', '2', '1', '4', '8', '9' ],
+                    [ '8', '7', '2', '5', '4', '9', '3', '6', '1' ],
+                    [ '5', '9', '6', '4', '1', '2', '8', '7', '3' ],
+                    [ '2', '3', '7', '8', '9', '5', '1', '4', '6' ],
+                    [ '1', '4', '8', '6', '3', '7', '9', '2', '5' ],
+                    [ '4', '2', '3', '1', '6', '8', '5', '9', '7' ],
+                    [ '6', '5', '1', '9', '7', '4', '2', '3', '8' ],
+                    [ '7', '8', '9', '2', '5', '3', '6', '1', '4' ],
+                  ]
+                );
+
+                assert.isTrue( sudoku.isSolved() );
+              }
+            );
+          }
+        );
+
+        describe(
           '#subscribe()',
           () => {
             it(
-              'the subscribed function should be dispatched on updates',
+              'the subscribed function should be dispatched on updates.',
               () => {
                 let hasDispatched = false;
 
                 const callback = ( sudoku: SudokuInterface ) => {
-                  const cells = sudoku.getCells();
-
                   assert.strictEqual(
-                    cells[ 3 ].content[ 2 ].content,
+                    sudoku.getCell(
+                      3,
+                      2
+                    ).content,
                     '2'
                   );
                   assert.strictEqual(
-                    cells[ 4 ].content[ 1 ].content,
+                    sudoku.getCell(
+                      4,
+                      1
+                    ).content,
                     '4'
                   );
                   hasDispatched = true;
@@ -418,19 +626,23 @@ describe(
           '#unsubscribe()',
           () => {
             it(
-              'the subscribed function should be dispatched on updates but not after unsubscribing',
+              'the subscribed function should be dispatched on updates but not after unsubscribing.',
               () => {
                 let hasDispatched = false;
 
                 const callback = ( sudoku: SudokuInterface ) => {
-                  const cells = sudoku.getCells();
-
                   assert.strictEqual(
-                    cells[ 3 ].content[ 2 ].content,
+                    sudoku.getCell(
+                      3,
+                      2
+                    ).content,
                     '2'
                   );
                   assert.strictEqual(
-                    cells[ 4 ].content[ 1 ].content,
+                    sudoku.getCell(
+                      4,
+                      1
+                    ).content,
                     '4'
                   );
                   hasDispatched = true;
@@ -470,14 +682,14 @@ describe(
           '#setValidity()',
           () => {
             it(
-              'should return true on an empty sudoku',
+              'should return true on an empty sudoku.',
               () => {
                 assert.isTrue( emptySudoku.setValidity() );
               }
             );
 
             it(
-              'should return false when setting an invalid cell',
+              'should return false when setting an invalid cell.',
               () => {
                 assert.isFalse( emptySudoku.setContent(
                   0,
@@ -488,25 +700,23 @@ describe(
             );
 
             it(
-              'should return true when overwriting an invalid cell',
+              'should return true when overwriting an invalid cell.',
               () => {
-                assert.isTrue( emptySudoku
-                  .setContent(
-                    0,
-                    2,
-                    'A'
-                  )
-                  .setContent(
-                    0,
-                    2,
-                    '2'
-                  )
+                assert.isTrue( emptySudoku.setContent(
+                  0,
+                  2,
+                  'A'
+                ).setContent(
+                  0,
+                  2,
+                  '2'
+                )
                   .setValidity() );
               }
             );
 
             it(
-              'a row with duplicates should return false',
+              'a row with duplicates should return false.',
               () => {
                 assert.isFalse( emptySudoku.setContent(
                   0,
@@ -522,7 +732,7 @@ describe(
             );
 
             it(
-              'a row with duplicates should return true after fixing them',
+              'a row with duplicates should return true after fixing them.',
               () => {
                 assert.isTrue( emptySudoku
                   .setContent(
@@ -564,42 +774,44 @@ describe(
         );
 
         describe(
-          '#getBlock()',
+          '#isSolved()',
           () => {
             it(
-              'should return a array of length 9',
+              'should return false when the sudoku is empty.',
               () => {
-                const result = emptySudoku.getBlock( 0 );
-
-                assert.isArray( result );
-                assert.lengthOf(
-                  result,
-                  9
-                );
+                assert.isFalse( emptySudoku.isSolved() );
               }
             );
 
             it(
-              'should return the correct cells',
+              'should return false when the sudoku is partially empty.',
               () => {
-                for ( let row = 0; row < 3; ++row ) {
-                  for ( let col = 0; col < 3; ++col ) {
-                    emptySudoku.setContent(
-                      row,
-                      col,
-                      `${ ( row * 3 ) + col + 1 }`
-                    );
-                  }
-                }
+                emptySudoku.setContent(
+                  0,
+                  3,
+                  '2'
+                ).setContent(
+                  2,
+                  4,
+                  '4'
+                );
 
-                const result = emptySudoku.getBlock( 0 );
+                assert.isFalse( emptySudoku.isSolved() );
+              }
+            );
 
-                for ( let index = 0; index < 9; ++index ) {
-                  assert.strictEqual(
-                    result[ index ].content,
-                    `${ index + 1 }`
-                  );
-                }
+            it(
+              'should return false when the sudoku has an immediate, obvious mistake even if filled entirely.',
+              () => {
+                const sudoku = new Sudoku( Array.from(
+                  { length: 9 },
+                  () => Array.from(
+                    { length: 9 },
+                    () => 2
+                  )
+                ) );
+
+                assert.isFalse( sudoku.isSolved() );
               }
             );
           }
@@ -611,7 +823,7 @@ describe(
       'validCellIndex',
       () => {
         it(
-          '-1 should throw',
+          '-1 should throw.',
           () => {
             assert.throws(
               () => {
@@ -626,7 +838,7 @@ describe(
         );
 
         it(
-          '9 should throw',
+          '9 should throw.',
           () => {
             assert.throws(
               () => {
@@ -641,7 +853,7 @@ describe(
         );
 
         it(
-          '5.5 should throw',
+          '5.5 should throw.',
           () => {
             assert.throws(
               () => {
@@ -656,7 +868,7 @@ describe(
         );
 
         it(
-          '4 should not throw',
+          '4 should not throw.',
           () => {
             assert.doesNotThrow( () => {
               validCellIndex(

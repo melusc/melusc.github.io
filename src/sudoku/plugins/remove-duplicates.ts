@@ -5,7 +5,7 @@ import type { SudokuInterface } from '../index';
  * present in any other cell in the same structure
  */
 
-const genericSolver = ( getterFunctionName: 'getRow' | 'getCol' |'getBlock' ) => ( sudoku: SudokuInterface ) => {
+const genericSolver = ( getterFunctionName: 'getRow' | 'getCol' | 'getBlock' ) => ( sudoku: SudokuInterface ) => {
   let anyChanged = false;
   for ( let index = 0; index < 9; ++index ) {
     const structure = sudoku[ getterFunctionName ]( index );
@@ -34,8 +34,12 @@ const genericSolver = ( getterFunctionName: 'getRow' | 'getCol' |'getBlock' ) =>
   return anyChanged;
 };
 
-export const noDuplicatePossiblesByRow = genericSolver( 'getRow' );
+const removeDuplicatesByRow = genericSolver( 'getRow' );
+const removeDuplicatesByCol = genericSolver( 'getCol' );
+const removeDuplicatesByBlock = genericSolver( 'getBlock' );
 
-export const noDuplicatePossiblesByCol = genericSolver( 'getCol' );
-
-export const noDuplicatePossiblesByBlock = genericSolver( 'getBlock' );
+export {
+  removeDuplicatesByBlock,
+  removeDuplicatesByCol,
+  removeDuplicatesByRow
+};

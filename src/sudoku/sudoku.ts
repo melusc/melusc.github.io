@@ -62,9 +62,10 @@ class Cell implements CellInterface {
   valid = true;
 
   setValidity = (): this => {
-    this.valid = typeof this.content === 'undefined'
-      ? this.possible.size !== 0
-      : ( /^[1-9]$/ ).test( this.content );
+    this.valid
+      = typeof this.content === 'undefined'
+        ? this.possible.size !== 0
+        : ( /^[1-9]$/ ).test( this.content );
 
     return this;
   };
@@ -202,7 +203,46 @@ class Sudoku implements SudokuInterface {
       'row'
     );
 
-    return this._cells[ row ].content;
+    return [ ...this._cells[ row ].content ];
+  };
+
+  getBlock = ( index: number ): Array<CellInterface> => {
+    validCellIndex(
+      index,
+      'index'
+    );
+
+    const colOffset = ( index % 3 ) * 3;
+    const rowOffset = Math.floor( index / 3 ) * 3;
+
+    const result = [];
+
+    for ( let index_ = 0; index_ < 9; ++index_ ) {
+      const row = rowOffset + Math.floor( index_ / 3 );
+      const col = colOffset + ( index_ % 3 );
+
+      result.push( this.getCell(
+        row,
+        col
+      ) );
+    }
+
+    return result;
+  };
+
+  getCell = (
+    row: number, col: number
+  ): CellInterface => {
+    validCellIndex(
+      row,
+      'row'
+    );
+    validCellIndex(
+      col,
+      'col'
+    );
+
+    return this._cells[ row ].content[ col ];
   };
 
   getCells = (): Cells => {
@@ -219,36 +259,6 @@ class Sudoku implements SudokuInterface {
       }
 
       result.push( newRow );
-    }
-
-    return result;
-  };
-
-  getBlock = ( index: number ): Array<CellInterface> => {
-    validCellIndex(
-      index,
-      'index'
-    );
-
-    const row = Math.floor( index / 3 );
-    const col = index % 3;
-
-    const result = [];
-
-    const lowerRowBoundary = row * 3;
-    const lowerColBoundary = col * 3;
-    for (
-      let currentRow = lowerRowBoundary;
-      currentRow < lowerRowBoundary + 3;
-      ++currentRow
-    ) {
-      for (
-        let currentCol = lowerColBoundary;
-        currentCol < lowerColBoundary + 3;
-        ++currentCol
-      ) {
-        result.push( this._cells[ currentRow ].content[ currentCol ] );
-      }
     }
 
     return result;
@@ -292,8 +302,7 @@ class Sudoku implements SudokuInterface {
         ) => {
           if ( cell.content === undefined ) {
             if ( cell.possible.size === 1 ) {
-              cell.content = [ ...cell.possible.values() ][ 0 ];
-              cell.possible.clear();
+              cell.setContent( cell.possible.values().next().value );
             }
             else if ( cell.possible.size === 0 ) {
               sudokuInvalid = true;

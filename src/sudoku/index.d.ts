@@ -5,7 +5,10 @@ declare namespace Sudoku {
   type NumberOnlySudoku = Array<Array<number | undefined>>;
 
   type DispatchTypes = 'change' | 'error' | 'finish';
-  type SubscriptionCallback = ( sudoku: SudokuInterface, type: DispatchTypes ) => void;
+  type SubscriptionCallback = (
+    sudoku: SudokuInterface,
+    type: DispatchTypes
+  ) => void;
 
   type IterateCallback = ( cell: CellInterface, breakEarly: () => void ) => void;
 
@@ -40,8 +43,15 @@ declare namespace Sudoku {
 
     getRow: ( row: number ) => Array<CellInterface>;
 
+    getCell: ( row: number, col: number ) => CellInterface;
+
     getCells: () => Cells;
 
+    /* Describing the sudoku layout like this [
+      [ 1, 2, 3, .. ],
+      [ 10, 11, 12, .. ],
+      ..
+    ], getBlock returns [ 1, 2, 3, 10, 11, 12, 19, 20, 21 ] */
     getBlock: ( index: number ) => Array<CellInterface>;
 
     iterate: (

@@ -6,17 +6,18 @@ import { Sudoku } from './sudoku';
 
 import type { Cells, NumberOnlySudoku } from './index';
 
-interface AppState {
-  cells: Cells;
-  error: undefined | string;
-}
-
 interface Sudokus {
   easy: NumberOnlySudoku;
   evil: NumberOnlySudoku;
 }
 
+interface AppState {
+  cells: Cells;
+  error: undefined | string;
+}
+
 const _ = undefined; // Looks better, than loads of `undefined`
+
 const sudokus: Sudokus = {
   easy: [
     [ 5, _, 3, _, 9, 4 ],
@@ -95,7 +96,9 @@ class App extends Component {
             ) => (
               <div key={key} class="cell">
                 <input
-                  value={content}
+                  // Preact won't empty the input if the value passed is undefined
+                  // (needed when clearing)
+                  value={content ?? ''}
                   class={valid
                     ? ''
                     : 'invalid-input'}

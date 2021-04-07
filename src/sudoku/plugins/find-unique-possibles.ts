@@ -6,7 +6,7 @@ import { SudokuInterface } from '../index';
  * with that specific number
  */
 
-const genericSolver = ( getterFunctionName: 'getRow'|'getCol'|'getBlock' ) => ( sudoku: SudokuInterface ) => {
+const genericSolver = ( getterFunctionName: 'getRow' | 'getCol' | 'getBlock' ) => ( sudoku: SudokuInterface ) => {
   let anyChanged = false;
 
   for ( let index = 0; index < 9; ++index ) {
@@ -24,7 +24,7 @@ const genericSolver = ( getterFunctionName: 'getRow'|'getCol'|'getBlock' ) => ( 
     }
 
     for ( const [ key, amount ] of amountPossible ) {
-      if ( amount !== 1 ) {
+      if ( amount > 1 ) {
         continue;
       }
 
@@ -44,8 +44,8 @@ const genericSolver = ( getterFunctionName: 'getRow'|'getCol'|'getBlock' ) => ( 
   return anyChanged;
 };
 
-export const uniquePossiblesByRow = genericSolver( 'getRow' );
+export const findUniquePossiblesByRow = genericSolver( 'getRow' );
 
-export const uniquePossiblesByCol = genericSolver( 'getCol' );
+export const findUniquePossiblesByCol = genericSolver( 'getCol' );
 
-export const uniquePossiblesByBlock = genericSolver( 'getBlock' );
+export const findUniquePossiblesByBlock = genericSolver( 'getBlock' );
