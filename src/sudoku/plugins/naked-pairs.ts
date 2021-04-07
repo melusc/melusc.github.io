@@ -45,8 +45,6 @@ const genericNakedPairsSolver = (
       }
 
       if ( cellsWithRightPossibles.size === n ) {
-        console.log( [ ...cellsWithRightPossibles ].map( cell => [ ...cell.possible ] ) );
-
         for ( const cell of structure ) {
           if ( cellsWithRightPossibles.has( cell ) ) {
             continue;
