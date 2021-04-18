@@ -80,6 +80,12 @@
       }
     ],
     "indent": "off",
+    "jest/expect-expect": [
+      "error",
+      {
+        "assertFunctionNames": ["assert", "expect"]
+      }
+    ],
     "max-depth": "off",
     "no-console": [
       "warn",
@@ -100,12 +106,6 @@
         "typeof": true
       }
     ],
-    "jest/expect-expect": [
-      "error",
-      {
-        "assertFunctionNames": ["assert", "expect"]
-      }
-    ],
     "no-unused-expressions": [
       "error",
       {
@@ -114,6 +114,7 @@
       }
     ],
     "no-unused-vars": "off",
+    "no-use-before-define": "error",
     "object-curly-spacing": "off",
     "operator-linebreak": ["error", "before"],
     "quotes": "off",

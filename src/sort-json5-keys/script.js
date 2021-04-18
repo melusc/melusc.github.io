@@ -33,12 +33,6 @@
 
   updateVals();
 
-  const updateFunction = () => {
-    updateVals();
-
-    prettify();
-  };
-
   const sortJSON = value => {
     if ( typeof value !== 'object' ) {
       return value;
@@ -82,6 +76,12 @@
     catch ( error ) {
       errorDiv.textContent = error.message;
     }
+  };
+
+  const updateFunction = () => {
+    updateVals();
+
+    prettify();
   };
 
   prettyPrintInput.addEventListener(

@@ -33,7 +33,6 @@
         "max-nested-callbacks": "off"
       }
     },
-
     {
       "files": ["*.js", "*.jsx"],
       "rules": {
@@ -101,6 +100,7 @@
       }
     ],
     "@typescript-eslint/no-loop-func": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/object-curly-spacing": ["error", "always"],
     "@typescript-eslint/quotes": [
@@ -270,6 +270,7 @@
     "no-unreachable-loop": "error",
     "no-unused-expressions": "off",
     "no-unused-vars": "off",
+    "no-use-before-define": "error",
     "no-useless-backreference": "error",
     "no-useless-call": "error",
     "no-useless-catch": "error",

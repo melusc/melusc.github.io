@@ -12,6 +12,16 @@
     and the input will not be updated again
   */
 
+  const inputs = [ ...document.querySelectorAll( '#rgb > input' ) ];
+
+  const hexInput = document.querySelector( '#hex > input' );
+  const bodyStyle = document.body.style;
+
+  const updateURL = hex => {
+    location.hash = hex;
+    hashUpdatedByScript = true;
+  };
+
   const handleRgbInput = () => {
     const vals = inputs.map( value => +value.value );
     if ( vals.every( value => value < 256 && value >= 0 ) ) {
@@ -47,10 +57,7 @@
   const handleHexInput = ( event_ = {} ) => {
     const isHashChange = event_.type === 'hashchange';
     if ( isHashChange ) {
-      if ( hashUpdatedByScript ) {
-        hashUpdatedByScript = false;
-      }
-      else {
+      if ( !hashUpdatedByScript ) {
         const { hash } = location;
         if ( hash && typeof hash === 'string' && hexInput.value !== hash ) {
           /* Updates to hexInput update the hash so only run
@@ -62,6 +69,8 @@
           hexInput.value = hash;
         }
       }
+
+      hashUpdatedByScript = false;
     }
 
     const origValue = hexInput.value.trim().match( /^#?(?<val>[\da-f]+)$/i )?.groups?.val;
@@ -102,11 +111,6 @@
     handleRgbInput();
   };
 
-  const updateURL = hex => {
-    location.hash = hex;
-    hashUpdatedByScript = true;
-  };
-
   const handleScroll = event_ => {
     if ( event_.target.nodeName === 'INPUT' ) {
       const newValue = +event_.target.value - Math.sign( event_.deltaY );
@@ -123,11 +127,6 @@
       handleRgbInput();
     }
   };
-
-  const inputs = [ ...document.querySelectorAll( '#rgb > input' ) ];
-
-  const hexInput = document.querySelector( '#hex > input' );
-  const bodyStyle = document.body.style;
 
   const hex = location.hash;
   if ( hex.length > 1 ) {

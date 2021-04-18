@@ -1,14 +1,15 @@
 const { render, h, Component } = require( 'preact' );
 
-const init = () => {
-  const root = document.querySelector( '#root' );
-
-  render(
-    <App />,
-    root
-  );
-};
-
+const Range = ( { to, active } ) => <div class={`clock-row active-child-${ active }`}>
+  {Array.from(
+    { length: to + 1 },
+    (
+      _, index
+    ) => <div key={index} class={active === index && 'active'}>
+      {index}
+    </div>
+  )}
+</div>;
 class App extends Component {
   state = {
     hour1: 0,
@@ -65,14 +66,9 @@ class App extends Component {
   };
 }
 
-const Range = ( { to, active } ) => <div class={`clock-row active-child-${ active }`}>
-  {Array.from(
-    { length: to + 1 },
-    (
-      _, index
-    ) => <div key={index} class={active === index && 'active'}>
-      {index}
-    </div>
-  )}
-</div>;
-init();
+const root = document.querySelector( '#root' );
+
+render(
+  <App />,
+  root
+);

@@ -39,21 +39,6 @@ const setProductionEnvironment = done => {
   done();
 };
 
-const watchFunction = () => {
-  watch(
-    PATHS.SCSS,
-    compSCSS
-  );
-  watch(
-    PATHS.HTML,
-    minHTML
-  );
-  watch(
-    PATHS.SVG,
-    minSvg
-  );
-};
-
 const minHTML = () => src( PATHS.HTML )
   .pipe( gulpif(
     process.env.GULP_ENV === 'production',
@@ -129,6 +114,21 @@ const build = series(
     compSCSS
   )
 );
+
+const watchFunction = () => {
+  watch(
+    PATHS.SCSS,
+    compSCSS
+  );
+  watch(
+    PATHS.HTML,
+    minHTML
+  );
+  watch(
+    PATHS.SVG,
+    minSvg
+  );
+};
 
 const start = series(
   setDevelopmentEnvironment,
