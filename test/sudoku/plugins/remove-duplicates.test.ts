@@ -1,16 +1,11 @@
-// eslint-disable-next-line no-global-assign, @typescript-eslint/no-var-requires
-require = require( 'esm' )( module );
-
 import { assert } from 'chai';
 
-import { Sudoku } from '../../src/sudoku/sudoku';
-import type { SudokuInterface } from '../../src/sudoku';
+import { Sudoku } from '../../../src/sudoku/sudoku';
+import type { SudokuInterface } from '../../../src/sudoku';
 
 import {
-  removeDuplicatesByBlock,
-  removeDuplicatesByCol,
-  removeDuplicatesByRow
-} from '../../src/sudoku/plugins/remove-duplicates';
+  removeDuplicates
+} from '../../../src/sudoku/plugins/remove-duplicates';
 
 const _ = undefined;
 
@@ -42,10 +37,26 @@ describe(
   'remove-duplicates.ts',
   () => {
     describe(
-      'removeDuplicatesByBlock()',
+      'removeDuplicates()',
       () => {
         it(
-          'should solve [[1, 2, 3], [4, 5, 6], [_, 8, 9] correctly.',
+          'should not change an empty sudoku.',
+          () => {
+            const originalSudoku = new Sudoku();
+            const modifiedSudoku = new Sudoku();
+
+            const anyChanged = removeDuplicates( modifiedSudoku );
+            assert.isFalse( anyChanged );
+
+            assert.deepStrictEqual(
+              getComparableCells( modifiedSudoku ),
+              getComparableCells( originalSudoku )
+            );
+          }
+        );
+
+        it(
+          'should solve [[1, 2, 3], [4, 5, 6], [_, 8, 9] (block) correctly.',
           () => {
             const sudoku = new Sudoku( [
               [ 1, 2, 3 ],
@@ -53,7 +64,7 @@ describe(
               [ _, 8, 9 ],
             ] );
 
-            removeDuplicatesByBlock( sudoku );
+            removeDuplicates( sudoku );
 
             const cell = sudoku.getCell(
               2,
@@ -73,7 +84,7 @@ describe(
         );
 
         it(
-          'should nearly solve [[1, 2, 3], [_, _, 6], [7, 8, 9]].',
+          'should nearly solve [[1, 2, 3], [_, _, 6], [7, 8, 9]] (block).',
           () => {
             const sudoku = new Sudoku( [
               [ 1, 2, 3 ],
@@ -81,7 +92,7 @@ describe(
               [ 7, 8, 9 ],
             ] );
 
-            removeDuplicatesByBlock( sudoku );
+            removeDuplicates( sudoku );
 
             const cell1 = sudoku.getCell(
               1,
@@ -105,32 +116,11 @@ describe(
         );
 
         it(
-          'should not change an empty sudoku.',
-          () => {
-            const originalSudoku = new Sudoku();
-            const modifiedSudoku = new Sudoku();
-
-            const anyChanged = removeDuplicatesByBlock( modifiedSudoku );
-            assert.isFalse( anyChanged );
-
-            assert.deepStrictEqual(
-              getComparableCells( modifiedSudoku ),
-              getComparableCells( originalSudoku )
-            );
-          }
-        );
-      }
-    );
-
-    describe(
-      'removeDuplicatesByCol()',
-      () => {
-        it(
-          'should solve [_, 2, 5, 3, 8, 9, 4, 7, 6] correctly.',
+          'should solve [_, 2, 5, 3, 8, 9, 4, 7, 6] (col) correctly.',
           () => {
             const sudoku = new Sudoku( [ _, 2, 5, 3, 8, 9, 4, 7, 6 ].map( item => [ item ] ) );
 
-            removeDuplicatesByCol( sudoku );
+            removeDuplicates( sudoku );
 
             const cell = sudoku.getCell(
               0,
@@ -150,11 +140,11 @@ describe(
         );
 
         it(
-          'should nearly solve [_, 5, 4, 3, 2, 7, 1, 8, _].',
+          'should nearly solve [_, 5, 4, 3, 2, 7, 1, 8, _] (row).',
           () => {
             const sudoku = new Sudoku( [ _, 5, 4, 3, 2, 7, 1, 8, _ ].map( item => [ item ] ) );
 
-            removeDuplicatesByCol( sudoku );
+            removeDuplicates( sudoku );
 
             const cell1 = sudoku.getCell(
               0,
@@ -178,32 +168,11 @@ describe(
         );
 
         it(
-          'should not change an empty sudoku.',
-          () => {
-            const originalSudoku = new Sudoku();
-            const modifiedSudoku = new Sudoku();
-
-            const anyChanged = removeDuplicatesByCol( modifiedSudoku );
-            assert.isFalse( anyChanged );
-
-            assert.deepStrictEqual(
-              getComparableCells( modifiedSudoku ),
-              getComparableCells( originalSudoku )
-            );
-          }
-        );
-      }
-    );
-
-    describe(
-      'removeDuplicatesByRow()',
-      () => {
-        it(
-          'should solve [1, 2, 3, _, 5, 6, 7, 8, 9] correctly.',
+          'should solve [1, 2, 3, _, 5, 6, 7, 8, 9] (row) correctly.',
           () => {
             const sudoku = new Sudoku( [ [ 1, 2, 3, _, 5, 6, 7, 8, 9 ] ] );
 
-            removeDuplicatesByRow( sudoku );
+            removeDuplicates( sudoku );
 
             const cell = sudoku.getCell(
               0,
@@ -227,7 +196,7 @@ describe(
           () => {
             const sudoku = new Sudoku( [ [ 5, 7, 8, 1, 2, _, 3, _, 6 ] ] );
 
-            removeDuplicatesByRow( sudoku );
+            removeDuplicates( sudoku );
 
             const cell1 = sudoku.getCell(
               0,

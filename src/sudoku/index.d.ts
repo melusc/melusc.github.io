@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 export = Sudoku;
 export as namespace Sudoku;
 
@@ -54,20 +55,18 @@ declare namespace Sudoku {
     ], getBlock returns [ 1, 2, 3, 10, 11, 12, 19, 20, 21 ] */
     getBlock: ( index: number ) => Array<CellInterface>;
 
-    iterate: (
-      callback: ( cell: CellInterface, breakEarly: () => void ) => void
-    ) => this;
-
     solve: () => this;
 
     subscribe: ( callback: SubscriptionCallback ) => this;
 
     unsubscribe: ( callback: SubscriptionCallback ) => this;
 
-    setValidity: () => boolean;
+    updateCellValidities: () => boolean;
 
     _validateByStructure: ( rowCol: Array<CellInterface> ) => this;
 
     isSolved: () => boolean;
+
+    entries: () => Iterable<CellInterface>;
   }
 }

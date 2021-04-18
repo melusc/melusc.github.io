@@ -1,6 +1,3 @@
-// eslint-disable-next-line no-global-assign, @typescript-eslint/no-var-requires
-require = require( 'esm' )( module );
-
 import { assert } from 'chai';
 
 import { Sudoku, Cell, validCellIndex } from '../../src/sudoku/sudoku';
@@ -573,6 +570,42 @@ describe(
                 assert.isTrue( sudoku.isSolved() );
               }
             );
+
+            it(
+              'should correctly solve an expert sudoku.',
+              () => {
+                const _ = undefined;
+
+                const sudoku = new Sudoku( [
+                  [ _, _, _, _, _, 4, _, _, 2 ],
+                  [ _, 6, _, 2, _, _, _, 3 ],
+                  [ _, 8, _, _, _, 3, 5, _, 9 ],
+                  [ _, 4, _, _, _, _, 1 ],
+                  [ 1, _, _, 7, _, 5 ],
+                  [ 5, _, 3 ],
+                  [ _, 9, _, 3 ],
+                  [ _, _, 4, _, 6, 1 ],
+                  [ _, _, 5, _, _, _, 7 ],
+                ] );
+
+                sudoku.solve();
+
+                assert.deepStrictEqual(
+                  sudoku.getCells().map( row => row.content.map( cell => cell.content ) ),
+                  [
+                    [ '3', '5', '1', '9', '8', '4', '6', '7', '2' ],
+                    [ '4', '6', '9', '2', '5', '7', '8', '3', '1' ],
+                    [ '2', '8', '7', '6', '1', '3', '5', '4', '9' ],
+                    [ '9', '4', '6', '8', '3', '2', '1', '5', '7' ],
+                    [ '1', '2', '8', '7', '4', '5', '3', '9', '6' ],
+                    [ '5', '7', '3', '1', '9', '6', '2', '8', '4' ],
+                    [ '6', '9', '2', '3', '7', '8', '4', '1', '5' ],
+                    [ '7', '3', '4', '5', '6', '1', '9', '2', '8' ],
+                    [ '8', '1', '5', '4', '2', '9', '7', '6', '3' ],
+                  ]
+                );
+              }
+            );
           }
         );
 
@@ -679,12 +712,12 @@ describe(
         );
 
         describe(
-          '#setValidity()',
+          '#updateCellValidities()',
           () => {
             it(
               'should return true on an empty sudoku.',
               () => {
-                assert.isTrue( emptySudoku.setValidity() );
+                assert.isTrue( emptySudoku.updateCellValidities() );
               }
             );
 
@@ -695,39 +728,43 @@ describe(
                   0,
                   2,
                   'Hello there'
-                ).setValidity() );
+                ).updateCellValidities() );
               }
             );
 
             it(
               'should return true when overwriting an invalid cell.',
               () => {
-                assert.isTrue( emptySudoku.setContent(
-                  0,
-                  2,
-                  'A'
-                ).setContent(
-                  0,
-                  2,
-                  '2'
-                )
-                  .setValidity() );
+                assert.isTrue( emptySudoku
+                  .setContent(
+                    0,
+                    2,
+                    'A'
+                  )
+                  .setContent(
+                    0,
+                    2,
+                    '2'
+                  )
+                  .updateCellValidities() );
               }
             );
 
             it(
               'a row with duplicates should return false.',
               () => {
-                assert.isFalse( emptySudoku.setContent(
-                  0,
-                  2,
-                  '3'
-                ).setContent(
-                  0,
-                  3,
-                  '3'
-                )
-                  .setValidity() );
+                assert.isFalse( emptySudoku
+                  .setContent(
+                    0,
+                    2,
+                    '3'
+                  )
+                  .setContent(
+                    0,
+                    3,
+                    '3'
+                  )
+                  .updateCellValidities() );
               }
             );
 
@@ -749,7 +786,7 @@ describe(
                     0,
                     3
                   )
-                  .setValidity() );
+                  .updateCellValidities() );
 
                 assert.isTrue( emptySudoku
                   .setContent(
@@ -767,7 +804,7 @@ describe(
                     3,
                     '4'
                   )
-                  .setValidity() );
+                  .updateCellValidities() );
               }
             );
           }
@@ -812,6 +849,35 @@ describe(
                 ) );
 
                 assert.isFalse( sudoku.isSolved() );
+              }
+            );
+          }
+        );
+
+        describe(
+          '#entries',
+          () => {
+            it(
+              'should return all cells in the right order',
+              () => {
+                const firstRow: Array<number> = Array.from(
+                  { length: 9 },
+                  (
+                    _v, index
+                  ) => index + 1
+                );
+
+                const sudoku = new Sudoku( [ firstRow ] );
+
+                const entries = [ ...sudoku.entries() ];
+
+                assert.deepStrictEqual(
+                  entries.map( cell => cell.content ).slice(
+                    0,
+                    9
+                  ),
+                  firstRow.map( content => String( content ) )
+                );
               }
             );
           }

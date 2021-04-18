@@ -1,38 +1,7 @@
-// eslint-disable-next-line no-global-assign, @typescript-eslint/no-var-requires
-require = require( 'esm' )( module );
-
 import { assert } from 'chai';
 
-import { Sudoku } from '../../src/sudoku/sudoku';
-import type { SudokuInterface } from '../../src/sudoku';
-
-import { nakedPairs } from '../../src/sudoku/plugins/naked-pairs';
-
-const _ = undefined;
-
-type ComparableCell = {
-  possible: Set<string>;
-  content: string | undefined;
-};
-
-const getComparableCells = ( sudoku: SudokuInterface ): Array<Array<ComparableCell>> => {
-  const result = [];
-
-  for ( const row of sudoku._cells ) {
-    const row_: Array<ComparableCell> = [];
-
-    result.push( row_ );
-
-    for ( const { possible, content } of row.content ) {
-      row_.push( {
-        possible,
-        content,
-      } );
-    }
-  }
-
-  return result;
-};
+import { Sudoku } from '../../../src/sudoku/sudoku';
+import { nakedPairs } from '../../../src/sudoku/plugins/naked-pairs';
 
 describe(
   'naked-pairs.ts',
@@ -74,7 +43,7 @@ describe(
               }
             }
 
-            nakedPairs( emptySudoku );
+            assert.isTrue( nakedPairs( emptySudoku ) );
 
             assert.deepStrictEqual(
               [ ...emptySudoku.getCell(
@@ -83,6 +52,38 @@ describe(
               ).possible ],
               [ '7', '8' ]
             );
+          }
+        );
+
+        it(
+          'should not change anything upon finding ("1", "2", "5") across two cells',
+          () => {
+            const possibles = [
+              [ '1', '2', '5' ], // #1
+              [ '6', '7', '8' ],
+              [ '1', '4', '6' ],
+              [ '1', '2', '5' ], // #2
+              [ '1', '2', '5', '6' ],
+              [ '4', '5', '9' ],
+              [ '1', '5', '7', '8' ],
+              [ '3', '5', '7' ],
+              [ '1', '4', '8' ],
+            ];
+
+            const row = emptySudoku.getRow( 3 );
+
+            for ( let index = 0; index < 9; ++index ) {
+              row[ index ].possible = new Set( possibles[ index ] );
+            }
+
+            assert.isFalse( nakedPairs( emptySudoku ) );
+
+            for ( let index = 0; index < 9; ++index ) {
+              assert.deepStrictEqual(
+                [ ...row[ index ].possible ],
+                possibles[ index ]
+              );
+            }
           }
         );
       }

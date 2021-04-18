@@ -1,7 +1,9 @@
 $thick-border: 2px solid #111;
 $thin-border: 1px solid #aaa;
 $valid: #3fb950;
+$warn: #fe8a4f;
 $invalid: #da3633;
+$focused-cell-bg: #7fdbff;
 
 * {
   box-sizing: border-box;
@@ -14,6 +16,23 @@ body {
 
   min-height: 100%;
   width: 100%;
+}
+
+.is-mobile {
+  display: none;
+  width: 80vmin;
+
+  .close {
+    float: right;
+
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .is-mobile {
+    display: initial;
+  }
 }
 
 .App {
@@ -35,8 +54,12 @@ body {
 }
 
 .sudoku {
+  /* 
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
+  display: grid;
+  grid-template: repeat(9, minmax(0, 1fr)) / repeat((9, minmax(0, 1fr)));
+
   width: 80vmin;
   height: 80vmin;
   min-height: 80vmin;
@@ -45,27 +68,39 @@ body {
   max-width: 80vmin;
   border: $thin-border;
 }
-.row {
-  display: flex;
-  flex-direction: row;
-  flex: 1 1 auto;
-  width: 100%;
-
-  &:nth-child(3n) {
-    border-bottom: $thick-border;
-  }
-  &:first-child {
-    border-top: $thick-border;
-  }
-}
 .cell {
   border: $thin-border;
 
   &:nth-child(3n) {
     border-right: $thick-border;
   }
-  &:first-child {
+  &:nth-child(9n + 1) {
     border-left: $thick-border;
+  }
+
+  @for $i from 0 through 2 {
+    $lower-limit: $i * 3 * 9 + 1;
+    $upper-limit: 81 - (($i * 3 + 1) * 9) + 1;
+
+    &:nth-child(n + #{$lower-limit}):nth-last-child(n + #{$upper-limit}) {
+      border-top: $thick-border;
+    }
+  }
+
+  &:nth-child(n + 73) {
+    border-bottom: $thick-border;
+  }
+
+  text-align: center;
+  flex: 1 1 0;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  &.focused-cell {
+    background-color: $focused-cell-bg;
   }
 
   input {
@@ -79,12 +114,20 @@ body {
   }
 }
 
+.solve {
+  color: $valid;
+  border-color: $valid;
+}
+.clear {
+  color: $warn;
+  border-color: $warn;
+}
+
 .solve,
 .clear {
   font: inherit;
 
-  color: $valid;
-  border: 2px solid $valid;
+  border: 2px solid;
   border-radius: 5px;
   background: none;
   margin-top: 10px;

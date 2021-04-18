@@ -2,60 +2,67 @@
  * See https://web.archive.org/web/20210331174704/https://bestofsudoku.com/sudoku-strategy
  */
 
-import type { CellInterface, SudokuInterface } from '../index';
+import type { SudokuInterface } from '../index';
+import { bitCount } from './shared';
 
 const genericNakedPairsSolver = (
   sudoku: SudokuInterface,
-  getterFunctionName: 'getCol' | 'getRow' | 'getBlock',
-  n: number
+  getterFunctionName: 'getCol' | 'getRow' | 'getBlock'
 ): boolean => {
   let anyChanged = false;
 
-  for ( let index = 0; index < 9; ++index ) {
-    const structure = sudoku[ getterFunctionName ]( index );
+  for ( let structureIndex = 0; structureIndex < 9; ++structureIndex ) {
+    const structure = sudoku[ getterFunctionName ]( structureIndex );
 
-    const rightLength = [];
+    const summary: Map<number, number> = new Map();
 
-    for ( const cell of structure ) {
-      if ( cell.content === undefined && cell.possible.size <= n ) {
-        rightLength.push( cell );
-      }
-    }
-
-    for ( const mainCell of rightLength ) {
-      if ( mainCell.possible.size < n ) {
+    for ( const [ index, cell ] of structure.entries() ) {
+      if ( cell.content !== undefined ) {
         continue;
       }
 
-      const cellsWithRightPossibles: Set<CellInterface> = new Set();
+      for ( const number of cell.possible ) {
+        summary.set(
+          index,
+          ( summary.get( index ) ?? 0 ) | ( 2 ** ( +number - 1 ) )
+        );
+      }
+    }
 
-      for ( const cellToCompare of rightLength ) {
-        let matchingPossibles = true;
+    const equalKeys: Map<number, Array<number>> = new Map();
+    for ( const [ index, key ] of summary ) {
+      let array = equalKeys.get( key );
 
-        for ( const number of cellToCompare.possible ) {
-          if ( !mainCell.possible.has( number ) ) {
-            matchingPossibles = false;
-            break;
-          }
-        }
-
-        if ( matchingPossibles ) {
-          cellsWithRightPossibles.add( cellToCompare );
-        }
+      if ( !array ) {
+        array = [];
+        equalKeys.set(
+          key,
+          array
+        );
       }
 
-      if ( cellsWithRightPossibles.size === n ) {
-        for ( const cell of structure ) {
-          if ( cellsWithRightPossibles.has( cell ) ) {
-            continue;
-          }
+      array.push( index );
+    }
 
-          for ( const number of mainCell.possible ) {
-            if ( cell.possible.has( number ) ) {
-              anyChanged = !false;
+    for ( const [ key, numbers ] of equalKeys ) {
+      if ( bitCount( key ) !== numbers.length || numbers.length > 8 ) {
+        continue;
+      }
 
-              cell.possible.delete( number );
-            }
+      let mutatingKey = key;
+
+      for ( let number = 8; number >= 0; --number ) {
+        if ( ( ( 2 ** number ) & mutatingKey ) === 0 ) {
+          continue;
+        }
+
+        mutatingKey &= ~( 2 ** number );
+
+        for ( const [ index, cell ] of structure.entries() ) {
+          const stringNumber = `${ number + 1 }`;
+          if ( !numbers.includes( index ) && cell.possible.has( stringNumber ) ) {
+            anyChanged = true;
+            cell.possible.delete( `${ stringNumber }` );
           }
         }
       }
@@ -65,23 +72,21 @@ const genericNakedPairsSolver = (
   return anyChanged;
 };
 
-const keys: Array<'getCol' | 'getRow' | 'getBlock'> = [
+const keys = [
   'getBlock',
   'getRow',
   'getCol',
-];
+] as const;
 
 export const nakedPairs = ( sudoku: SudokuInterface ): boolean => {
   let anyChanged = false;
 
-  for ( let index = 4; index > 1; --index ) {
-    for ( const key of keys ) {
-      anyChanged = genericNakedPairsSolver(
-        sudoku,
-        key,
-        index
-      ) || anyChanged;
-    }
+  for ( const key of keys ) {
+    anyChanged = genericNakedPairsSolver(
+      sudoku,
+      key
+
+    ) || anyChanged;
   }
 
   return anyChanged;
