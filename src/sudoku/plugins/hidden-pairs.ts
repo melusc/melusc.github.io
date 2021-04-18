@@ -75,8 +75,6 @@ const genericHiddenPairsSolver = (
         continue;
       }
 
-      anyChanged = true;
-
       let mutatingIndex = indexes;
       for ( let index = 8; index >= 0; --index ) {
         if ( ( ( 2 ** index ) & mutatingIndex ) === 0 ) {
@@ -87,7 +85,11 @@ const genericHiddenPairsSolver = (
 
         const cell = structure[ index ];
 
-        cell.possible = new Set( numbers );
+        if ( cell.possible.size !== numbers.length ) {
+          cell.possible = new Set( numbers );
+
+          anyChanged = true;
+        }
       }
     }
   }
