@@ -1,138 +1,12 @@
 import { assert } from 'chai';
 
-import { Sudoku, Cell, validCellIndex } from '../../src/sudoku/sudoku';
+import { Sudoku, validCellIndex } from '../../src/sudoku/sudoku';
 
 import type { SudokuInterface } from '../../src/sudoku/index';
 
 describe(
   'sudoku.ts',
   () => {
-    describe(
-      'Cell',
-      () => {
-        let emptyCell = new Cell();
-
-        beforeEach( () => {
-          emptyCell = new Cell();
-        } );
-
-        it(
-          'Cell should be a function.',
-          () => {
-            assert.isFunction( Cell );
-          }
-        );
-
-        it(
-          'Cell should return an object.',
-          () => {
-            assert.isObject( new Cell() );
-          }
-        );
-
-        it(
-          'Cell should return the correct object.',
-          () => {
-            const result = new Cell();
-
-            assert.isUndefined( result.content );
-
-            assert.deepStrictEqual(
-              result.possible,
-              new Set( [ '1', '2', '3', '4', '5', '6', '7', '8', '9' ] )
-            );
-          }
-        );
-
-        describe(
-          '#setContent()',
-          () => {
-            it(
-              '"1" should mutate #content and #possible.',
-              () => {
-                const originalContent = emptyCell.content;
-                const originalPossibleSize = emptyCell.possible.size;
-
-                emptyCell.setContent( '1' );
-
-                assert.notStrictEqual(
-                  originalContent,
-                  emptyCell.content
-                );
-                assert.notStrictEqual(
-                  originalPossibleSize,
-                  emptyCell.possible.size
-                );
-
-                assert.strictEqual(
-                  emptyCell.content,
-                  '1'
-                );
-                assert.strictEqual(
-                  emptyCell.possible.size,
-                  0
-                );
-              }
-            );
-          }
-        );
-
-        describe(
-          '#setValidity()',
-          () => {
-            it(
-              'setting the content to "0" should set #valid to false.',
-              () => {
-                assert.isFalse( emptyCell.setContent( '0' ).valid );
-              }
-            );
-
-            it(
-              'setting the content to "1" should set #valid to true.',
-              () => {
-                assert.isTrue( emptyCell.setContent( '1' ).valid );
-              }
-            );
-          }
-        );
-
-        describe(
-          '#clear()',
-          () => {
-            it(
-              'should properly clear a previously non-empty, invalid cell.',
-              () => {
-                emptyCell.setContent( 'https://bit.ly/3u6XnPl' ).clear();
-
-                assert.isUndefined( emptyCell.content );
-
-                assert.strictEqual(
-                  emptyCell.possible.size,
-                  9
-                );
-                assert.isTrue( emptyCell.valid );
-              }
-            );
-
-            it(
-              'should properly clear a previously non-empty, valid cell.',
-              () => {
-                emptyCell.setContent( '1' ).clear();
-
-                assert.isUndefined( emptyCell.content );
-
-                assert.strictEqual(
-                  emptyCell.possible.size,
-                  9
-                );
-                assert.isTrue( emptyCell.valid );
-              }
-            );
-          }
-        );
-      }
-    );
-
     describe(
       'Sudoku',
       () => {
@@ -162,15 +36,11 @@ describe(
               () => {
                 emptySudoku.setContent(
                   0,
-                  0,
                   '4'
                 );
 
                 assert.strictEqual(
-                  emptySudoku.getContent(
-                    0,
-                    0
-                  ),
+                  emptySudoku.getContent( 0 ),
                   '4'
                 );
               }
@@ -184,10 +54,7 @@ describe(
             it(
               '8, 8 should return undefined.',
               () => {
-                assert.isUndefined( emptySudoku.getContent(
-                  8,
-                  8
-                ) );
+                assert.isUndefined( emptySudoku.getContent( 8 * 9 + 8 ) );
               }
             );
 
@@ -196,13 +63,9 @@ describe(
               () => {
                 assert.strictEqual(
                   emptySudoku.setContent(
-                    8,
-                    8,
+                    8 * 9 + 8,
                     '4'
-                  ).getContent(
-                    8,
-                    8
-                  ),
+                  ).getContent( 8 * 9 + 8 ),
                   '4'
                 );
               }
@@ -216,18 +79,13 @@ describe(
             it(
               'should clear a previously non-empty cell.',
               () => {
-                assert.isUndefined( emptySudoku.setContent(
-                  6,
-                  6,
-                  '4'
-                ).clearCell(
-                  6,
-                  6
-                )
-                  .getContent(
-                    6,
-                    6
-                  ) );
+                assert.isUndefined( emptySudoku
+                  .setContent(
+                    6 * 9 + 6,
+                    '4'
+                  )
+                  .clearCell( 6 * 9 + 6 )
+                  .getContent( 6 * 9 + 6 ) );
               }
             );
           }
@@ -241,57 +99,36 @@ describe(
               () => {
                 emptySudoku
                   .setContent(
-                    6,
-                    6,
+                    6 * 9 + 6,
                     '4'
                   )
                   .setContent(
-                    1,
-                    1,
+                    1 * 9 + 1,
                     '5'
                   )
                   .setContent(
-                    2,
-                    4,
+                    2 * 9 + 4,
                     '3'
                   );
 
                 assert.strictEqual(
-                  emptySudoku.getContent(
-                    6,
-                    6
-                  ),
+                  emptySudoku.getContent( 6 * 9 + 6 ),
                   '4'
                 );
                 assert.strictEqual(
-                  emptySudoku.getContent(
-                    1,
-                    1
-                  ),
+                  emptySudoku.getContent( 1 * 9 + 1 ),
                   '5'
                 );
                 assert.strictEqual(
-                  emptySudoku.getContent(
-                    2,
-                    4
-                  ),
+                  emptySudoku.getContent( 2 * 9 + 4 ),
                   '3'
                 );
 
                 emptySudoku.clearAllCells();
 
-                assert.isUndefined( emptySudoku.getContent(
-                  6,
-                  6
-                ) );
-                assert.isUndefined( emptySudoku.getContent(
-                  1,
-                  1
-                ) );
-                assert.isUndefined( emptySudoku.getContent(
-                  2,
-                  4
-                ) );
+                assert.isUndefined( emptySudoku.getContent( 6 * 9 + 6 ) );
+                assert.isUndefined( emptySudoku.getContent( 1 * 9 + 1 ) );
+                assert.isUndefined( emptySudoku.getContent( 2 * 9 + 4 ) );
               }
             );
           }
@@ -304,12 +141,10 @@ describe(
               'should return the correct column and content.',
               () => {
                 emptySudoku.setContent(
-                  2,
-                  8,
+                  2 * 9 + 8,
                   '2'
                 ).setContent(
-                  5,
-                  8,
+                  5 * 9 + 8,
                   '4'
                 );
 
@@ -342,18 +177,15 @@ describe(
               () => {
                 emptySudoku
                   .setContent(
-                    8,
-                    8,
+                    8 * 9 + 8,
                     '3'
                   )
                   .setContent(
-                    8,
-                    2,
+                    8 * 9 + 2,
                     '4'
                   )
                   .setContent(
-                    8,
-                    7,
+                    8 * 9 + 7,
                     '7'
                   );
 
@@ -385,10 +217,7 @@ describe(
               'should return the correct cell at (0, 0).',
               () => {
                 assert.deepStrictEqual(
-                  emptySudoku.getCell(
-                    0,
-                    0
-                  ),
+                  emptySudoku.getCell( 0 ),
                   emptySudoku.getBlock( 0 )[ 0 ]
                 );
               }
@@ -398,11 +227,8 @@ describe(
               'should return the correct cell at (4, 6).',
               () => {
                 assert.deepStrictEqual(
-                  emptySudoku.getCell(
-                    4,
-                    6
-                  ),
-                  emptySudoku._cells[ 4 ].content[ 6 ] // This is what it does, but there's not a lot to test here anyway.
+                  emptySudoku.getCell( 4 * 9 + 6 ),
+                  emptySudoku._cells[ 4 * 9 + 6 ] // This is what it does, but there's not a lot to test here anyway.
                 );
               }
             );
@@ -419,24 +245,18 @@ describe(
 
                 assert.lengthOf(
                   cells,
-                  9
+                  81
                 );
 
-                for ( const row of cells ) {
-                  assert.isObject( row );
+                for ( const cell of cells ) {
+                  assert.isUndefined( cell.content );
 
-                  assert.isString( row.key );
+                  assert.isString( cell.key );
 
-                  assert.lengthOf(
-                    row.content,
+                  assert.strictEqual(
+                    cell.possible.size,
                     9
                   );
-
-                  for ( const cell of row.content ) {
-                    assert.isUndefined( cell.content );
-
-                    assert.isString( cell.key );
-                  }
                 }
               }
             );
@@ -447,39 +267,27 @@ describe(
                 const sudoku = emptySudoku
                   .setContent(
                     0,
-                    0,
                     '2'
                   )
                   .setContent(
-                    1,
-                    1,
+                    1 * 9 + 1,
                     '4'
                   )
                   .setContent(
-                    5,
-                    7,
+                    5 * 9 + 7,
                     '2'
                   );
 
                 assert.strictEqual(
-                  sudoku.getCell(
-                    0,
-                    0
-                  ).content,
+                  sudoku.getCell( 0 ).content,
                   '2'
                 );
                 assert.strictEqual(
-                  sudoku.getCell(
-                    1,
-                    1
-                  ).content,
+                  sudoku.getCell( 1 * 9 + 1 ).content,
                   '4'
                 );
                 assert.strictEqual(
-                  sudoku.getCell(
-                    5,
-                    7
-                  ).content,
+                  sudoku.getCell( 5 * 9 + 7 ).content,
                   '2'
                 );
               }
@@ -508,12 +316,9 @@ describe(
               () => {
                 for ( let row = 0; row < 3; ++row ) {
                   for ( let col = 0; col < 3; ++col ) {
-                    // Because prettier keeps on removing brackets and eslint complains about mixed operations
-                    const number = row * 3;
                     emptySudoku.setContent(
-                      row,
-                      col,
-                      `${ number + col + 1 }`
+                      row * 9 + col,
+                      `${ row * 3 + col + 1 }`
                     );
                   }
                 }
@@ -553,7 +358,7 @@ describe(
                 sudoku.solve();
 
                 assert.deepStrictEqual(
-                  sudoku.getCells().map( row => row.content.map( cell => cell.content ) ),
+                  sudoku.getCells().map( cell => cell.content ),
                   [
                     [ '9', '1', '4', '3', '8', '6', '7', '5', '2' ],
                     [ '3', '6', '5', '7', '2', '1', '4', '8', '9' ],
@@ -564,7 +369,7 @@ describe(
                     [ '4', '2', '3', '1', '6', '8', '5', '9', '7' ],
                     [ '6', '5', '1', '9', '7', '4', '2', '3', '8' ],
                     [ '7', '8', '9', '2', '5', '3', '6', '1', '4' ],
-                  ]
+                  ].flat()
                 );
 
                 assert.isTrue( sudoku.isSolved() );
@@ -591,7 +396,7 @@ describe(
                 sudoku.solve();
 
                 assert.deepStrictEqual(
-                  sudoku.getCells().map( row => row.content.map( cell => cell.content ) ),
+                  sudoku.getCells().map( cell => cell.content ),
                   [
                     [ '6', '7', '4', '9', '2', '8', '1', '5', '3' ],
                     [ '1', '5', '9', '6', '3', '7', '8', '2', '4' ],
@@ -602,7 +407,7 @@ describe(
                     [ '4', '8', '5', '3', '7', '9', '2', '6', '1' ],
                     [ '7', '2', '1', '8', '6', '4', '9', '3', '5' ],
                     [ '9', '6', '3', '2', '1', '5', '4', '7', '8' ],
-                  ]
+                  ].flat()
                 );
               }
             );
@@ -627,7 +432,7 @@ describe(
                 sudoku.solve();
 
                 assert.deepStrictEqual(
-                  sudoku.getCells().map( row => row.content.map( cell => cell.content ) ),
+                  sudoku.getCells().map( cell => cell.content ),
                   [
                     [ '3', '5', '1', '9', '8', '4', '6', '7', '2' ],
                     [ '4', '6', '9', '2', '5', '7', '8', '3', '1' ],
@@ -638,7 +443,7 @@ describe(
                     [ '6', '9', '2', '3', '7', '8', '4', '1', '5' ],
                     [ '7', '3', '4', '5', '6', '1', '9', '2', '8' ],
                     [ '8', '1', '5', '4', '2', '9', '7', '6', '3' ],
-                  ]
+                  ].flat()
                 );
               }
             );
@@ -655,25 +460,18 @@ describe(
 
                 const callback = ( sudoku: SudokuInterface ) => {
                   assert.strictEqual(
-                    sudoku.getCell(
-                      3,
-                      2
-                    ).content,
+                    sudoku.getCell( 3 * 9 + 2 ).content,
                     '2'
                   );
                   assert.strictEqual(
-                    sudoku.getCell(
-                      4,
-                      1
-                    ).content,
+                    sudoku.getCell( 4 * 9 + 1 ).content,
                     '4'
                   );
                   hasDispatched = true;
                 };
 
                 emptySudoku.setContent(
-                  3,
-                  2,
+                  3 * 9 + 2,
                   '2'
                 );
                 assert.isFalse( hasDispatched );
@@ -681,8 +479,7 @@ describe(
                 emptySudoku.subscribe( callback );
 
                 emptySudoku.setContent(
-                  4,
-                  1,
+                  4 * 9 + 1,
                   '4'
                 );
                 assert.isTrue( hasDispatched );
@@ -701,25 +498,18 @@ describe(
 
                 const callback = ( sudoku: SudokuInterface ) => {
                   assert.strictEqual(
-                    sudoku.getCell(
-                      3,
-                      2
-                    ).content,
+                    sudoku.getCell( 3 * 9 + 2 ).content,
                     '2'
                   );
                   assert.strictEqual(
-                    sudoku.getCell(
-                      4,
-                      1
-                    ).content,
+                    sudoku.getCell( 4 * 9 + 1 ).content,
                     '4'
                   );
                   hasDispatched = true;
                 };
 
                 emptySudoku.setContent(
-                  3,
-                  2,
+                  3 * 9 + 2,
                   '2'
                 );
                 assert.isFalse( hasDispatched );
@@ -727,8 +517,7 @@ describe(
                 emptySudoku.subscribe( callback );
 
                 emptySudoku.setContent(
-                  4,
-                  1,
+                  4 * 9 + 1,
                   '4'
                 );
                 assert.isTrue( hasDispatched );
@@ -737,8 +526,7 @@ describe(
                 hasDispatched = false;
 
                 emptySudoku.setContent(
-                  1,
-                  7,
+                  1 * 9 + 7,
                   '2'
                 );
                 assert.isFalse( hasDispatched );
@@ -761,7 +549,6 @@ describe(
               'should return false when setting an invalid cell.',
               () => {
                 assert.isFalse( emptySudoku.setContent(
-                  0,
                   2,
                   'Hello there'
                 ).updateCellValidities() );
@@ -773,12 +560,10 @@ describe(
               () => {
                 assert.isTrue( emptySudoku
                   .setContent(
-                    0,
                     2,
                     'A'
                   )
                   .setContent(
-                    0,
                     2,
                     '2'
                   )
@@ -791,12 +576,10 @@ describe(
               () => {
                 assert.isFalse( emptySudoku
                   .setContent(
-                    0,
                     2,
                     '3'
                   )
                   .setContent(
-                    0,
                     3,
                     '3'
                   )
@@ -809,34 +592,26 @@ describe(
               () => {
                 assert.isTrue( emptySudoku
                   .setContent(
-                    0,
                     2,
                     '3'
                   )
                   .setContent(
-                    0,
                     3,
                     '3'
                   )
-                  .clearCell(
-                    0,
-                    3
-                  )
+                  .clearCell( 3 )
                   .updateCellValidities() );
 
                 assert.isTrue( emptySudoku
                   .setContent(
-                    0,
                     2,
                     '3'
                   )
                   .setContent(
-                    0,
                     3,
                     '3'
                   )
                   .setContent(
-                    0,
                     3,
                     '4'
                   )
@@ -860,11 +635,9 @@ describe(
               'should return false when the sudoku is partially empty.',
               () => {
                 emptySudoku.setContent(
-                  0,
                   3,
                   '2'
                 ).setContent(
-                  2,
                   4,
                   '4'
                 );
@@ -905,7 +678,7 @@ describe(
 
                 const sudoku = new Sudoku( [ firstRow ] );
 
-                const entries = [ ...sudoku.entries() ];
+                const entries = sudoku.getCells();
 
                 assert.deepStrictEqual(
                   entries.map( cell => cell.content ).slice(
@@ -934,22 +707,22 @@ describe(
                   '-1'
                 );
               },
-              '-1 ∉ [0, 8].'
+              '-1 ∉ [0, 80].'
             );
           }
         );
 
         it(
-          '9 should throw.',
+          '81 should throw.',
           () => {
             assert.throws(
               () => {
                 validCellIndex(
-                  9,
-                  '9'
+                  81,
+                  '81'
                 );
               },
-              '9 ∉ [0, 8].'
+              '81 ∉ [0, 80].'
             );
           }
         );

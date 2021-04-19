@@ -3,7 +3,7 @@
  */
 
 import type { SudokuInterface } from '../index';
-import { bitCount } from './shared';
+import { bitCount, getterFunctionNames } from './shared';
 
 const genericHiddenPairsSolver = (
   sudoku: SudokuInterface,
@@ -24,7 +24,7 @@ const genericHiddenPairsSolver = (
     // Iterating through each cell and
     // doing `currentValue | 2 ** index`
     // This is a lot better than comparing arrays of indexes
-    const summary: Map<string, [number, number]> = new Map();
+    const summary: Map<string, number> = new Map();
 
     for ( let index = 0; index < 9; ++index ) {
       const cell = structure[ index ];
@@ -34,26 +34,17 @@ const genericHiddenPairsSolver = (
       }
 
       for ( const number of cell.possible ) {
-        let array = summary.get( number );
-
-        if ( !array ) {
-          array = [ 0, 0 ];
-
-          summary.set(
-            number,
-            array
-          );
-        }
-
-        ++array[ 0 ];
-        array[ 1 ] |= 2 ** index;
+        summary.set(
+          number,
+          ( summary.get( number ) ?? 0 ) | ( 2 ** index )
+        );
       }
     }
 
     const equalIndexes: Map<number, Array<string>> = new Map();
 
-    for ( const [ number, [ amount, key ] ] of summary ) {
-      if ( amount > 8 ) {
+    for ( const [ number, key ] of summary ) {
+      if ( bitCount( key ) > 8 ) {
         continue;
       }
 
@@ -75,45 +66,44 @@ const genericHiddenPairsSolver = (
         continue;
       }
 
-      let mutatingIndex = indexes;
-      for ( let index = 8; index >= 0; --index ) {
-        if ( ( ( 2 ** index ) & mutatingIndex ) === 0 ) {
+      for ( let index = 0; index <= Math.log2( indexes ); ++index ) {
+        if ( ( ( 2 ** index ) & indexes ) === 0 ) {
           continue;
         }
 
-        mutatingIndex &= ~( 2 ** index );
-
         const cell = structure[ index ];
 
-        if ( cell.possible.size !== numbers.length ) {
-          cell.possible = new Set( numbers );
-
+        if ( cell.possible.size > numbers.length ) {
           anyChanged = true;
+
+          cell.possible = new Set( numbers );
         }
       }
     }
   }
 
+  console.log(
+    getterFunctionName,
+    anyChanged
+  );
+
   return anyChanged;
 };
-
-const keys = [
-  'getBlock',
-  'getRow',
-  'getCol',
-] as const;
 
 export const hiddenPairs = ( sudoku: SudokuInterface ): boolean => {
   let anyChanged = false;
 
-  // For ( let index = 5; index > 0; --index ) {
-  for ( const key of keys ) {
+  console.group( 'hidden-pairs' );
+  for ( const key of getterFunctionNames ) {
     anyChanged = genericHiddenPairsSolver(
       sudoku,
       key
     ) || anyChanged;
   }
-  // }
+
+  console.log( anyChanged );
+
+  console.groupEnd();
 
   return anyChanged;
 };

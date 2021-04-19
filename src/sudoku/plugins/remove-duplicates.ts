@@ -1,4 +1,5 @@
 import type { SudokuInterface } from '../index';
+import { getterFunctionNames } from './shared';
 
 /*
  * This plugin removes numbers from #possible that are already
@@ -28,25 +29,34 @@ const genericSolver = (
       for ( const number of found ) {
         if ( cell.possible.has( number ) ) {
           anyChanged = true;
+
           cell.possible.delete( number );
         }
       }
     }
   }
 
+  console.log(
+    getterFunctionName,
+    anyChanged
+  );
+
   return anyChanged;
 };
 
-const structures = [ 'getRow', 'getCol', 'getBlock' ] as const;
 export const removeDuplicates = ( sudoku: SudokuInterface ): boolean => {
   let anyChanged = false;
-
-  for ( const getterFunctionName of structures ) {
+  console.group( 'remove-duplicates' );
+  for ( const getterFunctionName of getterFunctionNames ) {
     anyChanged = genericSolver(
       getterFunctionName,
       sudoku
     ) || anyChanged;
   }
+
+  console.log( anyChanged );
+
+  console.groupEnd();
 
   return anyChanged;
 };

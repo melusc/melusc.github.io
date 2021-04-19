@@ -10,24 +10,9 @@ type ComparableCell = {
   content: string | undefined;
 };
 
-const getComparableCells = ( sudoku: SudokuInterface ): Array<Array<ComparableCell>> => {
-  const result = [];
-
-  for ( const row of sudoku._cells ) {
-    const row_: Array<ComparableCell> = [];
-
-    result.push( row_ );
-
-    for ( const { possible, content } of row.content ) {
-      row_.push( {
-        possible,
-        content,
-      } );
-    }
-  }
-
-  return result;
-};
+const getComparableCells = ( sudoku: SudokuInterface ): Array<ComparableCell> => sudoku
+  .getCells()
+  .map( cell => ( { content: cell.content, possible: cell.possible } ) );
 
 describe(
   'hidden-pairs.ts',
@@ -57,10 +42,7 @@ describe(
             ];
 
             for ( const [ index, possible ] of possibles.entries() ) {
-              emptySudoku.getCell(
-                4,
-                index
-              ).possible = new Set( possible );
+              emptySudoku.getCell( 4 * 9 + index ).possible = new Set( possible );
             }
 
             hiddenPairs( emptySudoku );
@@ -68,26 +50,17 @@ describe(
             const wantedSet = [ '3', '4', '9' ];
 
             assert.deepStrictEqual(
-              [ ...emptySudoku.getCell(
-                4,
-                0
-              ).possible ],
+              [ ...emptySudoku.getCell( 4 * 9 ).possible ],
               wantedSet
             );
 
             assert.deepStrictEqual(
-              [ ...emptySudoku.getCell(
-                4,
-                3
-              ).possible ],
+              [ ...emptySudoku.getCell( 4 * 9 + 3 ).possible ],
               wantedSet
             );
 
             assert.deepStrictEqual(
-              [ ...emptySudoku.getCell(
-                4,
-                5
-              ).possible ],
+              [ ...emptySudoku.getCell( 4 * 9 + 5 ).possible ],
               wantedSet
             );
           }
@@ -117,10 +90,7 @@ describe(
             hiddenPairs( emptySudoku );
 
             assert.deepStrictEqual(
-              emptySudoku.getCell(
-                1,
-                0
-              ).possible,
+              emptySudoku.getCell( 1 * 9 ).possible,
               new Set( [ '1' ] )
             );
           }

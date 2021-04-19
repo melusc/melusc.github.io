@@ -28,7 +28,7 @@ module.exports = environment => ( {
       'react-dom': 'preact/compat',
       lodash: 'lodash-es',
     },
-    extensions: [ '.js', '.ts' ],
+    extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
   },
   mode: environment.production
     ? 'production'
@@ -56,9 +56,7 @@ module.exports = environment => ( {
       )
     ),
   },
-  plugins: environment.production
-    ? [ new CleanWebpackPlugin() ]
-    : [],
+  ...environment.production && { plugins: [ new CleanWebpackPlugin() ] },
   output: {
     path: path.resolve(
       __dirname,
@@ -84,7 +82,7 @@ module.exports = environment => ( {
       new TerserPlugin( {
         terserOptions: {
           compress: {
-            drop_console: true,
+            drop_console: false,
             keep_fargs: false,
             global_defs: {
               DEBUG: false,
@@ -100,7 +98,7 @@ module.exports = environment => ( {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         use: [ babelConfig ],
       },
       {

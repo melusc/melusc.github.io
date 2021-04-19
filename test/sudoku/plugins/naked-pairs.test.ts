@@ -19,7 +19,6 @@ describe(
           'should correctly find the pairs of "1" and "6".',
           () => {
             const possibles: Array<string | Array<string>> = [
-
               '4',
               [ '1', '6' ],
               [ '1', '6' ],
@@ -29,7 +28,6 @@ describe(
               [ '1', '7', '8' ],
               '9',
               '5',
-
             ];
 
             const block = emptySudoku.getBlock( 0 );
@@ -46,10 +44,7 @@ describe(
             assert.isTrue( nakedPairs( emptySudoku ) );
 
             assert.deepStrictEqual(
-              [ ...emptySudoku.getCell(
-                2,
-                0
-              ).possible ],
+              [ ...emptySudoku.getCell( 2 * 9 ).possible ],
               [ '7', '8' ]
             );
           }

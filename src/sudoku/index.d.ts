@@ -23,20 +23,16 @@ declare namespace Sudoku {
     clear: () => this;
   }
 
-  interface Row {
-    key: string;
-    content: Array<CellInterface>;
-  }
-  type Cells = Array<Row>;
+  type Cells = Array<CellInterface>;
 
   interface SudokuInterface {
     _cells: Cells;
 
-    setContent: ( row: number, col: number, content: string ) => this;
+    setContent: ( index: number, content: string ) => this;
 
-    getContent: ( row: number, col: number ) => string | number | undefined;
+    getContent: ( index: number ) => string | number | undefined;
 
-    clearCell: ( row: number, col: number ) => this;
+    clearCell: ( index: number ) => this;
 
     clearAllCells: () => this;
 
@@ -44,7 +40,7 @@ declare namespace Sudoku {
 
     getRow: ( row: number ) => Array<CellInterface>;
 
-    getCell: ( row: number, col: number ) => CellInterface;
+    getCell: ( index: number ) => CellInterface;
 
     getCells: () => Cells;
 
@@ -66,7 +62,5 @@ declare namespace Sudoku {
     _validateByStructure: ( rowCol: Array<CellInterface> ) => this;
 
     isSolved: () => boolean;
-
-    entries: () => Iterable<CellInterface>;
   }
 }

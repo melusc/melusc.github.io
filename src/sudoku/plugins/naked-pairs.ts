@@ -3,7 +3,7 @@
  */
 
 import type { SudokuInterface } from '../index';
-import { bitCount } from './shared';
+import { bitCount, getterFunctionNames } from './shared';
 
 const genericNakedPairsSolver = (
   sudoku: SudokuInterface,
@@ -49,45 +49,46 @@ const genericNakedPairsSolver = (
         continue;
       }
 
-      let mutatingKey = key;
-
-      for ( let number = 8; number >= 0; --number ) {
-        if ( ( ( 2 ** number ) & mutatingKey ) === 0 ) {
+      for ( let number = 0; number <= Math.log2( key ); ++number ) {
+        if ( ( ( 2 ** number ) & key ) === 0 ) {
           continue;
         }
 
-        mutatingKey &= ~( 2 ** number );
+        const stringNumber = `${ number + 1 }`;
 
         for ( const [ index, cell ] of structure.entries() ) {
-          const stringNumber = `${ number + 1 }`;
           if ( !numbers.includes( index ) && cell.possible.has( stringNumber ) ) {
             anyChanged = true;
-            cell.possible.delete( `${ stringNumber }` );
+            cell.possible.delete( stringNumber );
           }
         }
       }
     }
   }
 
+  console.log(
+    getterFunctionName,
+    anyChanged
+  );
+
   return anyChanged;
 };
-
-const keys = [
-  'getBlock',
-  'getRow',
-  'getCol',
-] as const;
 
 export const nakedPairs = ( sudoku: SudokuInterface ): boolean => {
   let anyChanged = false;
 
-  for ( const key of keys ) {
+  console.group( 'naked-pairs' );
+
+  for ( const key of getterFunctionNames ) {
     anyChanged = genericNakedPairsSolver(
       sudoku,
       key
-
     ) || anyChanged;
   }
+
+  console.log( anyChanged );
+
+  console.groupEnd();
 
   return anyChanged;
 };

@@ -1,6 +1,6 @@
 import 'preact/devtools';
 
-import { render, h, Component, Fragment } from 'preact';
+import { render, h, Component } from 'preact';
 
 import { Sudoku } from './sudoku';
 
@@ -17,10 +17,7 @@ interface Sudokus {
 interface AppState {
   cells: Cells;
   error: undefined | string;
-  focused: {
-    row: number;
-    col: number;
-  };
+  focused: number;
   mobileWarningSeen: boolean;
 }
 
@@ -32,41 +29,6 @@ interface AppState {
     : n > upper
       ? lower
       : n;
-
-  const clamp = (
-    n: number, lower: number, upper: number
-  ): number => n < lower
-    ? lower
-    : n > upper
-      ? upper
-      : n;
-
-  const nextCell = (
-    backwards: boolean, state: AppState
-  ): void => {
-    const { focused } = state;
-    const { row, col } = focused;
-
-    const direction = backwards
-      ? -1
-      : 1;
-
-    const newCol = col + direction;
-    focused.col = overflow(
-      newCol,
-      0,
-      8
-    );
-
-    if ( newCol > 8 || newCol < 0 ) {
-      const newRow = row + direction;
-      focused.row = overflow(
-        newRow,
-        0,
-        8
-      );
-    }
-  };
 
   const _ = undefined; // Looks better, than loads of `undefined`
 
@@ -107,216 +69,227 @@ interface AppState {
   };
 
   class App extends Component {
-  #sudokuClass = new Sudoku( sudokus.evil );
+    #sudokuClass = new Sudoku( sudokus.evil );
 
-  state: AppState = {
-    cells: this.#sudokuClass.getCells(),
-    error: undefined,
-    focused: {
-      row: 0,
-      col: 0,
-    },
-    mobileWarningSeen: false,
-  };
+    state: AppState = {
+      cells: this.#sudokuClass.getCells(),
+      error: undefined,
+      focused: 0,
+      mobileWarningSeen: false,
+    };
 
-  constructor( ...a: Array<Record<string, unknown>> ) {
-    super( ...a );
+    constructor( ...a: Array<Record<string, unknown>> ) {
+      super( ...a );
 
-    this.#sudokuClass.subscribe( (
-      sudoku, type
-    ) => {
-      if ( type === 'change' ) {
-        this.setState( {
-          cells: sudoku.getCells(),
-          error: undefined,
-        } as AppState );
-      }
-      else if ( type === 'finish' ) {
-        const isSolved = sudoku.isSolved();
+      this.#sudokuClass.subscribe( (
+        sudoku, type
+      ) => {
+        if ( type === 'change' ) {
+          this.setState( {
+            cells: sudoku.getCells(),
+            error: undefined,
+          } as AppState );
+        }
+        else if ( type === 'finish' ) {
+          const isSolved = sudoku.isSolved();
 
-        this.setState( {
-          cells: sudoku.getCells(),
-          error: isSolved
-            ? undefined
-            : "Sudoku wasn't solved completely.",
-        } as AppState );
-      }
-      else {
-        this.setState( {
-          error: 'Sudoku is invalid',
-        } as AppState );
-      }
-    } );
-  }
+          this.setState( {
+            cells: sudoku.getCells(),
+            error: isSolved
+              ? undefined
+              : "Sudoku wasn't solved completely.",
+          } as AppState );
+        }
+        else {
+          this.setState( {
+            error: 'Sudoku is invalid',
+          } as AppState );
+        }
+      } );
+    }
 
-  componentDidMount = () => {
-    document.addEventListener(
-      'keydown',
-      this.handleKeyDown
-    );
-  };
+    componentDidMount = () => {
+      document.addEventListener(
+        'keydown',
+        this.handleKeyDown
+      );
+    };
 
-  componentWillUnmount = () => {
-    document.removeEventListener(
-      'keydown',
-      this.handleKeyDown
-    );
-  };
+    componentWillUnmount = () => {
+      document.removeEventListener(
+        'keydown',
+        this.handleKeyDown
+      );
+    };
 
-  dismissMobileWarning = () => {
-    this.setState( {
-      mobileWarningSeen: true,
-    } as AppState );
-  };
+    dismissMobileWarning = () => {
+      this.setState( {
+        mobileWarningSeen: true,
+      } as AppState );
+    };
 
-  render = (
-    _properties: Record<string, unknown>,
-    { cells, error, focused, mobileWarningSeen }: AppState
-  ) => (
-    <div class="App">
-      {mobileWarningSeen || (
-        <div class="is-mobile">
-          <div class="close" onClick={this.dismissMobileWarning}>X</div>
-          <div>
-            Unfortunately, mobile devices aren&apos;t supported yet due to
-            their lack of keyboard. Check back later.
+    render = (
+      _properties: Record<string, unknown>,
+      { cells, error, focused, mobileWarningSeen }: AppState
+    ) => (
+      <div class="App">
+        {mobileWarningSeen || (
+          <div class="is-mobile">
+            <div class="close" onClick={this.dismissMobileWarning}>
+              X
+            </div>
+            <div>
+              Unfortunately, mobile devices aren&apos;t supported yet due to
+              their lack of keyboard. Check back later.
+            </div>
           </div>
+        )}
+        <div class="sudoku">
+          {cells.map( (
+            { content, key, valid, possible }, index
+          ) => (
+            <div
+              key={key}
+              class={`cell${ valid
+                ? ''
+                : ' invalid-input' }${
+                focused === index
+                  ? ' focused-cell'
+                  : ''
+              }`}
+              onClick={this.handleCellClick( index )}
+            >
+              {content ?? [ ...possible ].join( ',' )}
+            </div>
+          ) )}
         </div>
-      )}
-      <div class="sudoku">
-        {cells.map( (
-          { content: row, key: rowKey }, rowIndex
-        ) => (
-          <Fragment key={rowKey}>
-            {row.map( (
-              { content, key, valid }, colIndex
-            ) => (
-              <div
-                key={key}
-                class={`cell${ valid
-                  ? ''
-                  : ' invalid-input' }${
-                  focused
-                  && focused.row === rowIndex
-                  && focused.col === colIndex
-                    ? ' focused-cell'
-                    : ''
-                }`}
-                onClick={this.handleCellClick(
-                  rowIndex,
-                  colIndex
-                )}
-              >
-                {content}
-              </div>
-            ) )}
-          </Fragment>
-        ) )}
+        {typeof error !== undefined && <div class="error">{error}</div>}
+        <button type="button" class="solve" onClick={this.solve}>
+          Solve
+        </button>
+        <button type="button" class="clear" onClick={this.clear}>
+          Clear
+        </button>
       </div>
-      {typeof error !== undefined && <div class="error">{error}</div>}
-      <button type="button" class="solve" onClick={this.solve}>
-        Solve
-      </button>
-      <button type="button" class="clear" onClick={this.clear}>
-        Clear
-      </button>
-    </div>
-  );
+    );
 
-  solve = () => {
-    this.#sudokuClass.solve();
-  };
+    solve = () => {
+      this.#sudokuClass.solve();
+    };
 
-  clear = () => {
-    this.#sudokuClass.clearAllCells();
-  };
+    clear = () => {
+      this.#sudokuClass.clearAllCells();
+    };
 
-  handleCellClick = (
-    row: number, col: number
-  ) => (): void => {
-    this.setState( {
-      focused: {
-        row,
-        col,
-      },
-    } as AppState );
-  };
+    handleCellClick = ( index: number ) => (): void => {
+      this.setState( {
+        focused: index,
+      } as AppState );
+    };
 
-  handleKeyDown = ( event_: KeyboardEvent ) => {
-    this.setState( produce( ( state: AppState ): void => {
-      const key = event_.key.toLowerCase();
+    handleKeyDown = ( event_: KeyboardEvent ) => {
+      this.setState( produce( ( state: AppState ): void => {
+        const key = event_.key.toLowerCase();
 
-      const { focused } = state;
+        switch ( key ) {
+          case 'arrowdown':
+          case 'arrowup': {
+            // Using clamp feels more natural
 
-      const { row, col } = focused;
+            const direction = key === 'arrowdown'
+              ? 9
+              : -9;
+            let newFocused = state.focused + direction;
 
-      switch ( key ) {
-        case 'arrowdown':
-        case 'arrowup': {
-          // Using clamp feels more natural
-          focused.row = clamp(
-            row + ( key === 'arrowdown'
+            if ( newFocused < 0 ) {
+              newFocused += 81;
+            }
+            else if ( newFocused > 80 ) {
+              newFocused -= 81;
+            }
+
+            state.focused = newFocused;
+
+            break;
+          }
+
+          case 'arrowright':
+          case 'arrowleft': {
+            const direction = key === 'arrowright'
               ? 1
-              : -1 ),
-            0,
-            8
-          );
-          break;
-        }
+              : -1;
 
-        case 'arrowright':
-        case 'arrowleft': {
-          focused.col = clamp(
-            col + ( key === 'arrowright'
-              ? 1
-              : -1 ),
-            0,
-            8
-          );
+            const col = ( state.focused % 9 ) + direction;
 
-          break;
-        }
+            if ( col < 0 ) {
+              state.focused += 8;
+            }
+            else if ( col > 8 ) {
+              state.focused -= 8;
+            }
+            else {
+              state.focused += direction;
+            }
 
-        case 'tab': {
-          event_.preventDefault();
+            break;
+          }
 
-          const { shiftKey } = event_;
+          case ' ': {
+            // Space
 
-          nextCell(
-            shiftKey,
-            state
-          );
+            this.#sudokuClass.clearCell( state.focused );
 
-          break;
-        }
-
-        case 'delete':
-        case 'backspace': {
-          this.#sudokuClass.clearCell(
-            row,
-            col
-          );
-
-          break;
-        }
-
-        default: {
-          if ( ( /^[1-9]$/ ).test( key ) ) {
-            this.#sudokuClass.setContent(
-              row,
-              col,
-              key
+            state.focused = overflow(
+              state.focused + 1,
+              0,
+              80
             );
 
-            nextCell(
-              false,
-              state
+            break;
+          }
+
+          case 'tab': {
+            event_.preventDefault();
+
+            const { shiftKey } = event_;
+
+            const direction = shiftKey
+              ? -1
+              : 1;
+
+            state.focused = overflow(
+              state.focused + direction,
+              0,
+              80
             );
+
+            break;
+          }
+
+          case 'delete':
+          case 'backspace': {
+            this.#sudokuClass.clearCell( state.focused );
+
+            break;
+          }
+
+          default: {
+            if ( ( /^[1-9]$/ ).test( key ) ) {
+              this.#sudokuClass.setContent(
+                state.focused,
+                key
+              );
+
+              ++state.focused;
+
+              if ( state.focused > 80 ) {
+                state.focused = 0;
+              }
+            }
           }
         }
-      }
-    } ) );
-  };
+      } ) );
+    };
   }
 
   render(

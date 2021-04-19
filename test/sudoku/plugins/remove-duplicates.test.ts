@@ -3,9 +3,7 @@ import { assert } from 'chai';
 import { Sudoku } from '../../../src/sudoku/sudoku';
 import type { SudokuInterface } from '../../../src/sudoku';
 
-import {
-  removeDuplicates
-} from '../../../src/sudoku/plugins/remove-duplicates';
+import { removeDuplicates } from '../../../src/sudoku/plugins/remove-duplicates';
 
 const _ = undefined;
 
@@ -14,24 +12,9 @@ type ComparableCell = {
   content: string | undefined;
 };
 
-const getComparableCells = ( sudoku: SudokuInterface ): Array<Array<ComparableCell>> => {
-  const result = [];
-
-  for ( const row of sudoku._cells ) {
-    const row_: Array<ComparableCell> = [];
-
-    result.push( row_ );
-
-    for ( const { possible, content } of row.content ) {
-      row_.push( {
-        possible,
-        content,
-      } );
-    }
-  }
-
-  return result;
-};
+const getComparableCells = ( sudoku: SudokuInterface ): Array<ComparableCell> => sudoku
+  .getCells()
+  .map( cell => ( { content: cell.content, possible: cell.possible } ) );
 
 describe(
   'remove-duplicates.ts',
@@ -66,10 +49,7 @@ describe(
 
             removeDuplicates( sudoku );
 
-            const cell = sudoku.getCell(
-              2,
-              0
-            );
+            const cell = sudoku.getCell( 2 * 9 );
 
             assert.strictEqual(
               cell.possible.size,
@@ -94,14 +74,8 @@ describe(
 
             removeDuplicates( sudoku );
 
-            const cell1 = sudoku.getCell(
-              1,
-              0
-            );
-            const cell2 = sudoku.getCell(
-              1,
-              1
-            );
+            const cell1 = sudoku.getCell( 1 * 9 );
+            const cell2 = sudoku.getCell( 1 * 9 + 1 );
 
             assert.deepStrictEqual(
               cell1.possible,
@@ -122,10 +96,7 @@ describe(
 
             removeDuplicates( sudoku );
 
-            const cell = sudoku.getCell(
-              0,
-              0
-            );
+            const cell = sudoku.getCell( 0 );
 
             assert.strictEqual(
               cell.possible.size,
@@ -146,14 +117,8 @@ describe(
 
             removeDuplicates( sudoku );
 
-            const cell1 = sudoku.getCell(
-              0,
-              0
-            );
-            const cell2 = sudoku.getCell(
-              8,
-              0
-            );
+            const cell1 = sudoku.getCell( 0 );
+            const cell2 = sudoku.getCell( 8 * 9 );
 
             assert.deepStrictEqual(
               cell1.possible,
@@ -174,10 +139,7 @@ describe(
 
             removeDuplicates( sudoku );
 
-            const cell = sudoku.getCell(
-              0,
-              3
-            );
+            const cell = sudoku.getCell( 3 );
 
             assert.strictEqual(
               cell.possible.size,
@@ -198,14 +160,8 @@ describe(
 
             removeDuplicates( sudoku );
 
-            const cell1 = sudoku.getCell(
-              0,
-              5
-            );
-            const cell2 = sudoku.getCell(
-              0,
-              7
-            );
+            const cell1 = sudoku.getCell( 5 );
+            const cell2 = sudoku.getCell( 7 );
 
             assert.deepStrictEqual(
               cell1.possible,

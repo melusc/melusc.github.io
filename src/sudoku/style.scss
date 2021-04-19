@@ -99,18 +99,10 @@ body {
   justify-content: center;
   align-items: center;
 
+  font-size: 0.2em;
+
   &.focused-cell {
     background-color: $focused-cell-bg;
-  }
-
-  input {
-    height: 100%;
-    width: 100%;
-    border: none;
-    outline: none;
-    font: inherit;
-
-    text-align: center;
   }
 }
 

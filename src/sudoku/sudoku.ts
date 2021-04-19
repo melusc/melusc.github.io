@@ -2,21 +2,19 @@ import type {
   Cells,
   CellInterface,
   SudokuInterface,
-  Row,
   SubscriptionCallback,
   DispatchTypes,
   NumberOnlySudoku
 } from './index';
 
-import * as plugins_ from './plugins/plugins';
-const plugins = Object.values( plugins_ );
+import { Cell } from './cell';
+import * as plugins from './plugins/plugins';
 
 /*
   Lodash-es throws when testing for whatever reason
   so testing with lodash, but using "resolve" in webpack conf
   to resolve lodash to lodash-es and allow tree shaking
 */
-import { uniqueId } from 'lodash';
 
 const inRangeIncl = (
   low: number, high: number
@@ -44,69 +42,22 @@ const inRangeIncl = (
   return true;
 };
 
-const emptyCellPossibles = (): Set<string> => new Set( Array.from(
-  { length: 9 },
-  (
-    _v, index
-  ) => `${ index + 1 }`
-) );
-
 const validCellIndex = inRangeIncl(
   0,
-  8
+  80
 );
-
-class Cell implements CellInterface {
-  content: string | undefined;
-
-  possible = emptyCellPossibles();
-
-  key = uniqueId();
-
-  valid = true;
-
-  setValidity = (): this => {
-    this.valid
-      = typeof this.content === 'undefined'
-        ? this.possible.size !== 0
-        : ( /^[1-9]$/ ).test( this.content );
-
-    return this;
-  };
-
-  setContent = ( content: string ): this => {
-    this.content = content.trim();
-    this.possible.clear();
-
-    return this.setValidity();
-  };
-
-  clear = (): this => {
-    this.content = undefined;
-
-    this.possible = emptyCellPossibles();
-
-    this.valid = true;
-
-    return this;
-  };
-}
 
 class Sudoku implements SudokuInterface {
   _cells: Cells;
 
   #subscriptions: Set<SubscriptionCallback> = new Set();
 
+  #plugins = Object.values( plugins );
+
   constructor( array?: NumberOnlySudoku ) {
     this._cells = Array.from(
-      { length: 9 },
-      () => ( {
-        key: uniqueId(),
-        content: Array.from(
-          { length: 9 },
-          () => new Cell()
-        ),
-      } )
+      { length: 81 },
+      () => new Cell()
     );
 
     if ( array ) {
@@ -114,8 +65,7 @@ class Sudoku implements SudokuInterface {
         for ( const [ colIndex, cell ] of row.entries() ) {
           if ( typeof cell === 'number' ) {
             this.setContent(
-              rowIndex,
-              colIndex,
+              ( rowIndex * 9 ) + colIndex,
               `${ cell }`
             );
           }
@@ -125,17 +75,13 @@ class Sudoku implements SudokuInterface {
   }
 
   setContent = (
-    row: number, col: number, content: string
+    index: number, content: string
   ): this => {
     validCellIndex(
-      row,
-      'row'
+      index,
+      'index'
     );
-    validCellIndex(
-      col,
-      'col'
-    );
-    const cell = this._cells[ row ].content[ col ];
+    const cell = this._cells[ index ];
 
     cell.setContent( content );
 
@@ -144,34 +90,22 @@ class Sudoku implements SudokuInterface {
     return this.#dispatch( 'change' );
   };
 
-  getContent = (
-    row: number, col: number
-  ): string | undefined => {
+  getContent = ( index: number ): string | undefined => {
     validCellIndex(
-      row,
-      'row'
-    );
-    validCellIndex(
-      col,
-      'col'
+      index,
+      'index'
     );
 
-    return this._cells[ row ].content[ col ].content;
+    return this._cells[ index ].content;
   };
 
-  clearCell = (
-    row: number, col: number
-  ): this => {
+  clearCell = ( index: number ): this => {
     validCellIndex(
-      row,
-      'row'
-    );
-    validCellIndex(
-      col,
-      'col'
+      index,
+      'index'
     );
 
-    const cell = this._cells[ row ].content[ col ];
+    const cell = this._cells[ index ];
 
     cell.clear();
 
@@ -181,7 +115,7 @@ class Sudoku implements SudokuInterface {
   };
 
   clearAllCells = (): this => {
-    for ( const cell of this.entries() ) {
+    for ( const cell of this._cells.values() ) {
       cell.clear();
     }
 
@@ -196,8 +130,8 @@ class Sudoku implements SudokuInterface {
 
     const result = [];
 
-    for ( const row of this._cells ) {
-      result.push( row.content[ col ] );
+    for ( let index = col; index < 81; index += 9 ) {
+      result.push( this._cells[ index ] );
     }
 
     return result;
@@ -209,7 +143,10 @@ class Sudoku implements SudokuInterface {
       'row'
     );
 
-    return [ ...this._cells[ row ].content ];
+    return this._cells.slice(
+      row * 9,
+      ( row * 9 ) + 9
+    );
   };
 
   getBlock = ( index: number ): Array<CellInterface> => {
@@ -227,62 +164,53 @@ class Sudoku implements SudokuInterface {
       const row = rowOffset + Math.floor( index_ / 3 );
       const col = colOffset + ( index_ % 3 );
 
-      result.push( this.getCell(
-        row,
-        col
-      ) );
+      result.push( this.getCell( ( row * 9 ) + col ) );
     }
 
     return result;
   };
 
-  getCell = (
-    row: number, col: number
-  ): CellInterface => {
+  getCell = ( index: number ): CellInterface => {
     validCellIndex(
-      row,
-      'row'
-    );
-    validCellIndex(
-      col,
-      'col'
+      index,
+      'index'
     );
 
-    return this._cells[ row ].content[ col ];
+    return this._cells[ index ];
   };
 
-  getCells = (): Cells => {
-    const result: Cells = [];
-
-    for ( const row of this._cells ) {
-      const newRow: Row = {
-        key: row.key,
-        content: [],
-      };
-
-      for ( const cell of row.content ) {
-        newRow.content.push( cell );
-      }
-
-      result.push( newRow );
-    }
-
-    return result;
-  };
+  getCells = (): Cells => [ ...this._cells ];
 
   solve = (): this => {
     if ( this.updateCellValidities() ) {
+      for ( const cell of this._cells ) {
+        if ( cell.content === undefined ) {
+          cell.clear(); // Reset possibles
+        }
+      }
+
       let anyChanged = false;
       let sudokuInvalid = false;
 
       do {
         anyChanged = false;
 
-        for ( const plugin of plugins ) {
-          anyChanged = plugin( this ) || anyChanged;
+        for ( const plugin of this.#plugins ) {
+          console.log( [
+            ...this._cells.find( cell => cell.key === 'cell-5' )?.possible
+              ?? [],
+          ] );
+
+          const changed = plugin( this );
+
+          console.log( [
+            ...this._cells.find( cell => cell.key === 'cell-5' )?.possible
+              ?? [],
+          ] );
+          anyChanged = changed || anyChanged;
         }
 
-        for ( const cell of this.entries() ) {
+        for ( const cell of this._cells.values() ) {
           if ( cell.content === undefined ) {
             if ( cell.possible.size === 1 ) {
               cell.setContent( cell.possible.values().next().value );
@@ -294,7 +222,16 @@ class Sudoku implements SudokuInterface {
             }
           }
         }
+
+        console.log(
+          'anyChanged',
+          anyChanged,
+          'sudokuInvalid',
+          sudokuInvalid
+        );
       } while ( anyChanged && !sudokuInvalid );
+
+      console.log( this._cells );
 
       if ( sudokuInvalid ) {
         this.#dispatch( 'error' );
@@ -331,7 +268,7 @@ class Sudoku implements SudokuInterface {
   };
 
   updateCellValidities = (): boolean => {
-    for ( const cell of this.entries() ) {
+    for ( const cell of this._cells.values() ) {
       cell.setValidity();
     }
 
@@ -345,7 +282,7 @@ class Sudoku implements SudokuInterface {
       }
     }
 
-    for ( const cell of this.entries() ) {
+    for ( const cell of this._cells.values() ) {
       if ( !cell.valid ) {
         return false;
       }
@@ -380,20 +317,12 @@ class Sudoku implements SudokuInterface {
     return this;
   };
 
-  * entries(): Iterable<CellInterface> {
-    for ( const row of this._cells ) {
-      for ( const cell of row.content ) {
-        yield cell;
-      }
-    }
-  }
-
   isSolved = (): boolean => {
     if ( !this.updateCellValidities() ) {
       return false;
     }
 
-    for ( const cell of this.entries() ) {
+    for ( const cell of this._cells.values() ) {
       if ( cell.content === undefined ) {
         return false;
       }
@@ -403,4 +332,4 @@ class Sudoku implements SudokuInterface {
   };
 }
 
-export { Sudoku, Cell, validCellIndex };
+export { Sudoku, validCellIndex };
