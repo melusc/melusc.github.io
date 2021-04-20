@@ -213,7 +213,8 @@ class Sudoku implements SudokuInterface {
         for ( const cell of this._cells.values() ) {
           if ( cell.content === undefined ) {
             if ( cell.possible.size === 1 ) {
-              cell.setContent( cell.possible.values().next().value );
+              // We know that the set has one item
+              cell.setContent( cell.possible.values().next().value as string );
             }
             else if ( cell.possible.size === 0 ) {
               sudokuInvalid = false;
