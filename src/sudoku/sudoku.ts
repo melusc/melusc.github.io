@@ -17,35 +17,21 @@ import * as plugins from './plugins/plugins';
 */
 
 const inRangeIncl = (
-  low: number, high: number
-) => (
+  low: number,
+  high: number,
   n: number,
-  variableName: string,
-  noThrow = false
-) => {
+  variableName: string
+): boolean | never => {
   if ( !Number.isInteger( n ) ) {
-    if ( noThrow ) {
-      return false;
-    }
-
     throw new TypeError( `${ variableName } was not an integer.` );
   }
 
   if ( n < low || n > high ) {
-    if ( noThrow ) {
-      return false;
-    }
-
     throw new RangeError( `${ variableName } ∉ [${ low }, ${ high }].` );
   }
 
   return true;
 };
-
-const validCellIndex = inRangeIncl(
-  0,
-  80
-);
 
 class Sudoku implements SudokuInterface {
   _cells: Cells;
@@ -64,8 +50,10 @@ class Sudoku implements SudokuInterface {
       for ( const [ rowIndex, row ] of array.entries() ) {
         for ( const [ colIndex, cell ] of row.entries() ) {
           if ( typeof cell === 'number' ) {
+            const rowIndex_ = rowIndex * 9; // Because of prettier and eslint's no-mixed-operators
+
             this.setContent(
-              ( rowIndex * 9 ) + colIndex,
+              rowIndex_ + colIndex,
               `${ cell }`
             );
           }
@@ -77,10 +65,13 @@ class Sudoku implements SudokuInterface {
   setContent = (
     index: number, content: string
   ): this => {
-    validCellIndex(
+    inRangeIncl(
+      0,
+      80,
       index,
       'index'
     );
+
     const cell = this._cells[ index ];
 
     cell.setContent( content );
@@ -91,7 +82,9 @@ class Sudoku implements SudokuInterface {
   };
 
   getContent = ( index: number ): string | undefined => {
-    validCellIndex(
+    inRangeIncl(
+      0,
+      80,
       index,
       'index'
     );
@@ -100,7 +93,9 @@ class Sudoku implements SudokuInterface {
   };
 
   clearCell = ( index: number ): this => {
-    validCellIndex(
+    inRangeIncl(
+      0,
+      80,
       index,
       'index'
     );
@@ -123,7 +118,9 @@ class Sudoku implements SudokuInterface {
   };
 
   getCol = ( col: number ): Array<CellInterface> => {
-    validCellIndex(
+    inRangeIncl(
+      0,
+      8,
       col,
       'col'
     );
@@ -138,19 +135,25 @@ class Sudoku implements SudokuInterface {
   };
 
   getRow = ( row: number ): Array<CellInterface> => {
-    validCellIndex(
+    inRangeIncl(
+      0,
+      8,
       row,
       'row'
     );
 
+    row *= 9;
+
     return this._cells.slice(
-      row * 9,
-      ( row * 9 ) + 9
+      row,
+      row + 9
     );
   };
 
   getBlock = ( index: number ): Array<CellInterface> => {
-    validCellIndex(
+    inRangeIncl(
+      0,
+      8,
       index,
       'index'
     );
@@ -161,17 +164,21 @@ class Sudoku implements SudokuInterface {
     const result = [];
 
     for ( let index_ = 0; index_ < 9; ++index_ ) {
-      const row = rowOffset + Math.floor( index_ / 3 );
+      let row = rowOffset + Math.floor( index_ / 3 );
       const col = colOffset + ( index_ % 3 );
 
-      result.push( this.getCell( ( row * 9 ) + col ) );
+      row *= 9;
+
+      result.push( this.getCell( row + col ) );
     }
 
     return result;
   };
 
   getCell = ( index: number ): CellInterface => {
-    validCellIndex(
+    inRangeIncl(
+      0,
+      80,
       index,
       'index'
     );
@@ -196,17 +203,8 @@ class Sudoku implements SudokuInterface {
         anyChanged = false;
 
         for ( const plugin of this.#plugins ) {
-          console.log( [
-            ...this._cells.find( cell => cell.key === 'cell-5' )?.possible
-              ?? [],
-          ] );
-
           const changed = plugin( this );
 
-          console.log( [
-            ...this._cells.find( cell => cell.key === 'cell-5' )?.possible
-              ?? [],
-          ] );
           anyChanged = changed || anyChanged;
         }
 
@@ -223,16 +221,7 @@ class Sudoku implements SudokuInterface {
             }
           }
         }
-
-        console.log(
-          'anyChanged',
-          anyChanged,
-          'sudokuInvalid',
-          sudokuInvalid
-        );
       } while ( anyChanged && !sudokuInvalid );
-
-      console.log( this._cells );
 
       if ( sudokuInvalid ) {
         this.#dispatch( 'error' );
@@ -333,4 +322,4 @@ class Sudoku implements SudokuInterface {
   };
 }
 
-export { Sudoku, validCellIndex };
+export { Sudoku, inRangeIncl };

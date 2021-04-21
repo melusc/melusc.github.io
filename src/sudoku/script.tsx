@@ -146,7 +146,7 @@ interface AppState {
         )}
         <div class="sudoku">
           {cells.map( (
-            { content, key, valid, possible }, index
+            { content, key, valid }, index
           ) => (
             <div
               key={key}
@@ -159,7 +159,7 @@ interface AppState {
               }`}
               onClick={this.handleCellClick( index )}
             >
-              {content ?? [ ...possible ].join( ',' )}
+              {content}
             </div>
           ) )}
         </div>

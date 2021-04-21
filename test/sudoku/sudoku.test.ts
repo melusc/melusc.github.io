@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 
-import { Sudoku, validCellIndex } from '../../src/sudoku/sudoku';
+import { Sudoku, inRangeIncl } from '../../src/sudoku/sudoku';
 
 import type { SudokuInterface } from '../../src/sudoku/index';
 
@@ -695,14 +695,16 @@ describe(
     );
 
     describe(
-      'validCellIndex',
+      'inRangeIncl',
       () => {
         it(
           '-1 should throw.',
           () => {
             assert.throws(
               () => {
-                validCellIndex(
+                inRangeIncl(
+                  0,
+                  80,
                   -1,
                   '-1'
                 );
@@ -717,7 +719,9 @@ describe(
           () => {
             assert.throws(
               () => {
-                validCellIndex(
+                inRangeIncl(
+                  0,
+                  80,
                   81,
                   '81'
                 );
@@ -732,7 +736,9 @@ describe(
           () => {
             assert.throws(
               () => {
-                validCellIndex(
+                inRangeIncl(
+                  0,
+                  80,
                   5.5,
                   '5.5'
                 );
@@ -746,13 +752,17 @@ describe(
           '4 should not throw.',
           () => {
             assert.doesNotThrow( () => {
-              validCellIndex(
+              inRangeIncl(
+                0,
+                80,
                 4,
                 '4'
               );
             } );
 
-            assert.isTrue( validCellIndex(
+            assert.isTrue( inRangeIncl(
+              0,
+              80,
               4,
               '4'
             ) );

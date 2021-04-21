@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $thick-border: 2px solid #111;
 $thin-border: 1px solid #aaa;
 $valid: #3fb950;
@@ -99,7 +101,9 @@ body {
   justify-content: center;
   align-items: center;
 
-  font-size: 0.2em;
+  &:hover {
+    background-color: color.adjust($focused-cell-bg, $alpha: -0.6);
+  }
 
   &.focused-cell {
     background-color: $focused-cell-bg;

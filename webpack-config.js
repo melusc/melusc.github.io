@@ -82,7 +82,7 @@ module.exports = environment => ( {
       new TerserPlugin( {
         terserOptions: {
           compress: {
-            drop_console: false,
+            drop_console: true,
             keep_fargs: false,
             global_defs: {
               DEBUG: false,

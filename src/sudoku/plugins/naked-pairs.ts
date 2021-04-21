@@ -21,12 +21,15 @@ const genericNakedPairsSolver = (
         continue;
       }
 
+      let key = 0;
       for ( const number of cell.possible ) {
-        summary.set(
-          index,
-          ( summary.get( index ) ?? 0 ) | ( 2 ** ( +number - 1 ) )
-        );
+        key |= 2 ** ( +number - 1 );
       }
+
+      summary.set(
+        index,
+        key
+      );
     }
 
     const equalKeys: Map<number, Array<number>> = new Map();
@@ -44,32 +47,28 @@ const genericNakedPairsSolver = (
       array.push( index );
     }
 
-    for ( const [ key, numbers ] of equalKeys ) {
-      if ( bitCount( key ) !== numbers.length || numbers.length > 8 ) {
+    for ( const [ key, indices ] of equalKeys ) {
+      if ( bitCount( key ) !== indices.length || indices.length > 8 ) {
         continue;
       }
 
       for ( let number = 0; number <= Math.log2( key ); ++number ) {
-        if ( ( ( 2 ** number ) & key ) === 0 ) {
+        if ( ( key & ( 2 ** number ) ) === 0 ) {
           continue;
         }
 
-        const stringNumber = `${ number + 1 }`;
+        const numberString = `${ number + 1 }`;
 
         for ( const [ index, cell ] of structure.entries() ) {
-          if ( !numbers.includes( index ) && cell.possible.has( stringNumber ) ) {
+          if ( !indices.includes( index ) && cell.possible.has( numberString ) ) {
             anyChanged = true;
-            cell.possible.delete( stringNumber );
+
+            cell.possible.delete( numberString );
           }
         }
       }
     }
   }
-
-  console.log(
-    getterFunctionName,
-    anyChanged
-  );
 
   return anyChanged;
 };
@@ -77,18 +76,12 @@ const genericNakedPairsSolver = (
 export const nakedPairs = ( sudoku: SudokuInterface ): boolean => {
   let anyChanged = false;
 
-  console.group( 'naked-pairs' );
-
   for ( const key of getterFunctionNames ) {
     anyChanged = genericNakedPairsSolver(
       sudoku,
       key
     ) || anyChanged;
   }
-
-  console.log( anyChanged );
-
-  console.groupEnd();
 
   return anyChanged;
 };

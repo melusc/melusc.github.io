@@ -27,16 +27,35 @@ const genericHiddenPairsSolver = (
     const summary: Map<string, number> = new Map();
 
     for ( let index = 0; index < 9; ++index ) {
-      const cell = structure[ index ];
+      const { content, possible } = structure[ index ];
 
-      if ( cell.content !== undefined ) {
-        continue;
+      if ( content === undefined ) {
+        for ( const number of possible ) {
+          summary.set(
+            number,
+            ( summary.get( number ) ?? 0 ) | ( 2 ** index )
+          );
+        }
       }
+      else {
+        /*
+          This part fixes a bug:
+          [
+            {1,2,3}, // these are possibles
+            {1,2},
+            3, // this is filled in that cell
+            ...
+          ]
+          Webpack doesn't keep the same order as is exported from plugins.ts
+          (and the plugins shouldn't rely on it).
+          When remove-duplicates doesn't run first, the scenarios above can occur
+          where hidden-pairs finds the only cell that has 3 in #possible and then removes all others
+          (here cell at index 0), incorrectly resulting in two cells with 3
+        */
 
-      for ( const number of cell.possible ) {
         summary.set(
-          number,
-          ( summary.get( number ) ?? 0 ) | ( 2 ** index )
+          content,
+          ( summary.get( content ) ?? 0 ) | ( 2 ** index )
         );
       }
     }
@@ -61,13 +80,13 @@ const genericHiddenPairsSolver = (
       equalIndex.push( number );
     }
 
-    for ( const [ indexes, numbers ] of equalIndexes ) {
-      if ( bitCount( indexes ) !== numbers.length ) {
+    for ( const [ key, numbers ] of equalIndexes ) {
+      if ( bitCount( key ) !== numbers.length ) {
         continue;
       }
 
-      for ( let index = 0; index <= Math.log2( indexes ); ++index ) {
-        if ( ( ( 2 ** index ) & indexes ) === 0 ) {
+      for ( let index = 0; index <= Math.log2( key ); ++index ) {
+        if ( ( key & ( 2 ** index ) ) === 0 ) {
           continue;
         }
 
@@ -82,28 +101,18 @@ const genericHiddenPairsSolver = (
     }
   }
 
-  console.log(
-    getterFunctionName,
-    anyChanged
-  );
-
   return anyChanged;
 };
 
 export const hiddenPairs = ( sudoku: SudokuInterface ): boolean => {
   let anyChanged = false;
 
-  console.group( 'hidden-pairs' );
   for ( const key of getterFunctionNames ) {
     anyChanged = genericHiddenPairsSolver(
       sudoku,
       key
     ) || anyChanged;
   }
-
-  console.log( anyChanged );
-
-  console.groupEnd();
 
   return anyChanged;
 };

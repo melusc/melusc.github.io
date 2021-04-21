@@ -36,27 +36,18 @@ const genericSolver = (
     }
   }
 
-  console.log(
-    getterFunctionName,
-    anyChanged
-  );
-
   return anyChanged;
 };
 
 export const removeDuplicates = ( sudoku: SudokuInterface ): boolean => {
   let anyChanged = false;
-  console.group( 'remove-duplicates' );
+
   for ( const getterFunctionName of getterFunctionNames ) {
     anyChanged = genericSolver(
       getterFunctionName,
       sudoku
     ) || anyChanged;
   }
-
-  console.log( anyChanged );
-
-  console.groupEnd();
 
   return anyChanged;
 };
