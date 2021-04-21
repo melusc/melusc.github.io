@@ -2,15 +2,13 @@ const { src, dest, watch, parallel, series } = require( 'gulp' );
 const csso = require( 'gulp-csso' );
 const svgmin = require( 'gulp-svgmin' );
 const htmlmin = require( 'gulp-htmlmin' );
-const sass = require( 'gulp-sass' );
+const sass = require( 'gulp-dart-sass' );
 const rename = require( 'gulp-rename' );
 const sourcemaps = require( 'gulp-sourcemaps' );
 const gulpif = require( 'gulp-if' );
 const postcss = require( 'gulp-postcss' );
 const autoprefixer = require( 'autoprefixer' );
 const lazypipe = require( 'lazypipe' );
-
-sass.compiler = require( 'sass' );
 
 const PATHS = {
   DEST: './docs/webpack',
