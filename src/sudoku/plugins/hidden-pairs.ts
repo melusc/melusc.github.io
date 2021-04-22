@@ -48,7 +48,7 @@ const genericHiddenPairsSolver = (
           ]
           Webpack doesn't keep the same order as is exported from plugins.ts
           (and the plugins shouldn't rely on it).
-          When remove-duplicates doesn't run first, the scenarios above can occur
+          When remove-duplicates (now naked-pairs) doesn't run first, the scenarios above can occur
           where hidden-pairs finds the only cell that has 3 in #possible and then removes all others
           (here cell at index 0), incorrectly resulting in two cells with 3
         */

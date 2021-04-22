@@ -17,19 +17,23 @@ const genericNakedPairsSolver = (
     const summary: Map<number, number> = new Map();
 
     for ( const [ index, cell ] of structure.entries() ) {
-      if ( cell.content !== undefined ) {
-        continue;
-      }
+      if ( cell.content === undefined ) {
+        let key = 0;
+        for ( const number of cell.possible ) {
+          key |= 2 ** ( +number - 1 );
+        }
 
-      let key = 0;
-      for ( const number of cell.possible ) {
-        key |= 2 ** ( +number - 1 );
+        summary.set(
+          index,
+          key
+        );
       }
-
-      summary.set(
-        index,
-        key
-      );
+      else {
+        summary.set(
+          index,
+          ( summary.get( index ) ?? 0 ) | 2 ** ( +cell.content - 1 )
+        );
+      }
     }
 
     const equalKeys: Map<number, Array<number>> = new Map();
