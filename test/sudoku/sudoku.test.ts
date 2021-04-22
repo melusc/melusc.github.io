@@ -705,8 +705,7 @@ describe(
                 inRangeIncl(
                   0,
                   80,
-                  -1,
-                  '-1'
+                  -1
                 );
               },
               '-1 ∉ [0, 80].'
@@ -722,8 +721,7 @@ describe(
                 inRangeIncl(
                   0,
                   80,
-                  81,
-                  '81'
+                  81
                 );
               },
               '81 ∉ [0, 80].'
@@ -739,8 +737,7 @@ describe(
                 inRangeIncl(
                   0,
                   80,
-                  5.5,
-                  '5.5'
+                  5.5
                 );
               },
               '5.5 was not an integer.'
@@ -755,16 +752,14 @@ describe(
               inRangeIncl(
                 0,
                 80,
-                4,
-                '4'
+                4
               );
             } );
 
             assert.isTrue( inRangeIncl(
               0,
               80,
-              4,
-              '4'
+              4
             ) );
           }
         );

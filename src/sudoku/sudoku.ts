@@ -19,15 +19,14 @@ import * as plugins from './plugins/plugins';
 const inRangeIncl = (
   low: number,
   high: number,
-  n: number,
-  variableName: string
+  n: number
 ): boolean | never => {
   if ( !Number.isInteger( n ) ) {
-    throw new TypeError( `${ variableName } was not an integer.` );
+    throw new TypeError( `${ n } was not an integer.` );
   }
 
   if ( n < low || n > high ) {
-    throw new RangeError( `${ variableName } ∉ [${ low }, ${ high }].` );
+    throw new RangeError( `${ n } ∉ [${ low }, ${ high }].` );
   }
 
   return true;
@@ -68,8 +67,7 @@ class Sudoku implements SudokuInterface {
     inRangeIncl(
       0,
       80,
-      index,
-      'index'
+      index
     );
 
     const cell = this._cells[ index ];
@@ -85,8 +83,7 @@ class Sudoku implements SudokuInterface {
     inRangeIncl(
       0,
       80,
-      index,
-      'index'
+      index
     );
 
     return this._cells[ index ].content;
@@ -96,8 +93,7 @@ class Sudoku implements SudokuInterface {
     inRangeIncl(
       0,
       80,
-      index,
-      'index'
+      index
     );
 
     const cell = this._cells[ index ];
@@ -121,8 +117,7 @@ class Sudoku implements SudokuInterface {
     inRangeIncl(
       0,
       8,
-      col,
-      'col'
+      col
     );
 
     const result = [];
@@ -138,8 +133,7 @@ class Sudoku implements SudokuInterface {
     inRangeIncl(
       0,
       8,
-      row,
-      'row'
+      row
     );
 
     row *= 9;
@@ -154,8 +148,7 @@ class Sudoku implements SudokuInterface {
     inRangeIncl(
       0,
       8,
-      index,
-      'index'
+      index
     );
 
     const colOffset = ( index % 3 ) * 3;
@@ -179,8 +172,7 @@ class Sudoku implements SudokuInterface {
     inRangeIncl(
       0,
       80,
-      index,
-      'index'
+      index
     );
 
     return this._cells[ index ];
