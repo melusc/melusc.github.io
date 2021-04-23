@@ -10,16 +10,8 @@ import type {
 import { Cell } from './cell';
 import * as plugins from './plugins/plugins';
 
-/*
-  Lodash-es throws when testing for whatever reason
-  so testing with lodash, but using "resolve" in webpack conf
-  to resolve lodash to lodash-es and allow tree shaking
-*/
-
 const inRangeIncl = (
-  low: number,
-  high: number,
-  n: number
+  low: number, high: number, n: number
 ): boolean | never => {
   if ( !Number.isInteger( n ) ) {
     throw new TypeError( `${ n } was not an integer.` );
