@@ -67,18 +67,20 @@ export const pointingArrows = ( sudoku: SudokuInterface ): boolean => {
       const rowSection = ( key >> 3 ) & 0b111;
 
       if ( bitCount( colSection ) === 1 && bitCount( rowSection ) > 1 ) {
-        anyChanged = clearSection(
-          sudoku.getCol( blockColIndex + bitIndex( colSection ) ),
-          blockRowIndex,
-          number
-        ) || anyChanged;
+        anyChanged
+          = clearSection(
+            sudoku.getCol( blockColIndex + bitIndex( colSection ) ),
+            blockRowIndex,
+            number
+          ) || anyChanged;
       }
       else if ( bitCount( rowSection ) === 1 && bitCount( colSection ) > 1 ) {
-        anyChanged = clearSection(
-          sudoku.getRow( blockRowIndex + bitIndex( rowSection ) ),
-          blockColIndex,
-          number
-        ) || anyChanged;
+        anyChanged
+          = clearSection(
+            sudoku.getRow( blockRowIndex + bitIndex( rowSection ) ),
+            blockColIndex,
+            number
+          ) || anyChanged;
       }
     }
   }

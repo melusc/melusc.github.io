@@ -31,7 +31,7 @@ const genericNakedPairsSolver = (
       else {
         summary.set(
           index,
-          ( summary.get( index ) ?? 0 ) | 2 ** ( +cell.content - 1 )
+          ( summary.get( index ) ?? 0 ) | ( 2 ** ( +cell.content - 1 ) )
         );
       }
     }

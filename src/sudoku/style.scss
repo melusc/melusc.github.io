@@ -1,11 +1,18 @@
 @use 'sass:color';
 
-$thick-border: 2px solid #111;
+$thick-border: 2px solid #344861;
 $thin-border: 1px solid #aaa;
 $valid: #3fb950;
 $warn: #fe8a4f;
-$invalid: #da3633;
-$focused-cell-bg: #7fdbff;
+$invalid: #dc3545;
+$hover-invalid: #bb2d3b;
+$info: #0d6efd;
+$hover-info: #0b5ed7;
+$focused-cell-bg: #bbdefb;
+$hover-cell-bg: #ddeeff;
+$white: #fff;
+$text: #344861;
+$transition-properties: 0.15s ease-in-out;
 
 * {
   box-sizing: border-box;
@@ -18,23 +25,8 @@ body {
 
   min-height: 100%;
   width: 100%;
-}
 
-.is-mobile {
-  display: none;
-  width: 80vmin;
-
-  .close {
-    float: right;
-
-    font-weight: bold;
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  .is-mobile {
-    display: initial;
-  }
+  color: $text;
 }
 
 .App {
@@ -42,7 +34,12 @@ body {
   font-size: 2.2em;
   font-family: 'Open Sans', 'Open-Sans', sans-serif;
 
-  display: flex;
+  display: grid;
+
+  grid-template:
+    'sudoku inputs'
+    'solve solve'
+    'clear clear';
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -59,8 +56,10 @@ body {
   /* 
   display: flex;
   flex-direction: column; */
+  grid-area: sudoku;
+
   display: grid;
-  grid-template: repeat(9, minmax(0, 1fr)) / repeat((9, minmax(0, 1fr)));
+  grid-template: repeat(9, 1fr) / repeat(9, 1fr);
 
   width: 80vmin;
   height: 80vmin;
@@ -102,7 +101,7 @@ body {
   align-items: center;
 
   &:hover {
-    background-color: color.adjust($focused-cell-bg, $alpha: -0.6);
+    background-color: $hover-cell-bg;
   }
 
   &.focused-cell {
@@ -111,28 +110,88 @@ body {
 }
 
 .solve {
-  color: $valid;
-  border-color: $valid;
+  border: 2px solid $info;
+  color: $info;
+
+  grid-area: solve;
+
+  &:hover {
+    color: $white;
+    background-color: $info;
+  }
 }
+
 .clear {
-  color: $warn;
-  border-color: $warn;
+  border: 2px solid $invalid;
+  color: $invalid;
+
+  grid-area: clear;
+
+  &:hover {
+    color: $white;
+    background-color: $invalid;
+  }
 }
 
 .solve,
 .clear {
   font: inherit;
 
-  border: 2px solid;
   border-radius: 5px;
   background: none;
   margin-top: 10px;
   width: 80vmin;
+  outline: none;
 
   cursor: pointer;
+
+  transition: $transition-properties transform,
+    $transition-properties background-color, $transition-properties color;
+
+  &:active {
+    transform: scale(0.98, 0.98);
+  }
+}
+
+.keyboardless-inputs {
+  grid-area: inputs;
+  margin-left: 4px;
+  border-radius: 3px;
+  border: $thick-border;
+
+  .keyboardless-input {
+    text-align: center;
+
+    width: 1.5em;
+    height: 1.5em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: $transition-properties background-color;
+
+    border-bottom: $thick-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: #e9ecef;
+    }
+
+    .svg-eraser-fill {
+      width: 0.8em;
+      height: 0.8em;
+    }
+  }
 }
 
 @font-face {
   font-family: 'Open sans';
-  src: url('/fonts/OpenSans-Regular.ttf') format('TrueType');
+  src: local('Open Sans'), local('Open-Sans'),
+    url('/fonts/OpenSans-Regular.ttf') format('TrueType');
 }

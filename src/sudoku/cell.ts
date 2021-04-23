@@ -28,8 +28,15 @@ export class Cell implements CellInterface {
   };
 
   setContent = ( content: string ): this => {
-    this.content = content.trim();
-    this.possible.clear();
+    content = content.trim();
+
+    if ( content ) {
+      this.content = content.trim();
+      this.possible.clear();
+    }
+    else {
+      this.clear();
+    }
 
     return this.setValidity();
   };

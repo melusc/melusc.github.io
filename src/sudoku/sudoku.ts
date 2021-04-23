@@ -205,6 +205,10 @@ class Sudoku implements SudokuInterface {
             }
           }
         }
+
+        if ( !sudokuInvalid ) {
+          sudokuInvalid = !this.updateCellValidities();
+        }
       } while ( anyChanged && !sudokuInvalid );
 
       if ( sudokuInvalid ) {
@@ -213,6 +217,9 @@ class Sudoku implements SudokuInterface {
       else {
         this.#dispatch( 'finish' );
       }
+    }
+    else {
+      this.#dispatch( 'error' );
     }
 
     return this;
