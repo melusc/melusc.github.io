@@ -664,7 +664,7 @@ describe(
         );
 
         describe(
-          '#entries',
+          '#getCells()',
           () => {
             it(
               'should return all cells in the right order',
