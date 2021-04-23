@@ -7,3 +7,18 @@ export const bitCount = ( n: number ): number => {
 };
 
 export const getterFunctionNames = [ 'getRow', 'getCol', 'getBlock' ] as const;
+
+export const bitIndex = ( n: number ): number => {
+  if ( bitCount( n ) !== 1 ) {
+    throw new TypeError( `${ n } doesn't have exactly one bit.` );
+  }
+
+  let index = 0;
+
+  while ( ( n & 1 ) === 0 ) {
+    ++index;
+    n >>= 1;
+  }
+
+  return index;
+};
