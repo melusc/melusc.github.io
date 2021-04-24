@@ -101,7 +101,6 @@
       }
     ],
     "@typescript-eslint/no-loop-func": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/object-curly-spacing": ["error", "always"],
     "@typescript-eslint/quotes": [
@@ -213,7 +212,6 @@
       }
     ],
     "no-empty-function": "error",
-    "no-eq-null": "error",
     "no-eval": "error",
     "no-extend-native": "error",
     "no-extra-bind": "error",
@@ -414,7 +412,6 @@
     "unicorn/no-nested-ternary": "off",
     "unicorn/no-new-array": "error",
     "unicorn/no-new-buffer": "error",
-    "unicorn/no-null": "error",
     "unicorn/no-object-as-default-parameter": "error",
     "unicorn/no-process-exit": "error",
     "unicorn/no-this-assignment": "error",
