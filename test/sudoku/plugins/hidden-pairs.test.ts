@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { Sudoku } from '../../../src/sudoku/sudoku';
 import { hiddenPairs } from '../../../src/sudoku/plugins/hidden-pairs';
 
-import type { SudokuInterface } from '../../../src/sudoku/index';
+import type { SudokuInterface } from '../../../src/sudoku/sudoku.d';
 
 type ComparableCell = {
   possible: Set<string>;

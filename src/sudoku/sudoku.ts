@@ -5,7 +5,7 @@ import type {
   SubscriptionCallback,
   DispatchTypes,
   NumberOnlySudoku
-} from './index';
+} from './sudoku.d';
 
 import { Cell } from './cell';
 import * as plugins from './plugins/plugins';

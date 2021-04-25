@@ -1,6 +1,6 @@
 import { uniqueId } from 'lodash';
 
-import type { CellInterface } from './index';
+import type { CellInterface } from './sudoku.d';
 
 const emptyCellPossibles = (): Set<string> => new Set( Array.from(
   { length: 9 },

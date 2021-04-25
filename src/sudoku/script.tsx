@@ -6,7 +6,7 @@ import { Sudoku } from './sudoku';
 
 import { produce } from 'immer';
 
-import type { Cells, NumberOnlySudoku } from './index';
+import type { Cells, NumberOnlySudoku } from './sudoku.d';
 
 interface Sudokus {
   easy: NumberOnlySudoku;

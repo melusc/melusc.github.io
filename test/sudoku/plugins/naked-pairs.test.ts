@@ -2,7 +2,7 @@ import { assert } from 'chai';
 
 import { Sudoku } from '../../../src/sudoku/sudoku';
 
-import type { SudokuInterface } from '../../../src/sudoku/index';
+import type { SudokuInterface } from '../../../src/sudoku/sudoku.d';
 import { nakedPairs } from '../../../src/sudoku/plugins/naked-pairs';
 
 const _ = undefined;

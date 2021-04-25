@@ -1,4 +1,4 @@
-import type { SudokuInterface, CellInterface } from '../index';
+import type { SudokuInterface, CellInterface } from '../sudoku.d';
 import { bitCount, bitIndex } from './shared';
 
 const clearSection = (

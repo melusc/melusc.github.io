@@ -2,7 +2,7 @@ import { assert } from 'chai';
 
 import { Sudoku, inRangeIncl } from '../../src/sudoku/sudoku';
 
-import type { SudokuInterface } from '../../src/sudoku/index';
+import type { SudokuInterface } from '../../src/sudoku/sudoku.d';
 
 describe(
   'sudoku.ts',

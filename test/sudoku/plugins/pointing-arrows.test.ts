@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import { pointingArrows } from '../../../src/sudoku/plugins/pointing-arrows';
 import { Sudoku } from '../../../src/sudoku/sudoku';
-import type { SudokuInterface } from '../../../src/sudoku/index';
+import type { SudokuInterface } from '../../../src/sudoku/sudoku.d';
 
 type ComparableCell = {
   possible: Set<string>;

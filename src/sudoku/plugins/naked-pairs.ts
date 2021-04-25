@@ -2,7 +2,7 @@
  * See https://web.archive.org/web/20210331174704/https://bestofsudoku.com/sudoku-strategy
  */
 
-import type { SudokuInterface } from '../index';
+import type { SudokuInterface } from '../sudoku.d';
 import { bitCount, getterFunctionNames } from './shared';
 
 const genericNakedPairsSolver = (
