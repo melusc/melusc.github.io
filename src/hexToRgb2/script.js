@@ -25,12 +25,7 @@
   const handleRgbInput = () => {
     const vals = inputs.map( value => +value.value );
     if ( vals.every( value => value < 256 && value >= 0 ) ) {
-      let newValue = (
-        (
-          vals[ 0 ] << 16 )
-          | ( vals[ 1 ] << 8 )
-          | vals[ 2 ]
-      )
+      let newValue = ( ( vals[ 0 ] << 16 ) | ( vals[ 1 ] << 8 ) | vals[ 2 ] )
         .toString( 16 )
         .toLowerCase() // It seems to always be lowercase but just to be sure
         .padStart(
@@ -73,7 +68,8 @@
       hashUpdatedByScript = false;
     }
 
-    const origValue = hexInput.value.trim().match( /^#?(?<val>[\da-f]+)$/i )?.groups?.val;
+    const origValue = hexInput.value.trim().match( /^#?(?<val>[\da-f]+)$/i )
+      ?.groups?.val;
 
     if ( typeof origValue === 'string' && validLengths.has( origValue.length ) ) {
       let properLengthValue = origValue;
@@ -104,7 +100,9 @@
 
   const randomise = () => {
     // Uint8 so [0, 255]
-    for ( const [ index, randValue ] of crypto.getRandomValues( new Uint8Array( 3 ) ).entries() ) {
+    for ( const [ index, randValue ] of crypto
+      .getRandomValues( new Uint8Array( 3 ) )
+      .entries() ) {
       inputs[ index ].value = randValue;
     }
 
@@ -149,12 +147,11 @@
     handleRgbInput
   );
 
-  rgbInputs
-    .addEventListener(
-      'wheel',
-      handleScroll,
-      { passive: true }
-    );
+  rgbInputs.addEventListener(
+    'wheel',
+    handleScroll,
+    { passive: true }
+  );
   document.querySelector( '#rand' ).addEventListener(
     'click',
     randomise

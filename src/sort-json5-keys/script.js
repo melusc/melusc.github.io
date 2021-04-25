@@ -16,11 +16,12 @@
     shouldIndent = prettyPrintInput.checked;
 
     const indentValue = +indent.value;
-    amountIndent = indentValue > indentMax
-      ? indentMax
-      : indentValue < indentMin
+    amountIndent
+      = indentValue > indentMax
         ? indentMax
-        : indentValue;
+        : indentValue < indentMin
+          ? indentMax
+          : indentValue;
 
     indent.value = amountIndent;
 

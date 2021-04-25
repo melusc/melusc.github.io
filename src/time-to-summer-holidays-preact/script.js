@@ -63,26 +63,27 @@ class App extends Component {
 
   render = (
     _properties, { d, dPl, h: h_, hPl, m, mPl, s, sPl }
-  ) => <div>
-    <span>{d}</span>
-    {' day'}
-    {dPl && 's'}
-    {', '}
-    <span>{h_}</span>
-    {' hour'}
-    {hPl && 's'}
-    {', '}
-    <span>{m}</span>
-    {' minute'}
-    {mPl && 's'}
-    {' and '}
-    <span>{s}</span>
-    {' second'}
-    {sPl && 's'}
-    {' until '}
-    <span>summer holidays</span>
-  </div>
-  ;
+  ) => (
+    <div>
+      <span>{d}</span>
+      {' day'}
+      {dPl && 's'}
+      {', '}
+      <span>{h_}</span>
+      {' hour'}
+      {hPl && 's'}
+      {', '}
+      <span>{m}</span>
+      {' minute'}
+      {mPl && 's'}
+      {' and '}
+      <span>{s}</span>
+      {' second'}
+      {sPl && 's'}
+      {' until '}
+      <span>summer holidays</span>
+    </div>
+  );
 
   update = () => {
     const totalSeconds = ( summerHolidaysTime - Date.now() ) / 1000;
@@ -106,7 +107,9 @@ class App extends Component {
     requestAnimationFrame( this.update );
   };
 
-  componentDidMount = this.update;
+  componentDidMount = () => {
+    this.update();
+  };
 }
 
 render(

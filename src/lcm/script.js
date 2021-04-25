@@ -29,31 +29,32 @@ import { lcmArray } from './functions.js';
 
     render = (
       _properties, { inputValue, outputValue, tooLarge }
-    ) => <div class="box">
-      <input
-        onInput={this.handleInput}
-        ref={this.inputRef}
-        placeholder="2, 5, 9-13"
-      />
-      <div>Parsed input:</div>
-      <div>
-        {( inputValue
+    ) => (
+      <div class="box">
+        <input
+          onInput={this.handleInput}
+          ref={this.inputRef}
+          placeholder="2, 5, 9-13"
+        />
+        <div>Parsed input:</div>
+        <div>
+          {( inputValue
             && ( tooLarge
               ? 'One or more numbers were too large'
               : inputValue ) )
             || 'Enter some numbers'}
-      </div>
-      <hr />
-      <div>lcm:</div>
-      <div>
-        {( outputValue
+        </div>
+        <hr />
+        <div>lcm:</div>
+        <div>
+          {( outputValue
             && ( tooLarge
               ? 'One or more numbers were too large'
               : outputValue ) )
             || 'Enter some numbers'}
+        </div>
       </div>
-    </div>
-    ;
+    );
 
     handleInput = () => {
       const originalValue = this.inputRef.current.value;

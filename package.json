@@ -68,8 +68,11 @@
   "scripts": {
     "build": "npm run test && npm run build-no-test",
     "build-no-test": "npm run webpack:b && npm run gulp:b",
+    "eslint": "eslint -c .eslintrc.json --fix \"{src,test}/**/*.{js,jsx,tsx,ts}\"",
     "gulp:b": "gulp build",
     "gulp:w": "gulp start",
+    "lint": "npm run prettier && npm run eslint",
+    "prettier": "prettier -w --config .prettierrc \"{src,test}/**\" \"!src/**/*.svg\"",
     "sass": "sass src:src",
     "sass:w": "sass src:src --watch",
     "serve": "serve docs",
