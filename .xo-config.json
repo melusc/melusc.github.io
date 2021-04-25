@@ -143,6 +143,7 @@
     "space-in-parens": ["error", "always"],
     "template-curly-spacing": ["error", "always"],
     "unicorn/no-nested-ternary": "off",
-    "unicorn/no-null": "error"
+    "unicorn/no-null": "error",
+    "unicorn/prefer-module": "off"
   }
 }
