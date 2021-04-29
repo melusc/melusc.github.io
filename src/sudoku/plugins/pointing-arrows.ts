@@ -38,7 +38,7 @@ export const pointingArrows = ( sudoku: SudokuInterface ): boolean => {
       If one of the sections has only one bit,
       that is a pointing arrow
     */
-    const summary: Map<string, number> = new Map();
+    const summary = new Map<string, number>();
 
     for ( const [ index, { content, possible } ] of block.entries() ) {
       const row = Math.trunc( index / 3 );
@@ -63,7 +63,7 @@ export const pointingArrows = ( sudoku: SudokuInterface ): boolean => {
     }
 
     for ( const [ number, key ] of summary ) {
-      const colSection = key & 0b111;
+      const colSection = key & 0b111; // & 7
       const rowSection = ( key >> 3 ) & 0b111;
 
       if ( bitCount( colSection ) === 1 && bitCount( rowSection ) > 1 ) {

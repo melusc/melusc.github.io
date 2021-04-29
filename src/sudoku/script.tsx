@@ -6,13 +6,7 @@ import { Sudoku } from './sudoku';
 
 import { produce } from 'immer';
 
-import type { Cells, NumberOnlySudoku } from './sudoku.d';
-
-interface Sudokus {
-  easy: NumberOnlySudoku;
-  evil: NumberOnlySudoku;
-  expert: NumberOnlySudoku;
-}
+import type { Cells } from './sudoku.d';
 
 interface AppState {
   cells: Cells;
@@ -35,7 +29,7 @@ const SvgEraser = () => (
 
 const _ = undefined; // Looks better, than loads of `undefined`
 
-const sudokus: Sudokus = {
+const sudokus = {
   easy: [
     [ 5, _, 3, _, 9, 4 ],
     [ _, 9, _, _, 3, 6, 2, 5, 8 ],
@@ -69,10 +63,21 @@ const sudokus: Sudokus = {
     [ _, _, 4, _, 6, 1 ],
     [ _, _, 5, _, _, _, 7 ],
   ],
+  error: [
+    [ _, 6, _, _, _, 5 ],
+    [ _, _, _, _, _, 6, _, _, 5 ],
+    [ _, _, 5, _, _, _, 6 ],
+    [ _, _, _, _, _, _, 5, _, 6 ],
+    [ _, 5, 6 ],
+    [],
+    [ 6, _, _, _, 5 ],
+    [ _, _, _, _, 6, _, _, 5 ],
+    [ 5, _, _, _, _, _, _, 6 ],
+  ],
 };
 
 class App extends Component {
-  #sudokuClass = new Sudoku( sudokus.evil );
+  #sudokuClass = new Sudoku( sudokus.error );
 
   state: AppState = {
     cells: this.#sudokuClass.getCells(),

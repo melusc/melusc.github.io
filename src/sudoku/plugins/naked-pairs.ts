@@ -14,7 +14,7 @@ const genericNakedPairsSolver = (
   for ( let structureIndex = 0; structureIndex < 9; ++structureIndex ) {
     const structure = sudoku[ getterFunctionName ]( structureIndex );
 
-    const summary: Map<number, number> = new Map();
+    const summary = new Map<number, number>();
 
     for ( const [ index, cell ] of structure.entries() ) {
       if ( cell.content === undefined ) {
@@ -36,7 +36,7 @@ const genericNakedPairsSolver = (
       }
     }
 
-    const equalKeys: Map<number, Array<number>> = new Map();
+    const equalKeys = new Map<number, Array<number>>();
     for ( const [ index, key ] of summary ) {
       let array = equalKeys.get( key );
 

@@ -52,7 +52,9 @@ interface SudokuInterface {
 
   unsubscribe: ( callback: SubscriptionCallback ) => this;
 
-  updateCellValidities: () => boolean;
+  cellsIndividuallyValidByStructure: () => boolean;
+
+  isValid: () => boolean;
 
   _validateByStructure: ( rowCol: Array<CellInterface> ) => this;
 

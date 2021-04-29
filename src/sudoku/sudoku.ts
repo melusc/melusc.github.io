@@ -66,7 +66,7 @@ class Sudoku implements SudokuInterface {
 
     cell.setContent( content );
 
-    this.updateCellValidities();
+    this.cellsIndividuallyValidByStructure();
 
     return this.#dispatch( 'change' );
   };
@@ -92,13 +92,13 @@ class Sudoku implements SudokuInterface {
 
     cell.clear();
 
-    this.updateCellValidities();
+    this.cellsIndividuallyValidByStructure();
 
     return this.#dispatch( 'change' );
   };
 
   clearAllCells = (): this => {
-    for ( const cell of this._cells.values() ) {
+    for ( const cell of this._cells ) {
       cell.clear();
     }
 
@@ -173,7 +173,7 @@ class Sudoku implements SudokuInterface {
   getCells = (): Cells => [ ...this._cells ];
 
   solve = (): this => {
-    if ( this.updateCellValidities() ) {
+    if ( this.isValid() ) {
       for ( const cell of this._cells ) {
         if ( cell.content === undefined ) {
           cell.clear(); // Reset possibles
@@ -181,42 +181,35 @@ class Sudoku implements SudokuInterface {
       }
 
       let anyChanged = false;
-      let sudokuInvalid = false;
+      let sudokuIsValid = true;
 
       do {
         anyChanged = false;
 
         for ( const plugin of this.#plugins ) {
-          const changed = plugin( this );
-
-          anyChanged = changed || anyChanged;
+          anyChanged = plugin( this ) || anyChanged;
         }
 
-        for ( const cell of this._cells.values() ) {
+        for ( const cell of this._cells ) {
           if ( cell.content === undefined ) {
             if ( cell.possible.size === 1 ) {
               // We know that the set has one item
               cell.setContent( cell.possible.values().next().value as string );
             }
             else if ( cell.possible.size === 0 ) {
-              sudokuInvalid = false;
+              sudokuIsValid = false;
 
               break;
             }
           }
         }
 
-        if ( !sudokuInvalid ) {
-          sudokuInvalid = !this.updateCellValidities();
-        }
-      } while ( anyChanged && !sudokuInvalid );
+        sudokuIsValid &&= this.isValid();
+      } while ( anyChanged && sudokuIsValid );
 
-      if ( sudokuInvalid ) {
-        this.#dispatch( 'error' );
-      }
-      else {
-        this.#dispatch( 'finish' );
-      }
+      this.#dispatch( sudokuIsValid
+        ? 'finish'
+        : 'error' );
     }
     else {
       this.#dispatch( 'error' );
@@ -248,8 +241,8 @@ class Sudoku implements SudokuInterface {
     return this;
   };
 
-  updateCellValidities = (): boolean => {
-    for ( const cell of this._cells.values() ) {
+  cellsIndividuallyValidByStructure = (): boolean => {
+    for ( const cell of this._cells ) {
       cell.setValidity();
     }
 
@@ -263,7 +256,7 @@ class Sudoku implements SudokuInterface {
       }
     }
 
-    for ( const cell of this._cells.values() ) {
+    for ( const cell of this._cells ) {
       if ( !cell.valid ) {
         return false;
       }
@@ -272,8 +265,43 @@ class Sudoku implements SudokuInterface {
     return true;
   };
 
+  isValid = (): boolean => {
+    const keys = [ 'getRow', 'getBlock', 'getCol' ] as const;
+
+    for ( const key of keys ) {
+      for ( let index = 0; index < 9; ++index ) {
+        const structure = this[ key ]( index );
+
+        const dict = new Map<string, number>();
+
+        for ( const cell of structure ) {
+          if ( cell.content === undefined ) {
+            for ( const possible of cell.possible ) {
+              dict.set(
+                possible,
+                ( dict.get( possible ) ?? 0 ) + 1
+              );
+            }
+          }
+          else {
+            dict.set(
+              cell.content,
+              ( dict.get( cell.content ) ?? 0 ) + 1
+            );
+          }
+        }
+
+        if ( dict.size !== 9 ) {
+          return false;
+        }
+      }
+    }
+
+    return this.cellsIndividuallyValidByStructure();
+  };
+
   _validateByStructure = ( structure: Array<Cell> ): this => {
-    const found: Map<string, number> = new Map();
+    const found = new Map<string, number>();
     for ( const { content } of structure ) {
       if ( typeof content === 'string' ) {
         found.set(
@@ -299,11 +327,11 @@ class Sudoku implements SudokuInterface {
   };
 
   isSolved = (): boolean => {
-    if ( !this.updateCellValidities() ) {
+    if ( !this.cellsIndividuallyValidByStructure() ) {
       return false;
     }
 
-    for ( const cell of this._cells.values() ) {
+    for ( const cell of this._cells ) {
       if ( cell.content === undefined ) {
         return false;
       }

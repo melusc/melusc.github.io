@@ -355,6 +355,17 @@ describe(
                   [ 7, 8, _, _, 5, 3, _, 1 ],
                 ] );
 
+                sudoku.subscribe( (
+                  _s, type
+                ) => {
+                  assert.strictEqual(
+                    type,
+                    'finish'
+                  );
+
+                  assert( type === 'finish' );
+                } );
+
                 sudoku.solve();
 
                 assert.deepStrictEqual(
@@ -393,6 +404,17 @@ describe(
                   [ 9, _, _, _, _, _, 4, _, 8 ],
                 ] );
 
+                sudoku.subscribe( (
+                  _s, type
+                ) => {
+                  assert.strictEqual(
+                    type,
+                    'finish'
+                  );
+
+                  assert( type === 'finish' );
+                } );
+
                 sudoku.solve();
 
                 assert.deepStrictEqual(
@@ -428,6 +450,17 @@ describe(
                   [ _, _, 4, _, 6, 1 ],
                   [ _, _, 5, _, _, _, 7 ],
                 ] );
+
+                sudoku.subscribe( (
+                  _s, type
+                ) => {
+                  assert.strictEqual(
+                    type,
+                    'finish'
+                  );
+
+                  assert( type === 'finish' );
+                } );
 
                 sudoku.solve();
 
@@ -536,22 +569,24 @@ describe(
         );
 
         describe(
-          '#updateCellValidities()',
+          '#cellsIndividuallyValidByStructure()',
           () => {
             it(
               'should return true on an empty sudoku.',
               () => {
-                assert.isTrue( emptySudoku.updateCellValidities() );
+                assert.isTrue( emptySudoku.cellsIndividuallyValidByStructure() );
               }
             );
 
             it(
               'should return false when setting an invalid cell.',
               () => {
-                assert.isFalse( emptySudoku.setContent(
-                  2,
-                  'Hello there'
-                ).updateCellValidities() );
+                assert.isFalse( emptySudoku
+                  .setContent(
+                    2,
+                    'Hello there'
+                  )
+                  .cellsIndividuallyValidByStructure() );
               }
             );
 
@@ -567,7 +602,7 @@ describe(
                     2,
                     '2'
                   )
-                  .updateCellValidities() );
+                  .cellsIndividuallyValidByStructure() );
               }
             );
 
@@ -583,7 +618,7 @@ describe(
                     3,
                     '3'
                   )
-                  .updateCellValidities() );
+                  .cellsIndividuallyValidByStructure() );
               }
             );
 
@@ -600,7 +635,7 @@ describe(
                     '3'
                   )
                   .clearCell( 3 )
-                  .updateCellValidities() );
+                  .cellsIndividuallyValidByStructure() );
 
                 assert.isTrue( emptySudoku
                   .setContent(
@@ -615,7 +650,7 @@ describe(
                     3,
                     '4'
                   )
-                  .updateCellValidities() );
+                  .cellsIndividuallyValidByStructure() );
               }
             );
           }

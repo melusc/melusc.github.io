@@ -27,6 +27,9 @@ body {
   width: 100%;
 
   color: $text;
+  background-color: $white;
+
+  user-select: none;
 }
 
 .App {
@@ -71,6 +74,13 @@ body {
 }
 .cell {
   border: $thin-border;
+  text-align: center;
+
+  display: flex;
+  flex: 1 1 0;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 
   &:nth-child(3n) {
     border-right: $thick-border;
@@ -91,14 +101,6 @@ body {
   &:nth-child(n + 73) {
     border-bottom: $thick-border;
   }
-
-  text-align: center;
-  flex: 1 1 0;
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
 
   &:hover {
     background-color: $hover-cell-bg;
