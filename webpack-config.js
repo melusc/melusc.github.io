@@ -7,7 +7,6 @@ const babelConfig = {
   loader: 'babel-loader',
   options: {
     plugins: [
-      '@babel/plugin-proposal-class-properties',
       '@babel/plugin-transform-runtime',
       [
         '@babel/plugin-transform-react-jsx',
