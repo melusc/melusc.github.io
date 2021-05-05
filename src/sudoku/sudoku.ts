@@ -82,15 +82,7 @@ class Sudoku implements SudokuInterface {
   };
 
   clearCell = ( index: number ): this => {
-    inRangeIncl(
-      0,
-      80,
-      index
-    );
-
-    const cell = this._cells[ index ];
-
-    cell.clear();
+    this.getCell( index ).clear(); // Validate index there
 
     this.cellsIndividuallyValidByStructure();
 

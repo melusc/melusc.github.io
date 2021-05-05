@@ -38,11 +38,11 @@ body {
   font-family: 'Open Sans', 'Open-Sans', sans-serif;
 
   display: grid;
-
   grid-template:
     'sudoku inputs'
     'solve solve'
     'clear clear';
+
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -70,7 +70,9 @@ body {
   min-width: 80vmin;
   max-height: 80vmin;
   max-width: 80vmin;
-  border: $thin-border;
+  border: $thick-border;
+  border-width: 1px;
+  border-radius: 2px;
 }
 .cell {
   border: $thin-border;
@@ -188,6 +190,50 @@ body {
     .svg-eraser-fill {
       width: 0.8em;
       height: 0.8em;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .App {
+    grid-template:
+      'sudoku'
+      'solve'
+      'clear'
+      'inputs';
+  }
+
+  .clear,
+  .solve {
+    font-size: 50px;
+  }
+
+  .App {
+    font-size: 50px;
+  }
+
+  .keyboardless-inputs {
+    margin-top: 10px;
+    border-radius: 5px;
+    justify-self: center;
+
+    font-size: 75px;
+
+    width: max-content;
+
+    display: grid;
+    grid-gap: 2px;
+    box-sizing: border-box;
+
+    .keyboardless-input {
+      box-shadow: 0 0 0 2px #344861;
+      border-bottom: none;
+    }
+
+    grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+
+    .input-eraser {
+      grid-area: 4 / 2;
     }
   }
 }

@@ -77,7 +77,7 @@ const sudokus = {
 };
 
 class App extends Component {
-  #sudokuClass = new Sudoku( sudokus.error );
+  #sudokuClass = new Sudoku( sudokus.evil );
 
   state: AppState = {
     cells: this.#sudokuClass.getCells(),
@@ -204,7 +204,7 @@ class App extends Component {
           )
         )}
         <div
-          class="keyboardless-input"
+          class="keyboardless-input input-eraser"
           title="Clear cell"
           onClick={this.handleKeyboardlessClick( ' ' )}
         >
@@ -235,7 +235,7 @@ class App extends Component {
       switch ( key ) {
         case 'arrowdown':
         case 'arrowup': {
-          // Using clamp feels more natural
+          // Wrapping around seems better
 
           const direction = key === 'arrowdown'
             ? 9
