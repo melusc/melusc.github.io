@@ -1,11 +1,9 @@
 import 'preact/devtools';
 
 import { render, h, Component } from 'preact';
-
-import { Sudoku } from './sudoku';
-
 import { produce } from 'immer';
 
+import { Sudoku } from './sudoku';
 import type { Cells } from './sudoku.d';
 
 interface AppState {

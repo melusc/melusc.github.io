@@ -21,7 +21,7 @@ export class Cell implements CellInterface {
   setValidity = (): this => {
     this.valid
       = typeof this.content === 'undefined'
-        ? this.possible.size !== 0
+        ? this.possible.size > 0
         : ( /^[1-9]$/ ).test( this.content );
 
     return this;
