@@ -1,8 +1,10 @@
+@use "sass:math";
+
 $bg: #0d1117;
 $text: #c9d1d9;
 $blue: #275efe;
-$line-height: 100vh / 20;
-$font-size: $line-height / 5 * 4;
+$line-height: math.div(100vh, 20);
+$font-size: math.div($line-height, 5) * 4;
 
 html {
   background-color: $bg;

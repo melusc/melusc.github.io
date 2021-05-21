@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $bg: #83adb5;
 $bg-box: #f5f5f5;
 $text: #428bca;
@@ -40,7 +42,7 @@ input {
 
   width: calc(100% - #{2 * $padding});
   text-align: center;
-  padding: $padding / 2 $padding;
+  padding: math.div($padding, 2) $padding;
   color: $text;
 }
 hr {
