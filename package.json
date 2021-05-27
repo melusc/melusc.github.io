@@ -2,7 +2,7 @@
   "author": "lusc",
   "dependencies": {
     "@babel/runtime": "^7.14.0",
-    "dayjs": "^1.10.4",
+    "dayjs": "^1.10.5",
     "immer": "^9.0.2",
     "json5": "^2.2.0",
     "lodash": "^4.17.21",
