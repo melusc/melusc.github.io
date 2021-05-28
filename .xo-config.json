@@ -74,6 +74,7 @@
     "comma-dangle": "off",
     "computed-property-spacing": ["error", "always"],
     "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
     "import/no-unassigned-import": [
       "error",
       {
