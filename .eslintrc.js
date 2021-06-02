@@ -334,22 +334,7 @@ module.exports = {
         ignoreReadBeforeAssign: false,
       },
     ],
-    'prefer-destructuring': [
-      'error',
-      {
-        AssignmentExpression: {
-          array: false,
-          object: false,
-        },
-        VariableDeclarator: {
-          array: false,
-          object: true,
-        },
-      },
-      {
-        enforceForRenamedProperties: false,
-      },
-    ],
+    'prefer-destructuring': 'off',
     'prefer-exponentiation-operator': 'error',
     'prefer-named-capture-group': 'error',
     'prefer-numeric-literals': 'error',
