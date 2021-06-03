@@ -11,7 +11,8 @@ import { lcmArray } from './functions.js';
 
     timeout = 0;
 
-    boundLcm = lcmArray( this.setState.bind( this ) );
+    // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-prototype-methods.md
+    boundLcm = lcmArray( Component.prototype.setState.bind( this ) );
 
     clearTimeout = () => {
       clearTimeout( this.timeout );

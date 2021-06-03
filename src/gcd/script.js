@@ -11,7 +11,8 @@ import { gcdArray } from './functions.js';
 
     timeout = 0;
 
-    gcdArraySetState = gcdArray( this.setState.bind( this ) );
+    // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-prototype-methods.md
+    gcdArraySetState = gcdArray( Component.prototype.setState.bind( this ) );
 
     clearTimeout = () => {
       clearTimeout( this.timeout );
