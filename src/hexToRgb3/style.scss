@@ -1,85 +1,76 @@
-@import 'normalize';
-@import 'sanitize';
+@use 'sass:math';
 
 $red: #dc3545;
+$cyan: #3c79b2;
+$font-colour: #111;
+$gradient: (#12c2e9, #c471ed, #f7797d);
+
+@use 'rainbow' with(
+  $gradient: $gradient,
+);
+
+* {
+  box-sizing: border-box;
+}
 
 html {
   height: 100%;
   overflow: hidden;
   font-family: 'Open Sans', sans-serif;
-  color: #111;
+  font-size: 1.3em;
+  color: $font-colour;
   line-height: 1.25;
 
   background-color: white;
 }
 input {
-  outline: none;
-  margin-bottom: 2px;
-  margin-top: 2px;
-  color: #111;
-  background-color: transparent;
+  margin: 2px 0;
   padding: 0.15em 0.3em;
+  font-size: 0.9em;
+
+  color: $font-colour;
+  background-color: transparent;
+
+  outline: 0;
   border: none;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #111;
+  transition: border-bottom 0.3s ease-in-out;
   border-radius: 0;
-  cursor: text;
-}
-@keyframes rainbow_animation {
-  0% {
-    left: 0;
+
+  + .input-pseudo-border {
+    $height: 3px;
+
+    position: relative;
+    top: -$height - 0.5px;
+    margin-bottom: -$height - 1px;
+
+    border: none;
+    border-bottom: $height solid;
+    border-image: linear-gradient(to right, $gradient);
+    border-image-slice: 1;
+
+    transition: transform 0.3s ease-in-out;
+
+    transform: scaleX(0);
+    transform-origin: 100% 0;
   }
-  100% {
-    left: 100%;
-  }
-}
-@keyframes rainbow_animation2 {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 0;
+
+  &:focus + .input-pseudo-border {
+    transform: scaleX(1);
+    transform-origin: 0 0;
   }
 }
 
-.rainbow-text-outer {
-  margin-bottom: -48px;
-  overflow: hidden;
+.inputs-rows {
+  > * {
+    width: 100%;
+  }
 }
 
-.rainbow,
-.rainbow2 {
-  background: linear-gradient(to right, #66f, #09f, #0f0, #f39, #66f);
-  width: 100%;
-  height: 22px;
-  position: relative;
-  animation: 5s linear infinite;
-}
-.rainbow {
-  animation-name: rainbow_animation;
-  top: -25px;
-}
-.rainbow2 {
-  animation-name: rainbow_animation2;
-  top: -47px;
-}
-.rainbow-text {
-  background-color: #fff;
-  color: black;
-  font-size: 24px;
-  font-weight: bold;
-  position: relative;
-  width: 100%;
-  mix-blend-mode: screen;
-  cursor: pointer;
-  user-select: none;
-  z-index: 1;
-}
 .row {
   margin: 1em 0;
 }
-.block {
-  display: block;
-}
+
 .horizontal-vertical-center {
   position: absolute;
   top: 0;
@@ -91,23 +82,31 @@ input {
   align-items: center;
 }
 
-.invalid {
+.invalid,
+:invalid {
   color: $red;
   border-color: $red;
 }
 
-.inner {
-  background-color: #fff;
-  border-radius: 3px;
-  border: 3px solid #3c79b2;
-  padding-right: 4%;
-  padding-left: 4%;
-}
-.rgb-rows {
-  display: flex;
-  flex-direction: column;
+// Hide number spin buttons (arrows)
+input[type='number'] {
+  appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+  }
 }
 
+.floating-box {
+  background-color: #fff;
+  border-radius: 3px;
+  border: 3px solid $cyan;
+
+  padding: 0 4%;
+
+  min-width: 25vw;
+}
 @font-face {
   font-family: 'Open sans';
   src: local('Open Sans'), local('Open-Sans'),

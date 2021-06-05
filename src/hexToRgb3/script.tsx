@@ -1,23 +1,35 @@
+import type { Except } from 'type-fest';
+
 import hexRgb from 'hex-rgb';
 import rgbHex from 'rgb-hex';
 
-import { render, h, Component } from 'preact';
+import { debounce } from 'lodash';
+
+import { render, h, Component, Fragment } from 'preact';
 import { produce } from 'immer';
 import clsx from 'clsx';
 
+import { isOfType } from './util';
+
+const inputKeys = [ 'hex', 'red', 'green', 'blue', 'alpha' ] as const;
+type InputKeys = typeof inputKeys[number];
+
 type Inputs = {
-  hex: string;
-  red: string;
-  green: string;
-  blue: string;
-  alpha: string;
+  [key in InputKeys]: string;
 };
+
+type RgbaLabels = keyof Except<Inputs, 'hex'>;
 
 type AppState = {
   inputs: Inputs;
 };
 
-type RgbaLabels = 'red' | 'green' | 'blue' | 'alpha';
+const Input = ( properties: Record<string, unknown> ) => (
+  <>
+    <input {...properties} />
+    <div class="input-pseudo-border" />
+  </>
+);
 
 const sanitiseHex = (
   hex: string, shouldShorten = true
@@ -48,6 +60,39 @@ const sanitiseHex = (
     : hex }`;
 };
 
+const setHashInstantly = ( hex: string ) => {
+  hex = sanitiseHex( hex );
+
+  if ( hex !== location.hash ) {
+    /*
+      https://developer.mozilla.org/en-US/docs/Web/API/History/pushState#description
+      -> history.pushState doesn't trigger hashchange
+
+      Alternative would be storing current hex and location.hash and
+      when setHash updates the hash, the stored hex and hash will be the same
+      and if the user goes back in history the stored hex and hash will not be the same
+    */
+    history.pushState(
+      {},
+      '',
+      hex
+    );
+  }
+};
+
+/*
+  To not spam the history
+*/
+const setHashDebounced = debounce(
+  setHashInstantly,
+  800,
+  {
+    leading: true,
+    trailing: true,
+    maxWait: 1500,
+  }
+);
+
 const rgbaLabels: ReadonlySet<RgbaLabels> = new Set( [
   'red',
   'green',
@@ -69,7 +114,8 @@ class App extends Component {
   invalidInputs = new Set<keyof Inputs>();
 
   render = () => {
-    const { invalidInputs, state, randomColour, handleInput } = this;
+    const { invalidInputs, state, randomColour, handleInput, handleScroll }
+      = this;
     const { inputs } = state;
     const { hex, alpha } = inputs;
     const labels: Array<keyof Inputs> = [ 'red', 'green', 'blue' ];
@@ -77,19 +123,28 @@ class App extends Component {
     return (
       <div
         class="horizontal-vertical-center"
-        style={{
-          backgroundColor: hex,
-        }}
+        /*
+          If style is an object preact basically does:
+          style.backgroundColor = value
+          and if hex is '#', Firefox (but not Chromium)
+          doesn't modify the color because the color is
+          invalid.
+
+          So instead we use a string to force invalid colors
+          to be set as well, in which case it will be white instead
+        */
+        style={`background-color:${ hex }`}
       >
-        <div class="inner">
+        <div class="floating-box">
           <div class="row">
-            <div>
-              <label class="block">Hex</label>
-              <input
+            <div>Hex</div>
+            <div class="inputs-rows">
+              <Input
                 maxLength={9}
                 value={hex}
                 placeholder="#"
-                onInput={this.handleInput( 'hex' )}
+                name="hex"
+                onInput={handleInput}
                 class={clsx( {
                   invalid: invalidInputs.has( 'hex' ),
                 } )}
@@ -98,30 +153,36 @@ class App extends Component {
           </div>
 
           <div class="row">
-            <div class="rgb-rows">
-              <label class="block">Rgb[a]</label>
+            <div>Rgba</div>
+            <div class="inputs-rows">
               {labels.map( key => (
-                <input
-                  type="tel"
+                <Input
+                  key={key}
+                  type="number"
                   min="0"
                   max="255"
                   maxLength={3}
+                  name={key}
                   placeholder={key}
                   value={inputs[ key ]}
-                  key={key}
-                  onInput={handleInput( key )}
+                  onInput={handleInput}
+                  onWheel={handleScroll}
                   class={clsx( {
                     invalid: invalidInputs.has( key ),
                   } )}
                 />
               ) )}
-              <input
+              <Input
+                // [type="tel"] because percent is valid in our use-case
+                // but not valid for [type="number"]
                 type="tel"
                 min="0"
-                max="100"
+                max="1"
                 placeholder="[alpha]"
                 value={alpha}
-                onInput={handleInput( 'alpha' )}
+                name="alpha"
+                onInput={handleInput}
+                onWheel={handleScroll}
                 class={clsx( {
                   invalid: invalidInputs.has( 'alpha' ),
                 } )}
@@ -129,12 +190,11 @@ class App extends Component {
             </div>
           </div>
           <div class="row">
-            <div class="rainbow-text-outer">
+            <div class="rainbow-box">
               <div class="rainbow-text" onClick={randomColour}>
                 Random colour
               </div>
-              <div class="rainbow" />
-              <div class="rainbow2" />
+              <div class="rainbow-bg" />
             </div>
           </div>
         </div>
@@ -160,42 +220,114 @@ class App extends Component {
     );
   };
 
-  handleHashChange = () => {
+  handleScroll: h.JSX.WheelEventHandler<HTMLInputElement> = event_ => {
+    const target = event_.currentTarget;
+
+    const label = target.name;
+
+    const { inputs } = this.state;
+
+    if ( !isOfType(
+      label,
+      inputKeys
+    ) ) {
+      throw new TypeError( `Expected label to be of type inputKeys instead got ${ label }.` );
+    }
+
+    const direction = -Math.sign( event_.deltaY );
+
+    let value = inputs[ label ];
+
+    if ( typeof value !== 'string' ) {
+      return;
+    }
+
+    value = value.trim();
+
+    if ( label === 'alpha' ) {
+      let multiplier = 100;
+      let endsWith = '';
+
+      if ( value.endsWith( '%' ) ) {
+        multiplier = 1;
+        endsWith = '%';
+
+        value = value.slice(
+          0,
+          -1
+        );
+      }
+
+      if ( Number.isNaN( +value ) ) {
+        return;
+      }
+
+      let parsed = +value * multiplier;
+      parsed += direction;
+
+      parsed = parsed > 100
+        ? 100
+        : parsed < 0
+          ? 0
+          : parsed;
+
+      parsed /= multiplier;
+
+      parsed = Math.trunc( parsed * 1e2 ) / 1e2;
+
+      value = `${ parsed }${ endsWith }`;
+    }
+    else {
+      if ( Number.isNaN( +value ) ) {
+        return;
+      }
+
+      let parsed = +value + direction;
+      parsed = parsed > 255
+        ? 255
+        : parsed < 0
+          ? 0
+          : parsed;
+      parsed = Math.trunc( parsed * 1e2 ) / 1e2;
+
+      value = `${ parsed }`;
+    }
+
+    this.handleRgbaInput(
+      label,
+      value
+    );
+  };
+
+  handleHashChange = ( event_?: HashChangeEvent ) => {
     let hex = location.hash;
     hex = sanitiseHex( hex );
+
+    this.hexSetState( hex );
 
     try {
       const rgba = hexRgb( hex );
 
+      // At this point the hex is valid
+      // because otherwise the function above
+      // would have thrown
+
       this.rgbaSetState( rgba );
 
-      // Only set it here because if it gets to
-      // here it was a valid hex
-      this.setHash( hex );
-      this.hexSetState( hex );
+      if ( event_ === undefined ) {
+        // If called directly instead
+        // of by the eventlistener
+        setHashInstantly( hex );
+      }
     }
     catch {
-      this.randomColour();
-    }
-  };
+      this.setState( produce( ( state: AppState ) => {
+        const inputs = state.inputs;
 
-  setHash = ( hex: string ) => {
-    hex = sanitiseHex( hex );
-
-    if ( hex !== location.hash ) {
-      /*
-        https://developer.mozilla.org/en-US/docs/Web/API/History/pushState#description
-        -> history.pushState doesn't fire hashchange
-
-        Alternative would be storing current hex and location.hash and
-        when setHash updates the hash, the stored hex and hash will be the same
-        and if the user goes back in history the stored hex and hash will not be the same
-      */
-      history.pushState(
-        {},
-        '',
-        hex
-      );
+        for ( const label of rgbaLabels ) {
+          inputs[ label ] = '';
+        }
+      } ) );
     }
   };
 
@@ -217,17 +349,17 @@ class App extends Component {
 
     hex = sanitiseHex( hex );
 
-    this.setHash( hex );
+    setHashInstantly( hex );
 
     this.hexSetState( hex );
   };
 
-  rgbaSetState = ( rgba: {
+  rgbaSetState = ( rgba: Readonly<{
     red: number;
     green: number;
     blue: number;
     alpha: number;
-  } ) => {
+  }> ) => {
     this.setState( produce( ( state: AppState ) => {
       const { inputs } = state;
 
@@ -271,7 +403,7 @@ class App extends Component {
     try {
       const rgba = hexRgb( hex );
 
-      this.setHash( hex );
+      setHashDebounced( hex );
       // Only if the hex was valid (calling hexRgb)
 
       invalidInputs.delete( 'hex' );
@@ -286,12 +418,19 @@ class App extends Component {
   };
 
   handleRgbaInput = (
-    label: RgbaLabels, value: string
+    label: string, value: string
   ) => {
     const { invalidInputs } = this;
 
     this.setState( produce( ( state: AppState ) => {
       const { inputs } = state;
+
+      if ( !isOfType(
+        label,
+        inputKeys
+      ) ) {
+        throw new TypeError( `Expected label to be of type inputKeys instead got ${ label }.` );
+      }
 
       inputs[ label ] = value;
 
@@ -316,7 +455,7 @@ class App extends Component {
 
         inputs.hex = hex;
 
-        this.setHash( inputs.hex );
+        setHashDebounced( inputs.hex );
 
         for ( const label of rgbaLabels ) {
           invalidInputs.delete( label );
@@ -331,20 +470,27 @@ class App extends Component {
     } ) );
   };
 
-  handleInput =
-  ( label: keyof Inputs ): h.JSX.GenericEventHandler<HTMLInputElement> => event_ => {
-    if ( event_.target ) {
-      const value = event_.currentTarget.value.trim();
+  handleInput: h.JSX.GenericEventHandler<HTMLInputElement> = event_ => {
+    const target = event_.currentTarget;
 
-      if ( label === 'hex' ) {
-        this.handleHexInput( value );
-      }
-      else if ( rgbaLabels.has( label ) ) {
-        this.handleRgbaInput(
-          label,
-          value
-        );
-      }
+    const value = target.value.trim();
+    const label = target.name;
+
+    if ( !isOfType(
+      label,
+      inputKeys
+    ) ) {
+      throw new TypeError( `Expected label to be of type inputKeys instead got ${ label }.` );
+    }
+
+    if ( label === 'hex' ) {
+      this.handleHexInput( value );
+    }
+    else if ( rgbaLabels.has( label ) ) {
+      this.handleRgbaInput(
+        label,
+        value
+      );
     }
   };
 }
