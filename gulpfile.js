@@ -80,10 +80,10 @@ const minSvg = () => {
     .pipe( svgmin( {
       multipass: true,
       plugins: [
-        { sortAttrs: true },
-        { removeScriptElement: true },
-        { removeDimensions: true },
-        { removeAttrs: { attrs: [ 'class' ] } },
+        'sortAttrs',
+        'removeScriptElement',
+        'removeDimensions',
+        { name: 'removeAttrs', params: { attrs: [ 'class' ] } },
       ],
       precision: 3,
     } ) )
