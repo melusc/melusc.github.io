@@ -7,7 +7,7 @@
     "json5": "^2.2.0",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "preact": "^10.5.13"
+    "preact": "^10.5.14"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
