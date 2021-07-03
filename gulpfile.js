@@ -84,6 +84,7 @@ const minSvg = () => {
         'removeScriptElement',
         'removeDimensions',
         { name: 'removeAttrs', params: { attrs: [ 'class' ] } },
+        { name: 'mergePaths', active: false },
       ],
       precision: 3,
     } ) )
