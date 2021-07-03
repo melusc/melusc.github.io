@@ -4,6 +4,8 @@
 
 - [Convert hex and rgb](https://melusc.github.io/webpack/hexToRgb3/)
 
+- [Fake Fitness App](https://melusc.github.io/webpack/fake-fitness-app/)
+
 - [Line clock](https://melusc.github.io/webpack/line-clock/)
 
 - [Sort keys of JSON alphabetically](https://melusc.github.io/webpack/sort-json5-keys/)

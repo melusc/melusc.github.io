@@ -1,0 +1,164 @@
+$notification-grey: #bdbdbd;
+$text-white: #fafafa;
+$red: #ff4136;
+$background-grey: #6c757d;
+$vertical-border-color: #e6e6e6;
+$text-black: #111;
+$card-background: #171717;
+$table-explanation: #999;
+$card-border-radius: 25px;
+
+@use 'styles/notification-bar' with (
+  $notification-grey: $notification-grey
+);
+
+@use 'styles/navbar' with (
+  $text-white: $text-white
+);
+
+@use 'styles/main-app-date-time' with (
+  $text-white: $text-white
+);
+
+@use 'styles/time-overview' with (
+  $text-white: $text-white,
+  $card-background: $card-background,
+  $card-border-radius: $card-border-radius
+);
+
+@use 'styles/workout-details' with (
+  $text-white: $text-white,
+  $card-background: $card-background,
+  $table-explanation: $table-explanation,
+  $card-border-radius: $card-border-radius
+);
+
+@use 'styles/workout-images' with (
+  $text-white: $text-white,
+  $card-background: $card-background,
+  $card-border-radius: $card-border-radius,
+);
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: #6c757d;
+
+  font-family: 'Samsung Sans', sans-serif;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: currentColor;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 100%;
+
+  align-items: center;
+
+  justify-items: center;
+}
+
+.inputs {
+  grid-column: 1 / 2;
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 3vmin;
+
+  color: $text-black;
+
+  > div {
+    margin: 0.75em 0;
+
+    width: 80%;
+
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+
+    align-items: center;
+    justify-items: center;
+  }
+
+  label {
+    margin-right: 3px;
+    color: $text-white;
+  }
+}
+
+.fake-app {
+  background-color: #010101;
+
+  grid-column: 2 / 3;
+
+  display: grid;
+  grid-template-rows: 3vmin 6vmin repeat(3, auto) 1fr;
+
+  font-size: 2.3vmin;
+}
+
+.input-remove-input-visuals {
+  border: none;
+  background: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+
+  color: currentColor;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invalid {
+  color: $red;
+}
+
+.icon-interactive {
+  cursor: pointer;
+}
+
+.vertical-border {
+  border-right: 1px solid $vertical-border-color;
+
+  &.height-12 {
+    height: 1.7vmin;
+  }
+
+  &.height-22 {
+    height: 3.1vmin;
+  }
+}
+
+@font-face {
+  font-family: 'Samsung Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Samsung Sans Regular'), local('Samsung Sans'),
+    url('/fonts/SamsungSans-Regular.ttf') format('TrueType');
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Orbitron'), url('/fonts/Orbitron.ttf') format('TrueType');
+}
