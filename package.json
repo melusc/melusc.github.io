@@ -3,7 +3,7 @@
   "dependencies": {
     "@babel/runtime": "^7.14.6",
     "dayjs": "^1.10.5",
-    "immer": "^9.0.3",
+    "immer": "^9.0.5",
     "json5": "^2.2.0",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
