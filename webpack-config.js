@@ -3,22 +3,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const entry = require('webpack-glob-entry');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
-const babelConfig = {
-  loader: 'babel-loader',
-  options: {
-    plugins: [
-      '@babel/plugin-transform-runtime',
-      [
-        '@babel/plugin-transform-react-jsx',
-        {
-          pragma: 'h',
-          pragmaFrag: 'Fragment',
-        },
-      ],
-    ],
-  },
-};
-
 module.exports = environment => ({
   devtool: 'source-map',
   resolve: {
@@ -98,21 +82,25 @@ module.exports = environment => ({
     rules: [
       {
         test: /\.jsx?$/,
-        use: [babelConfig],
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              '@babel/plugin-transform-runtime',
+              [
+                '@babel/plugin-transform-react-jsx',
+                {
+                  pragma: 'h',
+                  pragmaFrag: 'Fragment',
+                },
+              ],
+            ],
+          },
+        }],
       },
       {
         test: /\.tsx?$/,
         use: ['ts-loader'],
-      },
-      {
-        test: /\.css$/,
-        type: 'asset/source',
-        use: ['csso-loader'],
-      },
-      {
-        test: /\.scss$/,
-        type: 'asset/source',
-        use: ['sass-loader'],
       },
     ],
   },
