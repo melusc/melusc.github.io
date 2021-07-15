@@ -4,26 +4,20 @@ import 'preact/devtools';
 
 import { render, h, Component } from 'preact';
 
+type TimeValue = [string, string];
+
 type AppState = {
-  hour1: number;
-  hour2: number;
-  min1: number;
-  min2: number;
-  sec1: number;
-  sec2: number;
+  hour: TimeValue;
+  min: TimeValue;
+  sec: TimeValue;
 };
 
-type RangeProperties = {
-  to: number;
-  active: number;
-};
-
-const leadingZero = ( n: number ): string => `${ n }`.padStart(
+const toTimeValue = ( n: number ): TimeValue => `${ n }`.padStart(
   2,
   '0'
-);
+).split( '' ) as TimeValue;
 
-const ClockLine = ( { to, active }: RangeProperties ) => (
+const ClockLine = ( { to, active }: { to: number; active: string } ) => (
   <div class={`clock-row active-child-${ active }`}>
     {Array.from(
       { length: to + 1 },
@@ -31,7 +25,7 @@ const ClockLine = ( { to, active }: RangeProperties ) => (
         _v, index
       ) => (
         <div
-          key={index} class={active === index
+          key={index} class={+active === index
             ? 'active'
             : undefined}>
           {index}
@@ -40,56 +34,53 @@ const ClockLine = ( { to, active }: RangeProperties ) => (
     )}
   </div>
 );
-class App extends Component {
+
+const date = new Date();
+
+class App extends Component<Record<string, unknown>, AppState> {
+  requestAnimationFrameId = 0;
+
   state: AppState = {
-    hour1: 0,
-    hour2: 0,
-    min1: 0,
-    min2: 0,
-    sec1: 0,
-    sec2: 0,
+    hour: toTimeValue( date.getHours() ),
+    min: toTimeValue( date.getMinutes() ),
+    sec: toTimeValue( date.getSeconds() ),
   };
 
-  render = (
-    _properties: unknown,
-    { hour1, hour2, min1, min2, sec1, sec2 }: AppState
-  ) => (
-    <div class="clock">
-      <ClockLine to={2} active={hour1} />
-      <ClockLine to={9} active={hour2} />
-      <div class="colon">:</div>
-      <ClockLine to={5} active={min1} />
-      <ClockLine to={9} active={min2} />
-      <div class="colon">:</div>
-      <ClockLine to={5} active={sec1} />
-      <ClockLine to={9} active={sec2} />
-    </div>
-  );
+  update = () => {
+    const date = new Date();
+
+    this.setState( {
+      hour: toTimeValue( date.getHours() ),
+      min: toTimeValue( date.getMinutes() ),
+      sec: toTimeValue( date.getSeconds() ),
+    } );
+
+    this.requestAnimationFrameId = requestAnimationFrame( this.update );
+  };
+
+  componentWillUnmount = () => {
+    cancelAnimationFrame( this.requestAnimationFrameId );
+  };
 
   componentDidMount = () => {
     this.update();
   };
 
-  update = () => {
-    const date = new Date();
-    const hour = leadingZero( date.getHours() );
-    const min = leadingZero( date.getMinutes() );
-    const sec = leadingZero( date.getSeconds() );
+  render = () => {
+    const { hour, min, sec } = this.state;
 
-    const [ hour1, hour2 ] = hour.split( '' );
-    const [ min1, min2 ] = min.split( '' );
-    const [ sec1, sec2 ] = sec.split( '' );
-
-    this.setState( {
-      hour1: +hour1,
-      hour2: +hour2,
-      min1: +min1,
-      min2: +min2,
-      sec1: +sec1,
-      sec2: +sec2,
-    } as AppState );
-
-    requestAnimationFrame( this.update );
+    return (
+      <div class="clock">
+        <ClockLine to={2} active={hour[ 0 ]} />
+        <ClockLine to={9} active={hour[ 1 ]} />
+        <div class="colon">:</div>
+        <ClockLine to={5} active={min[ 0 ]} />
+        <ClockLine to={9} active={min[ 1 ]} />
+        <div class="colon">:</div>
+        <ClockLine to={5} active={sec[ 0 ]} />
+        <ClockLine to={9} active={sec[ 1 ]} />
+      </div>
+    );
   };
 }
 
