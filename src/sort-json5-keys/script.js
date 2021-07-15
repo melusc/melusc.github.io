@@ -1,127 +1,100 @@
-( () => {
-  const json5 = require( 'json5' );
-  const input = document.querySelector( '#input' );
-  const output = document.querySelector( '#output' );
-  const prettyPrintInput = document.querySelector( '#pretty' );
-  const indent = document.querySelector( '#indent' );
-  const errorDiv = document.querySelector( '#errors' );
-  const indentWrapper = document.querySelector( '#indent-wrapper' );
-  const indentMax = +indent.max;
-  const indentMin = +indent.min;
+(() => {
+	const json5 = require('json5');
+	const input = document.querySelector('#input');
+	const output = document.querySelector('#output');
+	const prettyPrintInput = document.querySelector('#pretty');
+	const indent = document.querySelector('#indent');
+	const errorDiv = document.querySelector('#errors');
+	const indentWrapper = document.querySelector('#indent-wrapper');
+	const indentMax = Number(indent.max);
+	const indentMin = Number(indent.min);
 
-  let shouldIndent;
-  let amountIndent;
+	let shouldIndent;
+	let amountIndent;
 
-  const updateVals = () => {
-    shouldIndent = prettyPrintInput.checked;
+	const updateVals = () => {
+		shouldIndent = prettyPrintInput.checked;
 
-    const indentValue = +indent.value;
-    amountIndent
-      = indentValue > indentMax
-        ? indentMax
-        : indentValue < indentMin
-          ? indentMax
-          : indentValue;
+		const indentValue = Number(indent.value);
+		amountIndent
+			= indentValue > indentMax
+				? indentMax
+				: (indentValue < indentMin
+				? indentMax
+				: indentValue);
 
-    indent.value = amountIndent;
+		indent.value = amountIndent;
 
-    indent.disabled = !shouldIndent;
-    indentWrapper.classList.toggle(
-      'input-active',
-      !shouldIndent
-    );
-  };
+		indent.disabled = !shouldIndent;
+		indentWrapper.classList.toggle('input-active', !shouldIndent);
+	};
 
-  updateVals();
+	updateVals();
 
-  const sortJSON = value => {
-    if ( typeof value !== 'object' ) {
-      return value;
-    }
+	const sortJSON = value => {
+		if (typeof value !== 'object') {
+			return value;
+		}
 
-    if ( Array.isArray( value ) ) {
-      return value.map( value => sortJSON( value ) );
-    }
+		if (Array.isArray(value)) {
+			return value.map(value => sortJSON(value));
+		}
 
-    const keys = Object.keys( value ).sort( (
-      a, b
-    ) => a.localeCompare(
-      b,
-      'en',
-      {
-        sensitivity: 'case',
-        caseFirst: 'lower',
-      }
-    ) );
+		const keys = Object.keys(value).sort((a, b) =>
+			a.localeCompare(b, 'en', {
+				sensitivity: 'case',
+				caseFirst: 'lower',
+			}),
+		);
 
-    const object = {};
+		const object = {};
 
-    for ( const key of keys ) {
-      object[ key ] = value[ key ];
-    }
+		for (const key of keys) {
+			object[key] = value[key];
+		}
 
-    return object;
-  };
+		return object;
+	};
 
-  const prettify = () => {
-    errorDiv.textContent = '';
-    try {
-      const json = sortJSON( json5.parse( input.value ) );
+	const prettify = () => {
+		errorDiv.textContent = '';
+		try {
+			const json = sortJSON(json5.parse(input.value));
 
-      output.value = JSON.stringify(
-        json,
-        undefined,
-        shouldIndent && amountIndent
-      );
-    }
-    catch ( error ) {
-      errorDiv.textContent = error.message;
-    }
-  };
+			output.value = JSON.stringify(
+				json,
+				undefined,
+				shouldIndent && amountIndent,
+			);
+		} catch (error) {
+			errorDiv.textContent = error.message;
+		}
+	};
 
-  const updateFunction = () => {
-    updateVals();
+	const updateFunction = () => {
+		updateVals();
 
-    prettify();
-  };
+		prettify();
+	};
 
-  prettyPrintInput.addEventListener(
-    'change',
-    updateFunction
-  );
+	prettyPrintInput.addEventListener('change', updateFunction);
 
-  output.addEventListener(
-    'click',
-    () => {
-      output.focus();
-      output.select();
-    }
-  );
+	output.addEventListener('click', () => {
+		output.focus();
+		output.select();
+	});
 
-  indent.addEventListener(
-    'change',
-    updateFunction
-  );
-  indent.addEventListener(
-    'input',
-    updateFunction
-  );
+	indent.addEventListener('change', updateFunction);
+	indent.addEventListener('input', updateFunction);
 
-  input.addEventListener(
-    'input',
-    prettify
-  );
+	input.addEventListener('input', prettify);
 
-  /* When duplicating a tab (in Firefox atleast)
+	/* When duplicating a tab (in Firefox atleast)
     the browser copies the input values from the previous tab
     but that seems to happen delayed so we update the values
     on load (not DOMContentLoaded, fires too early) to make
     sure everything is correct after the browser updates
     the inputs
   */
-  addEventListener(
-    'load',
-    updateFunction,
-    { once: true }
-  );
-} )();
+	addEventListener('load', updateFunction, {once: true});
+})();

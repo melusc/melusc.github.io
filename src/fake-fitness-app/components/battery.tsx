@@ -1,84 +1,72 @@
-import { h, Fragment } from 'preact';
-import { useState } from 'preact/hooks';
+import {h, Fragment} from 'preact';
+import {useState} from 'preact/hooks';
+
 import clsx from 'clsx';
 
-import { Battery as BatteryIcon } from './icons';
+import {Battery as BatteryIcon} from './icons';
 
-const isValidBatteryValue = ( v: string ): boolean => {
-  v = v.trim();
+const isValidBatteryValue = (v: string): boolean => {
+	v = v.trim();
 
-  if ( !( /^(?:\d{1,2}|100)%$/ ).test( v ) ) {
-    return false;
-  }
+	if (!/^(?:\d{1,2}|100)%$/.test(v)) {
+		return false;
+	}
 
-  v = v.slice(
-    0,
-    -1
-  );
-  const parsed = +v;
+	v = v.slice(0, -1);
+	const parsed = Number(v);
 
-  if ( parsed <= 0 || parsed > 100 ) {
-    return false;
-  }
+	if (parsed <= 0 || parsed > 100) {
+		return false;
+	}
 
-  return true;
+	return true;
 };
 
-const canvas = document.createElement( 'canvas' );
-const context = canvas.getContext( '2d' );
+const canvas = document.createElement('canvas');
+const context = canvas.getContext('2d');
 
-const getTextWidth = (
-  text: string, font: string
-) => {
-  if ( !context ) {
-    throw new Error( 'context was null' );
-  }
+const getTextWidth = (text: string, font: string) => {
+	if (!context) {
+		throw new Error('context was null');
+	}
 
-  context.font = font;
+	context.font = font;
 
-  const metrics = context.measureText( text );
-  return Math.floor( metrics.width );
+	const metrics = context.measureText(text);
+	return Math.floor(metrics.width);
 };
 
 export const Battery = (): h.JSX.Element => {
-  const [ batteryValue, updateBattery ] = useState( '100%' );
+	const [batteryValue, updateBattery] = useState('100%');
 
-  const handleBatteryInput: h.JSX.GenericEventHandler<HTMLInputElement>
-    = event_ => {
-      const value = event_.currentTarget.value;
+	const handleBatteryInput: h.JSX.GenericEventHandler<HTMLInputElement>
+		= event_ => {
+			const value = event_.currentTarget.value;
 
-      if ( isValidBatteryValue( value ) ) {
-        const percent = +( ( /^\d+/ ).exec( value ) ?? 0 );
+			if (isValidBatteryValue(value)) {
+				const percent = Number(/^\d+/.exec(value) ?? 0);
 
-        updateBattery( `${ percent }%` );
-      }
-      else {
-        updateBattery( value );
-      }
-    };
+				updateBattery(`${percent}%`);
+			} else {
+				updateBattery(value);
+			}
+		};
 
-  return (
-    <>
-      <input
-        onInput={handleBatteryInput}
-        class={clsx(
-          'input-remove-input-visuals',
-          'battery-input',
-          {
-            invalid: !isValidBatteryValue( batteryValue ),
-          }
-        )}
-        value={batteryValue}
-        style={{
-          width:
-            getTextWidth(
-              batteryValue,
-              `${ 0.9 * 2.3 }vmin "Samsung Sans"`
-            )
-              * 1.05 || 3, // If width 0 use 3 instead
-        }}
-      />
-      <BatteryIcon batteryStatus={batteryValue} />
-    </>
-  );
+	return (
+		<>
+			<input
+				class={clsx('input-remove-input-visuals', 'battery-input', {
+					invalid: !isValidBatteryValue(batteryValue),
+				})}
+				value={batteryValue}
+				style={{
+					width:
+						getTextWidth(batteryValue, `${0.9 * 2.3}vmin "Samsung Sans"`)
+							* 1.05 || 3, // If width 0 use 3 instead
+				}}
+				onInput={handleBatteryInput}
+			/>
+			<BatteryIcon batteryStatus={batteryValue} />
+		</>
+	);
 };

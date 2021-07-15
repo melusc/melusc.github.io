@@ -1,3 +1,4 @@
-const isOfType = <T>( key: unknown, list: ReadonlyArray<T> ): key is T => list.includes( key as T );
+const isOfType = <T>(key: unknown, list: readonly T[]): key is T =>
+	list.includes(key as T);
 
-export { isOfType };
+export {isOfType};

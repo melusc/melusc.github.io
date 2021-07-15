@@ -1,14 +1,14 @@
-const { src, dest, watch, parallel, series } = require( 'gulp' );
-const csso = require( 'gulp-csso' );
-const svgmin = require( 'gulp-svgmin' );
-const htmlmin = require( 'gulp-htmlmin' );
-const sass = require( 'gulp-dart-sass' );
-const rename = require( 'gulp-rename' );
-const sourcemaps = require( 'gulp-sourcemaps' );
-const gulpif = require( 'gulp-if' );
-const postcss = require( 'gulp-postcss' );
-const autoprefixer = require( 'autoprefixer' );
-const lazypipe = require( 'lazypipe' );
+const {src, dest, watch, parallel, series} = require('gulp');
+const csso = require('gulp-csso');
+const svgmin = require('gulp-svgmin');
+const htmlmin = require('gulp-htmlmin');
+const sass = require('gulp-dart-sass');
+const rename = require('gulp-rename');
+const sourcemaps = require('gulp-sourcemaps');
+const gulpif = require('gulp-if');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const lazypipe = require('lazypipe');
 
 const PATHS = {
   DEST: './docs/webpack',
@@ -17,11 +17,11 @@ const PATHS = {
     './src/**/favicon.ico',
     './src/**/favicon.png',
   ],
-  HTML: [ './src/**/*.html' ],
-  JS: [ './src/**/*.js' ],
-  SCSS: [ './src/**/*.scss' ],
+  HTML: ['./src/**/*.html'],
+  JS: ['./src/**/*.js'],
+  SCSS: ['./src/**/*.scss'],
   SOURCEMAPS_DEST: './',
-  SVG: [ './src/**/*.svg', '!./src/**/*.min.svg' ],
+  SVG: ['./src/**/*.svg', '!./src/**/*.min.svg'],
   SVG_DEST: './src',
 };
 
@@ -37,10 +37,10 @@ const setProductionEnvironment = done => {
   done();
 };
 
-const minHTML = () => src( PATHS.HTML )
-  .pipe( gulpif(
+const minHTML = () => src(PATHS.HTML)
+  .pipe(gulpif(
     process.env.GULP_ENV === 'production',
-    htmlmin( {
+    htmlmin({
       collapseBooleanAttributes: true,
       collapseWhitespace: true,
       decodeEntities: true,
@@ -53,56 +53,56 @@ const minHTML = () => src( PATHS.HTML )
       sortClassName: true,
       trimCustomFragments: false,
       useShortDoctype: true,
-    } )
-  ) )
-  .pipe( dest( PATHS.DEST ) );
+    }),
+  ))
+  .pipe(dest(PATHS.DEST));
 
 const postCSSTask = lazypipe()
-  .pipe( csso )
+  .pipe(csso)
   .pipe(
     postcss,
-    [ autoprefixer() ]
+    [autoprefixer()],
   );
 
-const compSCSS = () => src( PATHS.SCSS )
-  .pipe( sourcemaps.init() )
+const compSCSS = () => src(PATHS.SCSS)
+  .pipe(sourcemaps.init())
 
-  .pipe( sass() )
-  .pipe( gulpif(
+  .pipe(sass())
+  .pipe(gulpif(
     process.env.GULP_ENV === 'production',
-    postCSSTask()
-  ) )
-  .pipe( sourcemaps.write( PATHS.SOURCEMAPS_DEST ) )
-  .pipe( dest( PATHS.DEST ) );
+    postCSSTask(),
+  ))
+  .pipe(sourcemaps.write(PATHS.SOURCEMAPS_DEST))
+  .pipe(dest(PATHS.DEST));
 
 const minSvg = () => {
-  src( PATHS.SVG )
-    .pipe( svgmin( {
+  src(PATHS.SVG)
+    .pipe(svgmin({
       multipass: true,
       plugins: [
         'sortAttrs',
         'removeScriptElement',
         'removeDimensions',
-        { name: 'removeAttrs', params: { attrs: [ 'class' ] } },
-        { name: 'mergePaths', active: false },
+        {name: 'removeAttrs', params: {attrs: ['class']}},
+        {name: 'mergePaths', active: false},
       ],
       precision: 3,
-    } ) )
-    .pipe( rename( path => {
+    }))
+    .pipe(rename(path => {
       path.extname = '.min.svg';
-    } ) )
-    .pipe( dest( PATHS.SVG_DEST ) );
+    }))
+    .pipe(dest(PATHS.SVG_DEST));
 
-  return src( PATHS.FAVICONS )
-    .pipe( rename( path => {
-      if ( path.basename.endsWith( '.min' ) ) {
+  return src(PATHS.FAVICONS)
+    .pipe(rename(path => {
+      if (path.basename.endsWith('.min')) {
         path.basename = path.basename.slice(
           0,
-          -4
+          -4,
         );
       }
-    } ) )
-    .pipe( dest( PATHS.DEST ) );
+    }))
+    .pipe(dest(PATHS.DEST));
 };
 
 const build = series(
@@ -110,22 +110,22 @@ const build = series(
   parallel(
     minSvg,
     minHTML,
-    compSCSS
-  )
+    compSCSS,
+  ),
 );
 
 const watchFunction = () => {
   watch(
     PATHS.SCSS,
-    compSCSS
+    compSCSS,
   );
   watch(
     PATHS.HTML,
-    minHTML
+    minHTML,
   );
   watch(
     PATHS.SVG,
-    minSvg
+    minSvg,
   );
 };
 
@@ -134,9 +134,9 @@ const start = series(
   parallel(
     minSvg,
     minHTML,
-    compSCSS
+    compSCSS,
   ),
-  watchFunction
+  watchFunction,
 );
 
 exports.default = build;

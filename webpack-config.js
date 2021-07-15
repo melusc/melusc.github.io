@@ -1,7 +1,7 @@
-const path = require( 'path' );
-const TerserPlugin = require( 'terser-webpack-plugin' );
-const entry = require( 'webpack-glob-entry' );
-const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
+const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
+const entry = require('webpack-glob-entry');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const babelConfig = {
   loader: 'babel-loader',
@@ -19,7 +19,7 @@ const babelConfig = {
   },
 };
 
-module.exports = environment => ( {
+module.exports = environment => ({
   devtool: 'source-map',
   resolve: {
     alias: {
@@ -27,40 +27,40 @@ module.exports = environment => ( {
       'react-dom': 'preact/compat',
       lodash: 'lodash-es',
     },
-    extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   mode: environment.production
     ? 'production'
     : 'development',
   entry: {
     ...entry(
-      entry.basePath( 'src' ),
+      entry.basePath('src'),
       path.resolve(
         __dirname,
-        'src/**/script.js'
-      )
+        'src/**/script.js',
+      ),
     ),
     ...entry(
-      entry.basePath( 'src' ),
+      entry.basePath('src'),
       path.resolve(
         __dirname,
-        'src/**/script.ts'
-      )
+        'src/**/script.ts',
+      ),
     ),
     ...entry(
-      entry.basePath( 'src' ),
+      entry.basePath('src'),
       path.resolve(
         __dirname,
-        'src/**/script.tsx'
-      )
+        'src/**/script.tsx',
+      ),
     ),
   },
-  ...environment.production && { plugins: [ new CleanWebpackPlugin() ] },
+  ...environment.production && {plugins: [new CleanWebpackPlugin()]},
   output: {
     path: path.resolve(
       __dirname,
       'docs',
-      'webpack'
+      'webpack',
     ),
     filename: '[name].js',
   },
@@ -68,17 +68,17 @@ module.exports = environment => ( {
     type: 'filesystem',
     cacheDirectory: path.resolve(
       __dirname,
-      '.cache'
+      '.cache',
     ),
     buildDependencies: {
-      config: [ __filename ],
+      config: [__filename],
     },
   },
   optimization: {
     usedExports: true,
     minimize: environment.production === true,
     minimizer: [
-      new TerserPlugin( {
+      new TerserPlugin({
         terserOptions: {
           compress: {
             drop_console: true,
@@ -91,29 +91,29 @@ module.exports = environment => ( {
           mangle: true,
           ecma: 2021,
         },
-      } ),
+      }),
     ],
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        use: [ babelConfig ],
+        use: [babelConfig],
       },
       {
         test: /\.tsx?$/,
-        use: [ 'ts-loader' ],
+        use: ['ts-loader'],
       },
       {
         test: /\.css$/,
         type: 'asset/source',
-        use: [ 'csso-loader' ],
+        use: ['csso-loader'],
       },
       {
         test: /\.scss$/,
         type: 'asset/source',
-        use: [ 'sass-loader' ],
+        use: ['sass-loader'],
       },
     ],
   },
-} );
+});

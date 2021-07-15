@@ -4,61 +4,61 @@ $table-explanation: #999 !default;
 $card-border-radius: 25px !default;
 
 .workout-details {
-  color: $text-white;
+	color: $text-white;
 
-  background: $card-background;
-  border-radius: $card-border-radius;
+	background: $card-background;
+	border-radius: $card-border-radius;
 
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 
-  margin-top: 2.8vmin;
-  padding: 2.5vmin 3.4vmin;
+	margin-top: 2.8vmin;
+	padding: 2.5vmin 3.4vmin;
 
-  .workout-details-title {
-    margin-bottom: 1em;
-  }
+	.workout-details-title {
+		margin-bottom: 1em;
+	}
 
-  .table {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+	.table {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 
-    .table-value,
-    .table-explanation {
-      text-align: center;
-      width: 100%;
-    }
+		.table-value,
+		.table-explanation {
+			text-align: center;
+			width: 100%;
+		}
 
-    .row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
-      align-items: center;
+		.row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+			align-items: center;
 
-      > div {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-      }
-    }
+			> div {
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+			}
+		}
 
-    .table-explanation {
-      font-size: 0.7em;
-      color: $table-explanation;
-    }
+		.table-explanation {
+			font-size: 0.7em;
+			color: $table-explanation;
+		}
 
-    svg {
-      height: 1.5em;
-    }
+		svg {
+			height: 1.5em;
+		}
 
-    hr {
-      width: 100%;
-      border: none;
-      border-bottom: 1px solid #e6e6e6;
-    }
-    .vertical-border {
-      color: #e6e6e6;
-    }
-  }
+		hr {
+			width: 100%;
+			border: none;
+			border-bottom: 1px solid #e6e6e6;
+		}
+		.vertical-border {
+			color: #e6e6e6;
+		}
+	}
 }

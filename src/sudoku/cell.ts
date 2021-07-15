@@ -1,53 +1,48 @@
-import { uniqueId } from 'lodash';
+import {uniqueId} from 'lodash';
 
-import type { CellInterface } from './sudoku.d';
+import type {CellInterface} from './sudoku.d';
 
-const emptyCellPossibles = (): Set<string> => new Set( Array.from(
-  { length: 9 },
-  (
-    _v, index
-  ) => `${ index + 1 }`
-) );
+const emptyCellPossibles = (): Set<string> =>
+	new Set(Array.from({length: 9}, (_v, index) => `${index + 1}`));
 
 export class Cell implements CellInterface {
-  content: string | undefined;
+	content: string | undefined;
 
-  possible = emptyCellPossibles();
+	possible = emptyCellPossibles();
 
-  key = uniqueId( 'cell-' );
+	key = uniqueId('cell-');
 
-  valid = true;
+	valid = true;
 
-  setValidity = (): this => {
-    this.valid
-      = typeof this.content === 'undefined'
-        ? this.possible.size > 0
-        : ( /^[1-9]$/ ).test( this.content );
+	setValidity = (): this => {
+		this.valid
+			= typeof this.content === 'undefined'
+				? this.possible.size > 0
+				: /^[1-9]$/.test(this.content);
 
-    return this;
-  };
+		return this;
+	};
 
-  setContent = ( content: string ): this => {
-    content = content.trim();
+	setContent = (content: string): this => {
+		content = content.trim();
 
-    if ( content ) {
-      this.content = content.trim();
-      this.possible.clear();
-    }
-    else {
-      this.clear();
-    }
+		if (content) {
+			this.content = content.trim();
+			this.possible.clear();
+		} else {
+			this.clear();
+		}
 
-    return this.setValidity();
-  };
+		return this.setValidity();
+	};
 
-  clear = (): this => {
-    this.content = undefined;
+	clear = (): this => {
+		this.content = undefined;
 
-    this.possible = emptyCellPossibles();
+		this.possible = emptyCellPossibles();
 
-    this.valid = true;
+		this.valid = true;
 
-    return this;
-  };
+		return this;
+	};
 }

@@ -1,35 +1,35 @@
 $text-white: #fafafa !default;
 
 .main-app-date-time {
-  color: $text-white;
+	color: $text-white;
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 
-  margin: 0 6.5%;
-  margin-top: 0.75em;
-  font-size: 0.9em;
+	margin: 0 6.5%;
+	margin-top: 0.75em;
+	font-size: 0.9em;
 
-  .day-date-inputs {
-    display: flex;
+	.day-date-inputs {
+		display: flex;
 
-    span {
-      white-space: pre;
-    }
-  }
+		span {
+			white-space: pre;
+		}
+	}
 
-  .time-inputs {
-    display: flex;
-    margin-top: 0.3em;
+	.time-inputs {
+		display: flex;
+		margin-top: 0.3em;
 
-    span {
-      // Looks more centered this way
-      margin: 0 3px 0 1px;
-    }
+		span {
+			// Looks more centered this way
+			margin: 0 3px 0 1px;
+		}
 
-    input {
-      width: 5ch;
-    }
-  }
+		input {
+			width: 5ch;
+		}
+	}
 }

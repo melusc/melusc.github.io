@@ -1,340 +1,304 @@
+// eslint-disable-next-line import/no-unassigned-import
 import 'preact/devtools';
 
-import { render, h, Component } from 'preact';
-import { produce } from 'immer';
+import {render, h, Component} from 'preact';
+import {produce} from 'immer';
 
-import { Sudoku } from './sudoku';
-import type { Cells } from './sudoku.d';
+import {Sudoku} from './sudoku';
+import type {Cells} from './sudoku.d';
 
 interface AppState {
-  cells: Cells;
-  error: undefined | string;
-  focused: number;
-  mobileWarningSeen: boolean;
+	cells: Cells;
+	error: undefined | string;
+	focused: number;
 }
 
 const SvgEraser = () => (
-  <svg
-    width="16"
-    height="16"
-    fill="currentColor"
-    class="svg-eraser-fill"
-    viewBox="0 0 16 16"
-  >
-    <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z" />
-  </svg>
+	<svg
+		width="16"
+		height="16"
+		fill="currentColor"
+		class="svg-eraser-fill"
+		viewBox="0 0 16 16"
+	>
+		<path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z" />
+	</svg>
 );
 
 const _ = undefined; // Looks better, than loads of `undefined`
 
 const sudokus = {
-  easy: [
-    [ 5, _, 3, _, 9, 4 ],
-    [ _, 9, _, _, 3, 6, 2, 5, 8 ],
-    [ _, _, _, _, _, _, 3 ],
-    [ _, _, 8, 9, 5, _, 6, 7 ],
-    [],
-    [ _, 7, 2, _, 6, 1, 4 ],
-    [ _, _, 4 ],
-    [ 6, 5, 9, 8, 2, _, _, 1 ],
-    [ _, _, _, 1, 4, _, 5, _, 6 ],
-  ],
-  evil: [
-    [ 6, _, 4, _, _, _, _, _, 3 ],
-    [ _, _, _, _, 3, 7, 8 ],
-    [ _, _, _, 5, _, _, 7 ],
-    [ 8, 9, _, 1 ],
-    [ 3, _, _, _, _, _, _, _, 2 ],
-    [ _, _, _, _, _, 3, _, 1, 9 ],
-    [ _, _, 5, _, _, 9 ],
-    [ _, _, 1, 8, 6 ],
-    [ 9, _, _, _, _, _, 4, _, 8 ],
-  ],
-  expert: [
-    [ _, _, _, _, _, 4, _, _, 2 ],
-    [ _, 6, _, 2, _, _, _, 3 ],
-    [ _, 8, _, _, _, 3, 5, _, 9 ],
-    [ _, 4, _, _, _, _, 1 ],
-    [ 1, _, _, 7, _, 5 ],
-    [ 5, _, 3 ],
-    [ _, 9, _, 3 ],
-    [ _, _, 4, _, 6, 1 ],
-    [ _, _, 5, _, _, _, 7 ],
-  ],
-  error: [
-    [ _, 6, _, _, _, 5 ],
-    [ _, _, _, _, _, 6, _, _, 5 ],
-    [ _, _, 5, _, _, _, 6 ],
-    [ _, _, _, _, _, _, 5, _, 6 ],
-    [ _, 5, 6 ],
-    [],
-    [ 6, _, _, _, 5 ],
-    [ _, _, _, _, 6, _, _, 5 ],
-    [ 5, _, _, _, _, _, _, 6 ],
-  ],
+	easy: [
+		[5, _, 3, _, 9, 4],
+		[_, 9, _, _, 3, 6, 2, 5, 8],
+		[_, _, _, _, _, _, 3],
+		[_, _, 8, 9, 5, _, 6, 7],
+		[],
+		[_, 7, 2, _, 6, 1, 4],
+		[_, _, 4],
+		[6, 5, 9, 8, 2, _, _, 1],
+		[_, _, _, 1, 4, _, 5, _, 6],
+	],
+	evil: [
+		[6, _, 4, _, _, _, _, _, 3],
+		[_, _, _, _, 3, 7, 8],
+		[_, _, _, 5, _, _, 7],
+		[8, 9, _, 1],
+		[3, _, _, _, _, _, _, _, 2],
+		[_, _, _, _, _, 3, _, 1, 9],
+		[_, _, 5, _, _, 9],
+		[_, _, 1, 8, 6],
+		[9, _, _, _, _, _, 4, _, 8],
+	],
+	expert: [
+		[_, _, _, _, _, 4, _, _, 2],
+		[_, 6, _, 2, _, _, _, 3],
+		[_, 8, _, _, _, 3, 5, _, 9],
+		[_, 4, _, _, _, _, 1],
+		[1, _, _, 7, _, 5],
+		[5, _, 3],
+		[_, 9, _, 3],
+		[_, _, 4, _, 6, 1],
+		[_, _, 5, _, _, _, 7],
+	],
+	error: [
+		[_, 6, _, _, _, 5],
+		[_, _, _, _, _, 6, _, _, 5],
+		[_, _, 5, _, _, _, 6],
+		[_, _, _, _, _, _, 5, _, 6],
+		[_, 5, 6],
+		[],
+		[6, _, _, _, 5],
+		[_, _, _, _, 6, _, _, 5],
+		[5, _, _, _, _, _, _, 6],
+	],
 };
 
-class App extends Component {
-  #sudokuClass = new Sudoku( sudokus.evil );
+class App extends Component<Record<string, unknown>, AppState> {
+	#sudokuClass = new Sudoku(sudokus.evil);
 
-  state: AppState = {
-    cells: this.#sudokuClass.getCells(),
-    error: undefined,
-    focused: 0,
-    mobileWarningSeen: false,
-  };
+	state: AppState = {
+		cells: this.#sudokuClass.getCells(),
+		error: undefined,
+		focused: 0,
+	};
 
-  constructor( ...a: Array<Record<string, unknown>> ) {
-    super( ...a );
+	constructor(...a: Array<Record<string, unknown>>) {
+		super(...a);
 
-    this.#sudokuClass.subscribe( (
-      sudoku, type
-    ) => {
-      switch ( type ) {
-        case 'change': {
-          this.setState( {
-            cells: sudoku.getCells(),
-            error: undefined,
-          } as AppState );
+		this.#sudokuClass.subscribe((sudoku, type) => {
+			switch (type) {
+				case 'change': {
+					this.setState({
+						cells: sudoku.getCells(),
+						error: undefined,
+					});
 
-          break;
-        }
+					break;
+				}
 
-        case 'finish': {
-          const isSolved = sudoku.isSolved();
+				case 'finish': {
+					const isSolved = sudoku.isSolved();
 
-          this.setState( {
-            cells: sudoku.getCells(),
-            error: isSolved
-              ? undefined
-              : "Sudoku wasn't solved completely.",
-          } as AppState );
+					this.setState({
+						cells: sudoku.getCells(),
+						error: isSolved ? undefined : "Sudoku wasn't solved completely.",
+					});
 
-          break;
-        }
+					break;
+				}
 
-        case 'error': {
-          this.setState( {
-            error: 'Sudoku is invalid',
-          } as AppState );
+				case 'error': {
+					this.setState({
+						error: 'Sudoku is invalid',
+					});
 
-          break;
-        }
+					break;
+				}
 
-        default: {
-          // Do nothing
-          // Shouldn't be reachable
-        }
-      }
-    } );
-  }
+				default: {
+					// Do nothing
+					// Shouldn't be reachable
+				}
+			}
+		});
+	}
 
-  componentDidMount = () => {
-    document.addEventListener(
-      'keydown',
-      this.handleKeyDown
-    );
-  };
+	componentDidMount = () => {
+		document.addEventListener('keydown', this.handleKeyDown);
+	};
 
-  componentWillUnmount = () => {
-    document.removeEventListener(
-      'keydown',
-      this.handleKeyDown
-    );
-  };
+	componentWillUnmount = () => {
+		document.removeEventListener('keydown', this.handleKeyDown);
+	};
 
-  render = (
-    _properties: Record<string, unknown>,
-    { cells, error, focused }: AppState
-  ) => (
-    <div class="App">
-      <div class="sudoku">
-        {cells.map( (
-          { content, key, valid }, index
-        ) => (
-          <div
-            key={key}
-            class={`cell${ valid
-              ? ''
-              : ' invalid-input' }${
-              focused === index
-                ? ' focused-cell'
-                : ''
-            }`}
-            data-index={index}
-            onClick={this.handleCellClick( index )}
-          >
-            {content}
-          </div>
-        ) )}
-      </div>
-      {typeof error !== undefined && <div class="error">{error}</div>}
-      <button
-        type="button"
-        title="Solve sudoku"
-        class="solve"
-        onClick={this.solve}
-      >
-        Solve
-      </button>
-      <button
-        type="button"
-        title="Clear sudoku"
-        class="clear"
-        onClick={this.clear}
-      >
-        Clear
-      </button>
-      <div class="keyboardless-inputs">
-        {Array.from(
-          { length: 9 },
-          (
-            _v, index
-          ) => (
-            <div
-              key={index}
-              class="keyboardless-input"
-              title={`${ index + 1 }`}
-              onClick={this.handleKeyboardlessClick( `${ index + 1 }` )}
-            >
-              {index + 1}
-            </div>
-          )
-        )}
-        <div
-          class="keyboardless-input input-eraser"
-          title="Clear cell"
-          onClick={this.handleKeyboardlessClick( ' ' )}
-        >
-          <SvgEraser />
-        </div>
-      </div>
-    </div>
-  );
+	render = () => {
+		const {cells, error, focused} = this.state;
 
-  solve = () => {
-    this.#sudokuClass.solve();
-  };
+		return (
+			<div class="App">
+				<div class="sudoku">
+					{cells.map(({content, key, valid}, index) => (
+						<div
+							key={key}
+							class={`cell${valid ? '' : ' invalid-input'}${
+								focused === index ? ' focused-cell' : ''
+							}`}
+							data-index={index}
+							onClick={this.handleCellClick(index)}
+						>
+							{content}
+						</div>
+					))}
+				</div>
+				{typeof error !== undefined && <div class="error">{error}</div>}
+				<button
+					type="button"
+					title="Solve sudoku"
+					class="solve"
+					onClick={this.solve}
+				>
+					Solve
+				</button>
+				<button
+					type="button"
+					title="Clear sudoku"
+					class="clear"
+					onClick={this.clear}
+				>
+					Clear
+				</button>
+				<div class="keyboardless-inputs">
+					{Array.from({length: 9}, (_v, index) => (
+						<div
+							key={index}
+							class="keyboardless-input"
+							title={`${index + 1}`}
+							onClick={this.handleKeyboardlessClick(`${index + 1}`)}
+						>
+							{index + 1}
+						</div>
+					))}
+					<div
+						class="keyboardless-input input-eraser"
+						title="Clear cell"
+						onClick={this.handleKeyboardlessClick(' ')}
+					>
+						<SvgEraser />
+					</div>
+				</div>
+			</div>
+		);
+	};
 
-  clear = () => {
-    this.#sudokuClass.clearAllCells();
-  };
+	solve = () => {
+		this.#sudokuClass.solve();
+	};
 
-  handleCellClick = ( index: number ) => (): void => {
-    this.setState( {
-      focused: index,
-    } as AppState );
-  };
+	clear = () => {
+		this.#sudokuClass.clearAllCells();
+	};
 
-  handleKeyDown = ( event_: KeyboardEvent ) => {
-    this.setState( produce( ( state: AppState ): void => {
-      const key = event_.key.toLowerCase();
+	handleCellClick = (index: number) => (): void => {
+		this.setState({
+			focused: index,
+		});
+	};
 
-      switch ( key ) {
-        case 'arrowdown':
-        case 'arrowup': {
-          // Wrapping around seems better
+	handleKeyDown = (event_: KeyboardEvent) => {
+		this.setState(
+			produce((state: AppState): void => {
+				const key = event_.key.toLowerCase();
 
-          const direction = key === 'arrowdown'
-            ? 9
-            : -9;
-          let newFocused = state.focused + direction;
+				switch (key) {
+					case 'arrowdown':
+					case 'arrowup': {
+						// Wrapping around seems better
 
-          if ( newFocused < 0 ) {
-            newFocused += 81;
-          }
-          else if ( newFocused > 80 ) {
-            newFocused -= 81;
-          }
+						const direction = key === 'arrowdown' ? 9 : -9;
+						let newFocused = state.focused + direction;
 
-          state.focused = newFocused;
+						if (newFocused < 0) {
+							newFocused += 81;
+						} else if (newFocused > 80) {
+							newFocused -= 81;
+						}
 
-          break;
-        }
+						state.focused = newFocused;
 
-        case 'arrowright':
-        case 'arrowleft': {
-          const direction = key === 'arrowright'
-            ? 1
-            : -1;
+						break;
+					}
 
-          const col = ( state.focused % 9 ) + direction;
+					case 'arrowright':
+					case 'arrowleft': {
+						const direction = key === 'arrowright' ? 1 : -1;
 
-          if ( col < 0 ) {
-            state.focused += 8;
-          }
-          else if ( col > 8 ) {
-            state.focused -= 8;
-          }
-          else {
-            state.focused += direction;
-          }
+						const col = (state.focused % 9) + direction;
 
-          break;
-        }
+						if (col < 0) {
+							state.focused += 8;
+						} else if (col > 8) {
+							state.focused -= 8;
+						} else {
+							state.focused += direction;
+						}
 
-        case ' ': {
-          // Space
+						break;
+					}
 
-          this.#sudokuClass.clearCell( state.focused );
+					case ' ': {
+						// Space
 
-          state.focused = ( state.focused + 1 ) % 81;
+						this.#sudokuClass.clearCell(state.focused);
 
-          break;
-        }
+						state.focused = (state.focused + 1) % 81;
 
-        case 'tab': {
-          event_.preventDefault();
+						break;
+					}
 
-          const { shiftKey } = event_;
+					case 'tab': {
+						event_.preventDefault();
 
-          const direction = shiftKey
-            ? -1
-            : 1;
+						const {shiftKey} = event_;
 
-          state.focused = ( state.focused + direction + 81 ) % 81;
-          break;
-        }
+						const direction = shiftKey ? -1 : 1;
 
-        case 'delete':
-        case 'backspace': {
-          this.#sudokuClass.clearCell( state.focused );
+						state.focused = (state.focused + direction + 81) % 81;
+						break;
+					}
 
-          break;
-        }
+					case 'delete':
+					case 'backspace': {
+						this.#sudokuClass.clearCell(state.focused);
 
-        default: {
-          if ( ( /^[1-9]$/ ).test( key ) ) {
-            this.#sudokuClass.setContent(
-              state.focused,
-              key
-            );
+						break;
+					}
 
-            state.focused = ( state.focused + 1 ) % 81;
-          }
-        }
-      }
-    } ) );
-  };
+					default: {
+						if (/^[1-9]$/.test(key)) {
+							this.#sudokuClass.setContent(state.focused, key);
 
-  handleKeyboardlessClick = ( number: string ) => (): void => {
-    if ( number === ' ' ) {
-      this.#sudokuClass.clearCell( this.state.focused );
-    }
-    else {
-      this.#sudokuClass.setContent(
-        this.state.focused,
-        number
-      );
+							state.focused = (state.focused + 1) % 81;
+						}
+					}
+				}
+			}),
+		);
+	};
 
-      this.setState( produce( ( state: AppState ) => {
-        state.focused = ( state.focused + 1 ) % 81;
-      } ) );
-    }
-  };
+	handleKeyboardlessClick = (number: string) => (): void => {
+		if (number === ' ') {
+			this.#sudokuClass.clearCell(this.state.focused);
+		} else {
+			this.#sudokuClass.setContent(this.state.focused, number);
+
+			this.setState(
+				produce((state: AppState) => {
+					state.focused = (state.focused + 1) % 81;
+				}),
+			);
+		}
+	};
 }
 
-render(
-  <App />,
-  document.body
-);
+render(<App />, document.body);
