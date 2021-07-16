@@ -16,29 +16,13 @@ module.exports = environment => ({
   mode: environment.production
     ? 'production'
     : 'development',
-  entry: {
-    ...entry(
+  entry: entry(
       entry.basePath('src'),
       path.resolve(
         __dirname,
-        'src/**/script.js',
+        'src/*/{script,index}.{js,ts}*(x)',
       ),
     ),
-    ...entry(
-      entry.basePath('src'),
-      path.resolve(
-        __dirname,
-        'src/**/script.ts',
-      ),
-    ),
-    ...entry(
-      entry.basePath('src'),
-      path.resolve(
-        __dirname,
-        'src/**/script.tsx',
-      ),
-    ),
-  },
   ...environment.production && {plugins: [new CleanWebpackPlugin()]},
   output: {
     path: path.resolve(
