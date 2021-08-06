@@ -1,0 +1,99 @@
+{
+	"author": "lusc",
+	"ava": {
+		"environmentVariables": {
+			"NODE_ENV": "AVA_TESTING"
+		},
+		"files": [
+			"test/**/*"
+		],
+		"typescript": {
+			"extensions": [
+				"ts"
+			],
+			"rewritePaths": {
+				"test/": "dist/test/"
+			}
+		}
+	},
+	"dependencies": {
+		"@babel/runtime": "^7.14.8",
+		"clsx": "^1.1.1",
+		"dayjs": "^1.10.6",
+		"hex-rgb": "^5.0.0",
+		"immer": "^9.0.5",
+		"json5": "^2.2.0",
+		"lodash": "^4.17.21",
+		"lodash-es": "^4.17.21",
+		"preact": "^10.5.14",
+		"rgb-hex": "^4.0.0"
+	},
+	"devDependencies": {
+		"@ava/typescript": "^1.1.1",
+		"@babel/core": "^7.15.0",
+		"@babel/plugin-transform-react-jsx": "^7.14.9",
+		"@babel/plugin-transform-runtime": "^7.15.0",
+		"@prettier/plugin-xml": "^1.0.2",
+		"@sindresorhus/tsconfig": "^1.0.2",
+		"@types/lodash-es": "^4.17.4",
+		"@typescript-eslint/parser": "^4.29.0",
+		"autoprefixer": "^10.3.1",
+		"ava": "^3.15.0",
+		"babel-loader": "^8.2.2",
+		"clean-webpack-plugin": "^3.0.0",
+		"concurrently": "^6.2.0",
+		"copy-webpack-plugin": "^9.0.1",
+		"del-cli": "^4.0.1",
+		"eslint-config-xo-react": "^0.25.0",
+		"gulp": "^4.0.2",
+		"gulp-csso": "^4.0.1",
+		"gulp-dart-sass": "^1.0.2",
+		"gulp-htmlmin": "^5.0.1",
+		"gulp-if": "^3.0.0",
+		"gulp-postcss": "^9.0.0",
+		"gulp-rename": "^2.0.0",
+		"gulp-sourcemaps": "^3.0.0",
+		"gulp-svgmin": "^4.0.1",
+		"lazypipe": "^1.0.2",
+		"prettier": "^2.3.2",
+		"sass": "^1.37.5",
+		"serve": "^12.0.0",
+		"terser-webpack-plugin": "^5.1.4",
+		"ts-loader": "^9.2.5",
+		"type-fest": "^1.3.0",
+		"typescript": "^4.3.5",
+		"webpack": "^5.48.0",
+		"webpack-cli": "^4.7.2",
+		"webpack-glob-entry": "^2.1.1",
+		"xo": "^0.43.0"
+	},
+	"license": "MIT",
+	"name": "melusc.github.io",
+	"prettier": {
+		"arrowParens": "avoid",
+		"bracketSpacing": false,
+		"singleQuote": true,
+		"trailingComma": "all",
+		"useTabs": true
+	},
+	"private": true,
+	"scripts": {
+		"ava": "npm run build-ts-tests && ava",
+		"build": "npm run lint && npm run test && npm run build-no-test",
+		"build-no-test": "npm run webpack:b && npm run gulp:b",
+		"build-ts-tests": "del-cli dist/* && tsc --project test.tsconfig.json",
+		"gulp:b": "gulp build",
+		"gulp:w": "gulp start",
+		"lint": "npm run prettier && xo --fix",
+		"prettier": "prettier -w \"{src,test}/**\" \"!src/**/*.min.svg\" \"./*.{js,json}",
+		"sass": "sass src:src",
+		"sass:w": "sass src:src --watch",
+		"serve": "serve docs",
+		"start": "concurrently npm:webpack:w npm:gulp:w npm:serve",
+		"test": "xo && npm run ava",
+		"webpack:b": "webpack -c webpack-config.js --env=production",
+		"webpack:w": "webpack -c webpack-config.js -w"
+	},
+	"sideEffects": false,
+	"version": "1.0.0"
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sort json5 by its keys</title>
+		<meta charset="UTF-8" />
+		<link href="./style.css" rel="stylesheet" type="text/css" />
+		<script type="module" src="./script.js" defer></script>
+		<script
+			data-goatcounter="https://lusc.goatcounter.com/count"
+			async
+			src="//gc.zgo.at/count.js"
+		></script>
+	</head>
+	<body>
+		<div class="app">
+			<textarea id="input" placeholder="Paste JSON5 here">{}</textarea>
+			<div id="pretty-wrapper" class="input-wrapper">
+				<label for="pretty">Pretty print</label>
+				<input type="checkbox" id="pretty" checked />
+			</div>
+			<div id="indent-wrapper" class="input-wrapper">
+				<label>Indent</label>
+				<input type="number" id="indent" value="2" />
+			</div>
+			<div id="errors"></div>
+			<textarea id="output" readonly></textarea>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+@import '../vars';
+
+.workout-details {
+	color: $text-white;
+
+	background: $card-background;
+	border-radius: $card-border-radius;
+
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+
+	margin-top: 2.8vmin;
+	padding: 2.5vmin 3.4vmin;
+
+	.workout-details-title {
+		margin-bottom: 1em;
+	}
+
+	.table {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		.table-value,
+		.table-explanation {
+			text-align: center;
+			width: 100%;
+		}
+
+		.row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+			align-items: center;
+
+			> div {
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+			}
+		}
+
+		.table-explanation {
+			font-size: 0.7em;
+			color: $table-small-explanation;
+		}
+
+		svg {
+			height: 1.5em;
+		}
+
+		hr {
+			width: 100%;
+			border: none;
+			border-bottom: 1px solid $border-color;
+		}
+		.vertical-border {
+			color: $border-color;
+		}
+	}
+}

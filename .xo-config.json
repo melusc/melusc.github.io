@@ -1,0 +1,62 @@
+{
+	"envs": ["browser", "es2020"],
+	"extends": ["xo-react"],
+	"ignores": ["/docs/"],
+	"overrides": [
+		{
+			"env": ["es2020", "node"],
+			"files": ["./*.js"],
+			"rules": {
+				"camelcase": "off"
+			}
+		},
+		{
+			"env": ["es2020", "node"],
+			"files": ["./test/**/*.test.js", "./test/**/*.test.ts"],
+			"rules": {
+				"max-nested-callbacks": "off",
+				"no-mixed-operators": "off"
+			}
+		},
+		{
+			"files": ["**/*.{ts,tsx}"],
+			"rules": {
+				"@typescript-eslint/indent": "off",
+				"@typescript-eslint/no-explicit-any": "error",
+				"@typescript-eslint/quotes": [
+					"error",
+					"single",
+					{
+						"avoidEscape": true
+					}
+				],
+				"node/prefer-global/process": "off"
+			}
+		}
+	],
+	"parser": "@typescript-eslint/parser",
+	"rules": {
+		"indent": "off",
+		"react/jsx-curly-newline": "off",
+		"react/jsx-indent": "off",
+		"react/jsx-tag-spacing": [
+			"error",
+			{
+				"beforeSelfClosing": "always"
+			}
+		],
+		"react/no-unknown-property": [
+			"error",
+			{
+				"ignore": ["class", "stroke-linecap", "stroke-linejoin", "stroke-width"]
+			}
+		],
+		"unicorn/prefer-module": "off"
+	},
+	"settings": {
+		"react": {
+			"pragma": "h",
+			"pragmaFrag": "Fragment"
+		}
+	}
+}

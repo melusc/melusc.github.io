@@ -1,0 +1,50 @@
+@import '../vars';
+
+.time-overview {
+	color: $text-white;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	background-color: $card-background;
+	border-radius: $card-border-radius;
+	margin-top: 20px;
+	padding: 7vmin 0;
+
+	.duration {
+		font: 1.9em Orbitron;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		input {
+			width: 80%;
+			text-align: center;
+		}
+	}
+
+	.distance {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 80%;
+
+		input {
+			width: 6ch;
+			display: inline;
+			text-align: right;
+			margin-right: 2px;
+		}
+
+		.vertical-border {
+			margin: 0 10px;
+		}
+	}
+
+	small {
+		margin-left: 2px;
+		font-size: 70%;
+	}
+}
