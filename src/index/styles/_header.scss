@@ -1,0 +1,12 @@
+header {
+	background-color: $card;
+	padding: 1.5em 1em;
+
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
+
+	svg {
+		height: 1.7em;
+	}
+}

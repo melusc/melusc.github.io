@@ -1,0 +1,89 @@
+[
+	{
+		"key": "projects",
+		"text": "Projects",
+		"type": "title"
+	},
+	{
+		"description": "A sudoku solver that can solve even evil sudokus using multiple strategies such as \"Hidden Pairs\", \"Naked Pairs\", and \"Pointing Arrows\".",
+		"href": "/sudoku/",
+		"key": "sudoku-solver",
+		"text": "Sudoku Solver",
+		"type": "anchor"
+	},
+	{
+		"description": "A little page which imitates Samsung Health, but instead of actually exercising you can just modify the values right from your sofa. I made this so I don't have to do PE homework when I don't feel like doing it.",
+		"href": "/fake-fitness-app/",
+		"key": "fake-fitness-app",
+		"text": "Fake Fitness App",
+		"type": "anchor"
+	},
+	{
+		"description": "A simple page in which you can convert hex from and to rgb(a).",
+		"href": "/hexToRgb/",
+		"key": "hex-to-rgb",
+		"text": "Hex-Rgb converter",
+		"type": "anchor"
+	},
+	{
+		"description": "Find the greatest common divisor of any amount of numbers.",
+		"href": "/gcd/",
+		"key": "gcd",
+		"text": "Greatest Common Divisor",
+		"type": "anchor"
+	},
+	{
+		"description": "Find the least common multiple of any amount of numbers.",
+		"href": "/lcm/",
+		"key": "lcm",
+		"text": "Least Common Multiple",
+		"type": "anchor"
+	},
+	{
+		"description": "A clock which is made up of a bunch of bars that are constantly shifting up and down to display the time.",
+		"href": "/line-clock/",
+		"key": "line-clock",
+		"text": "Line Clock",
+		"type": "anchor"
+	},
+	{
+		"description": "A tool which allows you to sort json5 by it's keys.",
+		"href": "/sort-json5-keys/",
+		"key": "sort-json5-keys",
+		"text": "Sort JSON5",
+		"type": "anchor"
+	},
+	{
+		"description": "A page where you can see the amount of time left until summer holidays (in Switzerland).",
+		"href": "/time-to-summer-holidays-preact/",
+		"key": "time-to-summer-holidays-preact",
+		"text": "Countdown to Summer Holidays",
+		"type": "anchor"
+	},
+	{
+		"description": "A triangle that moves around and flashes.",
+		"href": "/animatedTriangle/",
+		"key": "animated-triangle",
+		"text": "Animated Triangle",
+		"type": "anchor"
+	},
+	{
+		"key": "also-see",
+		"text": "Also see",
+		"type": "title"
+	},
+	{
+		"description": "An extension for Firefox that allows you to get a summary of your marks from schulNetz and tells you if you're passing or failing.",
+		"href": "https://github.com/melusc/schulnetz-extension/",
+		"key": "schulnetz-extension",
+		"text": "schulNetz extension",
+		"type": "anchor"
+	},
+	{
+		"description": "A bunch of userscripts that improve the experience on moodle like hiding unused courses from the sidebar (Clean Moodle) or adding icons to courses on the sidebar (Custom Icons).",
+		"href": "https://github.com/melusc/moodle_userscripts/",
+		"key": "moodle-userscripts",
+		"text": "Moodle Userscripts",
+		"type": "anchor"
+	}
+]

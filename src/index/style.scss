@@ -1,0 +1,32 @@
+@import 'vars';
+@import 'styles/projects';
+@import 'styles/header';
+
+html {
+	font-size: 20px;
+	font-family: 'Segoe UI', 'Open Sans', 'sans-serif';
+	scroll-behavior: smooth;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+a {
+	color: $anchor;
+}
+
+html,
+body,
+main {
+	background-color: $bg;
+	color: $text;
+}
+
+@font-face {
+	font-family: 'Open sans';
+	src: local('Open Sans'), local('Open-Sans'),
+		url('/fonts/OpenSans-Regular.ttf') format('TrueType');
+}
