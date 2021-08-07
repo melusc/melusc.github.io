@@ -29,4 +29,5 @@ main {
 	font-family: 'Open sans';
 	src: local('Open Sans'), local('Open-Sans'),
 		url('/fonts/OpenSans-Regular.ttf') format('TrueType');
+	font-display: swap;
 }
