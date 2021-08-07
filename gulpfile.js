@@ -11,6 +11,7 @@ const gulpif = require('gulp-if');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const lazypipe = require('lazypipe');
+const jsonminify = require('gulp-jsonminify');
 
 const PATHS = {
 	DEST: './docs',
@@ -22,6 +23,7 @@ const PATHS = {
 	HTML: ['./src/**/*.html'],
 	JS: ['./src/**/*.js'],
 	SCSS: ['./src/**/*.scss'],
+	JSON: ['./src/**/*.json'],
 	SOURCEMAPS_DEST: './',
 	SVG: ['./src/**/*.svg', '!./src/**/*.min.svg'],
 	SVG_DEST: './src',
@@ -106,22 +108,21 @@ const minSvg = () => {
 		.pipe(dest(PATHS.DEST));
 };
 
+const minJson = () => src(PATHS.JSON).pipe(jsonminify()).pipe(dest(PATHS.DEST));
+
 const build = series(
 	setProductionEnvironment,
-	parallel(minSvg, minHTML, compSCSS),
+	parallel(minSvg, minHTML, compSCSS, minJson),
 );
 
 const watchFunction = () => {
 	watch(PATHS.SCSS, compSCSS);
 	watch(PATHS.HTML, minHTML);
 	watch(PATHS.SVG, minSvg);
+	watch(PATHS.JSON, minJson);
 };
 
-const start = series(
-	setDevelopmentEnvironment,
-	parallel(minSvg, minHTML, compSCSS),
-	watchFunction,
-);
+const start = series(build, setDevelopmentEnvironment, watchFunction);
 
 exports.default = build;
 exports.build = build;
