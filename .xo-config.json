@@ -37,6 +37,7 @@
 	"parser": "@typescript-eslint/parser",
 	"rules": {
 		"indent": "off",
+		"no-mixed-spaces-and-tabs": "off",
 		"react/jsx-curly-newline": "off",
 		"react/jsx-indent": "off",
 		"react/jsx-tag-spacing": [
