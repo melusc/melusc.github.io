@@ -21,7 +21,7 @@ document.body.classList.toggle('light', !themeShouldBeDark);
 
 themeToggle.checked = themeShouldBeDark;
 
-const summerHolidays = new Date(2021, 6, 8, 14, 40, 0);
+const summerHolidays = new Date(2022, 6, 7, 14, 40, 0);
 summerHolidays.setUTCHours(12);
 
 const summerHolidaysTime = summerHolidays.getTime();
