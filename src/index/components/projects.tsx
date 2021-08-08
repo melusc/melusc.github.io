@@ -34,7 +34,9 @@ const Project = ({project}: {project: ProjectType}) => {
 	if (project.type === 'title') {
 		return (
 			<div class="project-row title">
-				<a href={id}>#</a>
+				<a href={id} class="id-anchor">
+					#
+				</a>
 				<h1 id={key}>{text}</h1>
 			</div>
 		);
@@ -44,7 +46,9 @@ const Project = ({project}: {project: ProjectType}) => {
 
 	return (
 		<div class="project-row">
-			<a href={id}>#</a>
+			<a href={id} class="id-anchor">
+				#
+			</a>
 			<div class="project" id={key}>
 				<a href={href}>{text}</a>
 				<div>{description}</div>
