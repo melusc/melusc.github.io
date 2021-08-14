@@ -29,14 +29,8 @@ const PATHS = {
 	SVG_DEST: './src',
 };
 
-const setDevelopmentEnvironment = done => {
-	process.env.GULP_ENV = 'development';
-
-	done();
-};
-
-const setProductionEnvironment = done => {
-	process.env.GULP_ENV = 'production';
+const setEnv = env => done => {
+	process.env.GULP_ENV = env;
 
 	done();
 };
@@ -111,7 +105,7 @@ const minSvg = () => {
 const minJson = () => src(PATHS.JSON).pipe(jsonminify()).pipe(dest(PATHS.DEST));
 
 const build = series(
-	setProductionEnvironment,
+	setEnv('production'),
 	parallel(minSvg, minHTML, compSCSS, minJson),
 );
 
@@ -122,7 +116,7 @@ const watchFunction = () => {
 	watch(PATHS.JSON, minJson);
 };
 
-const start = series(build, setDevelopmentEnvironment, watchFunction);
+const start = series(build, setEnv('development'), watchFunction);
 
 exports.default = build;
 exports.build = build;
