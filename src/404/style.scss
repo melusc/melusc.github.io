@@ -1,0 +1,49 @@
+$background: #151a1e;
+$color: #ddd;
+$blue: #587ef8;
+
+html {
+	background-color: $background;
+	color: $color;
+	font-family: 'Segoe UI', 'Open Sans', 'sans-serif';
+
+	font-size: 45px;
+	text-align: center;
+
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+
+	display: grid;
+	grid-template-rows: 1fr auto;
+	justify-content: center;
+}
+
+main {
+	align-self: center;
+}
+
+footer {
+	align-self: flex-end;
+	padding: 1em;
+}
+
+.emphasise {
+	color: $blue;
+}
+
+a {
+	color: $blue;
+	font-size: 0.5em;
+}
+
+@font-face {
+	font-family: 'Open sans';
+	src: local('Open Sans'), local('Open-Sans'),
+		url('/fonts/OpenSans-Regular.ttf') format('TrueType');
+	font-display: swap;
+}
