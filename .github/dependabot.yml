@@ -10,5 +10,6 @@ updates:
     schedule:
       interval: 'weekly'
       day: 'friday'
+
     # Basically no limit
     open-pull-requests-limit: 50
