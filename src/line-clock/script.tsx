@@ -31,7 +31,7 @@ const date = new Date();
 class App extends Component<Record<string, unknown>, AppState> {
 	requestAnimationFrameId = 0;
 
-	state: AppState = {
+	override state: AppState = {
 		hour: toTimeValue(date.getHours()),
 		min: toTimeValue(date.getMinutes()),
 		sec: toTimeValue(date.getSeconds()),
@@ -49,11 +49,11 @@ class App extends Component<Record<string, unknown>, AppState> {
 		this.requestAnimationFrameId = requestAnimationFrame(this.update);
 	};
 
-	componentWillUnmount = () => {
+	override componentWillUnmount = () => {
 		cancelAnimationFrame(this.requestAnimationFrameId);
 	};
 
-	componentDidMount = () => {
+	override componentDidMount = () => {
 		this.update();
 	};
 

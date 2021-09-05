@@ -85,7 +85,7 @@ const rgbaLabels: ReadonlySet<RgbaLabels> = new Set([
 ]);
 
 class App extends Component<Record<string, unknown>, AppState> {
-	state: AppState = {
+	override state: AppState = {
 		inputs: {
 			hex: '',
 			red: '',
@@ -186,7 +186,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 		);
 	};
 
-	componentDidMount = () => {
+	override componentDidMount = () => {
 		addEventListener('hashchange', this.handleHashChange);
 
 		// If there is already a hash
@@ -194,7 +194,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 		this.handleHashChange();
 	};
 
-	componentWillUnmount = () => {
+	override componentWillUnmount = () => {
 		removeEventListener('hashchange', this.handleHashChange);
 	};
 
@@ -261,7 +261,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 		this.handleRgbaInput(label, value);
 	};
 
-	handleHashChange = (event_?: HashChangeEvent) => {
+	handleHashChange = (event_?: Event) => {
 		let hex = location.hash;
 		hex = sanitiseHex(hex);
 

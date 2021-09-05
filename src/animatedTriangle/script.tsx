@@ -6,7 +6,7 @@ type MainState = {
 };
 
 class Main extends Component<Record<string, unknown>, MainState> {
-	state: MainState = {
+	override state: MainState = {
 		posX: 0,
 		colour: 0,
 	};
@@ -51,7 +51,7 @@ class Main extends Component<Record<string, unknown>, MainState> {
 		requestAnimationFrame(this.frame);
 	};
 
-	componentDidMount = () => {
+	override componentDidMount = () => {
 		this.frame();
 	};
 }

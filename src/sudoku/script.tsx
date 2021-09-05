@@ -92,7 +92,7 @@ const sudokus = {
 class App extends Component<Record<string, unknown>, AppState> {
 	#sudokuClass = new Sudoku(sudokus.expert);
 
-	state: AppState = {
+	override state: AppState = {
 		cells: this.#sudokuClass.getCells(),
 		error: undefined,
 		focused: 0,
@@ -139,11 +139,11 @@ class App extends Component<Record<string, unknown>, AppState> {
 		});
 	}
 
-	componentDidMount = () => {
+	override componentDidMount = () => {
 		document.addEventListener('keydown', this.handleKeyDown);
 	};
 
-	componentWillUnmount = () => {
+	override componentWillUnmount = () => {
 		document.removeEventListener('keydown', this.handleKeyDown);
 	};
 

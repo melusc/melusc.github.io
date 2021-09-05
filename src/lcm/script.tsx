@@ -14,7 +14,7 @@ type AppState = {
 };
 
 class App extends Component<Record<string, unknown>, AppState> {
-	state: AppState = {
+	override state: AppState = {
 		state: States.valid,
 		inputValue: '',
 		outputValue: '',
