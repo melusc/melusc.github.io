@@ -57,7 +57,7 @@
 		"gulp-svgmin": "^4.0.1",
 		"html-webpack-plugin": "^5.3.2",
 		"lazypipe": "^1.0.2",
-		"prettier": "^2.3.2",
+		"prettier": "^2.4.0",
 		"sass": "^1.39.0",
 		"serve": "^12.0.0",
 		"terser-webpack-plugin": "^5.2.3",
