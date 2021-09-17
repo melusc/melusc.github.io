@@ -20,7 +20,7 @@
 	"dependencies": {
 		"@babel/runtime": "^7.15.4",
 		"clsx": "^1.1.1",
-		"dayjs": "^1.10.6",
+		"dayjs": "^1.10.7",
 		"hex-rgb": "^5.0.0",
 		"immer": "^9.0.6",
 		"json5": "^2.2.0",
