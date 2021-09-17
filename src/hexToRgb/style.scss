@@ -5,9 +5,7 @@ $cyan: #3c79b2;
 $font-colour: #111;
 $gradient: (#12c2e9, #c471ed, #f7797d);
 
-@use 'rainbow' with(
-  $gradient: $gradient,
-);
+@use 'rainbow' with($gradient: $gradient);
 
 * {
 	box-sizing: border-box;
