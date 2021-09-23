@@ -23,7 +23,7 @@ const fetchFolders = async (): Promise<ProjectsType> =>
 			throw new Error(response.statusText);
 		}
 
-		return response.json() as unknown as ProjectsType;
+		return response.json() as Promise<ProjectsType>;
 	});
 
 const Project = ({project}: {project: ProjectType}) => {
