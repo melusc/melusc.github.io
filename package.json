@@ -38,7 +38,7 @@
 		"@sindresorhus/tsconfig": "^2.0.0",
 		"@types/lodash-es": "^4.17.5",
 		"@typescript-eslint/parser": "^4.32.0",
-		"autoprefixer": "^10.3.6",
+		"autoprefixer": "^10.3.7",
 		"ava": "^3.15.0",
 		"babel-loader": "^8.2.2",
 		"clean-webpack-plugin": "^4.0.0",
