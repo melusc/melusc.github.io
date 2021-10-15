@@ -30,12 +30,14 @@
 						"avoidEscape": true
 					}
 				],
-				"node/prefer-global/process": "off"
+				"node/prefer-global/process": "off",
+				"@typescript-eslint/naming-convention": "off"
 			}
 		}
 	],
 	"parser": "@typescript-eslint/parser",
 	"rules": {
+		"no-bitwise": "off",
 		"indent": "off",
 		"no-mixed-spaces-and-tabs": "off",
 		"react/jsx-curly-newline": "off",

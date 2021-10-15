@@ -1,10 +1,10 @@
-const knownGCD: Record<string, bigint> = {};
+const knownGcd: Record<string, bigint> = {};
 
-type expectedNumber = number | bigint;
+type ExpectedNumber = number | bigint;
 
-export const absBigInt = (n: expectedNumber) => BigInt(n < 0 ? -n : n);
+export const absBigInt = (n: ExpectedNumber) => BigInt(n < 0 ? -n : n);
 
-export const gcd = (a_: expectedNumber, b_: expectedNumber): bigint => {
+export const gcd = (a_: ExpectedNumber, b_: ExpectedNumber): bigint => {
 	const a = absBigInt(a_);
 
 	const b = absBigInt(b_);
@@ -14,8 +14,8 @@ export const gcd = (a_: expectedNumber, b_: expectedNumber): bigint => {
 
 	const key = `${dividend},${divisor}`;
 
-	if (key in knownGCD) {
-		return knownGCD[key]!;
+	if (key in knownGcd) {
+		return knownGcd[key]!;
 	}
 
 	let leftover = 1n;
@@ -28,15 +28,15 @@ export const gcd = (a_: expectedNumber, b_: expectedNumber): bigint => {
 		}
 	}
 
-	knownGCD[key] = divisor;
+	knownGcd[key] = divisor;
 
 	return divisor;
 };
 
-export const lcm = (a: expectedNumber, b: expectedNumber) =>
+export const lcm = (a: ExpectedNumber, b: ExpectedNumber) =>
 	(absBigInt(a) * absBigInt(b)) / gcd(a, b);
 
-export const lcmArray = (array: expectedNumber[]): string => {
+export const lcmArray = (array: ExpectedNumber[]): string => {
 	switch (array.length) {
 		case 0: {
 			return '';

@@ -1,4 +1,4 @@
-const knownGCD: Record<string, number> = {};
+const knownGcd: Record<string, number> = {};
 
 export const gcd = (a_: number, b_: number): number => {
 	const bothNegative = a_ < 0 && b_ < 0;
@@ -11,8 +11,8 @@ export const gcd = (a_: number, b_: number): number => {
 
 	const key = `${dividend},${divisor}`;
 
-	if (key in knownGCD) {
-		return knownGCD[key]!;
+	if (key in knownGcd) {
+		return knownGcd[key]!;
 	}
 
 	let leftover = 1;
@@ -29,7 +29,7 @@ export const gcd = (a_: number, b_: number): number => {
 		divisor *= -1;
 	}
 
-	knownGCD[key] = divisor;
+	knownGcd[key] = divisor;
 
 	return divisor;
 };
