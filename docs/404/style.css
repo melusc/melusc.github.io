@@ -1,2 +1,0 @@
-body,html{height:100%;width:100%}html{background-color:#151a1e;color:#ddd;font-family:"Segoe UI","Open Sans","sans-serif";font-size:45px;text-align:center}body{display:grid;grid-template-rows:1fr auto;justify-content:center}main{align-self:center}footer{align-self:flex-end;padding:1em}.emphasise,a{color:#587ef8}a{font-size:.5em}@font-face{font-family:"Open sans";src:local("Open Sans"),local("Open-Sans"),url(/fonts/OpenSans-Regular.ttf) format("TrueType");font-display:swap}
-/*# sourceMappingURL=style.css.map */
