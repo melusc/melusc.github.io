@@ -19,8 +19,6 @@ const PATHS = {
 		'./src/**/favicon.ico',
 		'./src/**/favicon.png',
 	],
-	HTML: ['./src/**/*.html'],
-	JS: ['./src/**/*.js'],
 	SCSS: ['./src/**/*.scss'],
 	JSON: ['./src/**/*.json'],
 	SOURCEMAPS_DEST: './',
