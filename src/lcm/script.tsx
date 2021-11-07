@@ -37,7 +37,8 @@ class App extends Component<Record<string, unknown>, AppState> {
 	setTimeout = (input: number[]) => {
 		this.clearTimeout();
 
-		this.timeout = setTimeout(this.calcOutput, 100, input);
+		// Window.setTimeout definitely returns number for typescript
+		this.timeout = window.setTimeout(this.calcOutput, 100, input);
 	};
 
 	render = () => {
