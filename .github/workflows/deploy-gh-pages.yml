@@ -18,6 +18,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Check code style
+        run: |
+          yarn xo
+          yarn prettier -c . "!{**/*,*}.{js,ts}{x,}"
+
       - name: CI tests
         run: yarn run ava
 
