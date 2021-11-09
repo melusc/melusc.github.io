@@ -10,6 +10,8 @@ import {
 } from '../scripts/date-functions';
 import {Run} from './icons';
 
+import '../styles/workout-details.scss';
+
 const toSpeed = (duration: string, distance: string): string | false => {
 	const durationInSeconds = calcDurationSecondsSinceMidnight(duration);
 

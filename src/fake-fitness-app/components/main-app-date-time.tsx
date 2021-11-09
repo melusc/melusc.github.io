@@ -4,6 +4,8 @@ import * as dayjs from 'dayjs';
 import * as customParseFormat from 'dayjs/plugin/customParseFormat';
 import clsx from 'clsx';
 
+import '../styles/main-app-date-time.scss';
+
 import {
 	calcDurationSecondsSinceMidnight,
 	dateValid,

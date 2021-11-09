@@ -6,6 +6,8 @@ import {Wifi, Bluetooth, Signal} from './icons';
 import {Battery} from './battery';
 import {TimeInput} from './time-input';
 
+import '../styles/notification-bar.scss';
+
 dayjs.extend(customParseFormat);
 
 export const NotificationBar = (): h.JSX.Element => (

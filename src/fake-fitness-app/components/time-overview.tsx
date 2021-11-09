@@ -11,6 +11,8 @@ import {
 } from '../scripts/date-functions';
 import * as CONSTS from '../scripts/consts';
 
+import '../styles/time-overview.scss';
+
 dayjs.extend(customParseFormat);
 
 const invalid = `invalid__${Math.random()}`;
