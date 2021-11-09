@@ -1,5 +1,7 @@
 import {h} from 'preact';
-import {useEffect, useState} from 'preact/hooks';
+import {useEffect} from 'preact/hooks';
+
+import projects_ from '../projects.json';
 
 type ProjectType = (
 	| {
@@ -17,14 +19,7 @@ type ProjectType = (
 };
 type ProjectsType = ProjectType[];
 
-const fetchFolders = async (): Promise<ProjectsType> =>
-	fetch('/index/projects.json').then(async response => {
-		if (!response.ok) {
-			throw new Error(response.statusText);
-		}
-
-		return response.json() as Promise<ProjectsType>;
-	});
+const projects = projects_ as ProjectsType;
 
 const Project = ({project}: {project: ProjectType}) => {
 	const {text, key} = project;
@@ -59,23 +54,6 @@ const Project = ({project}: {project: ProjectType}) => {
 };
 
 export const Projects = () => {
-	const [folderNames, setFolderNames] = useState<ProjectsType | undefined>(
-		undefined,
-	);
-	const [errorMessage, setErrorMessage] = useState<string | undefined>(
-		undefined,
-	);
-
-	useEffect(() => {
-		fetchFolders()
-			.then(folders => {
-				setFolderNames(folders);
-			})
-			.catch((error: Error) => {
-				setErrorMessage(error.message);
-			});
-	}, []);
-
 	useEffect(() => {
 		if (location.hash) {
 			try {
@@ -84,15 +62,11 @@ export const Projects = () => {
 				console.error(error);
 			}
 		}
-	}, [folderNames]);
-
-	if (typeof errorMessage === 'string') {
-		return <div class="error">{errorMessage}</div>;
-	}
+	}, []);
 
 	return (
 		<div class="projects">
-			{folderNames?.map(project => (
+			{projects.map(project => (
 				<Project
 					key={project.key /* this has to be unique since they're folders */}
 					project={project}

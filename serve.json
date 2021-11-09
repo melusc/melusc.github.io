@@ -1,5 +1,0 @@
-{
-	"cleanUrls": true,
-	"public": "docs",
-	"unlisted": ["*.css", "*.js", "*.yml", "*.json"]
-}

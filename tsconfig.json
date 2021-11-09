@@ -10,7 +10,8 @@
 		"rootDir": ".",
 		"sourceMap": true,
 		"strict": true,
-		"target": "ESNext"
+		"target": "ESNext",
+		"resolveJsonModule": true
 	},
 	"extends": "@sindresorhus/tsconfig"
 }

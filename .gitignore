@@ -3,3 +3,4 @@
 /dist/
 *.min.svg
 /docs/
+/.parcel-cache/
