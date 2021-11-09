@@ -41,7 +41,7 @@ module.exports = environment => ({
 	],
 	output: {
 		path: path.resolve(__dirname, 'docs'),
-		filename: '[name].[chunkhash].js',
+		filename: '[name].[fullhash].js',
 		hashFunction: 'xxhash64',
 	},
 	cache: {
