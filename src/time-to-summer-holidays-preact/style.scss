@@ -46,6 +46,8 @@ $text-light: #24292e;
 			> #dark {
 				opacity: 0;
 			}
+
+			// Strictly not necessary, since it defaults to this
 			> #light {
 				opacity: 1;
 			}
