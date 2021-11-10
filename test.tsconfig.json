@@ -2,7 +2,7 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"extends": "./tsconfig.json",
 	"compilerOptions": {
-		"outDir": "dist",
+		"outDir": "dist/test",
 		"module": "commonjs"
 	},
 	"include": ["test/**/*.ts"]
