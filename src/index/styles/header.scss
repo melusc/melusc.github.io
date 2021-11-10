@@ -6,8 +6,21 @@ header {
 	padding: 1.5em 1em;
 
 	display: grid;
-	grid-template-columns: 1fr auto;
+	grid-template-columns: auto 1fr auto;
 	align-items: center;
+
+	.header-start {
+		grid-column: 1;
+	}
+	.header-end {
+		grid-column: 3;
+		justify-content: flex-end;
+	}
+	.header-end,
+	.header-start {
+		display: flex;
+		align-items: center;
+	}
 
 	box-shadow: 0 2px 7px color.adjust($card, $lightness: -7%);
 
