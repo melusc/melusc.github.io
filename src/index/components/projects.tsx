@@ -2,6 +2,7 @@ import {h} from 'preact';
 import {useEffect} from 'preact/hooks';
 
 import projects_ from '../projects.json';
+import '../styles/projects.scss';
 
 type ProjectType = (
 	| {
