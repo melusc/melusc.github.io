@@ -70,7 +70,7 @@ test('hiddenPairs should find the only cell that can have "1".', t => {
 	t.deepEqual(s.getCell(1 * 9).possible, new Set(['1']));
 });
 
-test(" hiddenPairs should not modify any cells if there aren't any hidden pairs.", t => {
+test("hiddenPairs should not modify any cells if there aren't any hidden pairs.", t => {
 	const unmodifiedSudoku = new Sudoku();
 	const s = new Sudoku();
 
@@ -98,4 +98,45 @@ test(" hiddenPairs should not modify any cells if there aren't any hidden pairs.
 	hiddenPairs(s);
 
 	t.deepEqual(getComparableCells(s), getComparableCells(unmodifiedSudoku));
+});
+
+test('hiddenPairs should find an incomplete hidden pair', t => {
+	const s = new Sudoku();
+
+	// The hidden pair is [7, 8, 9]
+
+	const possibles = [
+		['1', '2', '3', '4', '5', '6', '7', '8'], // #1, missing 9, though
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'], // #2
+		['1', '2', '3', '4', '5', '6'],
+		['1', '2', '3', '4', '5', '6'],
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'], // #3
+		['1', '2', '3', '4', '5', '6'],
+		['1', '2', '3', '4', '5', '6'],
+		['1', '2', '3', '4', '5', '6'],
+		['1', '2', '3', '4', '5', '6'],
+	];
+
+	const block = s.getBlock(0);
+
+	for (const [i, possible] of possibles.entries()) {
+		block[i]!.possible = new Set(possible);
+	}
+
+	hiddenPairs(s);
+
+	t.deepEqual(
+		block.map(({possible}) => [...possible]),
+		[
+			['7', '8', '9'],
+			['7', '8', '9'],
+			['1', '2', '3', '4', '5', '6'],
+			['1', '2', '3', '4', '5', '6'],
+			['7', '8', '9'],
+			['1', '2', '3', '4', '5', '6'],
+			['1', '2', '3', '4', '5', '6'],
+			['1', '2', '3', '4', '5', '6'],
+			['1', '2', '3', '4', '5', '6'],
+		],
+	);
 });

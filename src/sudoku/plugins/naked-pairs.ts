@@ -25,23 +25,26 @@ const genericNakedPairsSolver = (
 
 				summary.set(index, key);
 			} else {
-				summary.set(
-					index,
-					(summary.get(index) ?? 0) | (2 ** (Number(cell.content) - 1)),
-				);
+				summary.set(index, 2 ** (Number(cell.content) - 1));
 			}
 		}
 
-		const equalKeys = new Map<number, number[]>();
-		for (const [index, key] of summary) {
-			let array = equalKeys.get(key);
+		const equalKeys: Array<[numbers: number, indices: number[]]> = [];
+		for (const [index, numbers] of summary) {
+			let exactMatchFound = false;
+			for (const equalKey of equalKeys) {
+				const [numbersMask, indices] = equalKey;
 
-			if (!array) {
-				array = [];
-				equalKeys.set(key, array);
+				if ((numbers & numbersMask) === numbers) {
+					indices.push(index);
+
+					exactMatchFound ||= numbers === numbersMask;
+				}
 			}
 
-			array.push(index);
+			if (!exactMatchFound) {
+				equalKeys.push([numbers, [index]]);
+			}
 		}
 
 		for (const [key, indices] of equalKeys) {

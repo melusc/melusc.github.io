@@ -53,21 +53,29 @@ const genericHiddenPairsSolver = (
 			}
 		}
 
-		const equalIndexes = new Map<number, string[]>();
+		const equalIndexes: Array<[number, string[]]> = [];
 
 		for (const [number, key] of summary) {
 			if (bitCount(key) > 8) {
 				continue;
 			}
 
-			let equalIndex = equalIndexes.get(key);
+			let exactMatchFound = false;
 
-			if (!equalIndex) {
-				equalIndex = [];
-				equalIndexes.set(key, equalIndex);
+			for (const equalIndex of equalIndexes) {
+				const [curKey, indices] = equalIndex;
+
+				if ((key | curKey) === key || (key | curKey) === curKey) {
+					equalIndex[0] |= key;
+					indices.push(number);
+
+					exactMatchFound ||= key === curKey;
+				}
 			}
 
-			equalIndex.push(number);
+			if (!exactMatchFound) {
+				equalIndexes.push([key, [number]]);
+			}
 		}
 
 		for (const [key, numbers] of equalIndexes) {

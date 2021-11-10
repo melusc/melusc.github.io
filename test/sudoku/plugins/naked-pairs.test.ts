@@ -172,3 +172,43 @@ test('nakedPairs should nearly solve [5, 7, 8, 1, 2, _, 3, _, 6].', t => {
 
 	t.deepEqual(cell2.possible, new Set(['4', '9']));
 });
+
+test('nakedPairs should find an incomplete naked pair', t => {
+	const s = new Sudoku();
+
+	// The naked pair is [1, 2, 4]
+
+	const possibles = [
+		['1', '2', '4'], // #1
+		['1', '2', '4'], // #2
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+		['1', '4'], // #3, missing 2, though
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+	];
+
+	const block = s.getBlock(0);
+	for (const [i, possible] of possibles.entries()) {
+		block[i]!.possible = new Set(possible);
+	}
+
+	nakedPairs(s);
+
+	t.deepEqual(
+		block.map(({possible}) => [...possible]),
+		[
+			['1', '2', '4'], // #1
+			['1', '2', '4'], // #2
+			['3', '5', '6', '7', '8', '9'],
+			['3', '5', '6', '7', '8', '9'],
+			['1', '4'], // #3
+			['3', '5', '6', '7', '8', '9'],
+			['3', '5', '6', '7', '8', '9'],
+			['3', '5', '6', '7', '8', '9'],
+			['3', '5', '6', '7', '8', '9'],
+		],
+	);
+});
