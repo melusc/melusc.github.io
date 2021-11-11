@@ -32,13 +32,16 @@ const genericNakedPairsSolver = (
 		const equalKeys: Array<[numbers: number, indices: number[]]> = [];
 		for (const [index, numbers] of summary) {
 			let exactMatchFound = false;
-			for (const equalKey of equalKeys) {
-				const [numbersMask, indices] = equalKey;
+			for (let i = 0; i < equalKeys.length; ++i) {
+				const [numbersMask, indices] = equalKeys[i]!;
 
 				if ((numbers & numbersMask) === numbers) {
 					indices.push(index);
 
 					exactMatchFound ||= numbers === numbersMask;
+				} else if ((numbers & numbersMask) === numbersMask) {
+					equalKeys.splice(i, 0, [numbersMask | numbers, [...indices, index]]);
+					++i;
 				}
 			}
 
@@ -60,7 +63,6 @@ const genericNakedPairsSolver = (
 				const numberString = `${number + 1}`;
 
 				for (const [index, cell] of structure.entries()) {
-					// eslint-disable-next-line max-depth
 					if (!indices.includes(index) && cell.possible.has(numberString)) {
 						anyChanged = true;
 

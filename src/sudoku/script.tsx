@@ -173,7 +173,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 						</div>
 					))}
 				</div>
-				{typeof error !== 'undefined' && (<div class="error">{error}</div>)}
+				{typeof error !== 'undefined' && <div class="error">{error}</div>}
 				<button
 					type="button"
 					title="Solve sudoku"
