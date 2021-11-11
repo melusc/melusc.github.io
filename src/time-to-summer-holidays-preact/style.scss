@@ -10,9 +10,14 @@ $text-light: #24292e;
 	transition-timing-function: ease-in-out;
 }
 
+html,
+body,
+.center-content {
+	height: 100%;
+}
+
 .center-content {
 	display: flex;
-	min-height: 100vh;
 	justify-content: center;
 	align-items: center;
 }
@@ -80,69 +85,10 @@ $text-light: #24292e;
 		font-size: 1.3em;
 	}
 }
-.gh-corner:hover .octo-arm {
-	animation: octocat-wave 560ms ease-in-out;
-	transform-origin: 130px 106px;
-}
-@keyframes octocat-wave {
-	0%,
-	100% {
-		transform: rotate(0);
-	}
-	20%,
-	60% {
-		transform: rotate(10deg);
-	}
-	40%,
-	80% {
-		transform: rotate(-25deg);
-	}
-}
-@media (max-width: 500px) {
-	.gh-corner:hover .octo-arm {
-		animation: none;
-	}
-	.gh-corner .octo-arm {
-		animation: octocat-wave 560ms ease-in-out;
-	}
-}
 
-.gh-corner {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: calc(var(--svg-size) * 2);
-	height: calc(var(--svg-size) * 2);
-
-	* {
-		transition-property: fill;
-	}
-}
-.octo-arm,
-.octo-body {
-	fill: $bg-dark;
-}
-.gh-corner-bg {
-	fill: $bg-light;
-}
-
-body.light {
-	color: $text-light;
-	background-position: top left;
-
-	.octo-arm,
-	.octo-body {
-		fill: $bg-light;
-	}
-	.gh-corner-bg {
-		fill: $bg-dark;
-	}
-}
 body {
 	color: $text-dark;
 	background-position: bottom right;
-}
-body {
 	$bg-angle: 135deg;
 	$gradient-width: 3.5%;
 	$bg-size: 200% + $gradient-width * 1.2;
@@ -158,6 +104,11 @@ body {
 	background-size: $bg-size $bg-size;
 	text-align: center;
 	font: var(--font-size) 'Open sans', sans-serif;
+
+	&.light {
+		color: $text-light;
+		background-position: top left;
+	}
 }
 
 @mixin responsive-media($min-width) {
@@ -174,26 +125,20 @@ body {
 }
 
 :root {
-	--svg-size: 18.75vw;
-	--svg-margin: 20px 25px;
-	--font-size: 60px;
-	--root-margin: 25px;
+	--svg-size: 40px;
+	--svg-margin: 15px;
+	--font-size: 30px;
+	--root-margin: 10px;
 }
 @include responsive-media(840px) {
-	--svg-size: 10vw;
-	--svg-margin: 15px 20px;
-	--font-size: 50px;
-	--root-margin: 20px;
+	--font-size: 30px;
 }
 @include responsive-media(1100px) {
-	--svg-size: 5vw;
-	--svg-margin: 8px 10px;
-	--font-size: 40px;
+	--font-size: 30px;
 }
 @include responsive-media(1360px) {
-	--svg-size: 3vw;
-	--svg-margin: 5px 7px;
-	--font-size: 30px;
+	--font-size: 34px;
+	--svg-size: 50px;
 }
 
 html,
