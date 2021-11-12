@@ -39,7 +39,7 @@ const genericNakedPairsSolver = (
 					indices.push(index);
 
 					exactMatchFound ||= numbers === numbersMask;
-				} else if ((numbers & numbersMask) === numbersMask) {
+				} else if ((numbers & numbersMask) !== 0) {
 					equalKeys.splice(i, 0, [numbersMask | numbers, [...indices, index]]);
 					++i;
 				}
