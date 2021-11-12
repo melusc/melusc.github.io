@@ -18,7 +18,6 @@
 		}
 	},
 	"dependencies": {
-		"@babel/runtime": "^7.16.0",
 		"clsx": "^1.1.1",
 		"dayjs": "^1.10.7",
 		"hex-rgb": "^5.0.0",
