@@ -2,14 +2,13 @@ import test from 'ava';
 
 import {pointingArrows} from '../../../src/sudoku/plugins/pointing-arrows';
 import {Sudoku} from '../../../src/sudoku/sudoku';
-import type {SudokuInterface} from '../../../src/sudoku/sudoku.d';
 
 type ComparableCell = {
 	possible: Set<string>;
 	content: string | undefined;
 };
 
-const getComparableCells = (sudoku: SudokuInterface): ComparableCell[] =>
+const getComparableCells = (sudoku: Sudoku): ComparableCell[] =>
 	sudoku
 		.getCells()
 		.map(cell => ({content: cell.content, possible: cell.possible}));
@@ -66,7 +65,7 @@ test('pointingArrows should find a pointing arrow of 3s.', t => {
 	for (const [rowIndex, row] of layout.entries()) {
 		for (const [colIndex, wantedCell] of row.entries()) {
 			if (Array.isArray(wantedCell)) {
-				s._cells[rowIndex * 9 + colIndex]!.possible = new Set(wantedCell);
+				s.getCell(rowIndex * 9 + colIndex).possible = new Set(wantedCell);
 			} else {
 				s.setContent(rowIndex * 9 + colIndex, wantedCell);
 			}
@@ -124,7 +123,7 @@ test('pointingArrows should find a pointing arrow of 2s.', t => {
 	for (const [rowIndex, row] of layout.entries()) {
 		for (const [colIndex, wantedCell] of row.entries()) {
 			if (Array.isArray(wantedCell)) {
-				s._cells[rowIndex * 9 + colIndex]!.possible = new Set(wantedCell);
+				s.getCell(rowIndex * 9 + colIndex).possible = new Set(wantedCell);
 			} else {
 				s.setContent(rowIndex * 9 + colIndex, wantedCell);
 			}

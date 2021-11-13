@@ -1,3 +1,6 @@
+import type {Cells} from '../cell';
+import type {Sudoku} from '../sudoku';
+
 // Stolen shamelessly from
 // https://web.archive.org/web/20190223113747/https://stackoverflow.com/questions/43122082/efficiently-count-the-number-of-bits-in-an-integer-in-javascript#43122214
 export const bitCount = (n: number): number => {
@@ -17,3 +20,17 @@ export const bitIndex = (n: number): number => {
 
 	return index;
 };
+
+export const makeVisitor
+	= (cb: (structure: Cells) => boolean) =>
+	(sudoku: Sudoku): boolean => {
+		let anyChanged = false;
+
+		for (const key of getterFunctionNames) {
+			for (let i = 0; i < 9; ++i) {
+				anyChanged = cb(sudoku[key](i)) || anyChanged;
+			}
+		}
+
+		return anyChanged;
+	};

@@ -5,7 +5,7 @@ import {render, h, Component} from 'preact';
 import {produce} from 'immer';
 
 import {Sudoku} from './sudoku';
-import type {Cells} from './sudoku.d';
+import type {Cells} from './cell';
 
 interface AppState {
 	cells: Cells;

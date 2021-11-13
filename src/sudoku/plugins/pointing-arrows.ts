@@ -1,8 +1,9 @@
-import type {SudokuInterface, CellInterface} from '../sudoku.d';
+import type {Cells} from '../cell';
+import type {Sudoku} from '../sudoku';
 import {bitCount, bitIndex} from './shared';
 
 const clearSection = (
-	structure: CellInterface[],
+	structure: Cells,
 	blockIndex: number,
 	numberToRemove: string,
 ): boolean => {
@@ -23,7 +24,7 @@ const clearSection = (
 	return anyChanged;
 };
 
-export const pointingArrows = (sudoku: SudokuInterface): boolean => {
+export const pointingArrows = (sudoku: Sudoku): boolean => {
 	let anyChanged = false;
 
 	for (let blockIndex = 0; blockIndex < 9; ++blockIndex) {

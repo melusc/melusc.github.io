@@ -1,15 +1,14 @@
 import {ReadonlyDeep} from 'type-fest';
-import type {
-	Cells,
-	CellInterface,
-	SudokuInterface,
-	SubscriptionCallback,
-	DispatchTypes,
-	NumberOnlySudoku,
-} from './sudoku.d';
 
 import {Cell} from './cell';
+import type {Cells} from './cell';
+
 import * as plugins from './plugins/plugins';
+
+type NumberOnlySudoku = Array<Array<number | undefined>>;
+
+type DispatchTypes = 'change' | 'error' | 'finish';
+type SubscriptionCallback = (sudoku: Sudoku, type: DispatchTypes) => void;
 
 export const inRangeIncl = (low: number, high: number, n: number): void => {
 	if (!Number.isInteger(n)) {
@@ -21,15 +20,15 @@ export const inRangeIncl = (low: number, high: number, n: number): void => {
 	}
 };
 
-export class Sudoku implements SudokuInterface {
-	_cells: Cells;
-
+export class Sudoku {
 	#subscriptions: Set<SubscriptionCallback> = new Set();
 
 	#plugins = Object.values(plugins);
 
+	private readonly cells: Cells;
+
 	constructor(array?: ReadonlyDeep<NumberOnlySudoku>) {
-		this._cells = Array.from({length: 81}, () => new Cell());
+		this.cells = Array.from({length: 81}, () => new Cell());
 
 		if (array) {
 			for (const [rowIndex, row] of array.entries()) {
@@ -47,7 +46,7 @@ export class Sudoku implements SudokuInterface {
 	setContent = (index: number, content: string): this => {
 		inRangeIncl(0, 80, index);
 
-		const cell = this._cells[index]!; // It's [0,80]
+		const cell = this.cells[index]!; // It's [0,80]
 
 		cell.setContent(content);
 
@@ -60,7 +59,7 @@ export class Sudoku implements SudokuInterface {
 		inRangeIncl(0, 80, index);
 
 		// It's [0,80]
-		return this._cells[index]!.content;
+		return this.cells[index]!.content;
 	};
 
 	clearCell = (index: number): this => {
@@ -72,34 +71,34 @@ export class Sudoku implements SudokuInterface {
 	};
 
 	clearAllCells = (): this => {
-		for (const cell of this._cells) {
+		for (const cell of this.cells) {
 			cell.clear();
 		}
 
 		return this.#dispatch('change');
 	};
 
-	getCol = (col: number): CellInterface[] => {
+	getCol = (col: number): Cells => {
 		inRangeIncl(0, 8, col);
 
-		const result: CellInterface[] = [];
+		const result: Cells = [];
 
 		for (let index = col; index < 81; index += 9) {
-			result.push(this._cells[index]!);
+			result.push(this.cells[index]!);
 		}
 
 		return result;
 	};
 
-	getRow = (row: number): CellInterface[] => {
+	getRow = (row: number): Cells => {
 		inRangeIncl(0, 8, row);
 
 		row *= 9;
 
-		return this._cells.slice(row, row + 9);
+		return this.cells.slice(row, row + 9);
 	};
 
-	getBlock = (index: number): CellInterface[] => {
+	getBlock = (index: number): Cells => {
 		inRangeIncl(0, 8, index);
 
 		const colOffset = (index % 3) * 3;
@@ -119,17 +118,17 @@ export class Sudoku implements SudokuInterface {
 		return result;
 	};
 
-	getCell = (index: number): CellInterface => {
+	getCell = (index: number): Cell => {
 		inRangeIncl(0, 80, index);
 
-		return this._cells[index]!; // It's [0,80]
+		return this.cells[index]!; // It's [0,80]
 	};
 
-	getCells = (): Cells => [...this._cells];
+	getCells = (): Cells => [...this.cells];
 
 	solve = (): this => {
 		if (this.isValid()) {
-			for (const cell of this._cells) {
+			for (const cell of this.cells) {
 				if (cell.content === undefined) {
 					cell.clear(); // Reset possibles
 				}
@@ -147,7 +146,7 @@ export class Sudoku implements SudokuInterface {
 					} catch (error: unknown) {
 						// eslint-disable-next-line max-depth
 						if (process.env['NODE_ENV'] !== 'AVA_TESTING') {
-							console.error(error, this._cells);
+							console.error(error, this.cells);
 						}
 
 						sudokuIsValid = false;
@@ -155,7 +154,7 @@ export class Sudoku implements SudokuInterface {
 					}
 				}
 
-				for (const [index, cell] of this._cells.entries()) {
+				for (const [index, cell] of this.cells.entries()) {
 					if (cell.content === undefined) {
 						// eslint-disable-next-line max-depth
 						if (cell.possible.size === 1) {
@@ -206,8 +205,8 @@ export class Sudoku implements SudokuInterface {
 	};
 
 	cellsIndividuallyValidByStructure = (): boolean => {
-		for (const cell of this._cells) {
-			cell.setValidity();
+		for (const cell of this.cells) {
+			cell.valid = undefined;
 		}
 
 		for (let index = 0; index < 9; ++index) {
@@ -220,7 +219,7 @@ export class Sudoku implements SudokuInterface {
 			}
 		}
 
-		for (const [index, cell] of this._cells.entries()) {
+		for (const [index, cell] of this.cells.entries()) {
 			if (!cell.valid) {
 				if (process.env['NODE_ENV'] !== 'AVA_TESTING') {
 					console.error('cell was not valid', [index, cell]);
@@ -266,7 +265,7 @@ export class Sudoku implements SudokuInterface {
 		return this.cellsIndividuallyValidByStructure();
 	};
 
-	_validateByStructure = (structure: Cell[]): this => {
+	_validateByStructure = (structure: Cells): this => {
 		const found = new Map<string, number>();
 		for (const {content} of structure) {
 			if (typeof content === 'string') {
@@ -298,7 +297,7 @@ export class Sudoku implements SudokuInterface {
 			return false;
 		}
 
-		for (const cell of this._cells) {
+		for (const cell of this.cells) {
 			if (cell.content === undefined) {
 				return false;
 			}

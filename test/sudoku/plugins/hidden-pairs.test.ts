@@ -3,14 +3,12 @@ import test from 'ava';
 import {Sudoku} from '../../../src/sudoku/sudoku';
 import {hiddenPairs} from '../../../src/sudoku/plugins/hidden-pairs';
 
-import type {SudokuInterface} from '../../../src/sudoku/sudoku.d';
-
 type ComparableCell = {
 	possible: Set<string>;
 	content: string | undefined;
 };
 
-const getComparableCells = (sudoku: SudokuInterface): ComparableCell[] =>
+const getComparableCells = (sudoku: Sudoku): ComparableCell[] =>
 	sudoku
 		.getCells()
 		.map(cell => ({content: cell.content, possible: cell.possible}));

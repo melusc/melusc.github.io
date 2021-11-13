@@ -1,8 +1,6 @@
 import test from 'ava';
 import {Sudoku, inRangeIncl} from '../../src/sudoku/sudoku';
 
-import type {SudokuInterface} from '../../src/sudoku/sudoku.d';
-
 test('Sudoku should be a class', t => {
 	t.is(typeof new Sudoku(), 'object');
 });
@@ -99,7 +97,8 @@ test('Sudoku#getCell', t => {
 
 	t.deepEqual(
 		s.getCell(4 * 9 + 6),
-		s._cells[4 * 9 + 6], // This is what it does, but there's not a lot to test here anyway.
+		// @ts-expect-error sudoku#cells is private
+		s.cells[4 * 9 + 6], // This is what it does, but there's not a lot to test here anyway.
 	);
 });
 
@@ -387,7 +386,7 @@ test('Sudoku#subscribe', async t => {
 	return new Promise<void>(resolve => {
 		// 2 tests only, because callback should only fire once
 
-		const callback = (sudoku: SudokuInterface) => {
+		const callback = (sudoku: Sudoku) => {
 			t.is(sudoku.getCell(3 * 9 + 2).content, '2');
 			t.is(sudoku.getCell(4 * 9 + 1).content, '4');
 

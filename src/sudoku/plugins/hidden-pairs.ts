@@ -2,39 +2,34 @@
  * See https://web.archive.org/web/20210331174704/https://bestofsudoku.com/sudoku-strategy
  */
 
-import type {SudokuInterface} from '../sudoku.d';
-import {bitCount, getterFunctionNames} from './shared';
+import type {Cells} from '../cell';
 
-const genericHiddenPairsSolver = (
-	sudoku: SudokuInterface,
-	getterFunctionName: 'getCol' | 'getRow' | 'getBlock',
-): boolean => {
+import {bitCount, makeVisitor} from './shared';
+
+const genericHiddenPairsSolver = (structure: Cells): boolean => {
 	let anyChanged = false;
 
-	for (let structureIndex = 0; structureIndex < 9; ++structureIndex) {
-		const structure = sudoku[getterFunctionName](structureIndex);
+	// Getting all the indexes of a number
+	// works like this:
+	// If 7 is in cells (0, 4, 6)
+	// the resulting value will be "1010001"
+	//                                    ^ for 0
+	//                                ^ for 4
+	//                              ^ for 6
+	// Iterating through each cell and
+	// doing `currentValue | 2 ** index`
+	// This is a lot better than comparing arrays of indexes
+	const summary = new Map<string, number>();
 
-		// Getting all the indexes of a number
-		// works like this:
-		// If 7 is in cells (0, 4, 6)
-		// the resulting value will be "1010001"
-		//                                    ^ for 0
-		//                                ^ for 4
-		//                              ^ for 6
-		// Iterating through each cell and
-		// doing `currentValue | 2 ** index`
-		// This is a lot better than comparing arrays of indexes
-		const summary = new Map<string, number>();
+	for (let index = 0; index < 9; ++index) {
+		const {content, possible} = structure[index]!; // It's [0,8]
 
-		for (let index = 0; index < 9; ++index) {
-			const {content, possible} = structure[index]!; // It's [0,8]
-
-			if (content === undefined) {
-				for (const number of possible) {
-					summary.set(number, (summary.get(number) ?? 0) | (2 ** index));
-				}
-			} else {
-				/*
+		if (content === undefined) {
+			for (const number of possible) {
+				summary.set(number, (summary.get(number) ?? 0) | (2 ** index));
+			}
+		} else {
+			/*
           This part fixes a bug:
           [
             {1,2,3}, // these are possibles
@@ -49,60 +44,59 @@ const genericHiddenPairsSolver = (
           (here cell at index 0), incorrectly resulting in two cells with 3
         */
 
-				summary.set(content, (summary.get(content) ?? 0) | (2 ** index));
+			summary.set(content, (summary.get(content) ?? 0) | (2 ** index));
+		}
+	}
+
+	const equalIndexes: Array<[number, string[]]> = [];
+
+	for (const [number, key] of summary) {
+		if (bitCount(key) > 8) {
+			continue;
+		}
+
+		let exactMatchFound = false;
+
+		for (const equalIndex of equalIndexes) {
+			const [curKey, indices] = equalIndex;
+
+			if ((key | curKey) === key || (key | curKey) === curKey) {
+				equalIndex[0] |= key;
+				indices.push(number);
+
+				exactMatchFound ||= key === curKey;
 			}
 		}
 
-		const equalIndexes: Array<[number, string[]]> = [];
+		if (!exactMatchFound) {
+			equalIndexes.push([key, [number]]);
+		}
+	}
 
-		for (const [number, key] of summary) {
-			if (bitCount(key) > 8) {
-				continue;
-			}
-
-			let exactMatchFound = false;
-
-			for (const equalIndex of equalIndexes) {
-				const [curKey, indices] = equalIndex;
-
-				if ((key | curKey) === key || (key | curKey) === curKey) {
-					equalIndex[0] |= key;
-					indices.push(number);
-
-					exactMatchFound ||= key === curKey;
-				}
-			}
-
-			if (!exactMatchFound) {
-				equalIndexes.push([key, [number]]);
-			}
+	for (const [key, numbers] of equalIndexes) {
+		if (bitCount(key) < numbers.length) {
+			throw new Error(
+				`bitCount was smaller than allowed: ${key.toString(2)}; ${numbers.join(
+					',',
+				)}`,
+			);
 		}
 
-		for (const [key, numbers] of equalIndexes) {
-			if (bitCount(key) < numbers.length) {
-				throw new Error(
-					`bitCount was smaller than allowed: ${key.toString(
-						2,
-					)}; ${numbers.join(',')}`,
-				);
-			}
+		if (bitCount(key) > numbers.length) {
+			continue;
+		}
 
-			if (bitCount(key) > numbers.length) {
+		for (let index = 0; index <= Math.log2(key); ++index) {
+			if ((key & (2 ** index)) === 0) {
 				continue;
 			}
 
-			for (let index = 0; index <= Math.log2(key); ++index) {
-				if ((key & (2 ** index)) === 0) {
-					continue;
-				}
+			const cell = structure[index]!; // It's certainly [0,8]
 
-				const cell = structure[index]!; // It's certainly [0,8]
+			if (cell.possible.size > numbers.length) {
+				anyChanged = true;
 
-				if (cell.possible.size > numbers.length) {
-					anyChanged = true;
-
-					cell.possible = new Set(numbers);
-				}
+				cell.possible = new Set(numbers);
 			}
 		}
 	}
@@ -110,12 +104,4 @@ const genericHiddenPairsSolver = (
 	return anyChanged;
 };
 
-export const hiddenPairs = (sudoku: SudokuInterface): boolean => {
-	let anyChanged = false;
-
-	for (const key of getterFunctionNames) {
-		anyChanged = genericHiddenPairsSolver(sudoku, key) || anyChanged;
-	}
-
-	return anyChanged;
-};
+export const hiddenPairs = makeVisitor(genericHiddenPairsSolver);
