@@ -7,6 +7,7 @@ import MainAppDateTime from './components/main-app-date-time';
 import TimeOverview from './components/time-overview';
 import WorkoutDetails from './components/workout-details';
 import WorkoutImages from './components/workout-images';
+import Help from './components/help';
 
 import * as CONSTS from './scripts/consts';
 
@@ -69,6 +70,7 @@ const Main = () => {
 				<WorkoutDetails duration={duration} distance={distance} />
 				<WorkoutImages />
 			</div>
+			<Help />
 		</div>
 	);
 };
