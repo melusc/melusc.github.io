@@ -35,7 +35,7 @@ const toSpeed = (duration: string, distance: string): string | false => {
 	return (speedInMetersPerSecond * 3.6).toFixed(1);
 };
 
-export const WorkoutDetails = (
+const WorkoutDetails = (
 	properties: Readonly<{duration: string; distance: string}>,
 ): h.JSX.Element => {
 	const [totalDuration, setTotalDuration] = useState(CONSTS.duration);
@@ -114,3 +114,5 @@ export const WorkoutDetails = (
 		</div>
 	);
 };
+
+export default WorkoutDetails;

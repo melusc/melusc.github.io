@@ -36,7 +36,7 @@ const getTextWidth = (text: string, font: string) => {
 	return Math.floor(metrics.width);
 };
 
-export const Battery = (): h.JSX.Element => {
+const Battery = (): h.JSX.Element => {
 	const [batteryValue, updateBattery] = useState('100%');
 
 	const handleBatteryInput: h.JSX.GenericEventHandler<HTMLInputElement>
@@ -70,3 +70,5 @@ export const Battery = (): h.JSX.Element => {
 		</>
 	);
 };
+
+export default Battery;

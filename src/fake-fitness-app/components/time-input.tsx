@@ -10,7 +10,7 @@ dayjs.extend(customParseFormat);
 
 const timeAtLoad = dayjs().format('HH:mm');
 
-export const TimeInput = (properties: {
+const TimeInput = (properties: {
 	class?: string[] | string;
 	setTime?: StateUpdater<string>;
 }): h.JSX.Element => {
@@ -43,3 +43,5 @@ export const TimeInput = (properties: {
 		/>
 	);
 };
+
+export default TimeInput;

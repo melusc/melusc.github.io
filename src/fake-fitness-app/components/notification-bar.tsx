@@ -3,14 +3,14 @@ import * as dayjs from 'dayjs';
 import * as customParseFormat from 'dayjs/plugin/customParseFormat';
 
 import {Wifi, Bluetooth, Signal} from './icons';
-import {Battery} from './battery';
-import {TimeInput} from './time-input';
+import Battery from './battery';
+import TimeInput from './time-input';
 
 import '../styles/notification-bar.scss';
 
 dayjs.extend(customParseFormat);
 
-export const NotificationBar = (): h.JSX.Element => (
+const NotificationBar = (): h.JSX.Element => (
 	<div class="notification-bar">
 		<TimeInput class="clock" />
 		<div class="battery-and-icons">
@@ -21,3 +21,5 @@ export const NotificationBar = (): h.JSX.Element => (
 		</div>
 	</div>
 );
+
+export default NotificationBar;

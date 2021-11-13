@@ -13,13 +13,13 @@ import {
 	toDate,
 	toTime,
 } from '../scripts/date-functions';
-import {TimeInput} from './time-input';
+import TimeInput from './time-input';
 
 dayjs.extend(customParseFormat);
 
 const dateAtLoad = dayjs().format('D MMM');
 
-export const MainAppDateTime = (properties: {
+const MainAppDateTime = (properties: {
 	duration: string;
 }): h.JSX.Element => {
 	const [dateValue, setDate] = useState(dateAtLoad);
@@ -67,3 +67,5 @@ export const MainAppDateTime = (properties: {
 		</div>
 	);
 };
+
+export default MainAppDateTime;

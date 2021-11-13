@@ -49,7 +49,7 @@ const calcTimePerDistance = (distance: string, duration: string): string => {
 		: diff.format('H[h] m\'ss"');
 };
 
-export const TimeOverview = (properties: {
+const TimeOverview = (properties: {
 	setDuration: StateUpdater<string>;
 	setDistance: StateUpdater<string>;
 }): h.JSX.Element => {
@@ -102,3 +102,5 @@ export const TimeOverview = (properties: {
 		</div>
 	);
 };
+
+export default TimeOverview;

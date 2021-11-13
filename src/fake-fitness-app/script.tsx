@@ -1,12 +1,12 @@
 import {h, render} from 'preact';
 import {useState} from 'preact/hooks';
 
-import {NotificationBar} from './components/notification-bar';
-import {Navbar} from './components/navbar';
-import {MainAppDateTime} from './components/main-app-date-time';
-import {TimeOverview} from './components/time-overview';
-import {WorkoutDetails} from './components/workout-details';
-import {WorkoutImages} from './components/workout-images';
+import NotificationBar from './components/notification-bar';
+import Navbar from './components/navbar';
+import MainAppDateTime from './components/main-app-date-time';
+import TimeOverview from './components/time-overview';
+import WorkoutDetails from './components/workout-details';
+import WorkoutImages from './components/workout-images';
 
 import * as CONSTS from './scripts/consts';
 
