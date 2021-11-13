@@ -68,7 +68,7 @@
 	"private": true,
 	"scripts": {
 		"ava": "npm run build-ts-tests && ava",
-		"build": "npm run lint && npm run ava && npm run build-no-tests",
+		"build": "npm run lint && npm run ava && tsc --noEmit && npm run build-no-tests",
 		"parcel:w": "parcel serve --dist-dir dist/www --no-cache \"src/**/*.html\"",
 		"parcel:b": "parcel build --dist-dir dist/www --no-cache \"src/**/*.html\"",
 		"build-no-tests": "del-cli \"dist/www/*\" && npm run parcel:b",
