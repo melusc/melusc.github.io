@@ -3,15 +3,7 @@ import test from 'ava';
 import {Sudoku} from '../../../src/sudoku/sudoku';
 import {hiddenPairs} from '../../../src/sudoku/plugins/hidden-pairs';
 
-type ComparableCell = {
-	possible: Set<string>;
-	content: string | undefined;
-};
-
-const getComparableCells = (sudoku: Sudoku): ComparableCell[] =>
-	sudoku
-		.getCells()
-		.map(cell => ({content: cell.content, possible: cell.possible}));
+import {getComparableCells} from './helpers';
 
 test('hiddenPairs should find the hidden pairs ("3", "4", "9").', t => {
 	const s = new Sudoku();

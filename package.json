@@ -5,7 +5,7 @@
 			"NODE_ENV": "AVA_TESTING"
 		},
 		"files": [
-			"test/**/*"
+			"test/**/*.test.ts"
 		],
 		"typescript": {
 			"compile": false,

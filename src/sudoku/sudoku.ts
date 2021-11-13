@@ -127,59 +127,59 @@ export class Sudoku {
 	getCells = (): Cells => [...this.cells];
 
 	solve = (): this => {
-		if (this.isValid()) {
-			for (const cell of this.cells) {
-				if (cell.content === undefined) {
-					cell.clear(); // Reset possibles
+		if (!this.isValid()) {
+			this.#dispatch('error');
+			return this;
+		}
+
+		for (const cell of this.cells) {
+			if (cell.content === undefined) {
+				cell.clear(); // Reset possibles
+			}
+		}
+
+		let anyChanged: boolean;
+		let sudokuIsValid = true;
+
+		do {
+			anyChanged = false;
+
+			for (const plugin of this.#plugins) {
+				try {
+					anyChanged = plugin(this) || anyChanged;
+				} catch (error: unknown) {
+					if (process.env['NODE_ENV'] !== 'AVA_TESTING') {
+						console.error(error, this.cells);
+					}
+
+					sudokuIsValid = false;
+					break;
 				}
 			}
 
-			let anyChanged = false;
-			let sudokuIsValid = true;
-
-			do {
-				anyChanged = false;
-
-				for (const plugin of this.#plugins) {
-					try {
-						anyChanged = plugin(this) || anyChanged;
-					} catch (error: unknown) {
-						// eslint-disable-next-line max-depth
-						if (process.env['NODE_ENV'] !== 'AVA_TESTING') {
-							console.error(error, this.cells);
-						}
-
-						sudokuIsValid = false;
-						break;
-					}
+			for (const [index, cell] of this.cells.entries()) {
+				if (cell.content !== undefined) {
+					continue;
 				}
 
-				for (const [index, cell] of this.cells.entries()) {
-					if (cell.content === undefined) {
-						// eslint-disable-next-line max-depth
-						if (cell.possible.size === 1) {
-							// We know that the set has one item
-							cell.setContent(cell.possible.values().next().value as string);
-						} else if (cell.possible.size === 0) {
-							// eslint-disable-next-line max-depth
-							if (process.env['NODE_ENV'] !== 'AVA_TESTING') {
-								console.error('cell.possible.size === 0', [index, cell]);
-							}
-
-							sudokuIsValid = false;
-
-							break;
-						}
+				if (cell.possible.size === 1) {
+					// We know that the set has one item
+					cell.setContent(cell.possible.values().next().value as string);
+				} else if (cell.possible.size === 0) {
+					if (process.env['NODE_ENV'] !== 'AVA_TESTING') {
+						console.error('cell.possible.size === 0', [index, cell]);
 					}
+
+					sudokuIsValid = false;
+
+					break;
 				}
+			}
 
-				sudokuIsValid &&= this.isValid();
-			} while (anyChanged && sudokuIsValid);
+			sudokuIsValid &&= this.isValid();
+		} while (anyChanged && sudokuIsValid);
 
-			this.#dispatch(sudokuIsValid ? 'finish' : 'error');
-		} else {
-			this.#dispatch('error');
-		}
+		this.#dispatch(sudokuIsValid ? 'finish' : 'error');
 
 		return this;
 	};

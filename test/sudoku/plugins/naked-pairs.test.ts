@@ -4,17 +4,7 @@ import {Sudoku} from '../../../src/sudoku/sudoku';
 
 import {nakedPairs} from '../../../src/sudoku/plugins/naked-pairs';
 
-const _ = undefined;
-
-type ComparableCell = {
-	possible: Set<string>;
-	content: string | undefined;
-};
-
-const getComparableCells = (sudoku: Sudoku): ComparableCell[] =>
-	sudoku
-		.getCells()
-		.map(cell => ({content: cell.content, possible: cell.possible}));
+import {getComparableCells, _} from './helpers';
 
 test('nakedPairs should not change an empty sudoku.', t => {
 	const originalSudoku = new Sudoku();

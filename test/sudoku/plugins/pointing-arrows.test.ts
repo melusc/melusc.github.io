@@ -3,15 +3,7 @@ import test from 'ava';
 import {pointingArrows} from '../../../src/sudoku/plugins/pointing-arrows';
 import {Sudoku} from '../../../src/sudoku/sudoku';
 
-type ComparableCell = {
-	possible: Set<string>;
-	content: string | undefined;
-};
-
-const getComparableCells = (sudoku: Sudoku): ComparableCell[] =>
-	sudoku
-		.getCells()
-		.map(cell => ({content: cell.content, possible: cell.possible}));
+import {getComparableCells} from './helpers';
 
 test('pointingArrows should not change an empty sudoku.', t => {
 	const s = new Sudoku();
