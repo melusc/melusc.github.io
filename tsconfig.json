@@ -1,7 +1,9 @@
 {
 	"compilerOptions": {
 		"rootDir": "./src",
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
+		"jsxFactory": "h",
+		"jsxFragmentFactory": "Fragment"
 	},
 	"include": ["./src/**/*"],
 	"extends": "@lusc/tsconfig"
