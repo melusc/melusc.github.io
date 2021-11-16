@@ -19,9 +19,7 @@ dayjs.extend(customParseFormat);
 
 const dateAtLoad = dayjs().format('D MMM');
 
-const MainAppDateTime = (properties: {
-	duration: string;
-}): h.JSX.Element => {
+const MainAppDateTime = (properties: {duration: string}): h.JSX.Element => {
 	const [dateValue, setDate] = useState(dateAtLoad);
 
 	const [timeFrom, setTimeFrom] = useState(dayjs().format('HH:mm'));
