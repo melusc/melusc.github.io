@@ -28,7 +28,7 @@
 		"rgb-hex": "^4.0.0"
 	},
 	"devDependencies": {
-		"@ava/typescript": "^2.0.0",
+		"@ava/typescript": "^3.0.1",
 		"@lusc/tsconfig": "^1.0.0",
 		"@parcel/transformer-sass": "^2.0.1",
 		"@prettier/plugin-xml": "^1.1.0",
