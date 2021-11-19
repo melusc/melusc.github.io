@@ -1,21 +1,26 @@
 {
-	"envs": ["browser", "es2020"],
+	"envs": ["browser", "es2021"],
 	"extends": ["xo-react"],
-	"ignores": ["/docs/"],
 	"overrides": [
 		{
 			"env": ["es2020", "node"],
-			"files": ["./*.js"],
+			"files": ["./gulpfile.js"],
 			"rules": {
-				"camelcase": "off"
+				"unicorn/prefer-module": "off"
 			}
 		},
 		{
 			"env": ["es2020", "node"],
-			"files": ["./test/**/*.test.js", "./test/**/*.test.ts"],
+			"files": ["./test/**/*.test.ts"],
 			"rules": {
 				"max-nested-callbacks": "off",
 				"no-mixed-operators": "off"
+			}
+		},
+		{
+			"files": ["./src/**/*"],
+			"rules": {
+				"node/prefer-global/process": "off"
 			}
 		},
 		{
@@ -30,12 +35,10 @@
 						"avoidEscape": true
 					}
 				],
-				"node/prefer-global/process": "off",
 				"@typescript-eslint/naming-convention": "off"
 			}
 		}
 	],
-	"parser": "@typescript-eslint/parser",
 	"rules": {
 		"no-bitwise": "off",
 		"indent": "off",
@@ -53,8 +56,7 @@
 			{
 				"ignore": ["class", "stroke-linecap", "stroke-linejoin", "stroke-width"]
 			}
-		],
-		"unicorn/prefer-module": "off"
+		]
 	},
 	"settings": {
 		"react": {
