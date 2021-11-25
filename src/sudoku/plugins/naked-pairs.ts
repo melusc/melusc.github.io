@@ -34,7 +34,7 @@ const genericNakedPairsSolver = (structure: Cells): boolean => {
 				indices.push(index);
 
 				exactMatchFound ||= numbers === numbersMask;
-			} else if ((numbers & numbersMask) !== 0) {
+			} else {
 				equalKeys.splice(i, 0, [numbersMask | numbers, [...indices, index]]);
 				++i;
 			}
@@ -51,17 +51,17 @@ const genericNakedPairsSolver = (structure: Cells): boolean => {
 		}
 
 		for (let number = 0; number <= Math.log2(key); ++number) {
-			if ((key & (2 ** number)) === 0) {
+			if ((key & (1 << number)) === 0) {
 				continue;
 			}
 
 			const numberString = `${number + 1}`;
 
-			for (const [index, cell] of structure.entries()) {
-				if (!indices.includes(index) && cell.possible.has(numberString)) {
-					anyChanged = true;
+			for (const [index, {possible}] of structure.entries()) {
+				if (!indices.includes(index) && possible.has(numberString)) {
+					anyChanged ||= true;
 
-					cell.possible.delete(numberString);
+					possible.delete(numberString);
 				}
 			}
 		}

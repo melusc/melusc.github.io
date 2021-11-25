@@ -54,8 +54,8 @@ test('nakedPairs should not change anything upon finding ("1", "2", "5") across 
 
 	const possibles = [
 		['1', '2', '5'], // #1
-		['6', '7', '8'],
-		['1', '4', '6'],
+		['6', '7', '8', '3'],
+		['1', '4', '6', '9'],
 		['1', '2', '5'], // #2
 		['1', '2', '5', '6'],
 		['4', '5', '9'],
@@ -278,6 +278,46 @@ test('nakedPairs should find an incomplete naked pair with multiple incomplete c
 			['3', '5', '6', '7', '8', '9'],
 			['3', '5', '6', '7', '8', '9'],
 			['3', '5', '6', '7', '8', '9'],
+		],
+	);
+});
+
+test('nakedPairs with incomplete cells that do not overlap much', t => {
+	const s = new Sudoku();
+
+	// The naked pair is [1, 2, 4]
+
+	const possibles = [
+		['1', '4'], // #1, missing 2, 3; doesn't overlap with #2
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+		['2', '3'], // #2, missing 1, 4
+		['1', '3'], // #3, missing 2, 4
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+		['2', '4'], // #4, missing 1, 3
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+		['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+	];
+
+	const block = s.getBlock(0);
+	for (const [i, possible] of possibles.entries()) {
+		block[i]!.possible = new Set(possible);
+	}
+
+	nakedPairs(s);
+
+	t.deepEqual(
+		block.map(({possible}) => [...possible]),
+		[
+			['1', '4'], // #1
+			['5', '6', '7', '8', '9'],
+			['2', '3'], // #2
+			['1', '3'], // #3
+			['5', '6', '7', '8', '9'],
+			['2', '4'], // #4
+			['5', '6', '7', '8', '9'],
+			['5', '6', '7', '8', '9'],
+			['5', '6', '7', '8', '9'],
 		],
 	);
 });
