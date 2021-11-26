@@ -39,18 +39,19 @@ const getTextWidth = (text: string, font: string) => {
 const Battery = (): h.JSX.Element => {
 	const [batteryValue, updateBattery] = useState('100%');
 
-	const handleBatteryInput: h.JSX.GenericEventHandler<HTMLInputElement>
-		= event_ => {
-			const value = event_.currentTarget.value;
+	const handleBatteryInput: h.JSX.GenericEventHandler<
+		HTMLInputElement
+	> = event_ => {
+		const value = event_.currentTarget.value;
 
-			if (isValidBatteryValue(value)) {
-				const percent = Number(/^\d+/.exec(value) ?? 0);
+		if (isValidBatteryValue(value)) {
+			const percent = Number(/^\d+/.exec(value) ?? 0);
 
-				updateBattery(`${percent}%`);
-			} else {
-				updateBattery(value);
-			}
-		};
+			updateBattery(`${percent}%`);
+		} else {
+			updateBattery(value);
+		}
+	};
 
 	return (
 		<>

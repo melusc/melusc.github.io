@@ -16,17 +16,16 @@ const TimeInput = (properties: {
 }): h.JSX.Element => {
 	const [timeValue, setTime] = useState(timeAtLoad);
 
-	const handleTimeInput: h.JSX.GenericEventHandler<HTMLInputElement>
-		= event_ => {
-			const value = event_.currentTarget.value;
+	const handleTimeInput: h.JSX.GenericEventHandler<
+		HTMLInputElement
+	> = event_ => {
+		const value = event_.currentTarget.value;
 
-			const stateValue = timeValid(value)
-				? toTime(value).format('HH:mm')
-				: value;
+		const stateValue = timeValid(value) ? toTime(value).format('HH:mm') : value;
 
-			setTime(stateValue);
-			properties.setTime?.(stateValue);
-		};
+		setTime(stateValue);
+		properties.setTime?.(stateValue);
+	};
 
 	return (
 		<input

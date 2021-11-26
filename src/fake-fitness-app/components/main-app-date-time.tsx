@@ -24,16 +24,17 @@ const MainAppDateTime = (properties: {duration: string}): h.JSX.Element => {
 
 	const [timeFrom, setTimeFrom] = useState(dayjs().format('HH:mm'));
 
-	const handleDateInput: h.JSX.GenericEventHandler<HTMLInputElement>
-		= event_ => {
-			const value = event_.currentTarget.value;
+	const handleDateInput: h.JSX.GenericEventHandler<
+		HTMLInputElement
+	> = event_ => {
+		const value = event_.currentTarget.value;
 
-			if (dateValid(value)) {
-				setDate(toDate(value).format('D MMM'));
-			} else {
-				setDate(value);
-			}
-		};
+		if (dateValid(value)) {
+			setDate(toDate(value).format('D MMM'));
+		} else {
+			setDate(value);
+		}
+	};
 
 	const durationTimeSinceMidnightInSeconds = calcDurationSecondsSinceMidnight(
 		properties.duration,
