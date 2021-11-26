@@ -24,7 +24,7 @@
 		"immer": "^9.0.6",
 		"json5": "^2.2.0",
 		"lodash-es": "^4.17.21",
-		"preact": "^10.5.15",
+		"preact": "^10.6.1",
 		"rgb-hex": "^4.0.0"
 	},
 	"devDependencies": {
