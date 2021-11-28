@@ -56,7 +56,8 @@
 			{
 				"ignore": ["class", "stroke-linecap", "stroke-linejoin", "stroke-width"]
 			}
-		]
+		],
+		"capitalized-comments": "off"
 	},
 	"settings": {
 		"react": {
