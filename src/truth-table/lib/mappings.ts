@@ -1,8 +1,10 @@
+import {Operators} from './operators';
+
 export const mappings = (() => {
 	// https://en.wikipedia.org/wiki/List_of_logic_symbols
 	const stringMappings = [
 		[
-			'⟷',
+			Operators.iff,
 			[
 				'⇔',
 				'≡',
@@ -18,15 +20,15 @@ export const mappings = (() => {
 			],
 		],
 
-		['→', ['if then', 'implies', '⇒', '⊃', '->', '=>']],
+		[Operators['if-then'], ['if then', 'implies', '⇒', '⊃', '->', '=>']],
 
-		['¬', ['~', '!', 'not']],
+		[Operators.not, ['~', '!', 'not']],
 
-		['∧', ['&&', '&', 'and']],
+		[Operators.and, ['&&', '&', 'and']],
 
-		['↮', ['⊕', '⊻', '≢', 'xor', 'either or', '>=<', '>-<', '!=', '!==', '~=']],
+		[Operators.xor, ['⊕', '⊻', '≢', 'xor', 'either or', '>=<', '>-<', '!=', '!==', '~=']],
 
-		['∨', ['||', '|', 'or']],
+		[Operators.or, ['||', '|', 'or']],
 	] as const;
 
 	const flatMappings: Array<[string, string]> = [];
