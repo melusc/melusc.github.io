@@ -62,6 +62,14 @@ test('Replacing strings with weird behaviour on upperCase', t => {
 	t.is(replaceMappings('ß || B'), 'ß ∨ B', 'ß || B');
 });
 
+test('(a and b) or (c xor not d)', t => {
+	t.is(
+		replaceMappings('(a and b) or (c xor not d)'),
+		'(a ∧ b) ∨ (c ↮ ¬ d)',
+		'(a and b) or (c xor not d)',
+	);
+});
+
 test('Forbidden characters', t => {
 	t.throws(
 		() => {
