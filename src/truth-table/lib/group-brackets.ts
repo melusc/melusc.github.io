@@ -17,12 +17,13 @@ export const groupBrackets = (raw: string): string[] => {
 			result.push(before);
 		}
 
-		const between = raw.slice(start + 1, end).trim();
-		if (between === '') {
+		const brackets = raw.slice(start, end + 1);
+		// If empty (ignoring whitespace) in brackets
+		if (/^\(\s*\)$/.test(brackets)) {
 			throw new Error('Unexpected empty brackets');
 		}
 
-		result.push(between);
+		result.push(brackets);
 
 		previousEnd = end + 1;
 	}

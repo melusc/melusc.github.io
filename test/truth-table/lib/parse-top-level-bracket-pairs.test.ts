@@ -19,6 +19,10 @@ test('(()())', t => {
 	t.deepEqual(parseTopLevelBracketPairs('(()())'), [[0, 5]]);
 });
 
+test('f () f', t => {
+	t.deepEqual(parseTopLevelBracketPairs('f () f'), [[2, 3]]);
+});
+
 test('ff (f', t => {
 	t.throws(
 		() => {
