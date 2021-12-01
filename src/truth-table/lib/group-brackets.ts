@@ -6,14 +6,30 @@ export const groupBrackets = (raw: string): string[] => {
 	const result: string[] = [];
 
 	let previousEnd = 0;
+
 	for (const [start, end] of bracketPairs) {
-		result.push(raw.slice(previousEnd, start), raw.slice(start + 1, end));
+		const before = raw.slice(previousEnd, start).trim();
+		if (before === '' && start > 0) {
+			throw new Error(`Unexpected bracket at index ${start}`);
+		}
+
+		if (before !== '') {
+			result.push(before);
+		}
+
+		const between = raw.slice(start + 1, end).trim();
+		if (between === '') {
+			throw new Error('Unexpected empty brackets');
+		}
+
+		result.push(between);
 
 		previousEnd = end + 1;
 	}
 
-	if (previousEnd !== raw.length - 1) {
-		result.push(raw.slice(previousEnd));
+	const after = raw.slice(previousEnd).trim();
+	if (after !== '') {
+		result.push(raw.slice(previousEnd).trim());
 	}
 
 	return result;
