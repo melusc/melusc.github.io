@@ -1,10 +1,10 @@
-import {Operators} from './operators';
+import {LogicalSymbolFromName} from './logical-symbols';
 
 export const mappings = (() => {
 	// https://en.wikipedia.org/wiki/List_of_logic_symbols
 	const stringMappings = [
 		[
-			Operators.iff,
+			LogicalSymbolFromName.iff,
 			[
 				'⇔',
 				'≡',
@@ -20,18 +20,21 @@ export const mappings = (() => {
 			],
 		],
 
-		[Operators['if-then'], ['if then', 'implies', '⇒', '⊃', '->', '=>']],
+		[
+			LogicalSymbolFromName['if-then'],
+			['if then', 'implies', '⇒', '⊃', '->', '=>'],
+		],
 
-		[Operators.not, ['~', '!', 'not']],
+		[LogicalSymbolFromName.not, ['~', '!', 'not']],
 
-		[Operators.and, ['&&', '&', 'and']],
+		[LogicalSymbolFromName.and, ['&&', '&', 'and']],
 
 		[
-			Operators.xor,
+			LogicalSymbolFromName.xor,
 			['⊕', '⊻', '≢', 'xor', 'either or', '>=<', '>-<', '!=', '!==', '~='],
 		],
 
-		[Operators.or, ['||', '|', 'or']],
+		[LogicalSymbolFromName.or, ['||', '|', 'or']],
 	] as const;
 
 	const flatMappings: Array<[string, string]> = [];
@@ -51,8 +54,6 @@ export const mappings = (() => {
 
 	return flatMappings as ReadonlyArray<[replacer: string, replaceWith: string]>;
 })();
-
-export const logicalOperators = ['', '→', '¬', '∧', '↮', '∨'] as const;
 
 // Slice, then uppercase, because see mappings.test.ts#L61-L62
 const ciEquals = (string_: string, match: string, offset: number) =>
