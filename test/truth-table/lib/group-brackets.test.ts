@@ -15,11 +15,14 @@ test('(a) & ( b )', t => {
 });
 
 test('(a) (b)', t => {
-	t.throws(() => {
-		groupBrackets('(a) (b)');
-	}, {
-		message: /index 4/,
-	});
+	t.throws(
+		() => {
+			groupBrackets('(a) (b)');
+		},
+		{
+			message: /index 4/,
+		},
+	);
 });
 
 test('(()) & (())', t => {
@@ -29,9 +32,12 @@ test('(()) & (())', t => {
 });
 
 test('a () b', t => {
-	t.throws(() => {
-		groupBrackets('a () b');
-	}, {
-		message: /empty/,
-	});
+	t.throws(
+		() => {
+			groupBrackets('a () b');
+		},
+		{
+			message: /empty/,
+		},
+	);
 });

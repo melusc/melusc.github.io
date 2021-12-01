@@ -26,7 +26,10 @@ export const mappings = (() => {
 
 		[Operators.and, ['&&', '&', 'and']],
 
-		[Operators.xor, ['⊕', '⊻', '≢', 'xor', 'either or', '>=<', '>-<', '!=', '!==', '~=']],
+		[
+			Operators.xor,
+			['⊕', '⊻', '≢', 'xor', 'either or', '>=<', '>-<', '!=', '!==', '~='],
+		],
 
 		[Operators.or, ['||', '|', 'or']],
 	] as const;
@@ -52,7 +55,8 @@ export const mappings = (() => {
 export const logicalOperators = ['', '→', '¬', '∧', '↮', '∨'] as const;
 
 // Slice, then uppercase, because see mappings.test.ts#L61-L62
-const ciEquals = (string_: string, match: string, offset: number) => string_.slice(offset).toUpperCase().startsWith(match);
+const ciEquals = (string_: string, match: string, offset: number) =>
+	string_.slice(offset).toUpperCase().startsWith(match);
 
 export const replaceMappings = (string_: string): string => {
 	if (string_.includes('^') /* caret */) {
