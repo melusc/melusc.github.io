@@ -80,16 +80,6 @@ const joinNots = (strings: string[]) => {
 	return result;
 };
 
-const pipe
-	= <T>(...fns: Array<(arg: T) => T>) =>
-	(arg: T) => {
-		for (const fn of fns) {
-			arg = fn(arg);
-		}
-
-		return arg;
-	};
-
 export const parseOperation = (raw: string): Operation => {
 	raw = replaceMappings(raw);
 	raw = raw.replace(/\s+/g, '');
@@ -98,7 +88,8 @@ export const parseOperation = (raw: string): Operation => {
 		throw new Error('Unexpected empty string');
 	}
 
-	const split = pipe(splitByOperator, joinNots)(groupBrackets(raw));
+	const grouped = groupBrackets(raw);
+	const split = joinNots(splitByOperator(grouped));
 
 	if (split.length === 1) {
 		const first = split[0]!.trim();
