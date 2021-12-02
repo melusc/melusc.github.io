@@ -1,17 +1,17 @@
 import test from 'ava';
 
-import {generateInitialBools} from '../../../src/truth-table/lib/generate-initial-bools';
+import {generateBoolPermutations} from '../../../src/truth-table/lib/generate-bool-permutations';
 
 test('[a]', t => {
 	t.deepEqual(
-		[...generateInitialBools(new Set(['a']))],
+		[...generateBoolPermutations(new Set(['a']))],
 		[{a: true}, {a: false}],
 	);
 });
 
 test('[a, b]', t => {
 	t.deepEqual(
-		[...generateInitialBools(new Set(['a', 'b']))],
+		[...generateBoolPermutations(new Set(['a', 'b']))],
 		[
 			{a: true, b: true},
 			{a: true, b: false},
@@ -23,7 +23,7 @@ test('[a, b]', t => {
 
 test('[a, b, c]', t => {
 	t.deepEqual(
-		[...generateInitialBools(new Set(['a', 'b', 'c']))],
+		[...generateBoolPermutations(new Set(['a', 'b', 'c']))],
 		[
 			{a: true, b: true, c: true},
 			{a: true, b: true, c: false},
