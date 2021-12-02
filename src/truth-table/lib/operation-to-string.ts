@@ -2,17 +2,24 @@ import {type Operation} from './parse-operation';
 import {LogicalSymbolFromName} from './logical-symbols';
 
 export const operationToString = (operation: Operation): string => {
-	if (operation.type === 'variable') {
-		return operation.variable;
+	let stringified = operation.stringified;
+
+	if (stringified) {
+		return stringified;
 	}
 
-	if (operation.type === 'not') {
-		return `${LogicalSymbolFromName.not}${operationToString(
+	if (operation.type === 'variable') {
+		stringified = operation.variable;
+	} else if (operation.type === 'not') {
+		stringified = `${LogicalSymbolFromName.not}${operationToString(
 			operation.values[0],
 		)}`;
+	} else {
+		stringified = `(${operationToString(operation.values[0])} ${
+			LogicalSymbolFromName[operation.type]
+		} ${operationToString(operation.values[1])})`;
 	}
 
-	return `(${operationToString(operation.values[0])} ${
-		LogicalSymbolFromName[operation.type]
-	} ${operationToString(operation.values[1])})`;
+	operation.stringified = stringified;
+	return stringified;
 };

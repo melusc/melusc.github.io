@@ -7,7 +7,7 @@ import {
 	NameFromLogicalSymbol,
 } from './logical-symbols';
 
-export type Operation =
+export type Operation = (
 	| {
 			type: Operators;
 			values: [Operation, Operation];
@@ -19,7 +19,10 @@ export type Operation =
 	| {
 			type: 'variable';
 			variable: string;
-	  };
+	  }
+) & {
+	stringified?: string;
+};
 
 const splitByOperator = (strings: string[]) => {
 	let previous = '';
