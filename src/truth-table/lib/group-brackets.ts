@@ -30,7 +30,7 @@ export const groupBrackets = (raw: string): string[] => {
 
 	const after = raw.slice(previousEnd).trim();
 	if (after !== '') {
-		result.push(raw.slice(previousEnd).trim());
+		result.push(after);
 	}
 
 	return result;
