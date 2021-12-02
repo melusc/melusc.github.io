@@ -1,6 +1,6 @@
-import {Operation} from './parse-operation';
+import {AST} from './parse-operation';
 
-function * findVariablesRecursive(operation: Operation): Iterable<string> {
+function * findVariablesRecursive(operation: AST): Iterable<string> {
 	if (operation.type === 'variable') {
 		yield operation.variable;
 	} else {
@@ -10,7 +10,7 @@ function * findVariablesRecursive(operation: Operation): Iterable<string> {
 	}
 }
 
-export const findVariables = (operation: Operation): Set<string> => {
+export const findVariables = (operation: AST): Set<string> => {
 	const list = new Set<string>();
 
 	for (const variable of findVariablesRecursive(operation)) {

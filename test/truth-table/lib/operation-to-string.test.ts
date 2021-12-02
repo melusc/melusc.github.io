@@ -2,7 +2,7 @@ import test from 'ava';
 
 import {LogicalSymbolFromName} from '../../../src/truth-table/lib/logical-symbols';
 import {operationToString} from '../../../src/truth-table/lib/operation-to-string';
-import {type Operation} from '../../../src/truth-table/lib/parse-operation';
+import {type AST} from '../../../src/truth-table/lib/parse-operation';
 
 test('a AND b', t => {
 	t.is(
@@ -61,7 +61,7 @@ test('a AND (b XOR (c <=> d))', t => {
 });
 
 test('caching', t => {
-	const operation: Operation = {
+	const operation: AST = {
 		type: 'and',
 		values: [
 			{

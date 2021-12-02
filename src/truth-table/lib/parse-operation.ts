@@ -7,14 +7,14 @@ import {
 	NameFromLogicalSymbol,
 } from './logical-symbols';
 
-export type Operation = (
+export type AST = (
 	| {
 			type: Operators;
-			values: [Operation, Operation];
+			values: [AST, AST];
 	  }
 	| {
 			type: 'not';
-			values: [Operation];
+			values: [AST];
 	  }
 	| {
 			type: 'variable';
@@ -80,7 +80,7 @@ const joinNots = (strings: string[]) => {
 	return result;
 };
 
-export const parseOperation = (raw: string): Operation => {
+export const parseOperation = (raw: string): AST => {
 	raw = replaceMappings(raw);
 	raw = raw.replace(/\s+/g, '');
 

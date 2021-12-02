@@ -1,9 +1,9 @@
-import {type Operation} from './parse-operation';
+import {type AST} from './parse-operation';
 import {operations} from './operations';
 import {operationToString} from './operation-to-string';
 
 export const evalOperation = (
-	operation: Operation,
+	operation: AST,
 	variables: Record<string, boolean>,
 ): boolean => {
 	const stringified = operationToString(operation);

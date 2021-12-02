@@ -1,7 +1,7 @@
-import {type Operation} from './parse-operation';
+import {type AST} from './parse-operation';
 import {LogicalSymbolFromName} from './logical-symbols';
 
-export const operationToString = (operation: Operation): string => {
+export const operationToString = (operation: AST): string => {
 	let stringified = operation.stringified;
 
 	if (stringified) {

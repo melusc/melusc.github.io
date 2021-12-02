@@ -1,10 +1,10 @@
 import {generateBoolPermutations} from './generate-bool-permutations';
 import {operationToString} from './operation-to-string';
 import {findVariables} from './find-variables';
-import {Operation, parseOperation} from './parse-operation';
+import {AST, parseOperation} from './parse-operation';
 import {evalOperation} from './eval';
 
-function * getColumns(operations: Operation): Iterable<[Operation, string]> {
+function * getColumns(operations: AST): Iterable<[AST, string]> {
 	// Not variables, they are handled differently below
 	if (operations.type !== 'variable') {
 		for (const value of operations.values) {
