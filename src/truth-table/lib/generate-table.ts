@@ -4,7 +4,9 @@ import {findVariables} from './find-variables';
 import {AST, parseOperation} from './parse-operation';
 import {evalOperation} from './eval';
 
-function * getColumns(operations: AST): Iterable<[AST, string]> {
+type Column = [AST, string];
+
+function * getColumns(operations: AST): Iterable<Column> {
 	// Not variables, they are handled differently below
 	if (operations.type !== 'variable') {
 		for (const value of operations.values) {
@@ -16,6 +18,20 @@ function * getColumns(operations: AST): Iterable<[AST, string]> {
 	}
 }
 
+const deduplicateColumns = (columns: Iterable<Column>): Column[] => {
+	const seenColumns = new Set<string>();
+	const result: Column[] = [];
+
+	for (const column of columns) {
+		if (!seenColumns.has(column[1])) {
+			result.push(column);
+			seenColumns.add(column[1]);
+		}
+	}
+
+	return result;
+};
+
 export const generateTable = (
 	input: string,
 ): {
@@ -25,7 +41,7 @@ export const generateTable = (
 	const parsed = parseOperation(input);
 	const variables = findVariables(parsed);
 	const rows = generateBoolPermutations(variables);
-	const columns = new Set(getColumns(parsed));
+	const columns = deduplicateColumns(getColumns(parsed));
 
 	const table: {
 		columns: string[];
