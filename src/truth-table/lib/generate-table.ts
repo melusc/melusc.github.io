@@ -1,3 +1,5 @@
+import {Except, ReadonlyDeep} from 'type-fest';
+
 import {generateBoolPermutations} from './generate-bool-permutations';
 import {operationToString} from './operation-to-string';
 import {findVariables} from './find-variables';
@@ -35,23 +37,26 @@ const deduplicateColumns = (columns: Iterable<Column>): Column[] => {
 const removeOuterBrackets = (string: string) =>
 	/^\(.+\)$/.test(string) ? string.slice(1, -1) : string;
 
-export const generateTable = (
-	input: string,
-): {
-	columns: readonly string[];
-	rows: ReadonlyArray<readonly boolean[]>;
-} => {
+type MutableTable = {
+	columns: string[];
+	rows: boolean[][];
+	ast: AST;
+};
+
+type TableReadonlyKeys = 'columns' | 'rows';
+export type ParsedTable = ReadonlyDeep<Pick<MutableTable, TableReadonlyKeys>> &
+	Except<MutableTable, TableReadonlyKeys>;
+
+export const generateTable = (input: string): ParsedTable => {
 	const parsed = parseOperation(input);
 	const variables = findVariables(parsed);
 	const rows = generateBoolPermutations(variables);
 	const columns = deduplicateColumns(getColumns(parsed));
 
-	const table: {
-		columns: string[];
-		rows: boolean[][];
-	} = {
+	const table: MutableTable = {
 		columns: [...variables],
 		rows: [],
+		ast: parsed,
 	};
 
 	for (const [, stringified] of columns) {
