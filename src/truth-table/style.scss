@@ -1,0 +1,38 @@
+@use 'sass:math';
+
+html {
+	font-family: 'Open Sans';
+	font-size: math.sqrt(2) * 1em;
+	background-color: #0d1117;
+	color: #ddd;
+}
+
+$border: 3px solid #30363d;
+
+table {
+	table-layout: fixed;
+	width: max-content;
+}
+
+tr {
+	border-bottom: $border;
+}
+
+td {
+	&.cell_false {
+		color: #b9503f;
+	}
+	&.cell_true {
+		color: #3fb950;
+	}
+}
+
+th,
+td {
+	padding: 4px 1em;
+
+	border-left: $border;
+	&:first-child {
+		border-left: none;
+	}
+}
