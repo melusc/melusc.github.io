@@ -128,6 +128,10 @@ export const parseOperation = (raw: string): AST => {
 		split.splice(0, split.length - 2, first.join(''));
 	}
 
+	if (split[2] === undefined) {
+		throw new Error('Unexpected end of statement after operator');
+	}
+
 	if (!isValidOperator(split[1]!)) {
 		throw new Error(`Expected an operator. Got ${split[1]!}`);
 	}
