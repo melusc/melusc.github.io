@@ -1,4 +1,4 @@
-$border: 3px solid #30363d;
+@import '../vars';
 
 table {
 	table-layout: fixed;
@@ -6,15 +6,15 @@ table {
 }
 
 tr {
-	border-bottom: $border;
+	border-bottom: $table-border;
 }
 
 td {
 	&.cell_false {
-		color: #b9503f;
+		color: $red;
 	}
 	&.cell_true {
-		color: #3fb950;
+		color: $green;
 	}
 }
 
@@ -22,7 +22,7 @@ th,
 td {
 	padding: 4px 1em;
 
-	border-left: $border;
+	border-left: $table-border;
 	&:first-child {
 		border-left: none;
 	}
