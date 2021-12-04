@@ -112,6 +112,10 @@ export const parseOperation = (raw: string): AST => {
 			};
 		}
 
+		if (!/^\s*\w+\s*$/.test(first)) {
+			throw new Error('Unexpected character in variable');
+		}
+
 		return {
 			type: 'variable',
 			variable: first,
