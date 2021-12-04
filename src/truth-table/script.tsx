@@ -2,6 +2,8 @@ import {h, render} from 'preact';
 import {useEffect, useState} from 'preact/hooks';
 
 import {Table} from './components/table';
+import {Input} from './components/input';
+
 import {generateTable, ParsedTable} from './lib/generate-table';
 import {operationToString} from './lib/operation-to-string';
 
@@ -39,12 +41,7 @@ const Main = () => {
 
 	return (
 		<div>
-			<input
-				value={input}
-				onInput={ev => {
-					setInput(ev.currentTarget.value);
-				}}
-			/>
+			<Input input={input} setInput={setInput} />{' '}
 			{parsed.valid ? (
 				<Table table={generateTable(input)} />
 			) : (
