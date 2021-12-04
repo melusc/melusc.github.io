@@ -3,6 +3,7 @@ import {useEffect, useState} from 'preact/hooks';
 
 import {Table} from './components/table';
 import {Input} from './components/input';
+import {RenderError} from './components/render-error';
 
 import {generateTable, ParsedTable} from './lib/generate-table';
 import {operationToString} from './lib/operation-to-string';
@@ -45,7 +46,7 @@ const Main = () => {
 			{parsed.valid ? (
 				<Table table={generateTable(input)} />
 			) : (
-				parsed.error?.message
+				<RenderError error={parsed.error} />
 			)}
 		</div>
 	);
