@@ -31,7 +31,19 @@ export const mappings = (() => {
 
 		[
 			LogicalSymbolFromName.xor,
-			['⊕', '⊻', '≢', 'xor', 'either or', '>=<', '>-<', '!=', '!==', '~='],
+			[
+				'⊕',
+				'⊻',
+				'≢',
+				'xor',
+				'either or',
+				'>=<',
+				'>-<',
+				'!=',
+				'!==',
+				'~=',
+				'<>',
+			],
 		],
 
 		[LogicalSymbolFromName.or, ['||', '|', 'or']],
