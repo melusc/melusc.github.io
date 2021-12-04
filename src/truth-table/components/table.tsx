@@ -3,6 +3,8 @@ import {h} from 'preact';
 
 import {ParsedTable} from '../lib/generate-table';
 
+import './table.scss';
+
 export const Table = ({table}: {table: ParsedTable}) => (
 	<div class="table-border">
 		<table>
