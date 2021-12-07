@@ -12,6 +12,13 @@
 		"type": "anchor"
 	},
 	{
+		"description": "A truth table generator which goes through all the possible combinations and lists them in a table.",
+		"href": "/truth-table/",
+		"key": "truth-table",
+		"text": "Truth table",
+		"type": "anchor"
+	},
+	{
 		"description": "A little page which imitates Samsung Health, but instead of actually exercising you can just modify the values right from your sofa. I made this so I don't have to do PE homework when I don't feel like doing it.",
 		"href": "/fake-fitness-app/",
 		"key": "fake-fitness-app",
