@@ -1,0 +1,29 @@
+@import '../vars';
+
+table {
+	table-layout: fixed;
+	width: max-content;
+}
+
+tr {
+	border-bottom: $table-border;
+}
+
+td {
+	&.cell_false {
+		color: $red;
+	}
+	&.cell_true {
+		color: $green;
+	}
+}
+
+th,
+td {
+	padding: 4px 1em;
+
+	border-left: $table-border;
+	&:first-child {
+		border-left: none;
+	}
+}

@@ -1,0 +1,8 @@
+@use 'sass:math';
+
+html {
+	font-family: 'Open Sans';
+	font-size: math.sqrt(2) * 1em;
+	background-color: #0d1117;
+	color: #ddd;
+}
