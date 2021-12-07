@@ -5,7 +5,7 @@ import {LogicalSymbolFromName} from '../../../src/truth-table/lib/logical-symbol
 
 const t1 = 'a OR b';
 test(t1, t => {
-	t.deepEqual(generateTable(t1), {
+	t.like(generateTable(t1), {
 		columns: ['a', 'b', `a ${LogicalSymbolFromName.or} b`],
 		rows: [
 			[true, true, true],
@@ -18,7 +18,7 @@ test(t1, t => {
 
 const t2 = '(a and b) and c';
 test(t2, t => {
-	t.deepEqual(generateTable(t2), {
+	t.like(generateTable(t2), {
 		columns: [
 			'a',
 			'b',
@@ -41,7 +41,7 @@ test(t2, t => {
 
 const t3 = '(a and b) or (a and b)';
 test(t3, t => {
-	t.deepEqual(generateTable(t3), {
+	t.like(generateTable(t3), {
 		columns: [
 			'a',
 			'b',
