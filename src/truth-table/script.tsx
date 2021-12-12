@@ -36,7 +36,10 @@ const Main = () => {
 
 	useEffect(() => {
 		if (parsed.valid) {
-			location.hash = operationToString(parsed.table.ast);
+			location.hash = operationToString(parsed.table.ast).replace(
+				/^\((.+)\)$/,
+				'$1',
+			);
 		}
 	}, [parsed]);
 

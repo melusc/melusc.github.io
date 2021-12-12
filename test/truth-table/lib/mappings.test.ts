@@ -1,70 +1,113 @@
 import test from 'ava';
 
-import {replaceMappings} from '../../../src/truth-table/lib/mappings';
+import {
+	replaceMappings,
+	stringWithIndicesMatches,
+} from '../../../src/truth-table/lib/mappings';
+import {
+	CharacterTypes,
+	fromString,
+} from '../../../src/truth-table/lib/string-with-indices';
+
+test('stringWithIndicesMatches', t => {
+	t.true(
+		stringWithIndicesMatches(
+			{
+				characters: 'abc',
+				type: CharacterTypes.variable,
+				from: 0,
+				to: 3,
+			},
+			'ABC',
+		),
+	);
+
+	t.false(
+		stringWithIndicesMatches(
+			{
+				characters: 'abc',
+				type: CharacterTypes.space,
+				from: 0,
+				to: 3,
+			},
+			'ABC',
+		),
+	);
+
+	t.false(
+		stringWithIndicesMatches(
+			{
+				characters: 'abd',
+				type: CharacterTypes.variable,
+				from: 0,
+				to: 3,
+			},
+			'ABC',
+		),
+	);
+});
+
+const replaceMappingsIndices = (input: string) =>
+	replaceMappings(fromString(input))
+		.map(({characters}) => characters)
+		.join('');
 
 test('replace to ⟷', t => {
-	t.is(replaceMappings('A ⇔ B'), 'A ⟷ B', 'A ⇔ B');
-	t.is(replaceMappings('A ≡ B'), 'A ⟷ B', 'A ≡ B');
-	t.is(replaceMappings('A iff B'), 'A ⟷ B', 'A iff B');
-	t.is(replaceMappings('A if and only if B'), 'A ⟷ B', 'A if and only if B');
-	t.is(replaceMappings('A same as B'), 'A ⟷ B', 'A same as B');
-	t.is(replaceMappings('A equal B'), 'A ⟷ B', 'A equal B');
-	t.is(replaceMappings('A <-> B'), 'A ⟷ B', 'A <-> B');
-	t.is(replaceMappings('A <=> B'), 'A ⟷ B', 'A <=> B');
-	t.is(replaceMappings('A = B'), 'A ⟷ B', 'A = B');
-	t.is(replaceMappings('A == B'), 'A ⟷ B', 'A == B');
-	t.is(replaceMappings('A === B'), 'A ⟷ B', 'A === B');
+	t.is(replaceMappingsIndices('A ⇔ B'), 'A ⟷ B', 'A ⇔ B');
+	t.is(replaceMappingsIndices('A ≡ B'), 'A ⟷ B', 'A ≡ B');
+	t.is(replaceMappingsIndices('A iff B'), 'A ⟷ B', 'A iff B');
+	t.is(replaceMappingsIndices('A <-> B'), 'A ⟷ B', 'A <-> B');
+	t.is(replaceMappingsIndices('A <=> B'), 'A ⟷ B', 'A <=> B');
+	t.is(replaceMappingsIndices('A = B'), 'A ⟷ B', 'A = B');
+	t.is(replaceMappingsIndices('A == B'), 'A ⟷ B', 'A == B');
+	t.is(replaceMappingsIndices('A === B'), 'A ⟷ B', 'A === B');
 });
 
 test('replace to →', t => {
-	t.is(replaceMappings('A if then B'), 'A → B', 'A if then B');
-	t.is(replaceMappings('A IF THEN B'), 'A → B', 'A IF THEN B');
-	t.is(replaceMappings('A IMPLIeS B'), 'A → B', 'A IMPLIeS B');
-	t.is(replaceMappings('A ⇒ B'), 'A → B', 'A ⇒ B');
-	t.is(replaceMappings('A ⊃ B'), 'A → B', 'A ⊃ B');
-	t.is(replaceMappings('A -> B'), 'A → B', 'A -> B');
-	t.is(replaceMappings('A => B'), 'A → B', 'A => B');
+	t.is(replaceMappingsIndices('A ⇒ B'), 'A → B', 'A ⇒ B');
+	t.is(replaceMappingsIndices('A ⊃ B'), 'A → B', 'A ⊃ B');
+	t.is(replaceMappingsIndices('A -> B'), 'A → B', 'A -> B');
+	t.is(replaceMappingsIndices('A => B'), 'A → B', 'A => B');
 });
 
 test('replace to ¬', t => {
-	t.is(replaceMappings('NOT A'), '¬ A', 'NOT A');
-	t.is(replaceMappings('!A'), '¬A', '!A');
-	t.is(replaceMappings('~A'), '¬A', '~A');
+	t.is(replaceMappingsIndices('NOT A'), '¬ A', 'NOT A');
+	t.is(replaceMappingsIndices('!A'), '¬A', '!A');
+	t.is(replaceMappingsIndices('~A'), '¬A', '~A');
 });
 
 test('replace to ∧', t => {
-	t.is(replaceMappings('A && B'), 'A ∧ B', 'A && B');
-	t.is(replaceMappings('A & B'), 'A ∧ B', 'A & B');
-	t.is(replaceMappings('A AND B'), 'A ∧ B', 'A AND B');
+	t.is(replaceMappingsIndices('A && B'), 'A ∧ B', 'A && B');
+	t.is(replaceMappingsIndices('A & B'), 'A ∧ B', 'A & B');
+	t.is(replaceMappingsIndices('A AND B'), 'A ∧ B', 'A AND B');
 });
 
 test('replace to ↮', t => {
-	t.is(replaceMappings('A ⊕ B'), 'A ↮ B', 'A ⊕ B');
-	t.is(replaceMappings('A ⊻ B'), 'A ↮ B', 'A ⊻ B');
-	t.is(replaceMappings('A ≢ B'), 'A ↮ B', 'A ≢ B');
-	t.is(replaceMappings('A XOR B'), 'A ↮ B', 'A XOR B');
-	t.is(replaceMappings('A either or B'), 'A ↮ B', 'A either or B');
-	t.is(replaceMappings('A >=< B'), 'A ↮ B', 'A >=< B');
-	t.is(replaceMappings('A >-< B'), 'A ↮ B', 'A >-< B');
-	t.is(replaceMappings('A != B'), 'A ↮ B', 'A != B');
-	t.is(replaceMappings('A !== B'), 'A ↮ B', 'A !== B');
-	t.is(replaceMappings('A ~= B'), 'A ↮ B', 'A ~= B');
+	t.is(replaceMappingsIndices('A ⊕ B'), 'A ↮ B', 'A ⊕ B');
+	t.is(replaceMappingsIndices('A ⊻ B'), 'A ↮ B', 'A ⊻ B');
+	t.is(replaceMappingsIndices('A ≢ B'), 'A ↮ B', 'A ≢ B');
+	t.is(replaceMappingsIndices('A XOR B'), 'A ↮ B', 'A XOR B');
+	t.is(replaceMappingsIndices('A >=< B'), 'A ↮ B', 'A >=< B');
+	t.is(replaceMappingsIndices('A >-< B'), 'A ↮ B', 'A >-< B');
+	t.is(replaceMappingsIndices('A != B'), 'A ↮ B', 'A != B');
+	t.is(replaceMappingsIndices('A !== B'), 'A ↮ B', 'A !== B');
+	t.is(replaceMappingsIndices('A ~= B'), 'A ↮ B', 'A ~= B');
 });
 
 test('replace to ∨', t => {
-	t.is(replaceMappings('A || B'), 'A ∨ B', 'A || B');
-	t.is(replaceMappings('A | B'), 'A ∨ B', 'A | B');
-	t.is(replaceMappings('A OR B'), 'A ∨ B', 'A OR B');
+	t.is(replaceMappingsIndices('A || B'), 'A ∨ B', 'A || B');
+	t.is(replaceMappingsIndices('A | B'), 'A ∨ B', 'A | B');
+	t.is(replaceMappingsIndices('A OR B'), 'A ∨ B', 'A OR B');
 });
 
 test('Replacing strings with weird behaviour on upperCase', t => {
 	// 'ß'.toUpperCase() === 'SS'
-	t.is(replaceMappings('ß || B'), 'ß ∨ B', 'ß || B');
+	t.is(replaceMappingsIndices('ß || B'), 'ß ∨ B', 'ß || B');
 });
 
 test('(a and b) or (c xor not d)', t => {
 	t.is(
-		replaceMappings('(a and b) or (c xor not d)'),
+		replaceMappingsIndices('(a and b) or (c xor not d)'),
 		'(a ∧ b) ∨ (c ↮ ¬ d)',
 		'(a and b) or (c xor not d)',
 	);
@@ -74,10 +117,10 @@ test('Forbidden characters', t => {
 	t.throws(
 		() => {
 			// Caret
-			replaceMappings('A ^ B');
+			replaceMappingsIndices('A ^ B');
 		},
 		{
-			message: /ambiguity/i,
+			message: 'Unexpected ambiguous caret (^) at position 2.',
 		},
 	);
 });

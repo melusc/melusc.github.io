@@ -1,6 +1,7 @@
 import test from 'ava';
 
 import {parseOperation} from '../../../src/truth-table/lib/parse-operation';
+import {operationToString} from '../../../src/truth-table/lib/operation-to-string';
 
 const t1 = '(a) && (b)';
 test(t1, t => {
@@ -218,4 +219,76 @@ test(t7, t => {
 			},
 		],
 	});
+});
+
+const t8 = 'not not not not not A';
+test(t8, t => {
+	t.deepEqual(parseOperation(t8), {
+		type: 'not',
+		values: [
+			{
+				type: 'not',
+				values: [
+					{
+						type: 'not',
+						values: [
+							{
+								type: 'not',
+								values: [
+									{
+										type: 'not',
+										values: [
+											{
+												type: 'variable',
+												variable: 'A',
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+				],
+			},
+		],
+	});
+});
+
+const t9 = `
+	(
+		a -> not b
+	) && (
+		not not a -> b -> not c
+	) && c || not d
+`;
+test(`${t9} should deep equal itself when parsing it after restringified`, t => {
+	const parsed1 = parseOperation(t9);
+	const parsed2 = parseOperation(operationToString(parsed1));
+	operationToString(parsed2); // For all cached stringifieds
+
+	t.deepEqual(parsed2, parsed1);
+});
+
+const t10 = 'a b';
+test(t10, t => {
+	t.throws(
+		() => {
+			parseOperation(t10);
+		},
+		{
+			message: 'Expected "a b" to have an operator.',
+		},
+	);
+});
+
+const t11 = '((a -> b) -> c) && ((c d -> a) XOR b)';
+test(t11, t => {
+	t.throws(
+		() => {
+			parseOperation(t11);
+		},
+		{
+			message: 'Expected "c d" to have an operator.',
+		},
+	);
 });

@@ -1,4 +1,4 @@
-import {groupBrackets} from './group-brackets';
+import {groupItems} from './group-items';
 import {replaceMappings} from './mappings';
 import {
 	type Operators,
@@ -6,6 +6,15 @@ import {
 	isValidOperator,
 	NameFromLogicalSymbol,
 } from './logical-symbols';
+import {
+	CharacterTypes,
+	fromString,
+	removeWhitespace,
+	StringWithIndices,
+} from './string-with-indices';
+import {validate} from './validate';
+import {splitOperators} from './split-operators';
+import {hasOperator} from './has-operator';
 
 export type AST = (
 	| {
@@ -24,120 +33,145 @@ export type AST = (
 	stringified?: string;
 };
 
-const splitByOperator = (strings: string[]) => {
-	let previous = '';
-	const result: string[] = [];
-
-	const pushPrevious = () => {
-		if (previous) {
-			result.push(previous);
-			previous = '';
-		}
-	};
-
-	for (const string_ of strings) {
-		// If it is wrapped with a bracket-pair
-		// don't split anything
-		if (string_.startsWith('(')) {
-			result.push(string_);
-			continue;
-		}
-
-		for (const char of string_.split('')) {
-			if (isValidOperator(char)) {
-				pushPrevious();
-
-				result.push(char);
-			} else {
-				previous += char;
-			}
-		}
-
-		pushPrevious();
-	}
-
-	return result;
-};
-
-const joinNots = (strings: string[]) => {
-	const result: string[] = [];
-
-	for (let i = 0; i < strings.length; ++i) {
-		const string = strings[i]!;
-		if (string.trim() === LogicalSymbolFromName.not) {
-			const next = strings[i + 1];
-			if (next === undefined) {
-				throw new Error('Unexpected end of string after not.');
-			}
-
-			result.push(`${LogicalSymbolFromName.not}${next}`);
-			++i;
-		} else {
-			result.push(string);
-		}
-	}
-
-	return result;
-};
-
-export const parseOperation = (raw: string): AST => {
-	raw = replaceMappings(raw);
-	raw = raw.replace(/\s+/g, '');
-
-	if (raw.length === 0) {
-		throw new Error('Unexpected empty string');
-	}
-
-	const grouped = groupBrackets(raw);
-	const split = joinNots(splitByOperator(grouped));
-
-	if (split.length === 1) {
-		const first = split[0]!.trim();
-		if (first.startsWith('(')) {
-			if (!first.endsWith(')')) {
-				throw new Error('Unmatched bracket');
-			}
-
-			return parseOperation(first.slice(1, -1));
-		}
-
-		if (isValidOperator(first)) {
-			throw new Error(`Unexpected operator ${first}`);
-		}
-
-		if (first.startsWith(LogicalSymbolFromName.not)) {
-			return {
-				type: 'not',
-				values: [parseOperation(first.slice(1))],
-			};
-		}
-
-		if (!/^\s*\w+\s*$/.test(first)) {
-			throw new Error('Unexpected character in variable');
-		}
-
-		return {
-			type: 'variable',
-			variable: first,
-		};
-	}
-
-	// Left to right means treat it like brackets around first few
-	if (split.length > 3) {
-		const first = split.slice(0, -2);
-		split.splice(0, split.length - 2, first.join(''));
-	}
-
-	if (split[2] === undefined) {
-		throw new Error('Unexpected end of statement after operator');
-	}
-
-	if (!isValidOperator(split[1]!)) {
-		throw new Error(`Expected an operator. Got ${split[1]!}`);
+const parseNot = (input: StringWithIndices[][]): AST => {
+	if (
+		input[0]?.[0]?.type !== CharacterTypes.operator
+		|| input[0]![0]!.characters !== LogicalSymbolFromName.not
+	) {
+		throw new Error(`Expected "${LogicalSymbolFromName.not}".`);
 	}
 
 	return {
-		type: NameFromLogicalSymbol[split[1]],
-		values: [parseOperation(split[0]!), parseOperation(split[2]!)],
+		type: 'not',
+		values: [_parseOperations(input.slice(1))],
 	};
+};
+
+const _parseOperation = (input: StringWithIndices[]): AST => {
+	if (!hasOperator(input)) {
+		throw new Error(
+			`Expected "${input
+				.map(item => item.characters)
+				.join(' ')}" to have an operator.`,
+		);
+	}
+
+	if (input.length === 0) {
+		throw new Error('Unexpected empty input at _parseOperation.');
+	}
+
+	if (input.length === 1) {
+		const item = input[0]!;
+
+		if (item.type === CharacterTypes.variable) {
+			return {
+				type: 'variable',
+				variable: item.characters,
+			};
+		}
+
+		throw new Error(`Unexpected type ${item.type} at ${item.from}.`);
+	}
+
+	const grouped = groupItems(input);
+
+	// if first bracket belongs to last bracket
+	// (if there are even brackets)
+	if (grouped.length === 1) {
+		const first = input[0]!;
+		const last = input.at(-1)!;
+
+		if (
+			first.type === CharacterTypes.bracket
+			&& last.type === CharacterTypes.bracket
+		) {
+			first.characters = first.characters.slice(1);
+			++first.from;
+			last.characters = last.characters.slice(0, -1);
+			--last.to;
+
+			if (first.characters === '') {
+				input.shift();
+			}
+
+			if (last.characters === '') {
+				input.pop();
+			}
+
+			return _parseOperation(input);
+		}
+	}
+
+	return _parseOperations(grouped);
+};
+
+const _parseOperations = (input: StringWithIndices[][]): AST => {
+	if (input.length === 0) {
+		throw new Error('Unexpected empty input at _parseOperation.');
+	}
+
+	if (input.length === 1) {
+		return _parseOperation(input[0]!);
+	}
+
+	const lastItems: StringWithIndices[][] = [input.pop()!];
+
+	let secondToLast: StringWithIndices[] | undefined;
+	while (
+		(secondToLast = input.at(-1))
+		&& secondToLast.length === 1
+		&& secondToLast[0]!.type === CharacterTypes.operator
+		&& secondToLast[0]!.characters === LogicalSymbolFromName.not
+	) {
+		lastItems.unshift(input.pop()!);
+	}
+
+	if (input.length === 0) {
+		return parseNot(lastItems);
+	}
+
+	const operatorArray = input.pop()!;
+	const operator = operatorArray[0]!;
+
+	if (operatorArray.length !== 1) {
+		throw new Error(
+			`Expected operator, got "${operatorArray
+				.map(item => item.characters)
+				.join(' ')}".`,
+		);
+	}
+
+	// !isValidOperator is unnecessary, it's just a typeguard
+	if (
+		operator.type !== CharacterTypes.operator
+		|| !isValidOperator(operator.characters)
+	) {
+		throw new Error(
+			`Expected operator, got type "${operator.type}" with value "${operator.characters}"`,
+		);
+	}
+
+	return {
+		type: NameFromLogicalSymbol[operator.characters],
+		values: [_parseOperations(input), _parseOperations(lastItems)],
+	};
+};
+
+// Wrapper around _parseOperation for sanitising and validating
+// so it doesn't waste resources validating multiple times
+export const parseOperation = (raw: string): AST => {
+	const withIndices = fromString(raw);
+	const noWhitespace = removeWhitespace(withIndices);
+
+	if (noWhitespace.length === 0) {
+		throw new Error('Unexpected empty string');
+	}
+
+	const split = splitOperators(noWhitespace);
+
+	const translatedMappings = replaceMappings(split);
+
+	validate(translatedMappings);
+
+	return _parseOperation(translatedMappings);
 };

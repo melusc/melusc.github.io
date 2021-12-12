@@ -1,49 +1,25 @@
+import {ReadonlyDeep} from 'type-fest';
 import {LogicalSymbolFromName} from './logical-symbols';
+import {CharacterTypes, type StringWithIndices} from './string-with-indices';
 
+export const singleCharacterNotMappings = ['~', '!'];
 export const mappings = (() => {
 	// https://en.wikipedia.org/wiki/List_of_logic_symbols
 	const stringMappings = [
 		[
 			LogicalSymbolFromName.iff,
-			[
-				'⇔',
-				'≡',
-				'iff',
-				'if and only if',
-				'same as',
-				'equal',
-				'<->',
-				'<=>',
-				'=',
-				'==',
-				'===',
-			],
+			['⇔', '≡', 'iff', '<->', '<=>', '=', '==', '==='],
 		],
 
-		[
-			LogicalSymbolFromName['if-then'],
-			['if then', 'implies', '⇒', '⊃', '->', '=>'],
-		],
+		[LogicalSymbolFromName['if-then'], ['⇒', '⊃', '->', '=>']],
 
-		[LogicalSymbolFromName.not, ['~', '!', 'not']],
+		[LogicalSymbolFromName.not, [...singleCharacterNotMappings, 'not']],
 
 		[LogicalSymbolFromName.and, ['&&', '&', 'and']],
 
 		[
 			LogicalSymbolFromName.xor,
-			[
-				'⊕',
-				'⊻',
-				'≢',
-				'xor',
-				'either or',
-				'>=<',
-				'>-<',
-				'!=',
-				'!==',
-				'~=',
-				'<>',
-			],
+			['⊕', '⊻', '≢', 'xor', '>=<', '>-<', '!=', '!==', '~=', '<>'],
 		],
 
 		[LogicalSymbolFromName.or, ['||', '|', 'or']],
@@ -57,39 +33,65 @@ export const mappings = (() => {
 		}
 	}
 
-	// If a regex is longer it should be replaced first
-	// "xor" then "or"
-	flatMappings.sort(
-		([regexA, keyA], [regexB, keyB]) =>
-			regexB.length - regexA.length || keyA.localeCompare(keyB),
-	);
-
 	return flatMappings as ReadonlyArray<[replacer: string, replaceWith: string]>;
 })();
 
-// Slice, then uppercase, because see mappings.test.ts#L61-L62
-const ciEquals = (string_: string, match: string, offset: number) =>
-	string_.slice(offset).toUpperCase().startsWith(match);
-
-export const replaceMappings = (string_: string): string => {
-	if (string_.includes('^') /* caret */) {
-		// It could be confused with ∧ (logical and) or bitwise xor ^ (caret)
-		throw new SyntaxError('Use of ^ (caret) is forbidden due to ambiguity.');
+export const stringWithIndicesMatches = (
+	input: StringWithIndices,
+	match: string,
+) => {
+	// If not type variable (like "and") or not type operator (like "&&")
+	if (
+		input.type !== CharacterTypes.variable
+		&& input.type !== CharacterTypes.operator
+	) {
+		return false;
 	}
 
-	for (let i = 0; i < string_.length; ++i) {
-		for (const [replacer, replaceWith] of mappings) {
-			if (ciEquals(string_, replacer, i)) {
-				string_
-					= string_.slice(0, i)
-					+ replaceWith
-					+ string_.slice(i + replacer.length);
+	return input.characters.toUpperCase() === match;
+};
 
-				// If no break it will test all "replaceWiths" if they can be replaced, which they can never be
+export const replaceMappings = (
+	input: ReadonlyDeep<StringWithIndices[]>,
+): StringWithIndices[] => {
+	const result: StringWithIndices[] = [];
+
+	for (const item of input) {
+		const caretIndex = item.characters.indexOf('^');
+		if (caretIndex !== -1) {
+			// It could be confused with ∧ (logical and) or bitwise xor ^ (caret)
+			throw new SyntaxError(
+				`Unexpected ambiguous caret (^) at position ${item.from + caretIndex}.`,
+			);
+		}
+
+		if (
+			item.type !== CharacterTypes.operator
+			&& item.type !== CharacterTypes.variable
+		) {
+			result.push(item);
+			continue;
+		}
+
+		let anyMatched = false;
+		for (const [replacer, replaceWith] of mappings) {
+			if (stringWithIndicesMatches(item, replacer)) {
+				result.push({
+					...item,
+					characters: replaceWith,
+					type: CharacterTypes.operator,
+				});
+
+				anyMatched = true;
+
 				break;
 			}
 		}
+
+		if (!anyMatched) {
+			result.push(item);
+		}
 	}
 
-	return string_;
+	return result;
 };
