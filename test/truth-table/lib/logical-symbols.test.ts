@@ -7,7 +7,7 @@ import {
 
 test('operators', t => {
 	t.is(NameFromLogicalSymbol[LogicalSymbolFromName.iff], 'iff');
-	t.is(NameFromLogicalSymbol[LogicalSymbolFromName['if-then']], 'if-then');
+	t.is(NameFromLogicalSymbol[LogicalSymbolFromName.ifthen], 'ifthen');
 	t.is(NameFromLogicalSymbol[LogicalSymbolFromName.not], 'not');
 	t.is(NameFromLogicalSymbol[LogicalSymbolFromName.and], 'and');
 	t.is(NameFromLogicalSymbol[LogicalSymbolFromName.xor], 'xor');

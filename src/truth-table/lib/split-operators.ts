@@ -1,10 +1,11 @@
-import {isValidOperator, LogicalSymbolFromName} from './logical-symbols';
+import {isValidLogicalSymbol} from './logical-symbols';
 import {singleCharacterNotMappings} from './mappings';
 import {CharacterTypes, StringWithIndices} from './string-with-indices';
 
 const isNot = (input: string) =>
-	input === LogicalSymbolFromName.not
-	|| singleCharacterNotMappings.includes(input);
+	singleCharacterNotMappings.includes(
+		input as typeof singleCharacterNotMappings[number],
+	);
 
 export const splitOperators = (
 	input: StringWithIndices[],
@@ -26,6 +27,7 @@ export const splitOperators = (
 				result.push({
 					characters: previous,
 					type: CharacterTypes.operator,
+					originalCharacters: previous,
 					from: previousFrom,
 					to,
 				});
@@ -39,13 +41,14 @@ export const splitOperators = (
 			// Incase of !== don't parse it as "not =="
 			if (
 				(isNot(character) && (nextCharacter === '' || isNot(nextCharacter)))
-				|| isValidOperator(character)
+				|| isValidLogicalSymbol(character)
 			) {
 				push(item.from + i);
 
 				result.push({
 					characters: character,
 					type: CharacterTypes.operator,
+					originalCharacters: character,
 					from: item.from + i,
 					to: item.from + i + 1,
 				});

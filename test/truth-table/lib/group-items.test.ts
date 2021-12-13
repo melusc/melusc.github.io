@@ -161,6 +161,7 @@ test('(a) & ( b )', t => {
 			{
 				characters: '&',
 				type: CharacterTypes.operator,
+				originalCharacters: '&',
 				from: 4,
 				to: 5,
 			},
@@ -238,6 +239,7 @@ test('((a) & b)', t => {
 			{
 				characters: '&',
 				type: CharacterTypes.operator,
+				originalCharacters: '&',
 				from: 5,
 				to: 6,
 			},

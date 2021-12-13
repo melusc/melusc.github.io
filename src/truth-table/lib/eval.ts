@@ -1,6 +1,7 @@
 import {type AST} from './parse-operation';
 import {operations} from './operations';
 import {operationToString} from './operation-to-string';
+import {LogicalSymbolsNames} from './logical-symbols';
 
 export const evalOperation = (
 	operation: AST,
@@ -8,34 +9,38 @@ export const evalOperation = (
 ): boolean => {
 	const stringified = operationToString(operation);
 
-	const cached = variables[stringified];
+	let cached = variables[stringified];
 
 	if (cached) {
 		return cached;
 	}
 
-	let result: boolean;
-
 	switch (operation.type) {
 		case 'variable': {
-			result = variables[operation.variable]!;
+			cached = variables[operation.variable]!;
 			break;
 		}
 
-		case 'not': {
-			result = operations.not(evalOperation(operation.values[0], variables));
+		case 'operator': {
+			if (operation.operator === LogicalSymbolsNames.not) {
+				cached = operations.not(evalOperation(operation.values[0], variables));
+			} else {
+				cached = operations[operation.operator](
+					evalOperation(operation.values[0], variables),
+					evalOperation(operation.values[1], variables),
+				);
+			}
+
 			break;
 		}
 
 		default: {
-			result = operations[operation.type](
-				evalOperation(operation.values[0], variables),
-				evalOperation(operation.values[1], variables),
+			throw new Error(
+				`Unexpected operation.type "${(operation as {type: string})?.type}".`,
 			);
-			break;
 		}
 	}
 
-	variables[stringified] = result;
-	return result;
+	variables[stringified] = cached;
+	return cached;
 };

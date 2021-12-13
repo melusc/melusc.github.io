@@ -1,3 +1,5 @@
+/* eslint-disable ava/assertion-arguments */
+
 import test from 'ava';
 
 import {
@@ -52,65 +54,57 @@ const replaceMappingsIndices = (input: string) =>
 		.map(({characters}) => characters)
 		.join('');
 
-test('replace to ⟷', t => {
-	t.is(replaceMappingsIndices('A ⇔ B'), 'A ⟷ B', 'A ⇔ B');
-	t.is(replaceMappingsIndices('A ≡ B'), 'A ⟷ B', 'A ≡ B');
-	t.is(replaceMappingsIndices('A iff B'), 'A ⟷ B', 'A iff B');
-	t.is(replaceMappingsIndices('A <-> B'), 'A ⟷ B', 'A <-> B');
-	t.is(replaceMappingsIndices('A <=> B'), 'A ⟷ B', 'A <=> B');
-	t.is(replaceMappingsIndices('A = B'), 'A ⟷ B', 'A = B');
-	t.is(replaceMappingsIndices('A == B'), 'A ⟷ B', 'A == B');
-	t.is(replaceMappingsIndices('A === B'), 'A ⟷ B', 'A === B');
-});
+const makeTest = (operatorName: string, expected: string, items: string[]) => {
+	test(`replace to ${operatorName}`, t => {
+		for (const item of items) {
+			t.is(replaceMappingsIndices(item), expected, item);
+		}
+	});
+};
 
-test('replace to →', t => {
-	t.is(replaceMappingsIndices('A ⇒ B'), 'A → B', 'A ⇒ B');
-	t.is(replaceMappingsIndices('A ⊃ B'), 'A → B', 'A ⊃ B');
-	t.is(replaceMappingsIndices('A -> B'), 'A → B', 'A -> B');
-	t.is(replaceMappingsIndices('A => B'), 'A → B', 'A => B');
-});
+makeTest('iff', 'A iff B', [
+	'A iff B',
+	'A ⇔ B',
+	'A ≡ B',
+	'A <-> B',
+	'A <=> B',
+	'A = B',
+	'A == B',
+	'A === B',
+	'A ⟷ B',
+]);
 
-test('replace to ¬', t => {
-	t.is(replaceMappingsIndices('NOT A'), '¬ A', 'NOT A');
-	t.is(replaceMappingsIndices('!A'), '¬A', '!A');
-	t.is(replaceMappingsIndices('~A'), '¬A', '~A');
-});
+makeTest('ifthen', 'A ifthen B', [
+	'A ⇒ B',
+	'A ⊃ B',
+	'A -> B',
+	'A => B',
+	'A → B',
+]);
 
-test('replace to ∧', t => {
-	t.is(replaceMappingsIndices('A && B'), 'A ∧ B', 'A && B');
-	t.is(replaceMappingsIndices('A & B'), 'A ∧ B', 'A & B');
-	t.is(replaceMappingsIndices('A AND B'), 'A ∧ B', 'A AND B');
-});
+makeTest('not', 'not A', ['NOT A', '! A', '~ A', '¬ A']);
 
-test('replace to ↮', t => {
-	t.is(replaceMappingsIndices('A ⊕ B'), 'A ↮ B', 'A ⊕ B');
-	t.is(replaceMappingsIndices('A ⊻ B'), 'A ↮ B', 'A ⊻ B');
-	t.is(replaceMappingsIndices('A ≢ B'), 'A ↮ B', 'A ≢ B');
-	t.is(replaceMappingsIndices('A XOR B'), 'A ↮ B', 'A XOR B');
-	t.is(replaceMappingsIndices('A >=< B'), 'A ↮ B', 'A >=< B');
-	t.is(replaceMappingsIndices('A >-< B'), 'A ↮ B', 'A >-< B');
-	t.is(replaceMappingsIndices('A != B'), 'A ↮ B', 'A != B');
-	t.is(replaceMappingsIndices('A !== B'), 'A ↮ B', 'A !== B');
-	t.is(replaceMappingsIndices('A ~= B'), 'A ↮ B', 'A ~= B');
-});
+makeTest('and', 'A and B', ['A && B', 'A & B', 'A AND B', 'A ∧ B']);
 
-test('replace to ∨', t => {
-	t.is(replaceMappingsIndices('A || B'), 'A ∨ B', 'A || B');
-	t.is(replaceMappingsIndices('A | B'), 'A ∨ B', 'A | B');
-	t.is(replaceMappingsIndices('A OR B'), 'A ∨ B', 'A OR B');
-});
+makeTest('xor', 'A xor B', [
+	'A ⊕ B',
+	'A ⊻ B',
+	'A ≢ B',
+	'A >=< B',
+	'A >-< B',
+	'A != B',
+	'A !== B',
+	'A ~= B',
+	'A <> B',
+	'A XOR B',
+	'A ↮ B',
+]);
 
-test('Replacing strings with weird behaviour on upperCase', t => {
-	// 'ß'.toUpperCase() === 'SS'
-	t.is(replaceMappingsIndices('ß || B'), 'ß ∨ B', 'ß || B');
-});
+makeTest('or', 'A or B', ['A || B', 'A | B', 'A OR B', 'A ∨ B']);
 
-test('(a and b) or (c xor not d)', t => {
-	t.is(
-		replaceMappingsIndices('(a and b) or (c xor not d)'),
-		'(a ∧ b) ∨ (c ↮ ¬ d)',
-		'(a and b) or (c xor not d)',
-	);
+const t1 = '(a && b) || (c !== ! d)';
+test(t1, t => {
+	t.is(replaceMappingsIndices(t1), '(a and b) or (c xor not d)', t1);
 });
 
 test('Forbidden characters', t => {

@@ -7,7 +7,8 @@ import {type AST} from '../../../src/truth-table/lib/parse-operation';
 test('a AND b', t => {
 	t.is(
 		operationToString({
-			type: 'and',
+			type: 'operator',
+			operator: 'and',
 			values: [
 				{
 					type: 'variable',
@@ -26,21 +27,24 @@ test('a AND b', t => {
 test('a AND (b XOR (c <=> d))', t => {
 	t.is(
 		operationToString({
-			type: 'and',
+			type: 'operator',
+			operator: 'and',
 			values: [
 				{
 					type: 'variable',
 					variable: 'a',
 				},
 				{
-					type: 'xor',
+					type: 'operator',
+					operator: 'xor',
 					values: [
 						{
 							type: 'variable',
 							variable: 'b',
 						},
 						{
-							type: 'iff',
+							type: 'operator',
+							operator: 'iff',
 							values: [
 								{
 									type: 'variable',
@@ -62,7 +66,8 @@ test('a AND (b XOR (c <=> d))', t => {
 
 test('caching', t => {
 	const operation: AST = {
-		type: 'and',
+		type: 'operator',
+		operator: 'and',
 		values: [
 			{
 				type: 'variable',

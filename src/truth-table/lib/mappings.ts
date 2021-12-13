@@ -1,28 +1,46 @@
 import {ReadonlyDeep} from 'type-fest';
-import {LogicalSymbolFromName} from './logical-symbols';
+import {LogicalSymbolFromName, LogicalSymbolsNames} from './logical-symbols';
 import {CharacterTypes, type StringWithIndices} from './string-with-indices';
 
-export const singleCharacterNotMappings = ['~', '!'];
+export const singleCharacterNotMappings = [
+	'~',
+	'!',
+	LogicalSymbolFromName.not,
+] as const;
 export const mappings = (() => {
 	// https://en.wikipedia.org/wiki/List_of_logic_symbols
 	const stringMappings = [
 		[
-			LogicalSymbolFromName.iff,
-			['⇔', '≡', 'iff', '<->', '<=>', '=', '==', '==='],
+			LogicalSymbolsNames.iff,
+			['⇔', '≡', '<->', '<=>', '=', '==', '===', LogicalSymbolFromName.iff],
 		],
-
-		[LogicalSymbolFromName['if-then'], ['⇒', '⊃', '->', '=>']],
-
-		[LogicalSymbolFromName.not, [...singleCharacterNotMappings, 'not']],
-
-		[LogicalSymbolFromName.and, ['&&', '&', 'and']],
 
 		[
-			LogicalSymbolFromName.xor,
-			['⊕', '⊻', '≢', 'xor', '>=<', '>-<', '!=', '!==', '~=', '<>'],
+			LogicalSymbolsNames.ifthen,
+			['⇒', '⊃', '->', '=>', LogicalSymbolFromName.ifthen],
 		],
 
-		[LogicalSymbolFromName.or, ['||', '|', 'or']],
+		[LogicalSymbolsNames.not, singleCharacterNotMappings],
+
+		[LogicalSymbolsNames.and, ['&&', '&', LogicalSymbolFromName.and]],
+
+		[
+			LogicalSymbolsNames.xor,
+			[
+				'⊕',
+				'⊻',
+				'≢',
+				'>=<',
+				'>-<',
+				'!=',
+				'!==',
+				'~=',
+				'<>',
+				LogicalSymbolFromName.xor,
+			],
+		],
+
+		[LogicalSymbolsNames.or, ['||', '|', LogicalSymbolFromName.or]],
 	] as const;
 
 	const flatMappings: Array<[string, string]> = [];
@@ -73,11 +91,24 @@ export const replaceMappings = (
 			continue;
 		}
 
+		const c = item.characters.toLowerCase();
+		// Case "and" or similar
+		if (LogicalSymbolsNames[c as keyof typeof LogicalSymbolsNames] === c) {
+			result.push({
+				...item,
+				originalCharacters: item.characters,
+				characters: c,
+				type: CharacterTypes.operator,
+			});
+			continue;
+		}
+
 		let anyMatched = false;
 		for (const [replacer, replaceWith] of mappings) {
 			if (stringWithIndicesMatches(item, replacer)) {
 				result.push({
 					...item,
+					originalCharacters: item.characters,
 					characters: replaceWith,
 					type: CharacterTypes.operator,
 				});

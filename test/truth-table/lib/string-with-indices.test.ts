@@ -13,6 +13,7 @@ test('fromString', t => {
 			{
 				characters: 'äöü',
 				type: CharacterTypes.operator,
+				originalCharacters: 'äöü',
 				from: 0,
 				to: 3,
 			},
@@ -71,6 +72,7 @@ test('fromString', t => {
 			{
 				characters: '&',
 				type: CharacterTypes.operator,
+				originalCharacters: '&',
 				from: 3,
 				to: 4,
 			},
@@ -149,6 +151,7 @@ test('fromString', t => {
 		{
 			characters: `${LogicalSymbolFromName.and}?&?`,
 			type: CharacterTypes.operator,
+			originalCharacters: `${LogicalSymbolFromName.and}?&?`,
 			from: 2,
 			to: 6,
 		},
@@ -186,6 +189,7 @@ test('fromString', t => {
 			{
 				characters: LogicalSymbolFromName.and,
 				type: CharacterTypes.operator,
+				originalCharacters: LogicalSymbolFromName.and,
 				from: 2,
 				to: 3,
 			},
@@ -198,6 +202,7 @@ test('fromString', t => {
 			{
 				characters: LogicalSymbolFromName.not.repeat(4),
 				type: CharacterTypes.operator,
+				originalCharacters: LogicalSymbolFromName.not.repeat(4),
 				from: 4,
 				to: 8,
 			},
@@ -246,6 +251,7 @@ test('fromString', t => {
 			{
 				characters: '&',
 				type: CharacterTypes.operator,
+				originalCharacters: '&',
 				from: 7,
 				to: 8,
 			},

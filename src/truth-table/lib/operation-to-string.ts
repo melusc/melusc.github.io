@@ -10,13 +10,13 @@ export const operationToString = (operation: AST): string => {
 
 	if (operation.type === 'variable') {
 		stringified = operation.variable;
-	} else if (operation.type === 'not') {
+	} else if (operation.operator === 'not') {
 		stringified = `${LogicalSymbolFromName.not}${operationToString(
 			operation.values[0],
 		)}`;
 	} else {
 		stringified = `(${operationToString(operation.values[0])} ${
-			LogicalSymbolFromName[operation.type]
+			LogicalSymbolFromName[operation.operator]
 		} ${operationToString(operation.values[1])})`;
 	}
 

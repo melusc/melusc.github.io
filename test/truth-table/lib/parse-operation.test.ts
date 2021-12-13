@@ -6,7 +6,8 @@ import {operationToString} from '../../../src/truth-table/lib/operation-to-strin
 const t1 = '(a) && (b)';
 test(t1, t => {
 	t.deepEqual(parseOperation(t1), {
-		type: 'and',
+		type: 'operator',
+		operator: 'and',
 		values: [
 			{
 				type: 'variable',
@@ -23,7 +24,8 @@ test(t1, t => {
 const t2 = '!A';
 test(t2, t => {
 	t.deepEqual(parseOperation(t2), {
-		type: 'not',
+		type: 'operator',
+		operator: 'not',
 		values: [
 			{
 				type: 'variable',
@@ -36,10 +38,12 @@ test(t2, t => {
 const t3 = 'not A and not B';
 test(t3, t => {
 	t.deepEqual(parseOperation(t3), {
-		type: 'and',
+		type: 'operator',
+		operator: 'and',
 		values: [
 			{
-				type: 'not',
+				type: 'operator',
+				operator: 'not',
 				values: [
 					{
 						type: 'variable',
@@ -48,7 +52,8 @@ test(t3, t => {
 				],
 			},
 			{
-				type: 'not',
+				type: 'operator',
+				operator: 'not',
 				values: [
 					{
 						type: 'variable',
@@ -63,10 +68,12 @@ test(t3, t => {
 const t4 = 'a and b xor c';
 test(t4, t => {
 	t.deepEqual(parseOperation(t4), {
-		type: 'xor',
+		type: 'operator',
+		operator: 'xor',
 		values: [
 			{
-				type: 'and',
+				type: 'operator',
+				operator: 'and',
 				values: [
 					{
 						type: 'variable',
@@ -89,10 +96,12 @@ test(t4, t => {
 const t5 = '(a and b) or (c xor not d)';
 test(t5, t => {
 	t.deepEqual(parseOperation(t5), {
-		type: 'or',
+		type: 'operator',
+		operator: 'or',
 		values: [
 			{
-				type: 'and',
+				type: 'operator',
+				operator: 'and',
 				values: [
 					{
 						type: 'variable',
@@ -105,14 +114,16 @@ test(t5, t => {
 				],
 			},
 			{
-				type: 'xor',
+				type: 'operator',
+				operator: 'xor',
 				values: [
 					{
 						type: 'variable',
 						variable: 'c',
 					},
 					{
-						type: 'not',
+						type: 'operator',
+						operator: 'not',
 						values: [
 							{
 								type: 'variable',
@@ -144,23 +155,28 @@ const t7 = `
 	) && (e || c) -> f`;
 test(t7, t => {
 	t.deepEqual(parseOperation(t7), {
-		type: 'if-then',
+		type: 'operator',
+		operator: 'ifthen',
 		values: [
 			{
-				type: 'and',
+				type: 'operator',
+				operator: 'and',
 				values: [
 					{
-						type: 'xor',
+						type: 'operator',
+						operator: 'xor',
 						values: [
 							{
-								type: 'and',
+								type: 'operator',
+								operator: 'and',
 								values: [
 									{
 										type: 'variable',
 										variable: 'a',
 									},
 									{
-										type: 'or',
+										type: 'operator',
+										operator: 'or',
 										values: [
 											{
 												type: 'variable',
@@ -175,10 +191,12 @@ test(t7, t => {
 								],
 							},
 							{
-								type: 'iff',
+								type: 'operator',
+								operator: 'iff',
 								values: [
 									{
-										type: 'if-then',
+										type: 'operator',
+										operator: 'ifthen',
 										values: [
 											{
 												type: 'variable',
@@ -199,7 +217,8 @@ test(t7, t => {
 						],
 					},
 					{
-						type: 'or',
+						type: 'operator',
+						operator: 'or',
 						values: [
 							{
 								type: 'variable',
@@ -224,19 +243,24 @@ test(t7, t => {
 const t8 = 'not not not not not A';
 test(t8, t => {
 	t.deepEqual(parseOperation(t8), {
-		type: 'not',
+		type: 'operator',
+		operator: 'not',
 		values: [
 			{
-				type: 'not',
+				type: 'operator',
+				operator: 'not',
 				values: [
 					{
-						type: 'not',
+						type: 'operator',
+						operator: 'not',
 						values: [
 							{
-								type: 'not',
+								type: 'operator',
+								operator: 'not',
 								values: [
 									{
-										type: 'not',
+										type: 'operator',
+										operator: 'not',
 										values: [
 											{
 												type: 'variable',

@@ -1,12 +1,13 @@
 import test from 'ava';
 import {LogicalSymbolFromName} from '../../../src/truth-table/lib/logical-symbols';
+import {replaceMappings} from '../../../src/truth-table/lib/mappings';
 import {splitOperators} from '../../../src/truth-table/lib/split-operators';
 import {fromString} from '../../../src/truth-table/lib/string-with-indices';
 
 import {validateOperators} from '../../../src/truth-table/lib/validate-operators';
 
 const doValidate = (input: string) => {
-	validateOperators(splitOperators(fromString(input)));
+	validateOperators(replaceMappings(splitOperators(fromString(input))));
 };
 
 test('validateOperators', t => {
@@ -18,20 +19,30 @@ test('validateOperators', t => {
 
 	t.throws(
 		() => {
-			doValidate(`a${LogicalSymbolFromName.not}${LogicalSymbolFromName.and}b`);
+			doValidate(`a ${LogicalSymbolFromName.not} && b`);
 		},
 		{
-			message: `Unexpected operator "${LogicalSymbolFromName.and}" at (2 - 3).`,
+			message: 'Unexpected operator "&&" at (4 - 6).',
 		},
-		`a${LogicalSymbolFromName.not}${LogicalSymbolFromName.and}b`,
+		`a ${LogicalSymbolFromName.not} && b`,
 	);
 
 	t.throws(
 		() => {
-			doValidate(`a${LogicalSymbolFromName.and.repeat(2)}b`);
+			doValidate(`a ${LogicalSymbolFromName.not} & b`);
 		},
 		{
-			message: `Unexpected operator "${LogicalSymbolFromName.and}" at (2 - 3).`,
+			message: 'Unexpected operator "&" at (4 - 5).',
+		},
+		`a ${LogicalSymbolFromName.not} & b`,
+	);
+
+	t.throws(
+		() => {
+			doValidate(`a ${LogicalSymbolFromName.and.repeat(2)} b`);
+		},
+		{
+			message: `Unexpected operator "${LogicalSymbolFromName.and}" at (3 - 4).`,
 		},
 		`a${LogicalSymbolFromName.and.repeat(2)}b`,
 	);

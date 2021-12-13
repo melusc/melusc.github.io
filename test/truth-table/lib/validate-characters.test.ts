@@ -1,11 +1,12 @@
 import test from 'ava';
 import {LogicalSymbolFromName} from '../../../src/truth-table/lib/logical-symbols';
+import {replaceMappings} from '../../../src/truth-table/lib/mappings';
 import {fromString} from '../../../src/truth-table/lib/string-with-indices';
 
 import {validateCharacters} from '../../../src/truth-table/lib/validate-characters';
 
 const doValidate = (input: string) => {
-	validateCharacters(fromString(input));
+	validateCharacters(replaceMappings(fromString(input)));
 };
 
 test('validateCharacters', t => {
@@ -14,18 +15,16 @@ test('validateCharacters', t => {
 	}, '()');
 
 	t.notThrows(() => {
-		doValidate(`a ${LogicalSymbolFromName.and} b`);
-	}, `a ${LogicalSymbolFromName.and} b`);
+		doValidate('a AND b');
+	}, 'a AND b');
 
 	t.notThrows(() => {
-		doValidate(`(a) ${LogicalSymbolFromName.and} (b)`);
-	}, `(a) ${LogicalSymbolFromName.and} (b)`);
+		doValidate('(a) AND (b)');
+	}, '(a) AND (b)');
 
 	t.notThrows(() => {
-		doValidate(
-			`(a ${LogicalSymbolFromName.iff} b) ${LogicalSymbolFromName.and} (b)`,
-		);
-	}, `(a ${LogicalSymbolFromName.iff} b) ${LogicalSymbolFromName.and} (b)`);
+		doValidate('(a IFF b) AND (b)');
+	}, '(a IFF b) AND (b)');
 
 	t.throws(
 		() => {
@@ -42,7 +41,7 @@ test('validateCharacters', t => {
 			doValidate(`${LogicalSymbolFromName.and}&`);
 		},
 		{
-			message: 'Unexpected character "&" at position 1.',
+			message: `Unexpected "${LogicalSymbolFromName.and}&" at (0 - 2).`,
 		},
 		`${LogicalSymbolFromName.and}&`,
 	);
@@ -52,7 +51,7 @@ test('validateCharacters', t => {
 			doValidate(`${LogicalSymbolFromName.and}&&`);
 		},
 		{
-			message: 'Unexpected "&&" at (1 - 3).',
+			message: `Unexpected "${LogicalSymbolFromName.and}&&" at (0 - 3).`,
 		},
 		`${LogicalSymbolFromName.and}&`,
 	);

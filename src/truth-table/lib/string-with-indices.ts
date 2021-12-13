@@ -1,11 +1,18 @@
-export type StringWithIndices = {
-	characters: string;
-	type: CharacterTypes;
-	from: number;
-	to: number;
-};
+export type StringWithIndices =
+	| {
+			characters: string;
+			type: Exclude<CharacterTypes, CharacterTypes.operator>;
+			from: number;
+			to: number;
+	  }
+	| {
+			characters: string;
+			type: CharacterTypes.operator;
+			originalCharacters: string;
+			from: number;
+			to: number;
+	  };
 
-// A-Z, a-z, _
 const VARIABLES_RE = /^[a-z_]$/i;
 const BRACKETS_RE = /^[()]$/;
 const SPACE_RE = /^\s$/;
@@ -27,12 +34,22 @@ export const fromString = (input: string): StringWithIndices[] => {
 
 	const push = (to: number) => {
 		if (acc !== '') {
-			result.push({
-				characters: acc,
-				type: previousType!,
-				from: previousFrom,
-				to,
-			});
+			if (previousType === CharacterTypes.operator) {
+				result.push({
+					characters: acc,
+					type: previousType,
+					originalCharacters: acc,
+					from: previousFrom,
+					to,
+				});
+			} else {
+				result.push({
+					characters: acc,
+					type: previousType!,
+					from: previousFrom,
+					to,
+				});
+			}
 		}
 	};
 

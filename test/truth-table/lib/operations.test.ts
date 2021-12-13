@@ -25,7 +25,7 @@ createTest('iff', [
 	[[false, false], true],
 ]);
 
-createTest('if-then', [
+createTest('ifthen', [
 	[[true, true], true],
 	[[true, false], false],
 	[[false, true], true],

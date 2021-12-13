@@ -3,8 +3,8 @@ import {replaceMappings} from './mappings';
 import {
 	type Operators,
 	LogicalSymbolFromName,
-	isValidOperator,
-	NameFromLogicalSymbol,
+	isValidOperatorName,
+	LogicalSymbolsNames,
 } from './logical-symbols';
 import {
 	CharacterTypes,
@@ -18,11 +18,13 @@ import {hasOperator} from './has-operator';
 
 export type AST = (
 	| {
-			type: Operators;
+			type: 'operator';
+			operator: Exclude<Operators, 'not'>;
 			values: [AST, AST];
 	  }
 	| {
-			type: 'not';
+			type: 'operator';
+			operator: 'not';
 			values: [AST];
 	  }
 	| {
@@ -36,13 +38,14 @@ export type AST = (
 const parseNot = (input: StringWithIndices[][]): AST => {
 	if (
 		input[0]?.[0]?.type !== CharacterTypes.operator
-		|| input[0]![0]!.characters !== LogicalSymbolFromName.not
+		|| input[0]![0]!.characters !== LogicalSymbolsNames.not
 	) {
 		throw new Error(`Expected "${LogicalSymbolFromName.not}".`);
 	}
 
 	return {
-		type: 'not',
+		type: 'operator',
+		operator: 'not',
 		values: [_parseOperations(input.slice(1))],
 	};
 };
@@ -121,7 +124,7 @@ const _parseOperations = (input: StringWithIndices[][]): AST => {
 		(secondToLast = input.at(-1))
 		&& secondToLast.length === 1
 		&& secondToLast[0]!.type === CharacterTypes.operator
-		&& secondToLast[0]!.characters === LogicalSymbolFromName.not
+		&& secondToLast[0]!.characters === LogicalSymbolsNames.not
 	) {
 		lastItems.unshift(input.pop()!);
 	}
@@ -144,7 +147,7 @@ const _parseOperations = (input: StringWithIndices[][]): AST => {
 	// !isValidOperator is unnecessary, it's just a typeguard
 	if (
 		operator.type !== CharacterTypes.operator
-		|| !isValidOperator(operator.characters)
+		|| !isValidOperatorName(operator.characters)
 	) {
 		throw new Error(
 			`Expected operator, got type "${operator.type}" with value "${operator.characters}"`,
@@ -152,7 +155,8 @@ const _parseOperations = (input: StringWithIndices[][]): AST => {
 	}
 
 	return {
-		type: NameFromLogicalSymbol[operator.characters],
+		type: 'operator',
+		operator: operator.characters as Exclude<Operators, 'not'>,
 		values: [_parseOperations(input), _parseOperations(lastItems)],
 	};
 };

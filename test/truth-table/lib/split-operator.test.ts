@@ -26,6 +26,7 @@ test(t1, t => {
 		{
 			characters: '&&',
 			type: CharacterTypes.operator,
+			originalCharacters: '&&',
 			from: 2,
 			to: 4,
 		},
@@ -38,18 +39,21 @@ test(t1, t => {
 		{
 			characters: '!',
 			type: CharacterTypes.operator,
+			originalCharacters: '!',
 			from: 5,
 			to: 6,
 		},
 		{
 			characters: '!',
 			type: CharacterTypes.operator,
+			originalCharacters: '!',
 			from: 6,
 			to: 7,
 		},
 		{
 			characters: '!',
 			type: CharacterTypes.operator,
+			originalCharacters: '!',
 			from: 7,
 			to: 8,
 		},
@@ -80,6 +84,7 @@ test(t2, t => {
 		{
 			characters: '&&',
 			type: CharacterTypes.operator,
+			originalCharacters: '&&',
 			from: 2,
 			to: 4,
 		},
@@ -92,12 +97,14 @@ test(t2, t => {
 		{
 			characters: '!',
 			type: CharacterTypes.operator,
+			originalCharacters: '!',
 			from: 5,
 			to: 6,
 		},
 		{
 			characters: '!==',
 			type: CharacterTypes.operator,
+			originalCharacters: '!==',
 			from: 6,
 			to: 9,
 		},
@@ -128,6 +135,7 @@ test(t3, t => {
 		{
 			characters: '&&',
 			type: CharacterTypes.operator,
+			originalCharacters: '&&',
 			from: 2,
 			to: 4,
 		},
@@ -140,12 +148,14 @@ test(t3, t => {
 		{
 			characters: '!',
 			type: CharacterTypes.operator,
+			originalCharacters: '!',
 			from: 5,
 			to: 6,
 		},
 		{
 			characters: '!==!==',
 			type: CharacterTypes.operator,
+			originalCharacters: '!==!==',
 			from: 6,
 			to: 12,
 		},

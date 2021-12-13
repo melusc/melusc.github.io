@@ -1,4 +1,4 @@
-import {isValidOperator} from './logical-symbols';
+import {isValidOperatorName} from './logical-symbols';
 import {CharacterTypes, type StringWithIndices} from './string-with-indices';
 
 const throwUnexpectedChar = (char: string, from: number, to?: number) => {
@@ -29,24 +29,10 @@ export const validateCharacters = (input: StringWithIndices[]) => {
 
 		switch (item.type) {
 			case CharacterTypes.operator: {
-				const firstCharValid = isValidOperator(c.charAt(0));
+				const validOperator = isValidOperatorName(c);
 
-				// This may look weird, but this way makes the errors more natural
-				// - If the first character is valid but there's more, report rest
-				// - If the first character is not valid and there's more, report all characters
-				// - If the first character is not valid and there's nothing more, report first character
-
-				if (c.length > 1) {
-					if (firstCharValid) {
-						// c is like "↮??"
-						throwUnexpectedChar(c.slice(1), item.from + 1, item.to);
-					} else {
-						// c is like "???"
-						throwUnexpectedChar(c, item.from, item.to);
-					}
-				}
-
-				if (!firstCharValid) {
+				if (!validOperator) {
+					// c is like "???"
 					throwUnexpectedChar(c, item.from, item.to);
 				}
 
