@@ -10,12 +10,5 @@ function * findVariablesRecursive(operation: AST): Iterable<string> {
 	}
 }
 
-export const findVariables = (operation: AST): Set<string> => {
-	const list = new Set<string>();
-
-	for (const variable of findVariablesRecursive(operation)) {
-		list.add(variable);
-	}
-
-	return list;
-};
+export const findVariables = (operation: AST): Set<string> =>
+	new Set<string>(findVariablesRecursive(operation));
