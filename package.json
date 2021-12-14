@@ -74,7 +74,8 @@
 		"build-ts-tests": "del-cli \"dist/test/*\" && tsc --project test.tsconfig.json",
 		"gulp:b": "gulp build",
 		"gulp:w": "gulp start",
-		"lint": "prettier -w . && xo --fix",
+		"fmt": "prettier -w . && xo --fix",
+		"lint": "prettier -c . \"!{**/*,*}.{js,ts}{x,}\" && xo",
 		"start": "concurrently yarn:parcel:w yarn:gulp:w",
 		"test": "xo && yarn run ava"
 	},
