@@ -49,7 +49,7 @@ const Main = () => {
 			{parsed.valid ? (
 				<Table table={generateTable(input)} />
 			) : (
-				<RenderError error={parsed.error} />
+				<RenderError input={input} error={parsed.error} />
 			)}
 		</div>
 	);

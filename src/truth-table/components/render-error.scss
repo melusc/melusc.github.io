@@ -1,5 +1,19 @@
 @import '../vars';
 
 .error {
+	display: flex;
+	flex-direction: column;
+}
+
+.error-message {
+	font-family: 'JetBrains Mono', monospace;
+	font-weight: 300;
+}
+.error-input-incorrect {
+	font-weight: bolder;
+}
+
+.error-message,
+.error-input-incorrect {
 	color: $red;
 }
