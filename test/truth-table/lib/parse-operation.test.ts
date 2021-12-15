@@ -2,6 +2,7 @@ import test from 'ava';
 
 import {parseOperation} from '../../../src/truth-table/lib/parse-operation';
 import {operationToString} from '../../../src/truth-table/lib/operation-to-string';
+import {IndexedError} from '../../../src/truth-table/lib/indexed-error';
 
 const t1 = '(a) && (b)';
 test(t1, t => {
@@ -301,6 +302,7 @@ test(t10, t => {
 		},
 		{
 			message: 'Expected "a b" to have an operator.',
+			instanceOf: IndexedError,
 		},
 	);
 });
@@ -313,6 +315,7 @@ test(t11, t => {
 		},
 		{
 			message: 'Expected "c d" to have an operator.',
+			instanceOf: IndexedError,
 		},
 	);
 });

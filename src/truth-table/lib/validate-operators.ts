@@ -1,5 +1,6 @@
 import {LogicalSymbolsNames} from './logical-symbols';
 import {CharacterTypes, StringWithIndices} from './string-with-indices';
+import {IndexedError} from './indexed-error';
 
 export const validateOperators = (input: StringWithIndices[]) => {
 	let lastType: CharacterTypes | undefined;
@@ -14,8 +15,10 @@ export const validateOperators = (input: StringWithIndices[]) => {
 			&& lastType === CharacterTypes.operator
 			&& item.characters !== LogicalSymbolsNames.not
 		) {
-			throw new Error(
+			throw new IndexedError(
 				`Unexpected operator "${item.originalCharacters}" at (${item.from} - ${item.to}).`,
+				item.from,
+				item.to,
 			);
 		}
 

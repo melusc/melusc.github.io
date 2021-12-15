@@ -1,3 +1,4 @@
+import {IndexedError} from './indexed-error';
 import {CharacterTypes, type StringWithIndices} from './string-with-indices';
 
 export const validateMatchedBrackets = (input: StringWithIndices[]) => {
@@ -18,7 +19,7 @@ export const validateMatchedBrackets = (input: StringWithIndices[]) => {
 					openingBrackets.push(position);
 				} else if (openingBrackets.pop() === undefined) {
 					// If there is no matched bracket
-					throw new Error(`Unmatched closing bracket at position ${position}.`);
+					throw new IndexedError(`Unmatched closing bracket at position ${position}.`, position, position + 1);
 				}
 			}
 		}
@@ -26,6 +27,6 @@ export const validateMatchedBrackets = (input: StringWithIndices[]) => {
 
 	const last = openingBrackets.pop();
 	if (last) {
-		throw new Error(`Unmatched opening bracket at position ${last}.`);
+		throw new IndexedError(`Unmatched opening bracket at position ${last}.`, last, last + 1);
 	}
 };

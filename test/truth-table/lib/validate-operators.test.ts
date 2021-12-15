@@ -1,4 +1,5 @@
 import test from 'ava';
+import {IndexedError} from '../../../src/truth-table/lib/indexed-error';
 import {LogicalSymbolFromName} from '../../../src/truth-table/lib/logical-symbols';
 import {replaceMappings} from '../../../src/truth-table/lib/mappings';
 import {splitOperators} from '../../../src/truth-table/lib/split-operators';
@@ -23,6 +24,7 @@ test('validateOperators', t => {
 		},
 		{
 			message: 'Unexpected operator "&&" at (4 - 6).',
+			instanceOf: IndexedError,
 		},
 		`a ${LogicalSymbolFromName.not} && b`,
 	);
@@ -33,6 +35,7 @@ test('validateOperators', t => {
 		},
 		{
 			message: 'Unexpected operator "&" at (4 - 5).',
+			instanceOf: IndexedError,
 		},
 		`a ${LogicalSymbolFromName.not} & b`,
 	);
@@ -43,6 +46,7 @@ test('validateOperators', t => {
 		},
 		{
 			message: `Unexpected operator "${LogicalSymbolFromName.and}" at (3 - 4).`,
+			instanceOf: IndexedError,
 		},
 		`a${LogicalSymbolFromName.and.repeat(2)}b`,
 	);

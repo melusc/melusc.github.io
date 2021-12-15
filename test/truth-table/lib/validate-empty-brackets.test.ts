@@ -1,4 +1,5 @@
 import test from 'ava';
+import {IndexedError} from '../../../src/truth-table/lib/indexed-error';
 import {fromString} from '../../../src/truth-table/lib/string-with-indices';
 
 import {validateEmptyBrackets} from '../../../src/truth-table/lib/validate-empty-brackets';
@@ -22,6 +23,7 @@ test('validateEmptyBrackets', t => {
 		},
 		{
 			message: 'Unexpected empty brackets at (0 - 1).',
+			instanceOf: IndexedError,
 		},
 		'()',
 	);
@@ -32,6 +34,7 @@ test('validateEmptyBrackets', t => {
 		},
 		{
 			message: 'Unexpected empty brackets at (0 - 2).',
+			instanceOf: IndexedError,
 		},
 		'( )',
 	);
@@ -42,6 +45,7 @@ test('validateEmptyBrackets', t => {
 		},
 		{
 			message: 'Unexpected empty brackets at (6 - 7).',
+			instanceOf: IndexedError,
 		},
 		'((((((()))))))',
 	);
@@ -52,6 +56,7 @@ test('validateEmptyBrackets', t => {
 		},
 		{
 			message: 'Unexpected empty brackets at (6 - 11).',
+			instanceOf: IndexedError,
 		},
 		'(((((((    )))))))',
 	);
@@ -62,6 +67,7 @@ test('validateEmptyBrackets', t => {
 		},
 		{
 			message: 'Unexpected empty brackets at (0 - 1).',
+			instanceOf: IndexedError,
 		},
 		'()()()()()',
 	);
@@ -72,6 +78,7 @@ test('validateEmptyBrackets', t => {
 		},
 		{
 			message: 'Unexpected opening bracket at position 3.',
+			instanceOf: IndexedError,
 		},
 		'( )()()()()',
 	);
@@ -82,6 +89,7 @@ test('validateEmptyBrackets', t => {
 		},
 		{
 			message: 'Unexpected opening bracket at position 1.',
+			instanceOf: IndexedError,
 		},
 		')(',
 	);

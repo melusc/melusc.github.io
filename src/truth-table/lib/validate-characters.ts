@@ -1,3 +1,4 @@
+import {IndexedError} from './indexed-error';
 import {isValidOperatorName} from './logical-symbols';
 import {CharacterTypes, type StringWithIndices} from './string-with-indices';
 
@@ -7,7 +8,7 @@ const throwUnexpectedChar = (char: string, from: number, to?: number) => {
 			? `Unexpected character "${char}" at position ${from}.`
 			: `Unexpected "${char}" at (${from} - ${to}).`;
 
-	throw new SyntaxError(message);
+	throw new IndexedError(message, from, to ?? from + 1);
 };
 
 const findUnexpectedChar = (input: string, regex: RegExp) => {

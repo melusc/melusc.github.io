@@ -15,6 +15,7 @@ import {
 import {validate} from './validate';
 import {splitOperators} from './split-operators';
 import {hasOperator} from './has-operator';
+import {IndexedError} from './indexed-error';
 
 export type AST = (
 	| {
@@ -36,11 +37,17 @@ export type AST = (
 };
 
 const parseNot = (input: StringWithIndices[][]): AST => {
+	const first = input[0]?.[0];
+
+	if (first === undefined) {
+		throw new Error('Unexpected empty input in parseNot.');
+	}
+
 	if (
-		input[0]?.[0]?.type !== CharacterTypes.operator
-		|| input[0]![0]!.characters !== LogicalSymbolsNames.not
+		first.type !== CharacterTypes.operator
+		|| first.characters !== LogicalSymbolsNames.not
 	) {
-		throw new Error(`Expected "${LogicalSymbolFromName.not}".`);
+		throw new IndexedError(`Expected "${LogicalSymbolFromName.not}".`, first.from, first.to);
 	}
 
 	return {
@@ -51,16 +58,18 @@ const parseNot = (input: StringWithIndices[][]): AST => {
 };
 
 const _parseOperation = (input: StringWithIndices[]): AST => {
+	if (input.length === 0) {
+		throw new Error('Unexpected empty input at _parseOperation.');
+	}
+
 	if (!hasOperator(input)) {
-		throw new Error(
+		throw new IndexedError(
 			`Expected "${input
 				.map(item => item.characters)
 				.join(' ')}" to have an operator.`,
+			input[0]!.from,
+			input.at(-1)!.to,
 		);
-	}
-
-	if (input.length === 0) {
-		throw new Error('Unexpected empty input at _parseOperation.');
 	}
 
 	if (input.length === 1) {
@@ -73,7 +82,7 @@ const _parseOperation = (input: StringWithIndices[]): AST => {
 			};
 		}
 
-		throw new Error(`Unexpected type ${item.type} at ${item.from}.`);
+		throw new IndexedError(`Unexpected type "${item.type}" at ${item.from}.`, item.from, item.to);
 	}
 
 	const grouped = groupItems(input);
@@ -137,10 +146,12 @@ const _parseOperations = (input: StringWithIndices[][]): AST => {
 	const operator = operatorArray[0]!;
 
 	if (operatorArray.length !== 1) {
-		throw new Error(
+		throw new IndexedError(
 			`Expected operator, got "${operatorArray
 				.map(item => item.characters)
 				.join(' ')}".`,
+			operatorArray[0]!.from,
+			operatorArray.at(-1)!.to,
 		);
 	}
 
@@ -149,8 +160,10 @@ const _parseOperations = (input: StringWithIndices[][]): AST => {
 		operator.type !== CharacterTypes.operator
 		|| !isValidOperatorName(operator.characters)
 	) {
-		throw new Error(
+		throw new IndexedError(
 			`Expected operator, got type "${operator.type}" with value "${operator.characters}"`,
+			operator.from,
+			operator.to,
 		);
 	}
 

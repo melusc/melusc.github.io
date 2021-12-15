@@ -1,4 +1,5 @@
 import test from 'ava';
+import {IndexedError} from '../../../src/truth-table/lib/indexed-error';
 import {LogicalSymbolFromName} from '../../../src/truth-table/lib/logical-symbols';
 import {replaceMappings} from '../../../src/truth-table/lib/mappings';
 import {fromString} from '../../../src/truth-table/lib/string-with-indices';
@@ -32,6 +33,7 @@ test('validateCharacters', t => {
 		},
 		{
 			message: 'Unexpected "???" at (0 - 3).',
+			instanceOf: IndexedError,
 		},
 		'???',
 	);
@@ -42,6 +44,7 @@ test('validateCharacters', t => {
 		},
 		{
 			message: `Unexpected "${LogicalSymbolFromName.and}&" at (0 - 2).`,
+			instanceOf: IndexedError,
 		},
 		`${LogicalSymbolFromName.and}&`,
 	);
@@ -52,6 +55,7 @@ test('validateCharacters', t => {
 		},
 		{
 			message: `Unexpected "${LogicalSymbolFromName.and}&&" at (0 - 3).`,
+			instanceOf: IndexedError,
 		},
 		`${LogicalSymbolFromName.and}&`,
 	);

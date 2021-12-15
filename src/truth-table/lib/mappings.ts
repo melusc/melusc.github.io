@@ -1,4 +1,5 @@
 import {ReadonlyDeep} from 'type-fest';
+import {IndexedError} from './indexed-error';
 import {LogicalSymbolFromName, LogicalSymbolsNames} from './logical-symbols';
 import {CharacterTypes, type StringWithIndices} from './string-with-indices';
 
@@ -75,11 +76,14 @@ export const replaceMappings = (
 	const result: StringWithIndices[] = [];
 
 	for (const item of input) {
-		const caretIndex = item.characters.indexOf('^');
-		if (caretIndex !== -1) {
+		const caretOffset = item.characters.indexOf('^');
+		if (caretOffset !== -1) {
 			// It could be confused with ∧ (logical and) or bitwise xor ^ (caret)
-			throw new SyntaxError(
-				`Unexpected ambiguous caret (^) at position ${item.from + caretIndex}.`,
+			const caretIndex = item.from + caretOffset;
+			throw new IndexedError(
+				`Unexpected ambiguous caret (^) at position ${caretIndex}.`,
+				caretIndex,
+				caretIndex + 1,
 			);
 		}
 

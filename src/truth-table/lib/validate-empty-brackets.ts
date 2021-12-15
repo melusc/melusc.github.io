@@ -1,3 +1,4 @@
+import {IndexedError} from './indexed-error';
 import {CharacterTypes, type StringWithIndices} from './string-with-indices';
 
 export const validateEmptyBrackets = (input: StringWithIndices[]) => {
@@ -21,8 +22,10 @@ export const validateEmptyBrackets = (input: StringWithIndices[]) => {
 			if (index !== -1) {
 				const offsetIndex = index + item.from;
 
-				throw new Error(
+				throw new IndexedError(
 					`Unexpected empty brackets at (${offsetIndex - 1} - ${offsetIndex}).`,
+					offsetIndex - 1,
+					offsetIndex,
 				);
 			}
 
@@ -35,15 +38,19 @@ export const validateEmptyBrackets = (input: StringWithIndices[]) => {
 			// More important: things like "(())()"
 			//                                 ^^
 			if (index !== -1) {
-				throw new Error(
+				throw new IndexedError(
 					`Unexpected opening bracket at position ${offsetIndex}.`,
+					offsetIndex,
+					offsetIndex + 1,
 				);
 			}
 
 			// Then throw on things like "()" or "(    )"
 			if (between === 0) {
-				throw new Error(
+				throw new IndexedError(
 					`Unexpected empty brackets at (${startBracketIndex} - ${item.from}).`,
+					startBracketIndex,
+					item.from,
 				);
 			}
 		}

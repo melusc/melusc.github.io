@@ -1,6 +1,7 @@
 /* eslint-disable ava/assertion-arguments */
 
 import test from 'ava';
+import {IndexedError} from '../../../src/truth-table/lib/indexed-error';
 
 import {
 	replaceMappings,
@@ -115,6 +116,7 @@ test('Forbidden characters', t => {
 		},
 		{
 			message: 'Unexpected ambiguous caret (^) at position 2.',
+			instanceOf: IndexedError,
 		},
 	);
 });
