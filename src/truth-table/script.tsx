@@ -62,10 +62,7 @@ const Main = () => {
 		let shouldPush = true;
 
 		if (parsed.valid) {
-			newHash = operationToString(parsed.table.ast).replace(
-				/^\((.+)\)$/,
-				'$1',
-			);
+			newHash = operationToString(parsed.table.ast).replace(/^\((.+)\)$/, '$1');
 
 			// already `shouldPush = true`
 		} else {

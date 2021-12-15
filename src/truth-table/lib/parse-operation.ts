@@ -47,7 +47,11 @@ const parseNot = (input: StringWithIndices[][]): AST => {
 		first.type !== CharacterTypes.operator
 		|| first.characters !== LogicalSymbolsNames.not
 	) {
-		throw new IndexedError(`Expected "${LogicalSymbolFromName.not}".`, first.from, first.to);
+		throw new IndexedError(
+			`Expected "${LogicalSymbolFromName.not}".`,
+			first.from,
+			first.to,
+		);
 	}
 
 	return {
@@ -82,7 +86,11 @@ const _parseOperation = (input: StringWithIndices[]): AST => {
 			};
 		}
 
-		throw new IndexedError(`Unexpected type "${item.type}" at ${item.from}.`, item.from, item.to);
+		throw new IndexedError(
+			`Unexpected type "${item.type}" at ${item.from}.`,
+			item.from,
+			item.to,
+		);
 	}
 
 	const grouped = groupItems(input);

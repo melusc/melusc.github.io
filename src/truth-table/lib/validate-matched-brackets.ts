@@ -19,7 +19,11 @@ export const validateMatchedBrackets = (input: StringWithIndices[]) => {
 					openingBrackets.push(position);
 				} else if (openingBrackets.pop() === undefined) {
 					// If there is no matched bracket
-					throw new IndexedError(`Unmatched closing bracket at position ${position}.`, position, position + 1);
+					throw new IndexedError(
+						`Unmatched closing bracket at position ${position}.`,
+						position,
+						position + 1,
+					);
 				}
 			}
 		}
@@ -27,6 +31,10 @@ export const validateMatchedBrackets = (input: StringWithIndices[]) => {
 
 	const last = openingBrackets.pop();
 	if (last) {
-		throw new IndexedError(`Unmatched opening bracket at position ${last}.`, last, last + 1);
+		throw new IndexedError(
+			`Unmatched opening bracket at position ${last}.`,
+			last,
+			last + 1,
+		);
 	}
 };
