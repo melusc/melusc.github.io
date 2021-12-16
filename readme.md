@@ -2,6 +2,8 @@
 
 - [Sudoku solver](https://melusc.github.io/sudoku/)
 
+- [Truth table](https://melusc.github.io/truth-table/)
+
 - [Convert hex and rgb](https://melusc.github.io/hex-to-rgb/)
 
 - [Fake Fitness App](https://melusc.github.io/fake-fitness-app/)
