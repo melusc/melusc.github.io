@@ -10,7 +10,7 @@
 
 - [Sort keys of JSON alphabetically](https://melusc.github.io/sort-json5-keys/)
 
-- [Countdown to summer holidays](https://melusc.github.io/time-to-summer-holidays-preact/)
+- [Countdown to summer holidays](https://melusc.github.io/time-to-summer-holidays/)
 
 - [Animated triangle using requestAnimationFrame](https://melusc.github.io/animatedTriangle/)
 

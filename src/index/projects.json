@@ -62,8 +62,8 @@
 	},
 	{
 		"description": "A page where you can see the amount of time left until summer holidays (in Switzerland).",
-		"href": "/time-to-summer-holidays-preact/",
-		"key": "time-to-summer-holidays-preact",
+		"href": "/time-to-summer-holidays/",
+		"key": "time-to-summer-holidays",
 		"text": "Countdown to Summer Holidays",
 		"type": "anchor"
 	},
