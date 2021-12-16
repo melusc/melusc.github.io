@@ -1,5 +1,4 @@
-import {h, Fragment} from 'preact';
-import {useState} from 'preact/hooks';
+import React, {useState} from 'react';
 
 import clsx from 'clsx';
 
@@ -36,10 +35,10 @@ const getTextWidth = (text: string, font: string) => {
 	return Math.floor(metrics.width);
 };
 
-const Battery = (): h.JSX.Element => {
+const Battery = (): JSX.Element => {
 	const [batteryValue, updateBattery] = useState('100%');
 
-	const handleBatteryInput: h.JSX.GenericEventHandler<
+	const handleBatteryInput: React.FormEventHandler<
 		HTMLInputElement
 	> = event_ => {
 		const value = event_.currentTarget.value;
@@ -56,7 +55,7 @@ const Battery = (): h.JSX.Element => {
 	return (
 		<>
 			<input
-				class={clsx('input-remove-input-visuals', 'battery-input', {
+				className={clsx('input-remove-input-visuals', 'battery-input', {
 					invalid: !isValidBatteryValue(batteryValue),
 				})}
 				value={batteryValue}

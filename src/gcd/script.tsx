@@ -1,4 +1,6 @@
-import {render, h, Component, createRef} from 'preact';
+import React, {createRef} from 'react';
+import ReactDOM from 'react-dom';
+
 import {gcdArray} from './functions';
 
 const enum States {
@@ -13,7 +15,7 @@ type AppState = {
 	outputValue: string;
 };
 
-class App extends Component<Record<string, unknown>, AppState> {
+class App extends React.Component<Record<string, unknown>, AppState> {
 	override state: AppState = {
 		state: States.valid,
 		inputValue: '',
@@ -41,11 +43,11 @@ class App extends Component<Record<string, unknown>, AppState> {
 		this.timeout = window.setTimeout(this.calcOutput, 100, input);
 	};
 
-	render = () => {
+	override render = () => {
 		const {inputValue, outputValue, state} = this.state;
 
 		return (
-			<div class="box">
+			<div className="box">
 				<input
 					ref={this.inputRef}
 					placeholder="2, 5, 9-13"
@@ -127,7 +129,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 
 			const uniques = [...new Set(newVals)];
 
-			this.setState((state): Partial<AppState> => {
+			this.setState(state => {
 				const inputValue = uniques.join(', ');
 
 				if (inputValue !== state.inputValue) {
@@ -136,7 +138,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 					return {inputValue, state: States.valid};
 				}
 
-				return {};
+				return null;
 			});
 		}
 	};
@@ -144,5 +146,10 @@ class App extends Component<Record<string, unknown>, AppState> {
 
 const root = document.querySelector<HTMLDivElement>('#root');
 if (root) {
-	render(<App />, root);
+	ReactDOM.render(
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>,
+		root,
+	);
 }

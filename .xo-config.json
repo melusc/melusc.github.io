@@ -52,18 +52,6 @@
 				"beforeSelfClosing": "always"
 			}
 		],
-		"react/no-unknown-property": [
-			"error",
-			{
-				"ignore": ["class", "stroke-linecap", "stroke-linejoin", "stroke-width"]
-			}
-		],
 		"capitalized-comments": "off"
-	},
-	"settings": {
-		"react": {
-			"pragma": "h",
-			"pragmaFrag": "Fragment"
-		}
 	}
 }

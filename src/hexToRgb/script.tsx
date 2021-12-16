@@ -5,7 +5,8 @@ import rgbHex from 'rgb-hex';
 
 import {debounce} from 'lodash';
 
-import {render, h, Component, Fragment} from 'preact';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {produce} from 'immer';
 import clsx from 'clsx';
 
@@ -24,10 +25,10 @@ type AppState = {
 	inputs: Inputs;
 };
 
-const Input = (properties: Record<string, unknown>) => (
+const Input = (properties: React.InputHTMLAttributes<HTMLInputElement>) => (
 	<>
 		<input {...properties} />
-		<div class="input-pseudo-border" />
+		<div className="input-pseudo-border" />
 	</>
 );
 
@@ -84,7 +85,7 @@ const rgbaLabels: ReadonlySet<RgbaLabels> = new Set([
 	'alpha',
 ]);
 
-class App extends Component<Record<string, unknown>, AppState> {
+class App extends React.Component<Record<string, unknown>, AppState> {
 	override state: AppState = {
 		inputs: {
 			hex: '',
@@ -97,7 +98,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 
 	invalidInputs = new Set<keyof Inputs>();
 
-	render = () => {
+	override render = () => {
 		const {invalidInputs, state, randomColour, handleInput, handleScroll}
 			= this;
 		const {inputs} = state;
@@ -106,29 +107,19 @@ class App extends Component<Record<string, unknown>, AppState> {
 
 		return (
 			<div
-				class="horizontal-vertical-center"
-				/*
-          If style is an object preact basically does:
-          style.backgroundColor = value
-          and if hex is '#', Firefox (but not Chromium)
-          doesn't modify the color because the color is
-          invalid.
-
-          So instead we use a string to force invalid colors
-          to be set as well, in which case it will be white instead
-        */
-				style={`background-color:${hex}`}
+				className="horizontal-vertical-center"
+				style={{backgroundColor: hex}}
 			>
-				<div class="floating-box">
-					<div class="row">
+				<div className="floating-box">
+					<div className="row">
 						<div>Hex</div>
-						<div class="inputs-rows">
+						<div className="inputs-rows">
 							<Input
 								maxLength={9}
 								value={hex}
 								placeholder="#"
 								name="hex"
-								class={clsx({
+								className={clsx({
 									invalid: invalidInputs.has('hex'),
 								})}
 								onInput={handleInput}
@@ -136,9 +127,9 @@ class App extends Component<Record<string, unknown>, AppState> {
 						</div>
 					</div>
 
-					<div class="row">
+					<div className="row">
 						<div>Rgba</div>
-						<div class="inputs-rows">
+						<div className="inputs-rows">
 							{labels.map(key => (
 								<Input
 									key={key}
@@ -149,7 +140,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 									name={key}
 									placeholder={key}
 									value={inputs[key]}
-									class={clsx({
+									className={clsx({
 										invalid: invalidInputs.has(key),
 									})}
 									onInput={handleInput}
@@ -165,7 +156,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 								placeholder="[alpha]"
 								value={alpha}
 								name="alpha"
-								class={clsx({
+								className={clsx({
 									invalid: invalidInputs.has('alpha'),
 								})}
 								onInput={handleInput}
@@ -173,12 +164,12 @@ class App extends Component<Record<string, unknown>, AppState> {
 							/>
 						</div>
 					</div>
-					<div class="row">
-						<div class="rainbow-box">
-							<div class="rainbow-text" onClick={randomColour}>
+					<div className="row">
+						<div className="rainbow-box">
+							<div className="rainbow-text" onClick={randomColour}>
 								Random colour
 							</div>
-							<div class="rainbow-bg" />
+							<div className="rainbow-bg" />
 						</div>
 					</div>
 				</div>
@@ -198,7 +189,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 		removeEventListener('hashchange', this.handleHashChange);
 	};
 
-	handleScroll: h.JSX.WheelEventHandler<HTMLInputElement> = event_ => {
+	handleScroll: React.WheelEventHandler<HTMLInputElement> = event_ => {
 		const target = event_.currentTarget;
 
 		const label = target.name;
@@ -428,7 +419,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 		);
 	};
 
-	handleInput: h.JSX.GenericEventHandler<HTMLInputElement> = event_ => {
+	handleInput: React.FormEventHandler<HTMLInputElement> = event_ => {
 		const target = event_.currentTarget;
 
 		const value = target.value.trim();
@@ -450,5 +441,10 @@ class App extends Component<Record<string, unknown>, AppState> {
 
 const root = document.querySelector<HTMLDivElement>('#root');
 if (root) {
-	render(<App />, root);
+	ReactDOM.render(
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>,
+		root,
+	);
 }

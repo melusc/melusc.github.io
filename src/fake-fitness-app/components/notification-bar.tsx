@@ -1,4 +1,4 @@
-import {h} from 'preact';
+import React from 'react';
 import * as dayjs from 'dayjs';
 import * as customParseFormat from 'dayjs/plugin/customParseFormat';
 
@@ -10,10 +10,10 @@ import '../styles/notification-bar.scss';
 
 dayjs.extend(customParseFormat);
 
-const NotificationBar = (): h.JSX.Element => (
-	<div class="notification-bar">
+const NotificationBar = (): JSX.Element => (
+	<div className="notification-bar">
 		<TimeInput class="clock" />
-		<div class="battery-and-icons">
+		<div className="battery-and-icons">
 			<Bluetooth />
 			<Wifi />
 			<Signal />

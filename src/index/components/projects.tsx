@@ -1,5 +1,4 @@
-import {h} from 'preact';
-import {useEffect} from 'preact/hooks';
+import React, {useEffect} from 'react';
 
 import projects_ from '../projects.json';
 import '../styles/projects.scss';
@@ -29,8 +28,8 @@ const Project = ({project}: {project: ProjectType}) => {
 
 	if (project.type === 'title') {
 		return (
-			<div class="project-row title">
-				<a href={id} class="id-anchor">
+			<div className="project-row title">
+				<a href={id} className="id-anchor">
 					#
 				</a>
 				<h1 id={key}>{text}</h1>
@@ -41,11 +40,11 @@ const Project = ({project}: {project: ProjectType}) => {
 	const {href, description} = project;
 
 	return (
-		<div class="project-row">
-			<a href={id} class="id-anchor">
+		<div className="project-row">
+			<a href={id} className="id-anchor">
 				#
 			</a>
-			<div class="project" id={key}>
+			<div className="project" id={key}>
 				<a href={href}>{text}</a>
 				<div>{description}</div>
 				<div />
@@ -66,7 +65,7 @@ export const Projects = () => {
 	}, []);
 
 	return (
-		<div class="projects">
+		<div className="projects">
 			{projects.map(project => (
 				<Project
 					key={project.key /* this has to be unique since they're folders */}

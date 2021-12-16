@@ -1,12 +1,12 @@
-import {h} from 'preact';
+import React from 'react';
 
 import {Photo} from './icons';
 
 import '../styles/workout-images.scss';
 
-const WorkoutImages = (): h.JSX.Element => (
-	<div class="workout-images">
-		<div class="workout-images-title">Images</div>
+const WorkoutImages = (): JSX.Element => (
+	<div className="workout-images">
+		<div className="workout-images-title">Images</div>
 		<Photo />
 	</div>
 );

@@ -1,4 +1,4 @@
-import {h} from 'preact';
+import React from 'react';
 import {IndexedError} from '../lib/indexed-error';
 
 import './render-error.scss';
@@ -8,11 +8,11 @@ export const RenderError = ({error, input}: {error: Error; input: string}) => {
 
 	if (error instanceof IndexedError) {
 		return (
-			<div class="error">
-				<div class="error-message">Malformed input</div>
-				<div class="error-input">
+			<div className="error">
+				<div className="error-message">Malformed input</div>
+				<div className="error-input">
 					{input.slice(0, error.from)}
-					<span class="error-input-incorrect">
+					<span className="error-input-incorrect">
 						{input.slice(error.from, error.to)}
 					</span>
 					{input.slice(error.to)}
@@ -22,8 +22,8 @@ export const RenderError = ({error, input}: {error: Error; input: string}) => {
 	}
 
 	return (
-		<div class="error">
-			<div class="error-message">{error.message}</div>
+		<div className="error">
+			<div className="error-message">{error.message}</div>
 		</div>
 	);
 };

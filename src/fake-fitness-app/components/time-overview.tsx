@@ -1,5 +1,4 @@
-import {h} from 'preact';
-import {useState, StateUpdater} from 'preact/hooks';
+import React, {useState} from 'react';
 import * as dayjs from 'dayjs';
 import * as customParseFormat from 'dayjs/plugin/customParseFormat';
 import clsx from 'clsx';
@@ -50,20 +49,20 @@ const calcTimePerDistance = (distance: string, duration: string): string => {
 };
 
 const TimeOverview = (properties: {
-	setDuration: StateUpdater<string>;
-	setDistance: StateUpdater<string>;
-}): h.JSX.Element => {
+	setDuration: React.Dispatch<React.SetStateAction<string>>;
+	setDistance: React.Dispatch<React.SetStateAction<string>>;
+}): JSX.Element => {
 	const [durationValue, setDuration] = useState(CONSTS.duration);
 	const [distanceValue, setDistance] = useState(CONSTS.distance);
 
 	const timePerDistance = calcTimePerDistance(distanceValue, durationValue);
 
 	return (
-		<div class="time-overview">
-			<div class="duration">
+		<div className="time-overview">
+			<div className="duration">
 				<input
 					value={durationValue}
-					class={clsx('input-remove-input-visuals', {
+					className={clsx('input-remove-input-visuals', {
 						invalid: !isValidDuration(durationValue),
 					})}
 					onInput={event_ => {
@@ -73,11 +72,11 @@ const TimeOverview = (properties: {
 					}}
 				/>
 			</div>
-			<div class="distance">
+			<div className="distance">
 				<div>
 					<input
 						value={distanceValue}
-						class={clsx('input-remove-input-visuals', {
+						className={clsx('input-remove-input-visuals', {
 							invalid: !CONSTS.distanceRegex.test(distanceValue.trim()),
 						})}
 						placeholder="0.00"
@@ -89,9 +88,9 @@ const TimeOverview = (properties: {
 					/>
 					<small>km</small>
 				</div>
-				<div class="vertical-border height-12" />
+				<div className="vertical-border height-12" />
 				<div
-					class={clsx('time-per-distance', {
+					className={clsx('time-per-distance', {
 						invalid: timePerDistance === invalid,
 					})}
 				>

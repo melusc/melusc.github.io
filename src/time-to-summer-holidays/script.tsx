@@ -1,4 +1,5 @@
-import {render, Component, h} from 'preact';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 const leadingZero = (n: number) => {
 	n = Math.trunc(n);
@@ -34,7 +35,7 @@ type AppState = {
 	s: number;
 };
 
-class App extends Component<Record<string, unknown>, AppState> {
+class App extends React.Component<Record<string, unknown>, AppState> {
 	override state: AppState = {
 		d: 0,
 		h: 0,
@@ -44,7 +45,7 @@ class App extends Component<Record<string, unknown>, AppState> {
 
 	previousDiff = 0;
 
-	render = () => {
+	override render = () => {
 		const {d, h: h_, m, s} = this.state;
 
 		return (
@@ -99,4 +100,10 @@ class App extends Component<Record<string, unknown>, AppState> {
 
 const root = document.querySelector<HTMLDivElement>('#root')!;
 
-render(<App />, root, root.firstElementChild!);
+ReactDOM.hydrate(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+
+	root,
+);

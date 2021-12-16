@@ -1,25 +1,26 @@
-import {render, Component, h} from 'preact';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 type MainState = {
 	posX: number;
 	colour: number;
 };
 
-class Main extends Component<Record<string, unknown>, MainState> {
+class Main extends React.Component<Record<string, unknown>, MainState> {
 	override state: MainState = {
 		posX: 0,
 		colour: 0,
 	};
 
-	render = () => {
+	override render = () => {
 		const {posX, colour} = this.state;
 
 		return (
 			<svg
 				fill={`hsl(${colour}, 100%, 70%)`}
 				stroke="#000"
-				stroke-linejoin="round"
-				stroke-width="1.5"
+				strokeLinejoin="round"
+				strokeWidth="1.5"
 				viewBox="0 0 256 256"
 			>
 				<path d={`M${posX} 10L246 246H10z`} />
@@ -59,5 +60,10 @@ class Main extends Component<Record<string, unknown>, MainState> {
 const root = document.querySelector('#root');
 
 if (root) {
-	render(<Main />, root);
+	ReactDOM.render(
+		<React.StrictMode>
+			<Main />
+		</React.StrictMode>,
+		root,
+	);
 }

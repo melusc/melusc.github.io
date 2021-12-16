@@ -1,12 +1,11 @@
 import clsx from 'clsx';
-import {h} from 'preact';
-
+import React from 'react';
 import {ParsedTable} from '../lib/generate-table';
 
 import './table.scss';
 
 export const Table = ({table}: {table: ParsedTable}) => (
-	<div class="table-border">
+	<div className="table-border">
 		<table>
 			<thead>
 				<tr>
@@ -17,11 +16,11 @@ export const Table = ({table}: {table: ParsedTable}) => (
 			</thead>
 			<tbody>
 				{table.rows.map(row => (
-					<tr key={row}>
+					<tr key={row.join('')}>
 						{row.map((cell, index) => (
 							<td
 								key={cell ? index : -index}
-								class={clsx({
+								className={clsx({
 									cell_true: cell,
 									cell_false: !cell,
 								})}

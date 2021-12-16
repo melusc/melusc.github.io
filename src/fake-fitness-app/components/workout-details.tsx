@@ -1,6 +1,5 @@
 import clsx from 'clsx';
-import {h} from 'preact';
-import {useState} from 'preact/hooks';
+import React, {useState} from 'react';
 
 import * as CONSTS from '../scripts/consts';
 import {
@@ -37,23 +36,23 @@ const toSpeed = (duration: string, distance: string): string | false => {
 
 const WorkoutDetails = (
 	properties: Readonly<{duration: string; distance: string}>,
-): h.JSX.Element => {
+): JSX.Element => {
 	const [totalDuration, setTotalDuration] = useState(CONSTS.duration);
 	const [maxSpeed, setMaxSpeed] = useState('0.0');
 
 	return (
-		<div class="workout-details">
-			<div class="workout-details-title">Workout details</div>
-			<div class="table">
-				<div class="row">
+		<div className="workout-details">
+			<div className="workout-details-title">Workout details</div>
+			<div className="table">
+				<div className="row">
 					<div>
-						<div class="table-value">{properties.duration}</div>
-						<div class="table-explanation">Workout duration</div>
+						<div className="table-value">{properties.duration}</div>
+						<div className="table-explanation">Workout duration</div>
 					</div>
-					<div class="vertical-border height-22" />
+					<div className="vertical-border height-22" />
 					<div>
 						<input
-							class={clsx(
+							className={clsx(
 								'input-remove-input-visuals',
 								{
 									invalid: !isValidDuration(totalDuration),
@@ -72,32 +71,32 @@ const WorkoutDetails = (
 								);
 							}}
 						/>
-						<div class="table-explanation">Total duration</div>
+						<div className="table-explanation">Total duration</div>
 					</div>
 				</div>
 				<hr />
-				<div class="row">
+				<div className="row">
 					<div>
-						<div class="table-value">{properties.distance}</div>
-						<div class="table-explanation">Distance(km)</div>
+						<div className="table-value">{properties.distance}</div>
+						<div className="table-explanation">Distance(km)</div>
 					</div>
-					<div class="vertical-border height-22" />
+					<div className="vertical-border height-22" />
 					<div>
 						<Run />
 					</div>
 				</div>
 				<hr />
-				<div class="row">
+				<div className="row">
 					<div>
-						<div class="table-value">
+						<div className="table-value">
 							{toSpeed(properties.duration, properties.distance)}
 						</div>
-						<div class="table-explanation">Avg. speed(km/h)</div>
+						<div className="table-explanation">Avg. speed(km/h)</div>
 					</div>
-					<div class="vertical-border height-22" />
+					<div className="vertical-border height-22" />
 					<div>
 						<input
-							class={clsx('input-remove-input-visuals', 'table-value', {
+							className={clsx('input-remove-input-visuals', 'table-value', {
 								invalid: !CONSTS.speedRegex.test(maxSpeed),
 							})}
 							value={maxSpeed}
@@ -107,7 +106,7 @@ const WorkoutDetails = (
 								setMaxSpeed(value);
 							}}
 						/>
-						<div class="table-explanation">Max. speed(km/h)</div>
+						<div className="table-explanation">Max. speed(km/h)</div>
 					</div>
 				</div>
 			</div>

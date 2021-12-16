@@ -1,5 +1,4 @@
-import {h} from 'preact';
-import {StateUpdater} from 'preact/hooks';
+import React from 'react';
 
 import './input.scss';
 
@@ -8,17 +7,15 @@ export const Input = ({
 	setInput,
 }: {
 	input: string;
-	setInput: StateUpdater<string>;
+	setInput: React.Dispatch<React.SetStateAction<string>>;
 }) => (
 	<input
-		class="truth-input"
+		className="truth-input"
 		type="text"
 		value={input}
 		onInput={ev => {
 			const newInput = ev.currentTarget.value;
-			if (newInput.trim() !== input) {
-				setInput(newInput);
-			}
+			setInput(newInput);
 		}}
 	/>
 );

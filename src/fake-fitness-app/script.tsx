@@ -1,5 +1,5 @@
-import {h, render} from 'preact';
-import {useState} from 'preact/hooks';
+import React, {useState} from 'react';
+import ReactDOM from 'react-dom';
 
 import NotificationBar from './components/notification-bar';
 import Navbar from './components/navbar';
@@ -18,7 +18,7 @@ const Main = () => {
 	const [distance, setDistance] = useState(CONSTS.distance);
 
 	const handleSizeInput
-		= (key: 'width' | 'height'): h.JSX.GenericEventHandler<HTMLInputElement> =>
+		= (key: 'width' | 'height'): React.FormEventHandler<HTMLInputElement> =>
 		event_ => {
 			const value = Number(event_.currentTarget.value.trim());
 
@@ -33,8 +33,8 @@ const Main = () => {
 	const biggestSize = Math.max(sizes.height, sizes.width);
 
 	return (
-		<div class="App">
-			<div class="inputs">
+		<div className="App">
+			<div className="inputs">
 				<div>
 					<label htmlFor="width">Width:</label>
 					<input
@@ -61,7 +61,7 @@ const Main = () => {
 					width: `${(sizes.width / biggestSize) * 100}vmin`,
 					height: `${(sizes.height / biggestSize) * 100}vmin`,
 				}}
-				class="fake-app"
+				className="fake-app"
 			>
 				<NotificationBar />
 				<Navbar />
@@ -78,5 +78,10 @@ const Main = () => {
 const root = document.querySelector('#root');
 
 if (root) {
-	render(<Main />, root);
+	ReactDOM.render(
+		<React.StrictMode>
+			<Main />
+		</React.StrictMode>,
+		root,
+	);
 }

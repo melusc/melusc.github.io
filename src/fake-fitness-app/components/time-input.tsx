@@ -1,5 +1,4 @@
-import {h} from 'preact';
-import {useState, StateUpdater} from 'preact/hooks';
+import React, {useState} from 'react';
 import * as dayjs from 'dayjs';
 import * as customParseFormat from 'dayjs/plugin/customParseFormat';
 import clsx from 'clsx';
@@ -12,13 +11,11 @@ const timeAtLoad = dayjs().format('HH:mm');
 
 const TimeInput = (properties: {
 	class?: string[] | string;
-	setTime?: StateUpdater<string>;
-}): h.JSX.Element => {
+	setTime?: React.Dispatch<React.SetStateAction<string>>;
+}): JSX.Element => {
 	const [timeValue, setTime] = useState(timeAtLoad);
 
-	const handleTimeInput: h.JSX.GenericEventHandler<
-		HTMLInputElement
-	> = event_ => {
+	const handleTimeInput: React.FormEventHandler<HTMLInputElement> = event_ => {
 		const value = event_.currentTarget.value;
 
 		const stateValue = timeValid(value) ? toTime(value).format('HH:mm') : value;
@@ -29,7 +26,7 @@ const TimeInput = (properties: {
 
 	return (
 		<input
-			class={clsx(
+			className={clsx(
 				'input-remove-input-visuals',
 				{
 					invalid: !timeValid(timeValue),

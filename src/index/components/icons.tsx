@@ -1,4 +1,4 @@
-import {h} from 'preact';
+import React from 'react';
 
 export const Github = () => (
 	<svg viewBox="0 0 512 512">

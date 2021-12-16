@@ -1,5 +1,4 @@
-import {h} from 'preact';
-import {useState} from 'preact/hooks';
+import React, {useState} from 'react';
 import * as dayjs from 'dayjs';
 import * as customParseFormat from 'dayjs/plugin/customParseFormat';
 import clsx from 'clsx';
@@ -19,14 +18,12 @@ dayjs.extend(customParseFormat);
 
 const dateAtLoad = dayjs().format('D MMM');
 
-const MainAppDateTime = (properties: {duration: string}): h.JSX.Element => {
+const MainAppDateTime = (properties: {duration: string}): JSX.Element => {
 	const [dateValue, setDate] = useState(dateAtLoad);
 
 	const [timeFrom, setTimeFrom] = useState(dayjs().format('HH:mm'));
 
-	const handleDateInput: h.JSX.GenericEventHandler<
-		HTMLInputElement
-	> = event_ => {
+	const handleDateInput: React.FormEventHandler<HTMLInputElement> = event_ => {
 		const value = event_.currentTarget.value;
 
 		if (dateValid(value)) {
@@ -41,18 +38,18 @@ const MainAppDateTime = (properties: {duration: string}): h.JSX.Element => {
 	);
 
 	return (
-		<div class="main-app-date-time">
-			<div class="day-date-inputs">
+		<div className="main-app-date-time">
+			<div className="day-date-inputs">
 				<span>{dateValid(dateValue) && toDate(dateValue).format('ddd, ')}</span>
 				<input
-					class={clsx('input-remove-input-visuals', {
+					className={clsx('input-remove-input-visuals', {
 						invalid: !dateValid(dateValue),
 					})}
 					value={dateValue}
 					onInput={handleDateInput}
 				/>
 			</div>
-			<div class="time-inputs">
+			<div className="time-inputs">
 				<TimeInput setTime={setTimeFrom} />
 				<span>
 					{'-  '}

@@ -2,8 +2,8 @@
 	"compilerOptions": {
 		"rootDir": "./src",
 		"resolveJsonModule": true,
-		"jsxFactory": "h",
-		"jsxFragmentFactory": "Fragment"
+		"jsxFactory": "React.createElement",
+		"jsxFragmentFactory": "React.Fragment"
 	},
 	"include": ["./src/**/*"],
 	"extends": "@lusc/tsconfig"

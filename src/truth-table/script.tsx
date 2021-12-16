@@ -1,5 +1,5 @@
-import {h, render} from 'preact';
-import {useEffect, useRef, useState} from 'preact/hooks';
+import React, {useEffect, useRef, useState} from 'react';
+import ReactDOM from 'react-dom';
 
 import {Table} from './components/table';
 import {Input} from './components/input';
@@ -97,4 +97,9 @@ const Main = () => {
 	);
 };
 
-render(<Main />, document.body);
+ReactDOM.render(
+	<React.StrictMode>
+		<Main />
+	</React.StrictMode>,
+	document.body,
+);

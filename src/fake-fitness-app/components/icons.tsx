@@ -1,16 +1,15 @@
-import {h} from 'preact';
-import {useState} from 'preact/hooks';
+import React, {useState} from 'react';
 import clsx from 'clsx';
 
-export const Bluetooth = (): h.JSX.Element => (
+export const Bluetooth = (): JSX.Element => (
 	<svg
 		fill="none"
 		stroke="currentColor"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		stroke-width="1.5"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+		strokeWidth="1.5"
 		viewBox="0 0 24 24"
-		class="icon-bluetooth"
+		className="icon-bluetooth"
 	>
 		<path d="m7 8 10 8-5 4V4l5 4-10 8" />
 		<path d="M4 12h1" />
@@ -22,19 +21,19 @@ export const Battery = ({
 	batteryStatus,
 }: {
 	batteryStatus: string;
-}): h.JSX.Element => {
+}): JSX.Element => {
 	const batteryPercent = Number(/^\d+/.exec(batteryStatus) ?? 0);
 
 	return (
 		<svg
 			fill="none"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-			stroke-width="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth="1.5"
 			stroke="currentColor"
 			viewBox="0 0 24 24"
 			transform="rotate(-90)"
-			class={clsx('icon-battery', {
+			className={clsx('icon-battery', {
 				invalid: batteryPercent <= 15,
 			})}
 		>
@@ -47,18 +46,18 @@ export const Battery = ({
 	);
 };
 
-export const Wifi = (): h.JSX.Element => {
+export const Wifi = (): JSX.Element => {
 	const [bars, setBars] = useState(4);
 
 	return (
 		<svg
 			fill="none"
 			stroke="currentColor"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-			stroke-width="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth="1.5"
 			viewBox="0 0 24 24"
-			class="icon-interactive"
+			className="icon-interactive"
 			onClick={() => {
 				// Go 4 -> 2 -> 3 -> 4 -> ...
 				setBars(((bars - 1) % 3) + 2);
@@ -72,14 +71,14 @@ export const Wifi = (): h.JSX.Element => {
 	);
 };
 
-export const Signal = (): h.JSX.Element => {
+export const Signal = (): JSX.Element => {
 	const [bars, setBars] = useState(5);
 
 	return (
 		<svg
 			fill="currentColor"
 			viewBox="0 0 20 20"
-			class="icon-reception icon-interactive"
+			className="icon-reception icon-interactive"
 			onClick={() => {
 				setBars(((bars - 1) % 4) + 2);
 			}}
@@ -101,27 +100,27 @@ export const Signal = (): h.JSX.Element => {
 	);
 };
 
-export const AngleLeft = (): h.JSX.Element => (
+export const AngleLeft = (): JSX.Element => (
 	<svg
 		fill="none"
 		stroke="currentColor"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		stroke-width="1.5"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+		strokeWidth="1.5"
 		viewBox="0 0 11.5 17.5"
-		class="icon-angle-left"
+		className="icon-angle-left"
 	>
 		<path d="m8.75 2.75-6 6 6 6" />
 	</svg>
 );
 
-export const DotsVertical = (): h.JSX.Element => (
+export const DotsVertical = (): JSX.Element => (
 	<svg
 		fill="currentColor"
 		stroke="currentColor"
-		stroke-width="1.5"
+		strokeWidth="1.5"
 		viewBox="0 0 7.5 21.5"
-		class="icon-dots-vertical"
+		className="icon-dots-vertical"
 	>
 		<circle cx="3.75" cy="10.75" r="1" />
 		<circle cx="3.75" cy="17.75" r="1" />
@@ -129,14 +128,14 @@ export const DotsVertical = (): h.JSX.Element => (
 	</svg>
 );
 
-export const Run = (): h.JSX.Element => (
+export const Run = (): JSX.Element => (
 	<svg
-		class="icon-run"
+		className="icon-run"
 		fill="none"
 		stroke="currentColor"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		stroke-width="1.5"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+		strokeWidth="1.5"
 		viewBox="0 0 19.5 23.501"
 	>
 		<path
@@ -149,15 +148,15 @@ export const Run = (): h.JSX.Element => (
 	</svg>
 );
 
-export const Photo = (): h.JSX.Element => (
+export const Photo = (): JSX.Element => (
 	<svg
 		fill="none"
 		stroke="currentColor"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		stroke-width="1.5"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+		strokeWidth="1.5"
 		viewBox="0 0 21.555 21.533"
-		class="icon-photo"
+		className="icon-photo"
 	>
 		<path d="M12.778 12.755c.763-.733 1.552-1.834 2.75-1.652 1.168.22 1.81 1.323 2.65 2.052l.6.6m-16 0c1.498-1.447 2.897-3.006 4.464-4.377.916-.588 2.151-.205 2.78.622l4.756 4.755m-9-12c3.485.02 6.973-.04 10.457.03 1.597.2 2.762 1.852 2.542 3.423-.018 3.335.04 6.671-.03 10.004-.2 1.597-1.852 2.762-3.423 2.542-3.334-.018-6.67.04-10.004-.03-1.597-.2-2.761-1.851-2.542-3.422.018-3.331-.04-6.665.03-9.994.185-1.426 1.53-2.59 2.97-2.553zm8 4h.01" />
 	</svg>

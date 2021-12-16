@@ -8,7 +8,10 @@ import * as plugins from './plugins/plugins';
 type NumberOnlySudoku = Array<Array<number | undefined>>;
 
 type DispatchTypes = 'change' | 'error' | 'finish';
-type SubscriptionCallback = (sudoku: Sudoku, type: DispatchTypes) => void;
+export type SubscriptionCallback = (
+	sudoku: Sudoku,
+	type: DispatchTypes,
+) => void;
 
 export const inRangeIncl = (low: number, high: number, n: number): void => {
 	if (!Number.isInteger(n)) {
