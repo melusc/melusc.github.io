@@ -27,7 +27,7 @@
 	},
 	{
 		"description": "A simple page in which you can convert hex from and to rgb(a).",
-		"href": "/hexToRgb/",
+		"href": "/hex-to-rgb/",
 		"key": "hex-to-rgb",
 		"text": "Hex-Rgb converter",
 		"type": "anchor"
