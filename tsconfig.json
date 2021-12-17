@@ -4,7 +4,7 @@
 		"resolveJsonModule": true,
 		"jsxFactory": "React.createElement",
 		"jsxFragmentFactory": "React.Fragment",
-		"types": ["@types/styled-components/cssprop"]
+		"types": ["styled-components/cssprop", "node"]
 	},
 	"include": ["./src/**/*"],
 	"extends": "@lusc/tsconfig"
