@@ -44,6 +44,12 @@
 		"no-bitwise": "off",
 		"indent": "off",
 		"no-mixed-spaces-and-tabs": "off",
+		"import/no-unassigned-import": [
+			"error",
+			{
+				"allow": ["**/*.scss"]
+			}
+		],
 		"react/jsx-curly-newline": "off",
 		"react/jsx-indent": "off",
 		"react/jsx-tag-spacing": [
