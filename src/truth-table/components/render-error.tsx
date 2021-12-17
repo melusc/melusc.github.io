@@ -1,14 +1,33 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import {IndexedError} from '../lib/indexed-error';
 
-import './render-error.scss';
+const StyledError = styled.div`
+	display: flex;
+	flex-direction: column;
+
+	.error-message {
+		font-family: 'JetBrains Mono', monospace;
+		font-weight: 300;
+	}
+
+	.error-input-incorrect {
+		font-weight: bolder;
+	}
+
+	.error-message,
+	.error-input-incorrect {
+		color: var(--red);
+	}
+`;
 
 export const RenderError = ({error, input}: {error: Error; input: string}) => {
 	console.error(error);
 
 	if (error instanceof IndexedError) {
 		return (
-			<div className="error">
+			<StyledError>
 				<div className="error-message">Malformed input</div>
 				<div className="error-input">
 					{input.slice(0, error.from)}
@@ -17,13 +36,13 @@ export const RenderError = ({error, input}: {error: Error; input: string}) => {
 					</span>
 					{input.slice(error.to)}
 				</div>
-			</div>
+			</StyledError>
 		);
 	}
 
 	return (
-		<div className="error">
+		<StyledError>
 			<div className="error-message">{error.message}</div>
-		</div>
+		</StyledError>
 	);
 };

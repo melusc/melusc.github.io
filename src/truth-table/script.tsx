@@ -86,20 +86,24 @@ const Main = () => {
 	}, [input, parsed]);
 
 	return (
-		<div>
+		<>
 			<Input input={input} setInput={setInput} />{' '}
 			{parsed.valid ? (
 				<Table table={generateTable(input)} />
 			) : (
 				<RenderError input={input} error={parsed.error} />
 			)}
-		</div>
+		</>
 	);
 };
 
-ReactDOM.render(
-	<React.StrictMode>
-		<Main />
-	</React.StrictMode>,
-	document.body,
-);
+const root = document.querySelector<HTMLDivElement>('#root');
+
+if (root) {
+	ReactDOM.render(
+		<React.StrictMode>
+			<Main />
+		</React.StrictMode>,
+		root,
+	);
+}

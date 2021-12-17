@@ -1,6 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import './input.scss';
+const StyledInput = styled.input`
+	font: inherit;
+	background: none;
+	border: none;
+	outline: none;
+	color: inherit;
+
+	border-bottom: var(--table-border);
+	padding: 0.3em;
+	margin-bottom: 1em;
+
+	width: 100%;
+`;
 
 export const Input = ({
 	input,
@@ -9,8 +22,7 @@ export const Input = ({
 	input: string;
 	setInput: React.Dispatch<React.SetStateAction<string>>;
 }) => (
-	<input
-		className="truth-input"
+	<StyledInput
 		type="text"
 		value={input}
 		onInput={ev => {

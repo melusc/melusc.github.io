@@ -3,7 +3,8 @@
 		"rootDir": "./src",
 		"resolveJsonModule": true,
 		"jsxFactory": "React.createElement",
-		"jsxFragmentFactory": "React.Fragment"
+		"jsxFragmentFactory": "React.Fragment",
+		"types": ["@types/styled-components/cssprop"]
 	},
 	"include": ["./src/**/*"],
 	"extends": "@lusc/tsconfig"
