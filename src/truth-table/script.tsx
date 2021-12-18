@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 
 import {Table} from './components/table';
@@ -31,7 +31,7 @@ const Main = () => {
 	const [input, setInput] = useState(`a ${LogicalSymbolFromName.and} b`);
 	const lastWasValid = useRef<boolean>(true);
 
-	const parsed = tryGenerateTable(input);
+	const parsed = useMemo(() => tryGenerateTable(input), [input]);
 
 	useEffect(() => {
 		if (location.hash) {
