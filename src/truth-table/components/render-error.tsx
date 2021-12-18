@@ -22,7 +22,10 @@ const StyledError = styled.div`
 	}
 `;
 
-export const RenderError = ({error, input}: {error: Error; input: string}) => {
+export const RenderError: React.FC<{
+	error: Error;
+	input: string;
+}> = ({error, input}) => {
 	console.error(error);
 
 	if (error instanceof IndexedError) {

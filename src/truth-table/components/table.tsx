@@ -31,7 +31,7 @@ const StyledTable = styled.table`
 	}
 `;
 
-export const Table = ({table}: {table: ParsedTable}) => (
+export const Table: React.FC<{table: ParsedTable}> = ({table}) => (
 	<StyledTable>
 		<thead>
 			<tr>

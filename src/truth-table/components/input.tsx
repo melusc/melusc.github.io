@@ -15,13 +15,10 @@ const StyledInput = styled.input`
 	width: 100%;
 `;
 
-export const Input = ({
-	input,
-	setInput,
-}: {
+export const Input: React.FC<{
 	input: string;
 	setInput: React.Dispatch<React.SetStateAction<string>>;
-}) => (
+}> = ({input, setInput}) => (
 	<StyledInput
 		type="text"
 		value={input}
