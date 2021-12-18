@@ -12,7 +12,7 @@ interface AppState {
 	focused: number;
 }
 
-const SvgEraser = () => (
+const SvgEraser: React.FC = () => (
 	<svg
 		width="16"
 		height="16"

@@ -34,9 +34,10 @@ const toSpeed = (duration: string, distance: string): string | false => {
 	return (speedInMetersPerSecond * 3.6).toFixed(1);
 };
 
-const WorkoutDetails = (
-	properties: Readonly<{duration: string; distance: string}>,
-): JSX.Element => {
+const WorkoutDetails: React.FC<{duration: string; distance: string}> = ({
+	duration,
+	distance,
+}) => {
 	const [totalDuration, setTotalDuration] = useState(CONSTS.duration);
 	const [maxSpeed, setMaxSpeed] = useState('0.0');
 
@@ -46,7 +47,7 @@ const WorkoutDetails = (
 			<div className="table">
 				<div className="row">
 					<div>
-						<div className="table-value">{properties.duration}</div>
+						<div className="table-value">{duration}</div>
 						<div className="table-explanation">Workout duration</div>
 					</div>
 					<div className="vertical-border height-22" />
@@ -77,7 +78,7 @@ const WorkoutDetails = (
 				<hr />
 				<div className="row">
 					<div>
-						<div className="table-value">{properties.distance}</div>
+						<div className="table-value">{distance}</div>
 						<div className="table-explanation">Distance(km)</div>
 					</div>
 					<div className="vertical-border height-22" />
@@ -88,9 +89,7 @@ const WorkoutDetails = (
 				<hr />
 				<div className="row">
 					<div>
-						<div className="table-value">
-							{toSpeed(properties.duration, properties.distance)}
-						</div>
+						<div className="table-value">{toSpeed(duration, distance)}</div>
 						<div className="table-explanation">Avg. speed(km/h)</div>
 					</div>
 					<div className="vertical-border height-22" />

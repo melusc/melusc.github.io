@@ -21,7 +21,9 @@ type ProjectsType = ProjectType[];
 
 const projects = projects_ as ProjectsType;
 
-const Project = ({project}: {project: ProjectType}) => {
+const Project: React.FC<{
+	project: ProjectType;
+}> = ({project}) => {
 	const {text, key} = project;
 
 	const id = `#${key}`;
@@ -53,7 +55,7 @@ const Project = ({project}: {project: ProjectType}) => {
 	);
 };
 
-export const Projects = () => {
+export const Projects: React.FC = () => {
 	useEffect(() => {
 		if (location.hash) {
 			try {
@@ -67,10 +69,7 @@ export const Projects = () => {
 	return (
 		<div className="projects">
 			{projects.map(project => (
-				<Project
-					key={project.key /* this has to be unique since they're folders */}
-					project={project}
-				/>
+				<Project key={project.key} project={project} />
 			))}
 		</div>
 	);

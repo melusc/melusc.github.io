@@ -35,7 +35,7 @@ const getTextWidth = (text: string, font: string) => {
 	return Math.floor(metrics.width);
 };
 
-const Battery = (): JSX.Element => {
+const Battery: React.FC = () => {
 	const [batteryValue, updateBattery] = useState('100%');
 
 	const handleBatteryInput: React.FormEventHandler<

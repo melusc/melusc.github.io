@@ -7,11 +7,9 @@ export {default as DotsVertical} from 'jsx:../icons/dots-vertical.svg';
 export {default as Run} from 'jsx:../icons/run.svg';
 export {default as Photo} from 'jsx:../icons/photo.svg';
 
-export const Battery = ({
-	batteryStatus,
-}: {
+export const Battery: React.FC<{
 	batteryStatus: string;
-}): JSX.Element => {
+}> = ({batteryStatus}) => {
 	const batteryPercent = Number(/^\d+/.exec(batteryStatus) ?? 0);
 
 	return (
@@ -36,7 +34,7 @@ export const Battery = ({
 	);
 };
 
-export const Wifi = (): JSX.Element => {
+export const Wifi: React.FC = () => {
 	const [bars, setBars] = useState(4);
 
 	return (
@@ -61,7 +59,7 @@ export const Wifi = (): JSX.Element => {
 	);
 };
 
-export const Signal = (): JSX.Element => {
+export const Signal: React.FC = () => {
 	const [bars, setBars] = useState(5);
 
 	return (

@@ -27,7 +27,7 @@ const tryGenerateTable = (
 	}
 };
 
-const Main = () => {
+const Main: React.FC = () => {
 	const [input, setInput] = useState(`a ${LogicalSymbolFromName.and} b`);
 	const lastWasValid = useRef<boolean>(true);
 

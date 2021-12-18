@@ -3,7 +3,7 @@ import '../styles/navbar.scss';
 
 import {AngleLeft, DotsVertical} from './icons';
 
-const Navbar = (): JSX.Element => (
+const Navbar: React.FC = () => (
 	<div className="navbar">
 		<AngleLeft />
 		<span>Running</span>

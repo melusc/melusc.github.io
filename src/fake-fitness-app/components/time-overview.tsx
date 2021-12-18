@@ -48,10 +48,10 @@ const calcTimePerDistance = (distance: string, duration: string): string => {
 		: diff.format('H[h] m\'ss"');
 };
 
-const TimeOverview = (properties: {
+const TimeOverview: React.FC<{
 	setDuration: React.Dispatch<React.SetStateAction<string>>;
 	setDistance: React.Dispatch<React.SetStateAction<string>>;
-}): JSX.Element => {
+}> = ({setDuration: parentSetDuration, setDistance: parentSetDistance}) => {
 	const [durationValue, setDuration] = useState(CONSTS.duration);
 	const [distanceValue, setDistance] = useState(CONSTS.distance);
 
@@ -68,7 +68,7 @@ const TimeOverview = (properties: {
 					onInput={event_ => {
 						const dur = event_.currentTarget.value.trim();
 						setDuration(dur);
-						properties.setDuration(dur);
+						parentSetDuration(dur);
 					}}
 				/>
 			</div>
@@ -83,7 +83,7 @@ const TimeOverview = (properties: {
 						onInput={event_ => {
 							const distance = event_.currentTarget.value.trim();
 							setDistance(distance);
-							properties.setDistance(distance);
+							parentSetDistance(distance);
 						}}
 					/>
 					<small>km</small>

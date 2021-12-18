@@ -4,7 +4,7 @@ import {Github} from './icons';
 
 import '../styles/header.scss';
 
-export const Header = () => (
+export const Header: React.FC = () => (
 	<header>
 		<div className="header-start">
 			<a href="/">melusc.github.io</a>

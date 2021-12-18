@@ -9,10 +9,10 @@ dayjs.extend(customParseFormat);
 
 const timeAtLoad = dayjs().format('HH:mm');
 
-const TimeInput = (properties: {
-	class?: string[] | string;
+const TimeInput: React.FC<{
+	className?: string[] | string;
 	setTime?: React.Dispatch<React.SetStateAction<string>>;
-}): JSX.Element => {
+}> = ({className, setTime: parentSetTime}) => {
 	const [timeValue, setTime] = useState(timeAtLoad);
 
 	const handleTimeInput: React.FormEventHandler<HTMLInputElement> = event_ => {
@@ -21,7 +21,7 @@ const TimeInput = (properties: {
 		const stateValue = timeValid(value) ? toTime(value).format('HH:mm') : value;
 
 		setTime(stateValue);
-		properties.setTime?.(stateValue);
+		parentSetTime?.(stateValue);
 	};
 
 	return (
@@ -31,7 +31,7 @@ const TimeInput = (properties: {
 				{
 					invalid: !timeValid(timeValue),
 				},
-				properties.class,
+				className,
 			)}
 			value={timeValue}
 			placeholder="HH:mm"

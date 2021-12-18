@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/help.scss';
 
-const Help = () => (
+const Help: React.FC = () => (
 	<div className="help">
 		<div className="help-text">
 			Using Firefox? Use{' '}

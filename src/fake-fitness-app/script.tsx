@@ -11,7 +11,7 @@ import Help from './components/help';
 
 import * as CONSTS from './scripts/consts';
 
-const Main = () => {
+const Main: React.FC = () => {
 	const [sizes, updateSize] = useState({width: 1440, height: 2960});
 
 	const [duration, setDuration] = useState(CONSTS.duration);

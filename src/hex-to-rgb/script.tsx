@@ -25,9 +25,9 @@ type AppState = {
 	inputs: Inputs;
 };
 
-const Input = (properties: React.InputHTMLAttributes<HTMLInputElement>) => (
+const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = props => (
 	<>
-		<input {...properties} />
+		<input {...props} />
 		<div className="input-pseudo-border" />
 	</>
 );

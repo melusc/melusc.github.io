@@ -5,7 +5,7 @@ import {Header} from './components/header';
 
 import {Projects} from './components/projects';
 
-const App = () => (
+const App: React.FC = () => (
 	<>
 		<Header />
 		<main>

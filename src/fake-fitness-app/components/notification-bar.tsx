@@ -10,9 +10,9 @@ import '../styles/notification-bar.scss';
 
 dayjs.extend(customParseFormat);
 
-const NotificationBar = (): JSX.Element => (
+const NotificationBar: React.FC = () => (
 	<div className="notification-bar">
-		<TimeInput class="clock" />
+		<TimeInput className="clock" />
 		<div className="battery-and-icons">
 			<Bluetooth />
 			<Wifi />

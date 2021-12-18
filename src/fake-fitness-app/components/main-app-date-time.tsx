@@ -18,7 +18,9 @@ dayjs.extend(customParseFormat);
 
 const dateAtLoad = dayjs().format('D MMM');
 
-const MainAppDateTime = (properties: {duration: string}): JSX.Element => {
+const MainAppDateTime: React.FC<{
+	duration: string;
+}> = ({duration}) => {
 	const [dateValue, setDate] = useState(dateAtLoad);
 
 	const [timeFrom, setTimeFrom] = useState(dayjs().format('HH:mm'));
@@ -33,9 +35,8 @@ const MainAppDateTime = (properties: {duration: string}): JSX.Element => {
 		}
 	};
 
-	const durationTimeSinceMidnightInSeconds = calcDurationSecondsSinceMidnight(
-		properties.duration,
-	);
+	const durationTimeSinceMidnightInSeconds
+		= calcDurationSecondsSinceMidnight(duration);
 
 	return (
 		<div className="main-app-date-time">

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Github = () => (
+export const Github: React.FC = () => (
 	<svg viewBox="0 0 512 512">
 		<path
 			fill="#fff"
