@@ -9,7 +9,7 @@ import {generateTable, ParsedTable} from './lib/generate-table';
 import {operationToString} from './lib/operation-to-string';
 import {LogicalSymbolFromName} from './lib/logical-symbols';
 
-const getHash = () => decodeURIComponent(location.hash.slice(1));
+const getHash = (): string => decodeURIComponent(location.hash.slice(1));
 
 const tryGenerateTable = (
 	input: string,
@@ -40,7 +40,7 @@ const Main: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const cb = () => {
+		const cb = (): void => {
 			const newHash = getHash();
 
 			if (newHash !== input) {
@@ -50,7 +50,7 @@ const Main: React.FC = () => {
 
 		addEventListener('hashchange', cb);
 
-		return () => {
+		return (): void => {
 			removeEventListener('hashchange', cb);
 		};
 	}, [input]);

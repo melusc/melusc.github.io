@@ -36,7 +36,8 @@
 					}
 				],
 				"@typescript-eslint/naming-convention": "off",
-				"import/extensions": "off"
+				"import/extensions": "off",
+				"@typescript-eslint/explicit-function-return-type": "error"
 			}
 		}
 	],

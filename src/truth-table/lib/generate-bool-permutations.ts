@@ -21,5 +21,5 @@ function * generateBoolPermutationsIterator(
 }
 
 // Use Set to not have duplicates
-export const generateBoolPermutations = (variables: Set<string>) =>
+export const generateBoolPermutations = (variables: Set<string>): Iterable<Record<string, boolean>> =>
 	generateBoolPermutationsIterator([...variables]);

@@ -65,7 +65,7 @@ const TimeOverview: React.FC<{
 					className={clsx('input-remove-input-visuals', {
 						invalid: !isValidDuration(durationValue),
 					})}
-					onInput={event_ => {
+					onInput={(event_): void => {
 						const dur = event_.currentTarget.value.trim();
 						setDuration(dur);
 						parentSetDuration(dur);
@@ -80,7 +80,7 @@ const TimeOverview: React.FC<{
 							invalid: !CONSTS.distanceRegex.test(distanceValue.trim()),
 						})}
 						placeholder="0.00"
-						onInput={event_ => {
+						onInput={(event_): void => {
 							const distance = event_.currentTarget.value.trim();
 							setDistance(distance);
 							parentSetDistance(distance);

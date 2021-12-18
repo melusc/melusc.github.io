@@ -2,7 +2,7 @@ const knownGcd: Record<string, bigint> = {};
 
 type ExpectedNumber = number | bigint;
 
-export const absBigInt = (n: ExpectedNumber) => BigInt(n < 0 ? -n : n);
+export const absBigInt = (n: ExpectedNumber): bigint => BigInt(n < 0 ? -n : n);
 
 export const gcd = (a_: ExpectedNumber, b_: ExpectedNumber): bigint => {
 	const a = absBigInt(a_);
@@ -33,7 +33,7 @@ export const gcd = (a_: ExpectedNumber, b_: ExpectedNumber): bigint => {
 	return divisor;
 };
 
-export const lcm = (a: ExpectedNumber, b: ExpectedNumber) =>
+export const lcm = (a: ExpectedNumber, b: ExpectedNumber): bigint =>
 	(absBigInt(a) * absBigInt(b)) / gcd(a, b);
 
 export const lcmArray = (array: ExpectedNumber[]): string => {

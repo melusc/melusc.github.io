@@ -2,7 +2,7 @@ import {IndexedError} from './indexed-error';
 import {isValidOperatorName} from './logical-symbols';
 import {CharacterTypes, type StringWithIndices} from './string-with-indices';
 
-const throwUnexpectedChar = (char: string, from: number, to?: number) => {
+const throwUnexpectedChar = (char: string, from: number, to?: number): void => {
 	const message
 		= to === undefined || to - from === 1
 			? `Unexpected character "${char}" at position ${from}.`
@@ -11,7 +11,7 @@ const throwUnexpectedChar = (char: string, from: number, to?: number) => {
 	throw new IndexedError(message, from, to ?? from + 1);
 };
 
-const findUnexpectedChar = (input: string, regex: RegExp) => {
+const findUnexpectedChar = (input: string, regex: RegExp): void => {
 	const index = input.search(regex);
 
 	if (index !== -1) {
@@ -19,7 +19,7 @@ const findUnexpectedChar = (input: string, regex: RegExp) => {
 	}
 };
 
-export const validateCharacters = (input: StringWithIndices[]) => {
+export const validateCharacters = (input: StringWithIndices[]): void => {
 	for (const item of input) {
 		const c = item.characters;
 

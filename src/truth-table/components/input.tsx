@@ -22,7 +22,7 @@ export const Input: React.FC<{
 	<StyledInput
 		type="text"
 		value={input}
-		onInput={ev => {
+		onInput={(ev): void => {
 			const newInput = ev.currentTarget.value;
 			setInput(newInput);
 		}}

@@ -39,7 +39,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		sec: toTimeValue(date.getSeconds()),
 	};
 
-	update = () => {
+	update = (): void => {
 		const date = new Date();
 
 		this.setState({
@@ -51,15 +51,15 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		this.requestAnimationFrameId = requestAnimationFrame(this.update);
 	};
 
-	override componentWillUnmount = () => {
+	override componentWillUnmount = (): void => {
 		cancelAnimationFrame(this.requestAnimationFrameId);
 	};
 
-	override componentDidMount = () => {
+	override componentDidMount = (): void => {
 		this.update();
 	};
 
-	override render = () => {
+	override render = (): JSX.Element => {
 		const {hour, min, sec} = this.state;
 
 		return (

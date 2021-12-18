@@ -12,7 +12,7 @@ class Main extends React.Component<Record<string, unknown>, MainState> {
 		colour: 0,
 	};
 
-	override render = () => {
+	override render = (): JSX.Element => {
 		const {posX, colour} = this.state;
 
 		return (
@@ -28,7 +28,7 @@ class Main extends React.Component<Record<string, unknown>, MainState> {
 		);
 	};
 
-	frame = () => {
+	frame = (): void => {
 		const range = (Date.now() / 1024) % 4;
 		//                           ^ For the speed, bigger is slower
 		//                                  ^ Range, 0 to 4
@@ -52,7 +52,7 @@ class Main extends React.Component<Record<string, unknown>, MainState> {
 		requestAnimationFrame(this.frame);
 	};
 
-	override componentDidMount = () => {
+	override componentDidMount = (): void => {
 		this.frame();
 	};
 }

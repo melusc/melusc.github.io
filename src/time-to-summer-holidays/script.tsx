@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const leadingZero = (n: number) => {
+const leadingZero = (n: number): string => {
 	n = Math.trunc(n);
 
 	return `${n < 0 ? '-' : ''}${Math.abs(n).toString().padStart(2, '0')}`;
 };
 
-const isPlural = (n: number) => Math.abs(Math.trunc(n)) !== 1;
+const isPlural = (n: number): boolean => Math.abs(Math.trunc(n)) !== 1;
 
 const themeToggle = document.querySelector<HTMLInputElement>('#theme-toggle')!;
 
@@ -45,7 +45,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 	previousDiff = 0;
 
-	override render = () => {
+	override render = (): JSX.Element => {
 		const {d, h: h_, m, s} = this.state;
 
 		return (
@@ -71,7 +71,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		);
 	};
 
-	update = () => {
+	update = (): void => {
 		const totalSeconds = Math.trunc((summerHolidaysTime - Date.now()) / 1000);
 
 		if (this.previousDiff !== totalSeconds) {
@@ -93,7 +93,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		requestAnimationFrame(this.update);
 	};
 
-	override componentDidMount = () => {
+	override componentDidMount = (): void => {
 		this.update();
 	};
 }

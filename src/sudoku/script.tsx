@@ -33,12 +33,12 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		focused: 0,
 	};
 
-	override componentDidMount = () => {
+	override componentDidMount = (): void => {
 		document.addEventListener('keydown', this.handleKeyDown);
 		this.#sudokuClass.subscribe(this.sudokuCallback);
 	};
 
-	override componentWillUnmount = () => {
+	override componentWillUnmount = (): void => {
 		document.removeEventListener('keydown', this.handleKeyDown);
 		this.#sudokuClass.unsubscribe(this.sudokuCallback);
 	};
@@ -80,7 +80,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		}
 	};
 
-	override render = () => {
+	override render = (): JSX.Element => {
 		const {cells, error, focused} = this.state;
 
 		return (
@@ -94,7 +94,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 							}`}
 							data-index={index}
 							onMouseDown={this.handleCellClick(index)}
-							onTouchStart={event_ => {
+							onTouchStart={(event_): void => {
 								// If this fires preventDefault because otherwise onMouseDown will fire a bit later
 								// and cause some flickering if onTouchStart, onTouchStart, onMouseDown, onMouseDown (in that order) fires
 								// if the user switches between cells too quickly
@@ -146,11 +146,11 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		);
 	};
 
-	solve = () => {
+	solve = (): void => {
 		this.#sudokuClass.solve();
 	};
 
-	clear = () => {
+	clear = (): void => {
 		this.#sudokuClass.clearAllCells();
 	};
 
@@ -160,7 +160,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		});
 	};
 
-	handleKeyDown = (event_: KeyboardEvent) => {
+	handleKeyDown = (event_: KeyboardEvent): void => {
 		this.setState(
 			produce((state: AppState): void => {
 				const key = event_.key.toLowerCase();

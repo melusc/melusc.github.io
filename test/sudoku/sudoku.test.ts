@@ -386,7 +386,7 @@ test('Sudoku#subscribe', async t => {
 	return new Promise<void>(resolve => {
 		// 2 tests only, because callback should only fire once
 
-		const callback = (sudoku: Sudoku) => {
+		const callback = (sudoku: Sudoku): void => {
 			t.is(sudoku.getCell(3 * 9 + 2).content, '2');
 			t.is(sudoku.getCell(4 * 9 + 1).content, '4');
 
@@ -413,11 +413,11 @@ test('Sudoku#unsubscribe', async t => {
 		// Callback1 will be unsubscribed and as such only fire twice
 		// Callback2 will not and as such fire four times
 
-		const callback1 = () => {
+		const callback1 = (): void => {
 			t.is(s.getContent(3 * 9 + 2), '2');
 		};
 
-		const callback2 = () => {
+		const callback2 = (): void => {
 			t.is(s.getContent(3 * 9 + 2), '2');
 
 			if (s.getContent(4 * 9 + 1) === '4') {

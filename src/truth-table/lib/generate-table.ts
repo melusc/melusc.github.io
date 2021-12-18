@@ -34,7 +34,7 @@ const deduplicateColumns = (columns: Iterable<Column>): Column[] => {
 	return result;
 };
 
-const removeOuterBrackets = (string: string) =>
+const removeOuterBrackets = (string: string): string =>
 	string.replace(/^\((.+)\)$/, '$1');
 
 type MutableTable = {

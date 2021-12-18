@@ -2,7 +2,7 @@ import {LogicalSymbolsNames} from './logical-symbols';
 import {CharacterTypes, StringWithIndices} from './string-with-indices';
 import {IndexedError} from './indexed-error';
 
-export const validateOperators = (input: StringWithIndices[]) => {
+export const validateOperators = (input: StringWithIndices[]): void => {
 	let lastType: CharacterTypes | undefined;
 
 	for (const item of input) {

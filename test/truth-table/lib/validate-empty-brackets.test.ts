@@ -4,7 +4,7 @@ import {fromString} from '../../../src/truth-table/lib/string-with-indices';
 
 import {validateEmptyBrackets} from '../../../src/truth-table/lib/validate-empty-brackets';
 
-const doValidate = (input: string) => {
+const doValidate = (input: string): void => {
 	validateEmptyBrackets(fromString(input));
 };
 

@@ -2,7 +2,7 @@ import {isValidLogicalSymbol} from './logical-symbols';
 import {singleCharacterNotMappings} from './mappings';
 import {CharacterTypes, StringWithIndices} from './string-with-indices';
 
-const isNot = (input: string) =>
+const isNot = (input: string): boolean =>
 	singleCharacterNotMappings.includes(
 		input as typeof singleCharacterNotMappings[number],
 	);
@@ -22,7 +22,7 @@ export const splitOperators = (
 		let previous = '';
 		let previousFrom = item.from;
 
-		const push = (to: number) => {
+		const push = (to: number): void => {
 			if (previous !== '') {
 				result.push({
 					characters: previous,

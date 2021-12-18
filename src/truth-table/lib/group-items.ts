@@ -10,7 +10,7 @@ export const groupItems = (
 
 	// Expect it to be validated with validate-matched-brackets.ts
 
-	const pushToResult = () => {
+	const pushToResult = (): void => {
 		if (previous.length > 0 && openBrackets === 0) {
 			result.push(previous);
 			previous = [];

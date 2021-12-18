@@ -6,7 +6,7 @@ import {fromString} from '../../../src/truth-table/lib/string-with-indices';
 
 import {validateCharacters} from '../../../src/truth-table/lib/validate-characters';
 
-const doValidate = (input: string) => {
+const doValidate = (input: string): void => {
 	validateCharacters(replaceMappings(fromString(input)));
 };
 

@@ -7,7 +7,7 @@ import {fromString} from '../../../src/truth-table/lib/string-with-indices';
 
 import {validateOperators} from '../../../src/truth-table/lib/validate-operators';
 
-const doValidate = (input: string) => {
+const doValidate = (input: string): void => {
 	validateOperators(replaceMappings(splitOperators(fromString(input))));
 };
 

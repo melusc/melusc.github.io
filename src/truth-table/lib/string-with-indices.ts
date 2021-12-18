@@ -32,7 +32,7 @@ export const fromString = (input: string): StringWithIndices[] => {
 	let previousFrom = 0;
 	let acc = '';
 
-	const push = (to: number) => {
+	const push = (to: number): void => {
 		if (acc !== '') {
 			if (previousType === CharacterTypes.operator) {
 				result.push({

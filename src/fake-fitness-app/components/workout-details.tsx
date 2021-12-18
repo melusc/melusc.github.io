@@ -62,7 +62,7 @@ const WorkoutDetails: React.FC<{duration: string; distance: string}> = ({
 							)}
 							value={totalDuration}
 							placeholder="HH:mm:ss"
-							onInput={event_ => {
+							onInput={(event_): void => {
 								const value = event_.currentTarget.value;
 
 								setTotalDuration(
@@ -100,7 +100,7 @@ const WorkoutDetails: React.FC<{duration: string; distance: string}> = ({
 							})}
 							value={maxSpeed}
 							placeholder="0.0"
-							onInput={event_ => {
+							onInput={(event_): void => {
 								const value = event_.currentTarget.value.trim();
 								setMaxSpeed(value);
 							}}

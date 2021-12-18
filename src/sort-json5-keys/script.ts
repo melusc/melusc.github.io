@@ -11,7 +11,7 @@ const indentWrapper
 let shouldIndent: boolean;
 let amountIndent: number | string;
 
-const updateVals = () => {
+const updateVals = (): void => {
 	shouldIndent = prettyPrintInput.checked;
 
 	const parsed = Number(indent.value);
@@ -48,7 +48,7 @@ const sortJSON = (value: unknown): unknown => {
 	return object;
 };
 
-const prettify = () => {
+const prettify = (): void => {
 	errorDiv.textContent = '';
 	try {
 		const json = sortJSON(json5.parse(input.value));
@@ -64,7 +64,7 @@ const prettify = () => {
 	}
 };
 
-const updateFunction = () => {
+const updateFunction = (): void => {
 	updateVals();
 
 	prettify();

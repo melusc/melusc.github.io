@@ -4,9 +4,10 @@ import {splitOperators} from '../../../src/truth-table/lib/split-operators';
 import {
 	CharacterTypes,
 	fromString,
+	StringWithIndices,
 } from '../../../src/truth-table/lib/string-with-indices';
 
-const doSplit = (input: string) => splitOperators(fromString(input));
+const doSplit = (input: string): StringWithIndices[] => splitOperators(fromString(input));
 
 const t1 = 'a && !!!b';
 test(t1, t => {

@@ -4,7 +4,7 @@ import {validateMatchedBrackets} from '../../../src/truth-table/lib/validate-mat
 import {fromString} from '../../../src/truth-table/lib/string-with-indices';
 import {IndexedError} from '../../../src/truth-table/lib/indexed-error';
 
-const doValidate = (input: string) => {
+const doValidate = (input: string): void => {
 	validateMatchedBrackets(fromString(input));
 };
 

@@ -19,7 +19,7 @@ const Main: React.FC = () => {
 
 	const handleSizeInput
 		= (key: 'width' | 'height'): React.FormEventHandler<HTMLInputElement> =>
-		event_ => {
+		(event_): void => {
 			const value = Number(event_.currentTarget.value.trim());
 
 			if (Number.isInteger(value)) {

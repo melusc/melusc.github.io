@@ -53,7 +53,7 @@ const sanitiseHex = (hex: string, shouldShorten = true): string => {
 	return `#${shortFormPossible ? shortForm : hex}`;
 };
 
-const setHashInstantly = (hex: string) => {
+const setHashInstantly = (hex: string): void => {
 	hex = sanitiseHex(hex);
 
 	if (hex !== location.hash) {
@@ -98,7 +98,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 	invalidInputs = new Set<keyof Inputs>();
 
-	override render = () => {
+	override render = (): JSX.Element => {
 		const {invalidInputs, state, randomColour, handleInput, handleScroll}
 			= this;
 		const {inputs} = state;
@@ -177,7 +177,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		);
 	};
 
-	override componentDidMount = () => {
+	override componentDidMount = (): void => {
 		addEventListener('hashchange', this.handleHashChange);
 
 		// If there is already a hash
@@ -185,7 +185,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		this.handleHashChange();
 	};
 
-	override componentWillUnmount = () => {
+	override componentWillUnmount = (): void => {
 		removeEventListener('hashchange', this.handleHashChange);
 	};
 
@@ -252,7 +252,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		this.handleRgbaInput(label, value);
 	};
 
-	handleHashChange = (event_?: Event) => {
+	handleHashChange = (event_?: Event): void => {
 		let hex = location.hash;
 		hex = sanitiseHex(hex);
 
@@ -285,7 +285,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		}
 	};
 
-	randomColour = () => {
+	randomColour = (): void => {
 		const [red, blue, green] = crypto.getRandomValues(new Uint8Array(3));
 
 		this.rgbaSetState({
@@ -312,7 +312,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 			blue: number;
 			alpha: number;
 		}>,
-	) => {
+	): void => {
 		this.setState(
 			produce((state: AppState) => {
 				const {inputs} = state;
@@ -337,7 +337,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 	 *
 	 * @return {void}
 	 */
-	hexSetState = (hex: string) => {
+	hexSetState = (hex: string): void => {
 		this.setState(
 			produce((state: AppState) => {
 				state.inputs.hex = hex;
@@ -345,7 +345,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		);
 	};
 
-	handleHexInput = (hex: string) => {
+	handleHexInput = (hex: string): void => {
 		const {invalidInputs} = this;
 
 		hex = sanitiseHex(hex, false);
@@ -368,7 +368,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		}
 	};
 
-	handleRgbaInput = (label: string, value: string) => {
+	handleRgbaInput = (label: string, value: string): void => {
 		const {invalidInputs} = this;
 
 		this.setState(

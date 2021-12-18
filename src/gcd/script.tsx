@@ -26,24 +26,24 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 	timeout = 0;
 
-	calcOutput = (input: number[]) => {
+	calcOutput = (input: number[]): void => {
 		this.setState({
 			outputValue: gcdArray(input),
 		});
 	};
 
-	clearTimeout = () => {
+	clearTimeout = (): void => {
 		clearTimeout(this.timeout);
 	};
 
-	setTimeout = (input: number[]) => {
+	setTimeout = (input: number[]): void => {
 		this.clearTimeout();
 
 		// Window.setTimeout definitely returns number for typescript
 		this.timeout = window.setTimeout(this.calcOutput, 100, input);
 	};
 
-	override render = () => {
+	override render = (): JSX.Element => {
 		const {inputValue, outputValue, state} = this.state;
 
 		return (
@@ -76,7 +76,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		);
 	};
 
-	handleInput = () => {
+	handleInput = (): void => {
 		const input = this.inputRef.current;
 		if (!input) {
 			return;

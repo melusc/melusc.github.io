@@ -1,7 +1,7 @@
 import {IndexedError} from './indexed-error';
 import {CharacterTypes, type StringWithIndices} from './string-with-indices';
 
-export const validateMatchedBrackets = (input: StringWithIndices[]) => {
+export const validateMatchedBrackets = (input: StringWithIndices[]): void => {
 	// Push for opening bracket
 	// pop on closing bracket
 	// Expect it to always have an index at end for every closing bracket

@@ -5,7 +5,7 @@ import {validateCharacters} from './validate-characters';
 import {validateEmptyBrackets} from './validate-empty-brackets';
 import {validateOperators} from './validate-operators';
 
-export const validate = (input: StringWithIndices[]) => {
+export const validate = (input: StringWithIndices[]): void => {
 	validateCharacters(input);
 	validateOperators(input);
 	validateMatchedBrackets(input);

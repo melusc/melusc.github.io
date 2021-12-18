@@ -50,12 +50,12 @@ test('stringWithIndicesMatches', t => {
 	);
 });
 
-const replaceMappingsIndices = (input: string) =>
+const replaceMappingsIndices = (input: string): string =>
 	replaceMappings(fromString(input))
 		.map(({characters}) => characters)
 		.join('');
 
-const makeTest = (operatorName: string, expected: string, items: string[]) => {
+const makeTest = (operatorName: string, expected: string, items: string[]): void => {
 	test(`replace to ${operatorName}`, t => {
 		for (const item of items) {
 			t.is(replaceMappingsIndices(item), expected, item);

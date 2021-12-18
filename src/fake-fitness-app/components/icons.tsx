@@ -46,7 +46,7 @@ export const Wifi: React.FC = () => {
 			strokeWidth="1.5"
 			viewBox="0 0 24 24"
 			className="icon-interactive"
-			onClick={() => {
+			onClick={(): void => {
 				// Go 4 -> 2 -> 3 -> 4 -> ...
 				setBars(((bars - 1) % 3) + 2);
 			}}
@@ -67,7 +67,7 @@ export const Signal: React.FC = () => {
 			fill="currentColor"
 			viewBox="0 0 20 20"
 			className="icon-reception icon-interactive"
-			onClick={() => {
+			onClick={(): void => {
 				setBars(((bars - 1) % 4) + 2);
 			}}
 		>

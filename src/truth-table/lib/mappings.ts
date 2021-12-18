@@ -8,7 +8,10 @@ export const singleCharacterNotMappings = [
 	'!',
 	LogicalSymbolFromName.not,
 ] as const;
-export const mappings = (() => {
+
+type Mappings = ReadonlyArray<[replacer: string, replaceWith: string]>;
+
+export const mappings = ((): Mappings => {
 	// https://en.wikipedia.org/wiki/List_of_logic_symbols
 	const stringMappings = [
 		[
@@ -52,13 +55,13 @@ export const mappings = (() => {
 		}
 	}
 
-	return flatMappings as ReadonlyArray<[replacer: string, replaceWith: string]>;
+	return flatMappings as Mappings;
 })();
 
 export const stringWithIndicesMatches = (
 	input: StringWithIndices,
 	match: string,
-) => {
+): boolean => {
 	// If not type variable (like "and") or not type operator (like "&&")
 	if (
 		input.type !== CharacterTypes.variable

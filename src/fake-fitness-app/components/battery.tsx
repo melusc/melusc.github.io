@@ -24,7 +24,7 @@ const isValidBatteryValue = (v: string): boolean => {
 const canvas = document.createElement('canvas');
 const context = canvas.getContext('2d');
 
-const getTextWidth = (text: string, font: string) => {
+const getTextWidth = (text: string, font: string): number => {
 	if (!context) {
 		throw new Error('context was null');
 	}

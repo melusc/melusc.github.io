@@ -5,7 +5,7 @@ import {operations} from '../../../src/truth-table/lib/operations';
 const createTest = <T extends keyof typeof operations>(
 	title: T,
 	valueResults: Array<[Parameters<typeof operations[T]>, boolean]>,
-) => {
+): void => {
 	test(title, t => {
 		for (const row of valueResults) {
 			t.is(
