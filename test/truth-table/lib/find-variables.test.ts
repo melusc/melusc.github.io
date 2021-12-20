@@ -14,5 +14,5 @@ const t1 = `
 test(t1, t => {
 	const parsed = parseOperation(t1);
 
-	t.deepEqual(findVariables(parsed), new Set(['a', 'b', 'c', 'd', 'e', 'f']));
+	t.deepEqual(findVariables(parsed), new Set(['A', 'B', 'C', 'D', 'E', 'F']));
 });

@@ -18,6 +18,7 @@ test('stringWithIndicesMatches', t => {
 			{
 				characters: 'abc',
 				type: CharacterTypes.variable,
+				originalCharacters: 'abc',
 				from: 0,
 				to: 3,
 			},
@@ -30,6 +31,7 @@ test('stringWithIndicesMatches', t => {
 			{
 				characters: 'abc',
 				type: CharacterTypes.space,
+				originalCharacters: 'abc',
 				from: 0,
 				to: 3,
 			},
@@ -42,6 +44,7 @@ test('stringWithIndicesMatches', t => {
 			{
 				characters: 'abd',
 				type: CharacterTypes.variable,
+				originalCharacters: 'abd',
 				from: 0,
 				to: 3,
 			},
@@ -105,7 +108,7 @@ makeTest('or', 'A or B', ['A || B', 'A | B', 'A OR B', 'A ∨ B']);
 
 const t1 = '(a && b) || (c !== ! d)';
 test(t1, t => {
-	t.is(replaceMappingsIndices(t1), '(a and b) or (c xor not d)', t1);
+	t.is(replaceMappingsIndices(t1), '(A and B) or (C xor not D)', t1);
 });
 
 test('Forbidden characters', t => {

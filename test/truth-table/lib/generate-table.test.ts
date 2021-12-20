@@ -6,7 +6,7 @@ import {LogicalSymbolFromName} from '../../../src/truth-table/lib/logical-symbol
 const t1 = 'a OR b';
 test(t1, t => {
 	t.like(generateTable(t1), {
-		columns: ['a', 'b', `a ${LogicalSymbolFromName.or} b`],
+		columns: ['A', 'B', `A ${LogicalSymbolFromName.or} B`],
 		rows: [
 			[true, true, true],
 			[true, false, true],
@@ -20,11 +20,11 @@ const t2 = '(a and b) and c';
 test(t2, t => {
 	t.like(generateTable(t2), {
 		columns: [
-			'a',
-			'b',
-			'c',
-			`a ${LogicalSymbolFromName.and} b`,
-			`(a ${LogicalSymbolFromName.and} b) ${LogicalSymbolFromName.and} c`,
+			'A',
+			'B',
+			'C',
+			`A ${LogicalSymbolFromName.and} B`,
+			`(A ${LogicalSymbolFromName.and} B) ${LogicalSymbolFromName.and} C`,
 		],
 		rows: [
 			[true, true, true, true, true],
@@ -43,10 +43,10 @@ const t3 = '(a and b) or (a and b)';
 test(t3, t => {
 	t.like(generateTable(t3), {
 		columns: [
-			'a',
-			'b',
-			`a ${LogicalSymbolFromName.and} b`,
-			`(a ${LogicalSymbolFromName.and} b) ${LogicalSymbolFromName.or} (a ${LogicalSymbolFromName.and} b)`,
+			'A',
+			'B',
+			`A ${LogicalSymbolFromName.and} B`,
+			`(A ${LogicalSymbolFromName.and} B) ${LogicalSymbolFromName.or} (A ${LogicalSymbolFromName.and} B)`,
 		],
 		rows: [
 			[true, true, true, true],

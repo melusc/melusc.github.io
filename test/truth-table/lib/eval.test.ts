@@ -15,24 +15,24 @@ test(t1, t => {
 	const parsed = parseOperation(t1);
 	t.is(
 		evalOperation(parsed, {
-			a: true,
-			b: false,
-			c: true,
-			d: true,
-			e: false,
-			f: false,
+			A: true,
+			B: false,
+			C: true,
+			D: true,
+			E: false,
+			F: false,
 		}),
 		false,
 	);
 
 	t.is(
 		evalOperation(parsed, {
-			a: false,
-			b: false,
-			c: true,
-			d: false,
-			e: true,
-			f: true,
+			A: false,
+			B: false,
+			C: true,
+			D: false,
+			E: true,
+			F: true,
 		}),
 		true,
 	);

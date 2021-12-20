@@ -69,7 +69,7 @@ const _parseOperation = (input: StringWithIndices[]): AST => {
 	if (!hasOperator(input)) {
 		throw new IndexedError(
 			`Expected "${input
-				.map(item => item.characters)
+				.map(item => item.originalCharacters)
 				.join(' ')}" to have an operator.`,
 			input[0]!.from,
 			input.at(-1)!.to,
@@ -156,7 +156,7 @@ const _parseOperations = (input: StringWithIndices[][]): AST => {
 	if (operatorArray.length !== 1) {
 		throw new IndexedError(
 			`Expected operator, got "${operatorArray
-				.map(item => item.characters)
+				.map(item => item.originalCharacters)
 				.join(' ')}".`,
 			operatorArray[0]!.from,
 			operatorArray.at(-1)!.to,
@@ -169,7 +169,7 @@ const _parseOperations = (input: StringWithIndices[][]): AST => {
 		|| !isValidOperatorName(operator.characters)
 	) {
 		throw new IndexedError(
-			`Expected operator, got type "${operator.type}" with value "${operator.characters}"`,
+			`Expected operator, got type "${operator.type}" with value "${operator.originalCharacters}"`,
 			operator.from,
 			operator.to,
 		);

@@ -11,7 +11,7 @@ test('fromString', t => {
 		fromString('äöü'),
 		[
 			{
-				characters: 'äöü',
+				characters: 'ÄÖÜ',
 				type: CharacterTypes.operator,
 				originalCharacters: 'äöü',
 				from: 0,
@@ -25,8 +25,9 @@ test('fromString', t => {
 		fromString('abcd'),
 		[
 			{
-				characters: 'abcd',
+				characters: 'ABCD',
 				type: CharacterTypes.variable,
+				originalCharacters: 'abcd',
 				from: 0,
 				to: 4,
 			},
@@ -41,6 +42,7 @@ test('fromString', t => {
 			{
 				characters: ')((()())))',
 				type: CharacterTypes.bracket,
+				originalCharacters: ')((()())))',
 				from: 0,
 				to: 10,
 			},
@@ -54,18 +56,21 @@ test('fromString', t => {
 			{
 				characters: '(',
 				type: CharacterTypes.bracket,
+				originalCharacters: '(',
 				from: 0,
 				to: 1,
 			},
 			{
 				characters: 'A',
 				type: CharacterTypes.variable,
+				originalCharacters: 'A',
 				from: 1,
 				to: 2,
 			},
 			{
 				characters: ')',
 				type: CharacterTypes.bracket,
+				originalCharacters: ')',
 				from: 2,
 				to: 3,
 			},
@@ -79,18 +84,21 @@ test('fromString', t => {
 			{
 				characters: '(',
 				type: CharacterTypes.bracket,
+				originalCharacters: '(',
 				from: 4,
 				to: 5,
 			},
 			{
 				characters: 'B',
 				type: CharacterTypes.variable,
+				originalCharacters: 'B',
 				from: 5,
 				to: 6,
 			},
 			{
 				characters: ')',
 				type: CharacterTypes.bracket,
+				originalCharacters: ')',
 				from: 6,
 				to: 7,
 			},
@@ -102,32 +110,37 @@ test('fromString', t => {
 		fromString('a AND b'),
 		[
 			{
-				characters: 'a',
+				characters: 'A',
 				type: CharacterTypes.variable,
+				originalCharacters: 'a',
 				from: 0,
 				to: 1,
 			},
 			{
 				characters: ' ',
 				type: CharacterTypes.space,
+				originalCharacters: ' ',
 				from: 1,
 				to: 2,
 			},
 			{
 				characters: 'AND',
 				type: CharacterTypes.variable,
+				originalCharacters: 'AND',
 				from: 2,
 				to: 5,
 			},
 			{
 				characters: ' ',
 				type: CharacterTypes.space,
+				originalCharacters: ' ',
 				from: 5,
 				to: 6,
 			},
 			{
-				characters: 'b',
+				characters: 'B',
 				type: CharacterTypes.variable,
+				originalCharacters: 'b',
 				from: 6,
 				to: 7,
 			},
@@ -137,14 +150,16 @@ test('fromString', t => {
 
 	t.deepEqual(fromString(`a ${LogicalSymbolFromName.and}?&? b`), [
 		{
-			characters: 'a',
+			characters: 'A',
 			type: CharacterTypes.variable,
+			originalCharacters: 'a',
 			from: 0,
 			to: 1,
 		},
 		{
 			characters: ' ',
 			type: CharacterTypes.space,
+			originalCharacters: ' ',
 			from: 1,
 			to: 2,
 		},
@@ -158,12 +173,14 @@ test('fromString', t => {
 		{
 			characters: ' ',
 			type: CharacterTypes.space,
+			originalCharacters: ' ',
 			from: 6,
 			to: 7,
 		},
 		{
-			characters: 'b',
+			characters: 'B',
 			type: CharacterTypes.variable,
+			originalCharacters: 'b',
 			from: 7,
 			to: 8,
 		},
@@ -175,14 +192,16 @@ test('fromString', t => {
 		),
 		[
 			{
-				characters: 'a',
+				characters: 'A',
 				type: CharacterTypes.variable,
+				originalCharacters: 'a',
 				from: 0,
 				to: 1,
 			},
 			{
 				characters: ' ',
 				type: CharacterTypes.space,
+				originalCharacters: ' ',
 				from: 1,
 				to: 2,
 			},
@@ -196,6 +215,7 @@ test('fromString', t => {
 			{
 				characters: ' ',
 				type: CharacterTypes.space,
+				originalCharacters: ' ',
 				from: 3,
 				to: 4,
 			},
@@ -209,12 +229,14 @@ test('fromString', t => {
 			{
 				characters: ' ',
 				type: CharacterTypes.space,
+				originalCharacters: ' ',
 				from: 8,
 				to: 9,
 			},
 			{
-				characters: 'b',
+				characters: 'B',
 				type: CharacterTypes.variable,
+				originalCharacters: 'b',
 				from: 9,
 				to: 10,
 			},
@@ -227,24 +249,28 @@ test('fromString', t => {
 			{
 				characters: '((((',
 				type: CharacterTypes.bracket,
+				originalCharacters: '((((',
 				from: 0,
 				to: 4,
 			},
 			{
-				characters: 'a',
+				characters: 'A',
 				type: CharacterTypes.variable,
+				originalCharacters: 'a',
 				from: 4,
 				to: 5,
 			},
 			{
 				characters: ')',
 				type: CharacterTypes.bracket,
+				originalCharacters: ')',
 				from: 5,
 				to: 6,
 			},
 			{
 				characters: ' ',
 				type: CharacterTypes.space,
+				originalCharacters: ' ',
 				from: 6,
 				to: 7,
 			},
@@ -258,24 +284,28 @@ test('fromString', t => {
 			{
 				characters: ' ',
 				type: CharacterTypes.space,
+				originalCharacters: ' ',
 				from: 8,
 				to: 9,
 			},
 			{
 				characters: '(',
 				type: CharacterTypes.bracket,
+				originalCharacters: '(',
 				from: 9,
 				to: 10,
 			},
 			{
-				characters: 'b',
+				characters: 'B',
 				type: CharacterTypes.variable,
+				originalCharacters: 'b',
 				from: 10,
 				to: 11,
 			},
 			{
 				characters: '))))',
 				type: CharacterTypes.bracket,
+				originalCharacters: '))))',
 				from: 11,
 				to: 15,
 			},
@@ -289,29 +319,33 @@ test('removeWhitespace', t => {
 		removeWhitespace(fromString('a b c d')),
 		[
 			{
-				characters: 'a',
+				characters: 'A',
 				type: CharacterTypes.variable,
+				originalCharacters: 'a',
 				from: 0,
 				to: 1,
 			},
 			// Space
 			{
-				characters: 'b',
+				characters: 'B',
 				type: CharacterTypes.variable,
+				originalCharacters: 'b',
 				from: 2,
 				to: 3,
 			},
 			// Space
 			{
-				characters: 'c',
+				characters: 'C',
 				type: CharacterTypes.variable,
+				originalCharacters: 'c',
 				from: 4,
 				to: 5,
 			},
 			// Space
 			{
-				characters: 'd',
+				characters: 'D',
 				type: CharacterTypes.variable,
+				originalCharacters: 'd',
 				from: 6,
 				to: 7,
 			},
@@ -323,36 +357,41 @@ test('removeWhitespace', t => {
 		removeWhitespace(fromString('a\nb\tc\rd\uFEFFe')),
 		[
 			{
-				characters: 'a',
+				characters: 'A',
 				type: CharacterTypes.variable,
+				originalCharacters: 'a',
 				from: 0,
 				to: 1,
 			},
 			// Newline
 			{
-				characters: 'b',
+				characters: 'B',
 				type: CharacterTypes.variable,
+				originalCharacters: 'b',
 				from: 2,
 				to: 3,
 			},
 			// Tab
 			{
-				characters: 'c',
+				characters: 'C',
 				type: CharacterTypes.variable,
+				originalCharacters: 'c',
 				from: 4,
 				to: 5,
 			},
 			// Carriage return
 			{
-				characters: 'd',
+				characters: 'D',
 				type: CharacterTypes.variable,
+				originalCharacters: 'd',
 				from: 6,
 				to: 7,
 			},
 			// Zero width space
 			{
-				characters: 'e',
+				characters: 'E',
 				type: CharacterTypes.variable,
+				originalCharacters: 'e',
 				from: 8,
 				to: 9,
 			},

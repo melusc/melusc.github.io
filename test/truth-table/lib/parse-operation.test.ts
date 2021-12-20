@@ -12,11 +12,11 @@ test(t1, t => {
 		values: [
 			{
 				type: 'variable',
-				variable: 'a',
+				variable: 'A',
 			},
 			{
 				type: 'variable',
-				variable: 'b',
+				variable: 'B',
 			},
 		],
 	});
@@ -78,17 +78,17 @@ test(t4, t => {
 				values: [
 					{
 						type: 'variable',
-						variable: 'a',
+						variable: 'A',
 					},
 					{
 						type: 'variable',
-						variable: 'b',
+						variable: 'B',
 					},
 				],
 			},
 			{
 				type: 'variable',
-				variable: 'c',
+				variable: 'C',
 			},
 		],
 	});
@@ -106,11 +106,11 @@ test(t5, t => {
 				values: [
 					{
 						type: 'variable',
-						variable: 'a',
+						variable: 'A',
 					},
 					{
 						type: 'variable',
-						variable: 'b',
+						variable: 'B',
 					},
 				],
 			},
@@ -120,7 +120,7 @@ test(t5, t => {
 				values: [
 					{
 						type: 'variable',
-						variable: 'c',
+						variable: 'C',
 					},
 					{
 						type: 'operator',
@@ -128,7 +128,7 @@ test(t5, t => {
 						values: [
 							{
 								type: 'variable',
-								variable: 'd',
+								variable: 'D',
 							},
 						],
 					},
@@ -142,7 +142,7 @@ const t6 = '(((a)))';
 test(t6, t => {
 	t.deepEqual(parseOperation(t6), {
 		type: 'variable',
-		variable: 'a',
+		variable: 'A',
 	});
 });
 
@@ -173,7 +173,7 @@ test(t7, t => {
 								values: [
 									{
 										type: 'variable',
-										variable: 'a',
+										variable: 'A',
 									},
 									{
 										type: 'operator',
@@ -181,11 +181,11 @@ test(t7, t => {
 										values: [
 											{
 												type: 'variable',
-												variable: 'b',
+												variable: 'B',
 											},
 											{
 												type: 'variable',
-												variable: 'c',
+												variable: 'C',
 											},
 										],
 									},
@@ -201,17 +201,17 @@ test(t7, t => {
 										values: [
 											{
 												type: 'variable',
-												variable: 'd',
+												variable: 'D',
 											},
 											{
 												type: 'variable',
-												variable: 'c',
+												variable: 'C',
 											},
 										],
 									},
 									{
 										type: 'variable',
-										variable: 'e',
+										variable: 'E',
 									},
 								],
 							},
@@ -223,11 +223,11 @@ test(t7, t => {
 						values: [
 							{
 								type: 'variable',
-								variable: 'e',
+								variable: 'E',
 							},
 							{
 								type: 'variable',
-								variable: 'c',
+								variable: 'C',
 							},
 						],
 					},
@@ -235,7 +235,7 @@ test(t7, t => {
 			},
 			{
 				type: 'variable',
-				variable: 'f',
+				variable: 'F',
 			},
 		],
 	});

@@ -13,14 +13,16 @@ const t1 = 'a && !!!b';
 test(t1, t => {
 	t.deepEqual(doSplit(t1), [
 		{
-			characters: 'a',
+			characters: 'A',
 			type: CharacterTypes.variable,
+			originalCharacters: 'a',
 			from: 0,
 			to: 1,
 		},
 		{
 			characters: ' ',
 			type: CharacterTypes.space,
+			originalCharacters: ' ',
 			from: 1,
 			to: 2,
 		},
@@ -34,6 +36,7 @@ test(t1, t => {
 		{
 			characters: ' ',
 			type: CharacterTypes.space,
+			originalCharacters: ' ',
 			from: 4,
 			to: 5,
 		},
@@ -59,8 +62,9 @@ test(t1, t => {
 			to: 8,
 		},
 		{
-			characters: 'b',
+			characters: 'B',
 			type: CharacterTypes.variable,
+			originalCharacters: 'b',
 			from: 8,
 			to: 9,
 		},
@@ -71,14 +75,16 @@ const t2 = 'a && !!==b';
 test(t2, t => {
 	t.deepEqual(doSplit(t2), [
 		{
-			characters: 'a',
+			characters: 'A',
 			type: CharacterTypes.variable,
+			originalCharacters: 'a',
 			from: 0,
 			to: 1,
 		},
 		{
 			characters: ' ',
 			type: CharacterTypes.space,
+			originalCharacters: ' ',
 			from: 1,
 			to: 2,
 		},
@@ -92,6 +98,7 @@ test(t2, t => {
 		{
 			characters: ' ',
 			type: CharacterTypes.space,
+			originalCharacters: ' ',
 			from: 4,
 			to: 5,
 		},
@@ -110,8 +117,9 @@ test(t2, t => {
 			to: 9,
 		},
 		{
-			characters: 'b',
+			characters: 'B',
 			type: CharacterTypes.variable,
+			originalCharacters: 'b',
 			from: 9,
 			to: 10,
 		},
@@ -122,14 +130,16 @@ const t3 = 'a && !!==!==b';
 test(t3, t => {
 	t.deepEqual(doSplit(t3), [
 		{
-			characters: 'a',
+			characters: 'A',
 			type: CharacterTypes.variable,
+			originalCharacters: 'a',
 			from: 0,
 			to: 1,
 		},
 		{
 			characters: ' ',
 			type: CharacterTypes.space,
+			originalCharacters: ' ',
 			from: 1,
 			to: 2,
 		},
@@ -143,6 +153,7 @@ test(t3, t => {
 		{
 			characters: ' ',
 			type: CharacterTypes.space,
+			originalCharacters: ' ',
 			from: 4,
 			to: 5,
 		},
@@ -161,8 +172,9 @@ test(t3, t => {
 			to: 12,
 		},
 		{
-			characters: 'b',
+			characters: 'B',
 			type: CharacterTypes.variable,
+			originalCharacters: 'b',
 			from: 12,
 			to: 13,
 		},

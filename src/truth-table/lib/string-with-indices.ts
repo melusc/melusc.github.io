@@ -1,13 +1,7 @@
 export type StringWithIndices =
 	| {
 			characters: string;
-			type: Exclude<CharacterTypes, CharacterTypes.operator>;
-			from: number;
-			to: number;
-	  }
-	| {
-			characters: string;
-			type: CharacterTypes.operator;
+			type: CharacterTypes;
 			originalCharacters: string;
 			from: number;
 			to: number;
@@ -34,22 +28,13 @@ export const fromString = (input: string): StringWithIndices[] => {
 
 	const push = (to: number): void => {
 		if (acc !== '') {
-			if (previousType === CharacterTypes.operator) {
-				result.push({
-					characters: acc,
-					type: previousType,
-					originalCharacters: acc,
-					from: previousFrom,
-					to,
-				});
-			} else {
-				result.push({
-					characters: acc,
-					type: previousType!,
-					from: previousFrom,
-					to,
-				});
-			}
+			result.push({
+				characters: acc.toUpperCase(),
+				type: previousType!,
+				originalCharacters: acc,
+				from: previousFrom,
+				to,
+			});
 		}
 	};
 
