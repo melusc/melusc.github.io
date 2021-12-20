@@ -8,7 +8,8 @@ import {
 } from '../../../src/truth-table/lib/string-with-indices';
 
 // No validation, input just has to be correct
-const groupBracketsString = (input: string): StringWithIndices[][] => groupItems(fromString(input));
+const groupBracketsString = (input: string): StringWithIndices[][] =>
+	groupItems(fromString(input));
 
 test('a ((b)) c (d) e', t => {
 	t.deepEqual(groupBracketsString('a ((b)) c (d) e'), [

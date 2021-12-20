@@ -58,7 +58,11 @@ const replaceMappingsIndices = (input: string): string =>
 		.map(({characters}) => characters)
 		.join('');
 
-const makeTest = (operatorName: string, expected: string, items: string[]): void => {
+const makeTest = (
+	operatorName: string,
+	expected: string,
+	items: string[],
+): void => {
 	test(`replace to ${operatorName}`, t => {
 		for (const item of items) {
 			t.is(replaceMappingsIndices(item), expected, item);

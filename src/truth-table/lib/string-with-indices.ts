@@ -1,11 +1,10 @@
-export type StringWithIndices =
-	| {
-			characters: string;
-			type: CharacterTypes;
-			originalCharacters: string;
-			from: number;
-			to: number;
-	  };
+export type StringWithIndices = {
+	characters: string;
+	type: CharacterTypes;
+	originalCharacters: string;
+	from: number;
+	to: number;
+};
 
 const VARIABLES_RE = /^[a-z_]$/i;
 const BRACKETS_RE = /^[()]$/;
