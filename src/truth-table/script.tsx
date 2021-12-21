@@ -1,13 +1,10 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
+import {generateTable, type ParsedTable, operationToString, LogicalSymbolFromName} from '@lusc/truth-table';
 
 import {Table} from './components/table';
 import {Input} from './components/input';
 import {RenderError} from './components/render-error';
-
-import {generateTable, ParsedTable} from './lib/generate-table';
-import {operationToString} from './lib/operation-to-string';
-import {LogicalSymbolFromName} from './lib/logical-symbols';
 
 const getHash = (): string => decodeURIComponent(location.hash.slice(1));
 

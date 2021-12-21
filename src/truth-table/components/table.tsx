@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import styled from 'styled-components';
-import {ParsedTable} from '../lib/generate-table';
+import {ParsedTable} from '@lusc/truth-table';
 
 const StyledTable = styled.table`
 	table-layout: fixed;
