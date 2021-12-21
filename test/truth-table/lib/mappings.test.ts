@@ -3,55 +3,8 @@
 import test from 'ava';
 import {IndexedError} from '../../../src/truth-table/lib/indexed-error';
 
-import {
-	replaceMappings,
-	stringWithIndicesMatches,
-} from '../../../src/truth-table/lib/mappings';
-import {
-	CharacterTypes,
-	fromString,
-} from '../../../src/truth-table/lib/string-with-indices';
-
-test('stringWithIndicesMatches', t => {
-	t.true(
-		stringWithIndicesMatches(
-			{
-				characters: 'abc',
-				type: CharacterTypes.variable,
-				originalCharacters: 'abc',
-				from: 0,
-				to: 3,
-			},
-			'ABC',
-		),
-	);
-
-	t.false(
-		stringWithIndicesMatches(
-			{
-				characters: 'abc',
-				type: CharacterTypes.space,
-				originalCharacters: 'abc',
-				from: 0,
-				to: 3,
-			},
-			'ABC',
-		),
-	);
-
-	t.false(
-		stringWithIndicesMatches(
-			{
-				characters: 'abd',
-				type: CharacterTypes.variable,
-				originalCharacters: 'abd',
-				from: 0,
-				to: 3,
-			},
-			'ABC',
-		),
-	);
-});
+import {replaceMappings} from '../../../src/truth-table/lib/mappings';
+import {fromString} from '../../../src/truth-table/lib/string-with-indices';
 
 const replaceMappingsIndices = (input: string): string =>
 	replaceMappings(fromString(input))

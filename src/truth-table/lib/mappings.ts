@@ -9,69 +9,51 @@ export const singleCharacterNotMappings = [
 	LogicalSymbolFromName.not,
 ] as const;
 
-type Mappings = ReadonlyArray<[replacer: string, replaceWith: string]>;
+// https://en.wikipedia.org/wiki/List_of_logic_symbols
+const stringMappings = [
+	[
+		LogicalSymbolsNames.iff,
+		['⇔', '≡', '<->', '<=>', '=', '==', '===', LogicalSymbolFromName.iff],
+	],
 
-export const mappings = ((): Mappings => {
-	// https://en.wikipedia.org/wiki/List_of_logic_symbols
-	const stringMappings = [
+	[
+		LogicalSymbolsNames.ifthen,
+		['⇒', '⊃', '->', '=>', LogicalSymbolFromName.ifthen],
+	],
+
+	[LogicalSymbolsNames.not, singleCharacterNotMappings],
+
+	[LogicalSymbolsNames.and, ['&&', '&', LogicalSymbolFromName.and]],
+
+	[
+		LogicalSymbolsNames.xor,
 		[
-			LogicalSymbolsNames.iff,
-			['⇔', '≡', '<->', '<=>', '=', '==', '===', LogicalSymbolFromName.iff],
+			'⊕',
+			'⊻',
+			'≢',
+			'>=<',
+			'>-<',
+			'!=',
+			'!==',
+			'~=',
+			'<>',
+			LogicalSymbolFromName.xor,
 		],
+	],
 
-		[
-			LogicalSymbolsNames.ifthen,
-			['⇒', '⊃', '->', '=>', LogicalSymbolFromName.ifthen],
-		],
+	[LogicalSymbolsNames.or, ['||', '|', LogicalSymbolFromName.or]],
+] as const;
 
-		[LogicalSymbolsNames.not, singleCharacterNotMappings],
+const mappings = new Map<string, string>();
 
-		[LogicalSymbolsNames.and, ['&&', '&', LogicalSymbolFromName.and]],
-
-		[
-			LogicalSymbolsNames.xor,
-			[
-				'⊕',
-				'⊻',
-				'≢',
-				'>=<',
-				'>-<',
-				'!=',
-				'!==',
-				'~=',
-				'<>',
-				LogicalSymbolFromName.xor,
-			],
-		],
-
-		[LogicalSymbolsNames.or, ['||', '|', LogicalSymbolFromName.or]],
-	] as const;
-
-	const flatMappings: Array<[string, string]> = [];
-
-	for (const [key, stringRegexes] of stringMappings) {
-		for (const stringRegex of stringRegexes) {
-			flatMappings.push([stringRegex.toUpperCase(), key]);
-		}
+for (const [operator, operatorAliases] of stringMappings) {
+	for (const operatorAlias of operatorAliases) {
+		mappings.set(operatorAlias.toLowerCase(), operator);
 	}
 
-	return flatMappings as Mappings;
-})();
-
-export const stringWithIndicesMatches = (
-	input: StringWithIndices,
-	match: string,
-): boolean => {
-	// If not type variable (like "and") or not type operator (like "&&")
-	if (
-		input.type !== CharacterTypes.variable
-		&& input.type !== CharacterTypes.operator
-	) {
-		return false;
-	}
-
-	return input.characters.toUpperCase() === match;
-};
+	// Map things like "aNd", "AND", ... to "and"
+	mappings.set(operator.toLowerCase(), operator);
+}
 
 export const replaceMappings = (
 	input: ReadonlyDeep<StringWithIndices[]>,
@@ -90,44 +72,21 @@ export const replaceMappings = (
 			);
 		}
 
+		const operator = mappings.get(item.characters.toLowerCase());
+
 		if (
-			item.type !== CharacterTypes.operator
-			&& item.type !== CharacterTypes.variable
+			operator === undefined
+			|| (item.type !== CharacterTypes.operator
+				&& item.type !== CharacterTypes.variable)
 		) {
 			result.push(item);
-			continue;
-		}
-
-		const c = item.characters.toLowerCase();
-		// Case "and" or similar
-		if (LogicalSymbolsNames[c as keyof typeof LogicalSymbolsNames] === c) {
+		} else {
 			result.push({
 				...item,
 				originalCharacters: item.characters,
-				characters: c,
+				characters: operator,
 				type: CharacterTypes.operator,
 			});
-			continue;
-		}
-
-		let anyMatched = false;
-		for (const [replacer, replaceWith] of mappings) {
-			if (stringWithIndicesMatches(item, replacer)) {
-				result.push({
-					...item,
-					originalCharacters: item.characters,
-					characters: replaceWith,
-					type: CharacterTypes.operator,
-				});
-
-				anyMatched = true;
-
-				break;
-			}
-		}
-
-		if (!anyMatched) {
-			result.push(item);
 		}
 	}
 
