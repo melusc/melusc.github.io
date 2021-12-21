@@ -1,7 +1,7 @@
 import {groupItems} from './group-items';
 import {replaceMappings} from './mappings';
 import {
-	type Operators,
+	type LogicalName,
 	LogicalSymbolFromName,
 	isValidOperatorName,
 	LogicalSymbolsNames,
@@ -20,7 +20,7 @@ import {IndexedError} from './indexed-error';
 export type AST = (
 	| {
 			type: 'operator';
-			operator: Exclude<Operators, 'not'>;
+			operator: Exclude<LogicalName, 'not'>;
 			values: [AST, AST];
 	  }
 	| {
@@ -177,7 +177,7 @@ const _parseOperations = (input: StringWithIndices[][]): AST => {
 
 	return {
 		type: 'operator',
-		operator: operator.characters as Exclude<Operators, 'not'>,
+		operator: operator.characters as Exclude<LogicalName, 'not'>,
 		values: [_parseOperations(input), _parseOperations(lastItems)],
 	};
 };

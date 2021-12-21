@@ -1,41 +1,31 @@
 export enum LogicalSymbolFromName {
 	'iff' = '⟷',
-
 	'ifthen' = '→',
-
 	'not' = '¬',
-
 	'and' = '∧',
-
 	'xor' = '↮',
-
 	'or' = '∨',
 }
 
 export enum NameFromLogicalSymbol {
 	'⟷' = 'iff',
-
 	'→' = 'ifthen',
-
 	'¬' = 'not',
-
 	'∧' = 'and',
-
 	'↮' = 'xor',
-
 	'∨' = 'or',
 }
 
 export enum LogicalSymbolsNames {
 	iff = 'iff',
-	'ifthen' = 'ifthen',
+	ifthen = 'ifthen',
 	not = 'not',
 	and = 'and',
 	xor = 'xor',
 	or = 'or',
 }
 
-type LogicalName = keyof typeof LogicalSymbolsNames;
+export type LogicalName = keyof typeof LogicalSymbolsNames;
 
 const logicalNames = new Set<LogicalName>([
 	'iff',
@@ -63,5 +53,3 @@ const logicalSymbols = new Set<LogicalSymbol>([
 export const isValidLogicalSymbol = (
 	string_: string,
 ): string_ is LogicalSymbol => logicalSymbols.has(string_ as LogicalSymbol);
-
-export type Operators = keyof typeof LogicalSymbolFromName;
