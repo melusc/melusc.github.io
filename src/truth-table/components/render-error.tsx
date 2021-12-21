@@ -26,7 +26,7 @@ export const RenderError: React.FC<{
 	error: Error;
 	input: string;
 }> = ({error, input}) => {
-	console.error(error);
+	console.error(error.message);
 
 	if (error instanceof IndexedError) {
 		return (
