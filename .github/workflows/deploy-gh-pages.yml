@@ -21,7 +21,9 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Check code style
-        run: yarn run lint
+        run: |
+          yarn run fmt
+          git diff --quiet
 
       - name: CI tests
         run: yarn run ava
