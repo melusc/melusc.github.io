@@ -1,6 +1,11 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
-import {generateTable, type ParsedTable, operationToString, LogicalSymbolFromName} from '@lusc/truth-table';
+import {
+	generateTable,
+	type ParsedTable,
+	operationToString,
+	LogicalSymbolFromName,
+} from '@lusc/truth-table';
 
 import {Table} from './components/table';
 import {Input} from './components/input';
