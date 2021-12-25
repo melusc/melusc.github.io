@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {produce} from 'immer';
+import {type SubscriptionCallback, Sudoku, type Cells} from '@lusc/sudoku';
 
-import {SubscriptionCallback, Sudoku} from './sudoku';
-import type {Cells} from './cell';
 import * as sudokuExamples from './sudoku-examples';
 
 interface AppState {
