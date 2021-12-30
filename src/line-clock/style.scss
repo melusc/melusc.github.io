@@ -49,14 +49,13 @@ html {
 	transition: transform cubic-bezier(0.17, 0.67, 0.83, 0.67) 0.3s;
 
 	@for $i from 0 through 9 {
-		&.active-child-#{$i} {
+		&[data-offset='#{$i}'] {
 			transform: translateY(-$line-height * $i);
 		}
 	}
 
 	* {
 		line-height: $line-height;
-		border-radius: 100%;
 	}
 }
 

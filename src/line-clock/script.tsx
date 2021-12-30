@@ -16,7 +16,7 @@ const ClockLine: React.FC<{
 	to: number;
 	active: string;
 }> = ({to, active}) => (
-	<div className={`clock-row active-child-${active}`}>
+	<div className="clock-row" data-offset={active}>
 		{Array.from({length: to + 1}, (_v, index) => (
 			<div
 				key={index}
