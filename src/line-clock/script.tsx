@@ -16,7 +16,10 @@ const ClockLine: React.FC<{
 	to: number;
 	active: string;
 }> = ({to, active}) => (
-	<div className="clock-row" data-offset={active}>
+	<div
+		className="clock-row"
+		style={{'--offset': active} as React.CSSProperties}
+	>
 		{Array.from({length: to + 1}, (_v, index) => (
 			<div
 				key={index}

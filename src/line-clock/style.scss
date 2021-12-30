@@ -48,11 +48,7 @@ html {
 
 	transition: transform cubic-bezier(0.17, 0.67, 0.83, 0.67) 0.3s;
 
-	@for $i from 0 through 9 {
-		&[data-offset='#{$i}'] {
-			transform: translateY(-$line-height * $i);
-		}
-	}
+	transform: translateY(calc(#{-$line-height} * var(--offset, 0)));
 
 	* {
 		line-height: $line-height;
