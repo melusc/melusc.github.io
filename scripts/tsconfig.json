@@ -2,7 +2,8 @@
 	"extends": "../tsconfig.json",
 	"include": ["./*.ts"],
 	"compilerOptions": {
-		"module": "esnext",
+		"module": "commonjs",
+		"esModuleInterop": true,
 		"outDir": "../dist/scripts",
 		"rootDir": "."
 	}

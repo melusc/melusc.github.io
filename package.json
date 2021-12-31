@@ -17,7 +17,6 @@
 			}
 		}
 	},
-	"type": "module",
 	"dependencies": {
 		"@lusc/sudoku": "^1.0.3",
 		"@lusc/truth-table": "^1.0.3",
