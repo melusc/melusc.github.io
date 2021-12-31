@@ -17,6 +17,7 @@
 			}
 		}
 	},
+	"type": "module",
 	"dependencies": {
 		"@lusc/sudoku": "^1.0.3",
 		"@lusc/truth-table": "^1.0.3",
@@ -31,7 +32,7 @@
 		"rgb-hex": "^4.0.0"
 	},
 	"devDependencies": {
-		"@ava/typescript": "^2.0.0",
+		"@ava/typescript": "^3.0.1",
 		"@lusc/tsconfig": "^1.0.0",
 		"@parcel/transformer-sass": "^2.0.1",
 		"@parcel/transformer-svg-react": "^2.0.1",
@@ -41,7 +42,7 @@
 		"@types/react": "^17.0.38",
 		"@types/react-dom": "^17.0.11",
 		"@types/styled-components": "^5.1.19",
-		"ava": "^3.15.0",
+		"ava": "^4.0.0-rc.1",
 		"babel-plugin-styled-components": "^2.0.2",
 		"concurrently": "^6.5.1",
 		"del-cli": "^4.0.1",
@@ -75,7 +76,7 @@
 		"parcel:w": "parcel serve --dist-dir dist/www --no-cache \"src/**/*.html\"",
 		"parcel:b": "parcel build --dist-dir dist/www --no-cache \"src/**/*.html\"",
 		"build-no-tests": "del-cli \"dist/www/*\" && yarn parcel:b",
-		"build-ts-tests": "del-cli \"dist/test/*\" && tsc --project test.tsconfig.json",
+		"build-ts-tests": "del-cli \"dist/test/*\" && tsc --project test/tsconfig.json",
 		"gulp:b": "gulp build",
 		"gulp:w": "gulp start",
 		"fmt": "prettier -w . && xo --fix",
