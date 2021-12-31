@@ -1,0 +1,22 @@
+:root {
+	--invalid: red;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	font: 20px 'Open Sans';
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: local('Open Sans'), local('Open-Sans'),
+		url('../public/fonts/OpenSans-Regular.ttf') format('truetype');
+}
