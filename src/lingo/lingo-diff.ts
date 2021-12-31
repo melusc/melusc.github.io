@@ -1,3 +1,5 @@
+import {uniqueId} from 'lodash-es';
+
 export enum LingoCorrectness {
 	correctLocation,
 	wrongLocation,
@@ -7,9 +9,18 @@ export enum LingoCorrectness {
 export type LingoDiff = {
 	correctness: LingoCorrectness;
 	character: string;
+	key: string;
 };
 
 export const lingoDiff = (input: string, solution: string): LingoDiff[] => {
+	if (input === '') {
+		return Array.from({length: solution.length}, () => ({
+			character: '',
+			correctness: LingoCorrectness.nonExistant,
+			key: uniqueId(),
+		}));
+	}
+
 	if (input.length !== solution.length) {
 		throw new Error('Expected strings of equal length');
 	}
@@ -32,6 +43,7 @@ export const lingoDiff = (input: string, solution: string): LingoDiff[] => {
 			result[i] = {
 				correctness: LingoCorrectness.correctLocation,
 				character: charIn,
+				key: uniqueId(),
 			};
 
 			splitSolution[i] = undefined;
@@ -50,6 +62,7 @@ export const lingoDiff = (input: string, solution: string): LingoDiff[] => {
 			result[i] = {
 				correctness: LingoCorrectness.nonExistant,
 				character: charIn,
+				key: uniqueId(),
 			};
 
 			splitSolution[solutionIndex] = undefined;
@@ -57,6 +70,7 @@ export const lingoDiff = (input: string, solution: string): LingoDiff[] => {
 			result[i] = {
 				correctness: LingoCorrectness.wrongLocation,
 				character: charIn,
+				key: uniqueId(),
 			};
 		}
 

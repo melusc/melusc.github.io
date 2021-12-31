@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
-import {LingoRow} from './lingo-row';
+import {randomWord} from '../random-word';
+import {LingoTable} from './lingo-table';
 
 const StyledLingo = styled.div`
 	input {
@@ -25,6 +26,7 @@ const StyledLingo = styled.div`
 
 export const Lingo: React.FC = () => {
 	const [wordLength, setWordLength] = useState('4');
+	const [word, setWord] = useState(() => randomWord(Number(wordLength)));
 
 	const handleWordLengthInput: React.FormEventHandler<
 		HTMLInputElement
@@ -55,9 +57,7 @@ export const Lingo: React.FC = () => {
 					onInput={handleWordLengthInput}
 				/>
 			</div>
-			<div>
-				<LingoRow length={5} onDone={console.log} />
-			</div>
+			<LingoTable word={word} />
 		</StyledLingo>
 	);
 };

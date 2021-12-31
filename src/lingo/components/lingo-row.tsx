@@ -44,7 +44,8 @@ const BACKSPACE_RE = /^backspace$/i;
 export const LingoRow: React.FC<{
 	length: number;
 	onDone: (word: string) => void;
-}> = ({length, onDone}) => {
+	hints: Array<string | undefined>;
+}> = ({length, onDone, hints}) => {
 	const [characters, setCharacters] = useState<
 		Array<{key: string; character: string}>
 	>(() =>
@@ -110,7 +111,7 @@ export const LingoRow: React.FC<{
 					})}
 					onClick={focusHiddenInput}
 				>
-					{character}
+					{character ?? hints[i]}
 				</div>
 			))}
 		</StyledLingoRow>

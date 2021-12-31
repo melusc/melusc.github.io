@@ -9,12 +9,17 @@ import {
 const makeTest = (
 	input: string,
 	solution: string,
-	expected: LingoDiff[],
+	expected: Array<Omit<LingoDiff, 'key'>>,
 ): void => {
 	test(`lingoDiff(${JSON.stringify(input)}, ${JSON.stringify(
 		solution,
 	)})`, t => {
-		t.deepEqual(lingoDiff(input, solution), expected);
+		const actual = lingoDiff(input, solution);
+
+		t.is(actual.length, expected.length);
+		for (const [i, element] of actual.entries()) {
+			t.like(element, expected[i]!);
+		}
 	});
 };
 
@@ -67,4 +72,10 @@ makeTest('aaa', 'bab', [
 	{correctness: LingoCorrectness.nonExistant, character: 'a'},
 	{correctness: LingoCorrectness.correctLocation, character: 'a'},
 	{correctness: LingoCorrectness.nonExistant, character: 'a'},
+]);
+
+makeTest('', 'abc', [
+	{correctness: LingoCorrectness.nonExistant, character: ''},
+	{correctness: LingoCorrectness.nonExistant, character: ''},
+	{correctness: LingoCorrectness.nonExistant, character: ''},
 ]);
