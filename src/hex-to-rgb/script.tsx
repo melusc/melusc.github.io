@@ -3,7 +3,7 @@ import type {Except} from 'type-fest';
 import hexRgb from 'hex-rgb';
 import rgbHex from 'rgb-hex';
 
-import {debounce} from 'lodash';
+import {debounce} from 'lodash-es';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
