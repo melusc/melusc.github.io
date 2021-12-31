@@ -2,11 +2,13 @@ import clsx from 'clsx';
 import {uniqueId} from 'lodash-es';
 import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
+import {LingoCorrectness, lingoDiff} from '../lingo-diff';
 
 const StyledLingoRow = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: center;
 
 	.visually-hidden {
 		width: 0;
@@ -27,6 +29,12 @@ const StyledLingoRow = styled.div`
 
 		&.lingo-cell-active {
 			background-color: #bbdefb;
+		}
+		&.lingo-cell-correct-location {
+			background-color: #339900;
+		}
+		&.lingo-cell-wrong-location {
+			background-color: #ffcc00;
 		}
 	}
 `;
@@ -66,22 +74,16 @@ export const LingoRow: React.FC<{
 			return;
 		}
 
-		const newCharacters = [...characters];
-		newCharacters[offset]!.character = isBackspace
-			? ''
-			: newCharacter;
-		setCharacters(newCharacters);
+		characters[offset]!.character = isBackspace ? '' : newCharacter;
+		setCharacters([...characters]);
 
-		const newOffset
-			= isBackspace
-				? Math.max(0, offset - 1)
-				: Math.min(length, offset + 1);
+		const newOffset = isBackspace
+			? Math.max(0, offset - 1)
+			: Math.min(length, offset + 1);
 
 		if (newOffset === length) {
-			onDone(newCharacters.join(''));
+			onDone(characters.join(''));
 		}
-
-		console.log(newCharacters, newCharacter, newOffset);
 
 		setOffset(newOffset);
 	};
@@ -114,8 +116,28 @@ export const LingoRow: React.FC<{
 		</StyledLingoRow>
 	);
 };
-/*
-export const DoneLingoRow: React.FC<{
-	solution: string;
+
+export const LingoRowDone: React.FC<{
 	input: string;
-}> = () => {}; */
+	solution: string;
+}> = ({input, solution}) => {
+	const diff = lingoDiff(input, solution);
+
+	return (
+		<StyledLingoRow>
+			{diff.map(({character, correctness}) => (
+				<div
+					key={`${character}-${correctness}`}
+					className={clsx('lingo-cell', {
+						'lingo-cell-correct-location':
+							correctness === LingoCorrectness.correctLocation,
+						'lingo-cell-wrong-location':
+							correctness === LingoCorrectness.wrongLocation,
+					})}
+				>
+					{character}
+				</div>
+			))}
+		</StyledLingoRow>
+	);
+};
