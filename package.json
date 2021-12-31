@@ -17,6 +17,7 @@
 			}
 		}
 	},
+	"type": "module",
 	"dependencies": {
 		"@lusc/sudoku": "^1.0.3",
 		"@lusc/truth-table": "^1.0.3",
@@ -81,7 +82,8 @@
 		"fmt": "prettier -w . && xo --fix",
 		"lint": "prettier -c . \"!{**/*,*}.{js,ts}{x,}\" && xo",
 		"start": "concurrently yarn:parcel:w yarn:gulp:w",
-		"test": "xo && yarn run ava"
+		"test": "xo && yarn run ava",
+		"build-scripts": "del-cli \"dist/scripts/*\" && tsc --project scripts/tsconfig.json"
 	},
 	"version": "1.0.0"
 }
