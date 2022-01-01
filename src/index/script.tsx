@@ -14,9 +14,13 @@ const App: React.FC = () => (
 	</>
 );
 
-ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.body,
-);
+const root = document.querySelector<HTMLDivElement>('#root');
+
+if (root) {
+	ReactDOM.render(
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>,
+		root,
+	);
+}
