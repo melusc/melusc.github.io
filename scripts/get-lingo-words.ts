@@ -2,8 +2,6 @@ import fs from 'node:fs/promises';
 import https from 'node:https';
 import {Buffer} from 'node:buffer';
 
-const filenames = ['jargon', 'science-terms', 'wordlist'];
-
 const get = async (url: URL): Promise<string> =>
 	new Promise((resolve, reject) => {
 		console.log('Fetching', url.href);
@@ -24,25 +22,17 @@ const get = async (url: URL): Promise<string> =>
 			.on('error', reject);
 	});
 
-const base
-	= 'https://bitbucket.org/jvdl/correcthorsebatterystaple/raw/master/data/';
-
+const rawWords = await get(
+	new URL(
+		'https://raw.githubusercontent.com/RazorSh4rk/random-word-api/master/words.json',
+	),
+);
 const sanitizedWords = new Set<string>();
 
-for (const filename of filenames) {
-	const url = new URL(`./${filename}.txt`, base);
-
-	// eslint-disable-next-line no-await-in-loop
-	const rawWords = await get(url);
-
-	const splitWords = rawWords.split(',');
-
-	for (const word of splitWords) {
-		const sanitized = word.trim().toLowerCase();
-
-		if (/^[a-z]+$/.test(sanitized)) {
-			sanitizedWords.add(sanitized);
-		}
+for (const word of JSON.parse(rawWords) as string[]) {
+	const sanitized = word.trim().toLowerCase();
+	if (/^[a-z]+$/.test(word)) {
+		sanitizedWords.add(sanitized);
 	}
 }
 
