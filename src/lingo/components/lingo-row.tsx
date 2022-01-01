@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import {uniqueId} from 'lodash-es';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import {LingoCorrectness, lingoDiff} from '../lingo-diff';
+import {LingoCorrectness, LingoDiff} from '../lingo-diff';
 
 const StyledLingoRow = styled.div`
 	display: flex;
@@ -27,6 +27,9 @@ const StyledLingoRow = styled.div`
 		align-items: center;
 		justify-content: center;
 
+		&.lingo-cell-hint {
+			color: grey;
+		}
 		&.lingo-cell-active {
 			background-color: #bbdefb;
 		}
@@ -55,16 +58,22 @@ export const LingoRow: React.FC<{
 		})),
 	);
 	const [offset, setOffset] = useState(0);
-	const hiddenInput = useRef<HTMLInputElement>(null);
 
-	const onInput: React.KeyboardEventHandler<HTMLInputElement> = (
-		event_,
-	): void => {
+	const onInput = (event_: KeyboardEvent): void => {
 		const newCharacter = event_.key;
-
-		console.log(newCharacter);
+		event_.stopImmediatePropagation();
 
 		const isBackspace = BACKSPACE_RE.test(newCharacter);
+
+		if (isBackspace && event_.ctrlKey) {
+			for (const c of characters) {
+				c.character = '';
+			}
+
+			setCharacters([...characters]);
+			setOffset(0);
+			return;
+		}
 
 		if (
 			offset >= length
@@ -75,7 +84,15 @@ export const LingoRow: React.FC<{
 			return;
 		}
 
-		characters[offset]!.character = isBackspace ? '' : newCharacter;
+		const previous = characters[offset - 1];
+		if (isBackspace) {
+			if (previous) {
+				previous.character = '';
+			}
+		} else {
+			characters[offset]!.character = newCharacter;
+		}
+
 		setCharacters([...characters]);
 
 		const newOffset = isBackspace
@@ -83,35 +100,31 @@ export const LingoRow: React.FC<{
 			: Math.min(length, offset + 1);
 
 		if (newOffset === length) {
-			onDone(characters.join(''));
+			onDone(characters.map(({character}) => character).join(''));
 		}
 
 		setOffset(newOffset);
 	};
 
-	const focusHiddenInput = (): void => {
-		hiddenInput.current?.focus();
-	};
+	useEffect(() => {
+		addEventListener('keydown', onInput);
 
-	useEffect(focusHiddenInput);
+		return (): void => {
+			removeEventListener('keydown', onInput);
+		};
+	});
 
 	return (
 		<StyledLingoRow>
-			<input
-				ref={hiddenInput}
-				className="visually-hidden"
-				onKeyDown={onInput}
-			/>
-
 			{characters.map(({character, key}, i) => (
 				<div
 					key={key}
 					className={clsx('lingo-cell', {
 						'lingo-cell-active': i === offset,
+						'lingo-cell-hint': !character,
 					})}
-					onClick={focusHiddenInput}
 				>
-					{character ?? hints[i]}
+					{character || hints[i]}
 				</div>
 			))}
 		</StyledLingoRow>
@@ -119,26 +132,21 @@ export const LingoRow: React.FC<{
 };
 
 export const LingoRowDone: React.FC<{
-	input: string;
-	solution: string;
-}> = ({input, solution}) => {
-	const diff = lingoDiff(input, solution);
-
-	return (
-		<StyledLingoRow>
-			{diff.map(({character, correctness}) => (
-				<div
-					key={`${character}-${correctness}`}
-					className={clsx('lingo-cell', {
-						'lingo-cell-correct-location':
-							correctness === LingoCorrectness.correctLocation,
-						'lingo-cell-wrong-location':
-							correctness === LingoCorrectness.wrongLocation,
-					})}
-				>
-					{character}
-				</div>
-			))}
-		</StyledLingoRow>
-	);
-};
+	diff: LingoDiff[];
+}> = ({diff}) => (
+	<StyledLingoRow>
+		{diff.map(({character, correctness, key}) => (
+			<div
+				key={key}
+				className={clsx('lingo-cell', {
+					'lingo-cell-correct-location':
+						correctness === LingoCorrectness.correctLocation,
+					'lingo-cell-wrong-location':
+						correctness === LingoCorrectness.wrongLocation,
+				})}
+			>
+				{character}
+			</div>
+		))}
+	</StyledLingoRow>
+);

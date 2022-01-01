@@ -1,39 +1,69 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
-import {randomWord} from '../random-word';
 import {LingoTable} from './lingo-table';
 
 const StyledLingo = styled.div`
-	input {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1em;
+
+	> input {
 		&.error {
 			color: var(--invalid, red);
 		}
+	}
 
+	input,
+	button {
 		color: inherit;
 		padding: 3px 1em;
-		border: 2px solid currentColor;
+		border: 1px solid currentColor;
 		border-radius: 3px;
 		outline: none;
+		background: none;
+		font: inherit;
+	}
+
+	input {
+		padding: 3px 10px;
 	}
 
 	.word-length-inputs {
 		display: flex;
 		flex-direction: row;
+		justify-content: center;
+		align-items: center;
 		gap: 1em;
 	}
 `;
 
 export const Lingo: React.FC = () => {
 	const [wordLength, setWordLength] = useState('4');
-	const [word, setWord] = useState(() => randomWord(Number(wordLength)));
+	const [parsedLength, setParsedLength] = useState(4);
+	const [key, forceRerender] = useState(0);
 
 	const handleWordLengthInput: React.FormEventHandler<
 		HTMLInputElement
 	> = event_ => {
+		event_.stopPropagation();
 		const input = event_.currentTarget.value.trim();
 		setWordLength(input);
+
+		if (isValidWordLength(input) && input !== '') {
+			setParsedLength(Number(input));
+		}
 	};
+
+	useEffect(() => {
+		const hash = location.hash.slice(1);
+		if (hash !== '' && isValidWordLength(hash)) {
+			setWordLength(hash);
+			setParsedLength(Number(hash));
+		}
+	}, []);
 
 	const isValidWordLength = (input: string): boolean => {
 		const parsed = Number(input);
@@ -48,6 +78,7 @@ export const Lingo: React.FC = () => {
 			<div className="word-length-inputs">
 				<label htmlFor="word-length">Word length</label>
 				<input
+					placeholder="4-10 incl."
 					id="word-length"
 					type="tel"
 					value={wordLength}
@@ -57,7 +88,17 @@ export const Lingo: React.FC = () => {
 					onInput={handleWordLengthInput}
 				/>
 			</div>
-			<LingoTable word={word} />
+
+			<button
+				type="button"
+				onClick={(): void => {
+					forceRerender(i => i + 1);
+				}}
+			>
+				New word
+			</button>
+
+			<LingoTable wordCache={key} length={parsedLength} />
 		</StyledLingo>
 	);
 };
