@@ -27,7 +27,7 @@ const get = async (url: URL): Promise<string> =>
 const base
 	= 'https://bitbucket.org/jvdl/correcthorsebatterystaple/raw/master/data/';
 
-const words = new Set<string>();
+const sanitizedWords = new Set<string>();
 
 for (const filename of filenames) {
 	const url = new URL(`./${filename}.txt`, base);
@@ -40,9 +40,21 @@ for (const filename of filenames) {
 	for (const word of splitWords) {
 		const sanitized = word.trim().toLowerCase();
 
-		if (/^[a-z]{4,10}$/i.test(sanitized)) {
-			words.add(sanitized);
+		if (/^[a-z]+$/.test(sanitized)) {
+			sanitizedWords.add(sanitized);
 		}
+	}
+}
+
+const words = new Set<string>();
+
+for (const sanitized of sanitizedWords) {
+	if (
+		/^[a-z]{4,10}$/.test(sanitized)
+		// No plurals
+		&& !(sanitized.endsWith('s') && sanitizedWords.has(sanitized.slice(0, -1)))
+	) {
+		words.add(sanitized);
 	}
 }
 
