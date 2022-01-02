@@ -19,6 +19,13 @@
 		"type": "anchor"
 	},
 	{
+		"description": "A game where you have to guess a word. You get a few guesses and it tells you about correct letters and if the letter is in the correct location.",
+		"href": "/lingo/",
+		"key": "lingo",
+		"text": "Lingo",
+		"type": "anchor"
+	},
+	{
 		"description": "A little page which imitates Samsung Health, but instead of actually exercising you can just modify the values right from your sofa. I made this so I don't have to do PE homework when I don't feel like doing it.",
 		"href": "/fake-fitness-app/",
 		"key": "fake-fitness-app",
