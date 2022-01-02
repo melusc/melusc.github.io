@@ -69,7 +69,7 @@
 	},
 	{
 		"description": "A triangle that moves around and flashes.",
-		"href": "/animatedTriangle/",
+		"href": "/animated-triangle/",
 		"key": "animated-triangle",
 		"text": "Animated Triangle",
 		"type": "anchor"
