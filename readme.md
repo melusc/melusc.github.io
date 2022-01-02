@@ -14,7 +14,7 @@
 
 - [Countdown to summer holidays](https://melusc.github.io/time-to-summer-holidays/)
 
-- [Animated triangle using requestAnimationFrame](https://melusc.github.io/animatedTriangle/)
+- [Animated triangle using requestAnimationFrame](https://melusc.github.io/animated-triangle/)
 
 - [Find the least common multiple (lcm) of x numbers](https://melusc.github.io/lcm/)
 
