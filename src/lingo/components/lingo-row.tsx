@@ -1,8 +1,12 @@
 import clsx from 'clsx';
 import {uniqueId} from 'lodash-es';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import {LingoCorrectness, LingoDiff} from '../lingo-diff';
+
+const noop = (): void => {
+	/* Nothing */
+};
 
 const StyledLingoRow = styled.div`
 	display: flex;
@@ -40,6 +44,7 @@ const StyledLingoRow = styled.div`
 		align-items: center;
 		justify-content: center;
 		user-select: none;
+		border-radius: 0;
 
 		&.lingo-cell-hint {
 			color: lightgray;
@@ -55,24 +60,6 @@ const StyledLingoRow = styled.div`
 			background-color: var(--wrong-location);
 		}
 	}
-`;
-
-// For mobile, to show keyboard
-const hiddenInput = document.createElement('input');
-document.body.append(hiddenInput);
-
-// Helper function so prettier formats the css
-const css = (input: TemplateStringsArray): string => input.join('');
-hiddenInput.style.cssText = css`
-	outline: none;
-	border: none;
-	color: #0000;
-	padding: 0;
-	height: 0;
-	width: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
 `;
 
 const BACKSPACE_RE = /^backspace$/i;
@@ -92,14 +79,15 @@ export const LingoRow: React.FC<{
 		})),
 	);
 	const [offset, setOffset] = useState(0);
+	const activeInput = useRef<HTMLInputElement | null | undefined>();
+	const shouldFocus = useRef(false);
 
-	const onInput = (event_: KeyboardEvent): void => {
+	const onInput: React.KeyboardEventHandler<HTMLInputElement> = event_ => {
 		if ((event_.target as HTMLElement).id === 'word-length') {
 			return;
 		}
 
 		const newCharacter = event_.key.toLowerCase();
-		event_.stopImmediatePropagation();
 
 		const isBackspace = BACKSPACE_RE.test(newCharacter);
 
@@ -110,6 +98,7 @@ export const LingoRow: React.FC<{
 
 			setCharacters([...characters]);
 			setOffset(0);
+			shouldFocus.current = true;
 			return;
 		}
 
@@ -131,6 +120,8 @@ export const LingoRow: React.FC<{
 			characters[offset]!.character = newCharacter;
 		}
 
+		shouldFocus.current = true;
+
 		setCharacters([...characters]);
 
 		const newOffset = isBackspace
@@ -144,33 +135,12 @@ export const LingoRow: React.FC<{
 		}
 	};
 
-	useEffect(() => {
-		addEventListener('keydown', onInput);
-
-		return (): void => {
-			removeEventListener('keydown', onInput);
-		};
-	});
-
-	const focusHiddenInput = (): void => {
-		hiddenInput?.focus();
-	};
-
-	useEffect(() => {
-		if (autoFocus) {
-			focusHiddenInput();
-		}
-	}, [autoFocus]);
-
 	const scrollIntoView: React.Ref<HTMLElement> = (div): void => {
 		if (!div) {
 			return;
 		}
 
-		const clientRect = div.getBoundingClientRect();
-
 		// On mobile it won't scroll the focused input out of view
-		hiddenInput.style.transform = `translate(${clientRect.left}px, ${clientRect.top}px)`;
 
 		div.scrollIntoView({
 			behavior: 'auto',
@@ -179,20 +149,50 @@ export const LingoRow: React.FC<{
 		});
 	};
 
+	const focusInput = (): void => {
+		activeInput.current?.focus();
+	};
+
+	useEffect((): void => {
+		if (autoFocus || shouldFocus.current) {
+			focusInput();
+		}
+	});
+
+	useEffect(() => {
+		shouldFocus.current = false;
+	});
+
 	return (
-		<StyledLingoRow onClick={focusHiddenInput}>
-			{characters.map(({character, key}, i) => (
-				<div
-					key={key}
-					className={clsx('lingo-cell', {
-						'lingo-cell-active': i === offset,
-						'lingo-cell-hint': !character,
-					})}
-					{...(i === offset && {ref: scrollIntoView})}
-				>
-					{character || hints[i]}
-				</div>
-			))}
+		<StyledLingoRow onClick={focusInput}>
+			{characters.map(({character, key}, i) =>
+				i === offset ? (
+					<input
+						ref={(input): void => {
+							activeInput.current = input;
+							scrollIntoView(input);
+						}}
+						// reuse input for mobile to keep keyboard open
+						key="active-input_constant"
+						// and always reset value
+						value=""
+						placeholder={hints[i]}
+						className="lingo-cell lingo-cell-active"
+						onKeyDown={onInput}
+						// shut react up about https://stackoverflow.com/q/43556212/13249743
+						onChange={noop}
+					/>
+				) : (
+					<div
+						key={key}
+						className={clsx('lingo-cell', {
+							'lingo-cell-hint': !character,
+						})}
+					>
+						{character || hints[i]}
+					</div>
+				),
+			)}
 		</StyledLingoRow>
 	);
 };

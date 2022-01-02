@@ -110,16 +110,6 @@ export const Lingo: React.FC = () => {
 		}
 	};
 
-	useEffect(() => {
-		const hash = location.hash.slice(1);
-		if (hash !== '' && isValidWordLength(hash)) {
-			setWordLength(hash);
-			newWord(Number(hash));
-
-			autoFocus.current = true;
-		}
-	}, []);
-
 	const isValidWordLength = (input: string): boolean => {
 		const parsed = Number(input);
 
@@ -133,6 +123,7 @@ export const Lingo: React.FC = () => {
 		setCorrect(correct => correct || word === solution);
 		setTable([...table]);
 		setOffset(offset + 1);
+		autoFocus.current = true;
 	};
 
 	const newWord = (length: number, shouldAutoFocus = false): void => {
@@ -154,6 +145,16 @@ export const Lingo: React.FC = () => {
 		setStartedAt(new Date());
 		autoFocus.current = shouldAutoFocus;
 	};
+
+	useEffect(() => {
+		const hash = location.hash.slice(1);
+		if (hash !== '' && isValidWordLength(hash)) {
+			setWordLength(hash);
+			newWord(Number(hash));
+
+			autoFocus.current = true;
+		}
+	}, []);
 
 	useEffect(() => {
 		if (offset >= solution.length && !isCorrect) {
