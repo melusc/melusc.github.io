@@ -64,14 +64,14 @@ export const lingoDiff = (input: string, solution: string): LingoDiff[] => {
 				character: charIn,
 				key: uniqueId(),
 			};
-
-			splitSolution[solutionIndex] = undefined;
 		} else {
 			result[i] = {
 				correctness: LingoCorrectness.wrongLocation,
 				character: charIn,
 				key: uniqueId(),
 			};
+
+			splitSolution[solutionIndex] = undefined;
 		}
 
 		splitInput[i] = undefined;

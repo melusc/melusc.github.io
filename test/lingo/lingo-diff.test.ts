@@ -79,3 +79,12 @@ makeTest('', 'abc', [
 	{correctness: LingoCorrectness.nonExistant, character: ''},
 	{correctness: LingoCorrectness.nonExistant, character: ''},
 ]);
+
+makeTest('ghiaaj', 'abcdef', [
+	{correctness: LingoCorrectness.nonExistant, character: 'g'},
+	{correctness: LingoCorrectness.nonExistant, character: 'h'},
+	{correctness: LingoCorrectness.nonExistant, character: 'i'},
+	{correctness: LingoCorrectness.wrongLocation, character: 'a'},
+	{correctness: LingoCorrectness.nonExistant, character: 'a'},
+	{correctness: LingoCorrectness.nonExistant, character: 'j'},
+]);
