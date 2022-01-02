@@ -14,7 +14,8 @@
 			"files": ["./test/**/*.test.ts"],
 			"rules": {
 				"max-nested-callbacks": "off",
-				"no-mixed-operators": "off"
+				"no-mixed-operators": "off",
+				"import/extensions": "error"
 			}
 		},
 		{

@@ -4,7 +4,7 @@ import {
 	LingoCorrectness,
 	LingoDiff,
 	lingoDiff,
-} from '../../src/lingo/lingo-diff';
+} from '../../src/lingo/lingo-diff.js';
 
 const makeTest = (
 	input: string,
