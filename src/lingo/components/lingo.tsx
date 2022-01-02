@@ -15,7 +15,7 @@ const StyledLingo = styled.div`
 
 	> input {
 		&.error {
-			color: var(--invalid, red);
+			color: var(--invalid);
 		}
 	}
 
@@ -23,8 +23,8 @@ const StyledLingo = styled.div`
 	button {
 		color: inherit;
 		padding: 3px 1em;
-		border: 1px solid currentColor;
-		border-radius: 3px;
+		border: 3px solid var(--border);
+		border-radius: 5px;
 		outline: none;
 		background: none;
 		font: inherit;
@@ -46,6 +46,8 @@ const StyledLingo = styled.div`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		border-radius : 8px;
+		border:  2px solid var(--border);
 	}
 
 	.started-at,

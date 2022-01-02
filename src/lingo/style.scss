@@ -1,18 +1,30 @@
+@use 'sass:color';
+
 :root {
-	--invalid: red;
+	--invalid: #ea4335;
+	--correct: #34a853;
+	--wrong-location: #ffc107;
+	--active-cell-border: #bbdefb;
+	--active-cell-color: grey;
+	--border: #3c4043;
+	--text: #eee;
+	--bg: #202124;
 }
 
 html,
 body {
-	height: 100%;
-	width: 100%;
+	min-height: 100%;
+	min-width: 100%;
 	font: 23px 'Open Sans';
+	background-color: var(--bg);
+	color: var(--text);
 }
 
 body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 1em;
 }
 
 @font-face {

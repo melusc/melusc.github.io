@@ -2,13 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Lingo} from './components/lingo';
 
-const Main: React.FC = () => <Lingo />;
-
 const root = document.querySelector<HTMLDivElement>('#root');
 if (root) {
 	ReactDOM.render(
 		<React.StrictMode>
-			<Main />
+			<Lingo />
 		</React.StrictMode>,
 		root,
 	);

@@ -10,34 +10,48 @@ const StyledLingoRow = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	.visually-hidden {
-		width: 0;
-		opacity: 0;
-		color: #0000;
-		position: absolute;
-		left: -10000px;
-		top: -10000px;
+	&:first-child {
+		.lingo-cell {
+			&:first-child {
+				border-top-left-radius: 5px;
+			}
+			&:last-child {
+				border-top-right-radius: 5px;
+			}
+		}
+	}
+
+	&:last-child {
+		.lingo-cell {
+			&:first-child {
+				border-bottom-left-radius: 5px;
+			}
+			&:last-child {
+				border-bottom-right-radius: 5px;
+			}
+		}
 	}
 
 	.lingo-cell {
-		border: 1px solid black;
-		width: 2em;
-		height: 2em;
+		border: 2px solid var(--border);
+		width: 2.4em;
+		height: 2.4em;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 
 		&.lingo-cell-hint {
-			color: grey;
+			color: lightgray;
 		}
 		&.lingo-cell-active {
-			background-color: #bbdefb;
+			color: var(--active-cell-color);
+			border-color: var(--active-cell-border);
 		}
 		&.lingo-cell-correct-location {
-			background-color: #339900;
+			background-color: var(--correct);
 		}
 		&.lingo-cell-wrong-location {
-			background-color: #ffcc00;
+			background-color: var(--wrong-location);
 		}
 	}
 `;
