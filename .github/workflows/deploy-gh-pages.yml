@@ -31,6 +31,12 @@ jobs:
       - name: Type checking
         run: yarn tsc --noEmit
 
+      - name: Build scripts
+        run: yarn run build-scripts
+
+      - name: Fetch lingo words
+        run: node dist/scripts/get-lingo-words.js
+
       - name: Build
         run: yarn run build-no-tests
 

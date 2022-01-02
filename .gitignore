@@ -2,3 +2,4 @@
 /dist/
 *.min.svg
 /.parcel-cache/
+/src/lingo/wordlist/words.json
