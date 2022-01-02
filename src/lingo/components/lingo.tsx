@@ -13,7 +13,7 @@ const StyledLingo = styled.div`
 	align-items: center;
 	gap: 1em;
 
-	> input {
+	input {
 		&.error {
 			color: var(--invalid);
 		}
@@ -40,6 +40,13 @@ const StyledLingo = styled.div`
 		justify-content: center;
 		align-items: center;
 		gap: 1em;
+	}
+
+	@media (max-width: 500px) {
+		.word-length-inputs {
+			flex-direction: column;
+			align-items: flex-start;
+		}
 	}
 
 	.table {
@@ -86,11 +93,14 @@ export const Lingo: React.FC = () => {
 	const [isCorrect, setCorrect] = useState(false);
 	const [startedAt, setStartedAt] = useState(new Date());
 	const previousWords = useRef<string[]>([]);
+	const autoFocus = useRef(false);
+	const solutionRef = useRef<HTMLDivElement>(null);
 
 	const handleWordLengthInput: React.FormEventHandler<
 		HTMLInputElement
 	> = event_ => {
 		event_.stopPropagation();
+
 		const input = event_.currentTarget.value.trim();
 		setWordLength(input);
 
@@ -105,6 +115,8 @@ export const Lingo: React.FC = () => {
 		if (hash !== '' && isValidWordLength(hash)) {
 			setWordLength(hash);
 			newWord(Number(hash));
+
+			autoFocus.current = true;
 		}
 	}, []);
 
@@ -123,7 +135,7 @@ export const Lingo: React.FC = () => {
 		setOffset(offset + 1);
 	};
 
-	const newWord = (length: number): void => {
+	const newWord = (length: number, shouldAutoFocus = false): void => {
 		let newSolution: string;
 
 		const previousWords_ = previousWords.current;
@@ -140,7 +152,18 @@ export const Lingo: React.FC = () => {
 		setOffset(0);
 		setCorrect(false);
 		setStartedAt(new Date());
+		autoFocus.current = shouldAutoFocus;
 	};
+
+	useEffect(() => {
+		if (offset >= solution.length && !isCorrect) {
+			solutionRef.current?.scrollIntoView({
+				behavior: 'auto',
+				inline: 'nearest',
+				block: 'nearest',
+			});
+		}
+	}, [offset, solution.length, isCorrect]);
 
 	return (
 		<StyledLingo>
@@ -161,7 +184,7 @@ export const Lingo: React.FC = () => {
 			<button
 				type="button"
 				onClick={(): void => {
-					newWord(solution.length);
+					newWord(solution.length, true);
 				}}
 			>
 				New word
@@ -174,6 +197,7 @@ export const Lingo: React.FC = () => {
 							key={key}
 							length={solution.length}
 							hints={hints}
+							autoFocus={autoFocus.current}
 							onDone={incrementOffset}
 						/>
 					) : (
@@ -183,7 +207,9 @@ export const Lingo: React.FC = () => {
 			</div>
 
 			{offset >= solution.length && !isCorrect && (
-				<div className="solution">{solution}</div>
+				<div ref={solutionRef} className="solution">
+					Correct was: {solution}
+				</div>
 			)}
 			{isCorrect && (
 				<div className="started-at">

@@ -39,6 +39,7 @@ const StyledLingoRow = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		user-select: none;
 
 		&.lingo-cell-hint {
 			color: lightgray;
@@ -56,13 +57,32 @@ const StyledLingoRow = styled.div`
 	}
 `;
 
+// For mobile, to show keyboard
+const hiddenInput = document.createElement('input');
+document.body.append(hiddenInput);
+
+// Helper function so prettier formats the css
+const css = (input: TemplateStringsArray): string => input.join('');
+hiddenInput.style.cssText = css`
+	outline: none;
+	border: none;
+	color: #0000;
+	padding: 0;
+	height: 0;
+	width: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+`;
+
 const BACKSPACE_RE = /^backspace$/i;
 
 export const LingoRow: React.FC<{
 	length: number;
 	onDone: (word: string) => void;
 	hints: Array<string | undefined>;
-}> = ({length, onDone, hints}) => {
+	autoFocus: boolean;
+}> = ({length, onDone, hints, autoFocus}) => {
 	const [characters, setCharacters] = useState<
 		Array<{key: string; character: string}>
 	>(() =>
@@ -74,7 +94,11 @@ export const LingoRow: React.FC<{
 	const [offset, setOffset] = useState(0);
 
 	const onInput = (event_: KeyboardEvent): void => {
-		const newCharacter = event_.key;
+		if ((event_.target as HTMLElement).id === 'word-length') {
+			return;
+		}
+
+		const newCharacter = event_.key.toLowerCase();
 		event_.stopImmediatePropagation();
 
 		const isBackspace = BACKSPACE_RE.test(newCharacter);
@@ -113,11 +137,11 @@ export const LingoRow: React.FC<{
 			? Math.max(0, offset - 1)
 			: Math.min(length, offset + 1);
 
+		setOffset(newOffset);
+
 		if (newOffset === length) {
 			onDone(characters.map(({character}) => character).join(''));
 		}
-
-		setOffset(newOffset);
 	};
 
 	useEffect(() => {
@@ -128,8 +152,35 @@ export const LingoRow: React.FC<{
 		};
 	});
 
+	const focusHiddenInput = (): void => {
+		hiddenInput?.focus();
+	};
+
+	useEffect(() => {
+		if (autoFocus) {
+			focusHiddenInput();
+		}
+	}, [autoFocus]);
+
+	const scrollIntoView: React.Ref<HTMLElement> = (div): void => {
+		if (!div) {
+			return;
+		}
+
+		const clientRect = div.getBoundingClientRect();
+
+		// On mobile it won't scroll the focused input out of view
+		hiddenInput.style.transform = `translate(${clientRect.left}px, ${clientRect.top}px)`;
+
+		div.scrollIntoView({
+			behavior: 'auto',
+			inline: 'nearest',
+			block: 'nearest',
+		});
+	};
+
 	return (
-		<StyledLingoRow>
+		<StyledLingoRow onClick={focusHiddenInput}>
 			{characters.map(({character, key}, i) => (
 				<div
 					key={key}
@@ -137,6 +188,7 @@ export const LingoRow: React.FC<{
 						'lingo-cell-active': i === offset,
 						'lingo-cell-hint': !character,
 					})}
+					{...(i === offset && {ref: scrollIntoView})}
 				>
 					{character || hints[i]}
 				</div>
