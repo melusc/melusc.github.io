@@ -46,8 +46,8 @@ const StyledLingo = styled.div`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		border-radius : 8px;
-		border:  2px solid var(--border);
+		border-radius: 8px;
+		border: 2px solid var(--border);
 	}
 
 	.started-at,
