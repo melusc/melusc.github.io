@@ -12,7 +12,7 @@ class Main extends React.Component<Record<string, unknown>, MainState> {
 		colour: 0,
 	};
 
-	override render = (): JSX.Element => {
+	override render(): JSX.Element {
 		const {posX, colour} = this.state;
 
 		return (
@@ -26,7 +26,7 @@ class Main extends React.Component<Record<string, unknown>, MainState> {
 				<path d={`M${posX} 10L246 246H10z`} />
 			</svg>
 		);
-	};
+	}
 
 	frame = (): void => {
 		const range = (Date.now() / 1024) % 4;
@@ -52,9 +52,9 @@ class Main extends React.Component<Record<string, unknown>, MainState> {
 		requestAnimationFrame(this.frame);
 	};
 
-	override componentDidMount = (): void => {
+	override componentDidMount(): void {
 		this.frame();
-	};
+	}
 }
 
 const root = document.querySelector('#root');

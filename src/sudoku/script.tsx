@@ -32,15 +32,15 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		focused: 0,
 	};
 
-	override componentDidMount = (): void => {
+	override componentDidMount(): void {
 		document.addEventListener('keydown', this.handleKeyDown);
 		this.#sudokuClass.subscribe(this.sudokuCallback);
-	};
+	}
 
-	override componentWillUnmount = (): void => {
+	override componentWillUnmount(): void {
 		document.removeEventListener('keydown', this.handleKeyDown);
 		this.#sudokuClass.unsubscribe(this.sudokuCallback);
-	};
+	}
 
 	sudokuCallback: SubscriptionCallback = (sudoku, type) => {
 		switch (type) {
@@ -79,7 +79,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		}
 	};
 
-	override render = (): JSX.Element => {
+	override render(): JSX.Element {
 		const {cells, error, focused} = this.state;
 
 		return (
@@ -143,7 +143,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 				</div>
 			</div>
 		);
-	};
+	}
 
 	solve = (): void => {
 		this.#sudokuClass.solve();

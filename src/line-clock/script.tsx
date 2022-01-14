@@ -54,15 +54,15 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		this.requestAnimationFrameId = requestAnimationFrame(this.update);
 	};
 
-	override componentWillUnmount = (): void => {
+	override componentWillUnmount(): void {
 		cancelAnimationFrame(this.requestAnimationFrameId);
-	};
+	}
 
-	override componentDidMount = (): void => {
+	override componentDidMount(): void {
 		this.update();
-	};
+	}
 
-	override render = (): JSX.Element => {
+	override render(): JSX.Element {
 		const {hour, min, sec} = this.state;
 
 		return (
@@ -77,7 +77,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 				<ClockLine to={9} active={sec[1]} />
 			</div>
 		);
-	};
+	}
 }
 
 const root = document.querySelector('#root');

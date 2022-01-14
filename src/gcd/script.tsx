@@ -43,7 +43,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		this.timeout = window.setTimeout(this.calcOutput, 100, input);
 	};
 
-	override render = (): JSX.Element => {
+	override render(): JSX.Element {
 		const {inputValue, outputValue, state} = this.state;
 
 		return (
@@ -74,7 +74,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 				)}
 			</div>
 		);
-	};
+	}
 
 	handleInput = (): void => {
 		const input = this.inputRef.current;

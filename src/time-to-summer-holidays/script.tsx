@@ -45,7 +45,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 	previousDiff = 0;
 
-	override render = (): JSX.Element => {
+	override render(): JSX.Element {
 		const {d, h: h_, m, s} = this.state;
 
 		return (
@@ -69,7 +69,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 				<span>summer holidays</span>
 			</div>
 		);
-	};
+	}
 
 	update = (): void => {
 		const totalSeconds = Math.trunc((summerHolidaysTime - Date.now()) / 1000);
@@ -93,9 +93,9 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		requestAnimationFrame(this.update);
 	};
 
-	override componentDidMount = (): void => {
+	override componentDidMount(): void {
 		this.update();
-	};
+	}
 }
 
 const root = document.querySelector<HTMLDivElement>('#root')!;

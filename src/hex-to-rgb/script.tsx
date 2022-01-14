@@ -98,7 +98,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 	invalidInputs = new Set<keyof Inputs>();
 
-	override render = (): JSX.Element => {
+	override render(): JSX.Element {
 		const {invalidInputs, state, randomColour, handleInput, handleScroll}
 			= this;
 		const {inputs} = state;
@@ -175,19 +175,19 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 				</div>
 			</div>
 		);
-	};
+	}
 
-	override componentDidMount = (): void => {
+	override componentDidMount(): void {
 		addEventListener('hashchange', this.handleHashChange);
 
 		// If there is already a hash
 		// it will be filled in this way
 		this.handleHashChange();
-	};
+	}
 
-	override componentWillUnmount = (): void => {
+	override componentWillUnmount(): void {
 		removeEventListener('hashchange', this.handleHashChange);
-	};
+	}
 
 	handleScroll: React.WheelEventHandler<HTMLInputElement> = event_ => {
 		const target = event_.currentTarget;
