@@ -695,7 +695,7 @@
     "@parcel/utils" "^2.2.0"
     posthtml "^0.16.4"
 
-"@parcel/plugin@^2.1.1", "@parcel/plugin@^2.2.0":
+"@parcel/plugin@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@parcel/plugin/-/plugin-2.2.0.tgz#dfd80fd5c8e9663b2a08b1235297ab7abdadcca4"
   integrity sha512-etIxpizU14aZELSV/qEeuufoC5fLgopQ9I0j/Y9ExSmlU3NH79NeQo0JPP1TU49ZOL8Si9o/D6tlhojle6GbzA==
