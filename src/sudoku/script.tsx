@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {produce} from 'immer';
-import {type SubscriptionCallback, Sudoku, type Cells} from '@lusc/sudoku';
+import {
+	type SubscriptionCallback,
+	Sudoku,
+	type ReadonlyCells,
+} from '@lusc/sudoku';
 
 import * as sudokuExamples from './sudoku-examples';
 
 interface AppState {
-	cells: Cells;
+	cells: ReadonlyCells;
 	error: undefined | string;
 	focused: number;
 }
@@ -24,7 +28,7 @@ const SvgEraser: React.FC = () => (
 );
 
 class App extends React.Component<Record<string, unknown>, AppState> {
-	#sudokuClass = new Sudoku(sudokuExamples.sudokuExpert);
+	#sudokuClass = Sudoku.fromPrefilled(sudokuExamples.sudokuExpert);
 
 	override state: AppState = {
 		cells: this.#sudokuClass.getCells(),

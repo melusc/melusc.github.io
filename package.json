@@ -19,7 +19,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@lusc/sudoku": "^1.0.3",
+		"@lusc/sudoku": "^1.2.1",
 		"@lusc/truth-table": "^1.0.3",
 		"clsx": "^1.1.1",
 		"dayjs": "^1.10.7",
