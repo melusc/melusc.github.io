@@ -5,7 +5,6 @@
 	fill="none"
 	stroke-linecap="round"
 	stroke-linejoin="round"
-	class="icon-bluetooth"
 	stroke="currentColor"
 >
   <polyline points="7 8 17 16 12 20 12 4 17 8 7 16" />

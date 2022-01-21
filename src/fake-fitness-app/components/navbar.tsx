@@ -5,9 +5,9 @@ import {AngleLeft, DotsVertical} from './icons';
 
 const Navbar: React.FC = () => (
 	<div className="navbar">
-		<AngleLeft />
+		<AngleLeft className="navbar-angle-left" />
 		<span>Running</span>
-		<DotsVertical />
+		<DotsVertical className="navbar-dots-vertical" />
 	</div>
 );
 

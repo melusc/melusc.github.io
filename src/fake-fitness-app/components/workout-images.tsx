@@ -7,7 +7,7 @@ import '../styles/workout-images.scss';
 const WorkoutImages: React.FC = () => (
 	<div className="workout-images">
 		<div className="workout-images-title">Images</div>
-		<Photo />
+		<Photo className="workout-image-preview" />
 	</div>
 );
 
