@@ -28,7 +28,7 @@ const SvgEraser: React.FC = () => (
 );
 
 class App extends React.Component<Record<string, unknown>, AppState> {
-	#sudokuClass = Sudoku.fromPrefilled(sudokuExamples.sudokuExpert);
+	#sudokuClass = Sudoku.fromPrefilled(sudokuExamples.sudokuExpert, 9);
 
 	override state: AppState = {
 		cells: this.#sudokuClass.getCells(),
