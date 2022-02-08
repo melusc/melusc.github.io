@@ -89,7 +89,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		return (
 			<div className="App">
 				<div className="sudoku">
-					{cells.map(({content, key, valid}, index) => (
+					{cells.map(({key, valid}, index) => (
 						<div
 							key={key}
 							className={`cell${valid ? '' : ' invalid-input'}${
@@ -105,7 +105,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 								this.handleCellClick(index)();
 							}}
 						>
-							{content}
+							{this.#sudokuClass.getContent(index)}
 						</div>
 					))}
 				</div>
