@@ -43,7 +43,7 @@ const sanitiseHex = (hex: string, shouldShorten = true): string => {
 	let shortForm = '';
 	for (let index = 0; index < hex.length && shortFormPossible; index += 2) {
 		if (hex[index] === hex[index + 1]) {
-			shortForm += hex[index];
+			shortForm += hex[index]!;
 		} else {
 			shortFormPossible = false;
 			break;

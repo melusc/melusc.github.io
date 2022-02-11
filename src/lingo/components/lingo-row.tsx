@@ -79,7 +79,8 @@ export const LingoRow: React.FC<{
 		})),
 	);
 	const [offset, setOffset] = useState(0);
-	const activeInput = useRef<HTMLInputElement | null | undefined>();
+	// eslint-disable-next-line @typescript-eslint/ban-types
+	const activeInput = useRef<HTMLInputElement | null>();
 	const shouldFocus = useRef(false);
 
 	const onInput: React.KeyboardEventHandler<HTMLInputElement> = event_ => {
