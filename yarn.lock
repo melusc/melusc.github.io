@@ -285,10 +285,10 @@
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
   integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
 
-"@lusc/sudoku@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@lusc/sudoku/-/sudoku-2.0.0.tgz#57845484cdbbb74c79ae90c530a2d760d4718b3f"
-  integrity sha512-aMd9DocLH7ZJpAUO+IaY+0OhVo7LFqAvZ1uWVfC4NZp3fJxL5HqpWVI4cKfneLz97cy2mLpucEt+oLM3V9672A==
+"@lusc/sudoku@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@lusc/sudoku/-/sudoku-2.1.0.tgz#28388538e68531826eac48a6e52f67644cf56f34"
+  integrity sha512-f4HDqjpFqzlMfM1apxA6JTG1HW9JTqqYRzpauEhc87+WC85KOFovLunYUppknjmQjuOmni1mfxxOwPCv1Xx8yQ==
 
 "@lusc/truth-table@^1.0.4":
   version "1.0.4"
