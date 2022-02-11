@@ -20,7 +20,7 @@
 	"type": "module",
 	"dependencies": {
 		"@lusc/sudoku": "^2.0.0",
-		"@lusc/truth-table": "^1.0.3",
+		"@lusc/truth-table": "^1.0.4",
 		"clsx": "^1.1.1",
 		"dayjs": "^1.10.7",
 		"hex-rgb": "^5.0.0",
