@@ -256,10 +256,10 @@
   resolved "https://registry.yarnpkg.com/@lusc/sudoku/-/sudoku-2.1.0.tgz#28388538e68531826eac48a6e52f67644cf56f34"
   integrity sha512-f4HDqjpFqzlMfM1apxA6JTG1HW9JTqqYRzpauEhc87+WC85KOFovLunYUppknjmQjuOmni1mfxxOwPCv1Xx8yQ==
 
-"@lusc/truth-table@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@lusc/truth-table/-/truth-table-1.0.4.tgz#b7ad55ad6cabd667b3b14a76573f28da2fe0e2d8"
-  integrity sha512-F/Gsx9dYkq+nTW/A1UKme3W59gczDMYyG+3jmmWCwwY2A2PAYQ4HeA3tLnAarQ+QWFn08DuVKT4sjKm3p/kofg==
+"@lusc/truth-table@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@lusc/truth-table/-/truth-table-1.0.5.tgz#fdd78df59a21de3799a53fb4c642c5caf4ac236f"
+  integrity sha512-q2gTmnFe1ICnRxw0EV1ge0WucHnnCQPiLEI1DTN+HsPGwsQcpxr8kO71/hsbXX1+TiJPhXQbXv8SAzG11Aw/VA==
 
 "@lusc/tsconfig@^1.0.0":
   version "1.0.0"
@@ -6888,15 +6888,15 @@ xo@^0.48.0:
   integrity sha512-f0sbQGJoML3nwOLG7EIAJroBypmLokoGJqTPN+bI/oogKLMciqWBEiFh9Vpxnfwxafq1AkHoWrQZQWSflDCG1w==
   dependencies:
     "@eslint/eslintrc" "^1.0.5"
-    "@typescript-eslint/eslint-plugin" "*"
-    "@typescript-eslint/parser" "*"
+    "@typescript-eslint/eslint-plugin" "^5.11.0"
+    "@typescript-eslint/parser" "^5.11.0"
     arrify "^3.0.0"
     cosmiconfig "^7.0.1"
     define-lazy-prop "^3.0.0"
     eslint "^8.8.0"
     eslint-config-prettier "^8.3.0"
     eslint-config-xo "^0.40.0"
-    eslint-config-xo-typescript "*"
+    eslint-config-xo-typescript "^0.50.0"
     eslint-formatter-pretty "^4.1.0"
     eslint-import-resolver-webpack "^0.13.2"
     eslint-plugin-ava "^13.2.0"
