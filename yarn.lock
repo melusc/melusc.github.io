@@ -877,12 +877,12 @@
     "@parcel/source-map" "^2.0.0"
     sass "^1.38.0"
 
-"@parcel/transformer-svg-react@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-svg-react/-/transformer-svg-react-2.3.1.tgz#18895dba078fda58a8b9a768ef55ab47c4d2639f"
-  integrity sha512-kMMi3g0DCDp3m+kyv9LP0r4rDf6rLYSMk3ht0Qo4qcV2vbRwvfW1dpqbZyETBxIgyiPQ7rSR9Y6mTWxgzHQrzg==
+"@parcel/transformer-svg-react@^2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-svg-react/-/transformer-svg-react-2.3.2.tgz#930ae361d81cc4502ca55a7779b03b72f59fab1e"
+  integrity sha512-TP+eHvXmLZtu6xkGrjZ33I8M0ie0ist9fSwFnKGAKncAPdZgWaS4x3Af0I+4tjQwnJZwHxfzRaazPfQzDlF/eA==
   dependencies:
-    "@parcel/plugin" "2.3.1"
+    "@parcel/plugin" "2.3.2"
     "@svgr/core" "^6.2.0"
     "@svgr/plugin-jsx" "^6.2.0"
     "@svgr/plugin-svgo" "^6.2.0"
