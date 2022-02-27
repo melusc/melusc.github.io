@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import {lcm, lcmArray, gcd, absBigInt} from '../../src/lcm/functions.js';
+import {lcm, lcmArray, gcd, absBigInt} from '../functions.js';
 
 test('-1 should return 1n', t => {
 	t.is(absBigInt(-1), 1n);

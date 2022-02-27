@@ -5,7 +5,7 @@
 			"NODE_ENV": "AVA_TESTING"
 		},
 		"files": [
-			"test/**/*.test.ts"
+			"src/**/test/*.ts"
 		],
 		"typescript": {
 			"compile": false,
@@ -13,7 +13,7 @@
 				"ts"
 			],
 			"rewritePaths": {
-				"test/": "dist/test/test/"
+				"src/": "dist/test/"
 			}
 		}
 	},
@@ -76,7 +76,7 @@
 		"parcel:w": "parcel serve --dist-dir dist/www --no-cache \"src/**/*.html\"",
 		"parcel:b": "parcel build --dist-dir dist/www --no-cache \"src/**/*.html\"",
 		"build-no-tests": "del-cli \"dist/www/*\" && yarn parcel:b",
-		"build-ts-tests": "del-cli \"dist/test/*\" && tsc --project test/tsconfig.json",
+		"build-ts-tests": "del-cli \"dist/test/*\" && tsc --project tsconfig.test.json",
 		"gulp:b": "gulp build",
 		"gulp:w": "gulp start",
 		"fmt": "prettier -w . && xo --fix",

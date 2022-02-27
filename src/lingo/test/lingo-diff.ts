@@ -1,10 +1,6 @@
 import test from 'ava';
 
-import {
-	LingoCorrectness,
-	LingoDiff,
-	lingoDiff,
-} from '../../src/lingo/lingo-diff.js';
+import {LingoCorrectness, LingoDiff, lingoDiff} from '../lingo-diff.js';
 
 const makeTest = (
 	input: string,

@@ -1,5 +1,5 @@
 import test from 'ava';
-import {gcd, gcdArray} from '../../src/gcd/functions.js';
+import {gcd, gcdArray} from '../functions.js';
 
 test('gcd 150, 100 should return 50', t => {
 	t.is(gcd(150, 100), 50);
