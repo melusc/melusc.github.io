@@ -164,10 +164,19 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 	};
 
 	handleKeyDown = (event_: KeyboardEvent): void => {
+		if (event_.key.toLowerCase() === 'tab') {
+			// Otherwise it starts going around and focusing the buttons, the tab, the url bar
+			event_.preventDefault();
+		}
+
+		this.handleInput(event_.key, event_.shiftKey);
+	};
+
+	handleInput = (key: string, shiftKeyPressed = false): void => {
+		key = key.toLowerCase();
+
 		this.setState(
 			produce((state: AppState): void => {
-				const key = event_.key.toLowerCase();
-
 				switch (key) {
 					case 'arrowdown':
 					case 'arrowup': {
@@ -210,10 +219,8 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 					}
 
 					case 'tab': {
-						event_.preventDefault();
-
 						// If shift, go backwards
-						const direction = event_.shiftKey ? -1 : 1;
+						const direction = shiftKeyPressed ? -1 : 1;
 
 						state.focused = (state.focused + direction + 81) % 81;
 						break;
@@ -250,17 +257,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 	};
 
 	handleKeyboardlessClick = (number: string) => (): void => {
-		if (number === ' ') {
-			this.#sudokuClass.clearCell(this.state.focused);
-		} else {
-			this.#sudokuClass.setContent(this.state.focused, number);
-
-			this.setState(
-				produce((state: AppState) => {
-					state.focused = (state.focused + 1) % 81;
-				}),
-			);
-		}
+		this.handleInput(number);
 	};
 }
 
