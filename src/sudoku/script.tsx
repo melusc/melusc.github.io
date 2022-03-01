@@ -171,24 +171,19 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 				switch (key) {
 					case 'arrowdown':
 					case 'arrowup': {
-						// Wrapping around seems better
+						// Always wrap around to the *same* column
 
 						const direction = key === 'arrowdown' ? 9 : -9;
-						let newFocused = state.focused + direction;
 
-						if (newFocused < 0) {
-							newFocused += 81;
-						} else if (newFocused > 80) {
-							newFocused -= 81;
-						}
-
-						state.focused = newFocused;
+						state.focused = (state.focused + direction + 81) % 81;
 
 						break;
 					}
 
 					case 'arrowright':
 					case 'arrowleft': {
+						// Always wrap around to the *same* row
+
 						const direction = key === 'arrowright' ? 1 : -1;
 
 						const col = (state.focused % 9) + direction;
@@ -205,7 +200,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 					}
 
 					case ' ': {
-						// Space
+						// Clear cell but also go to next cell
 
 						this.#sudokuClass.clearCell(state.focused);
 
@@ -217,18 +212,28 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 					case 'tab': {
 						event_.preventDefault();
 
-						const {shiftKey} = event_;
-
-						const direction = shiftKey ? -1 : 1;
+						// If shift, go backwards
+						const direction = event_.shiftKey ? -1 : 1;
 
 						state.focused = (state.focused + direction + 81) % 81;
 						break;
 					}
 
-					case 'delete':
-					case 'backspace': {
+					case 'delete': {
+						// Clear cell without changing focused cell
+
 						this.#sudokuClass.clearCell(state.focused);
 
+						break;
+					}
+
+					case 'backspace': {
+						// Clear cell and change focused cell
+
+						this.#sudokuClass.clearCell(state.focused);
+
+						// Back one step, wrap around to last cell
+						state.focused = (state.focused + 80) % 81;
 						break;
 					}
 
