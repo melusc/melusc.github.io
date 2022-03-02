@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {produce} from 'immer';
 import {
 	type SubscriptionCallback,
 	Sudoku,
 	type ReadonlyCells,
 } from '@lusc/sudoku';
+import clsx from 'clsx';
 
 import * as sudokuExamples from './sudoku-examples';
 
@@ -28,25 +28,25 @@ const SvgEraser: React.FC = () => (
 );
 
 class App extends React.Component<Record<string, unknown>, AppState> {
-	#sudokuClass = Sudoku.fromPrefilled(sudokuExamples.sudokuExpert, 9);
+	#sudoku = Sudoku.fromPrefilled(sudokuExamples.sudokuExpert, 9);
 
 	override state: AppState = {
-		cells: this.#sudokuClass.getCells(),
+		cells: this.#sudoku.getCells(),
 		error: undefined,
 		focused: 0,
 	};
 
 	override componentDidMount(): void {
 		document.addEventListener('keydown', this.handleKeyDown);
-		this.#sudokuClass.subscribe(this.sudokuCallback);
+		this.#sudoku.subscribe(this.sudokuCallback);
 	}
 
 	override componentWillUnmount(): void {
 		document.removeEventListener('keydown', this.handleKeyDown);
-		this.#sudokuClass.unsubscribe(this.sudokuCallback);
+		this.#sudoku.unsubscribe(this.sudokuCallback);
 	}
 
-	sudokuCallback: SubscriptionCallback = (sudoku, type) => {
+	sudokuCallback: SubscriptionCallback = async (sudoku, type) => {
 		switch (type) {
 			case 'change': {
 				this.setState({
@@ -85,16 +85,18 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 	override render(): JSX.Element {
 		const {cells, error, focused} = this.state;
+		const sudoku = this.#sudoku;
 
 		return (
 			<div className="App">
 				<div className="sudoku">
-					{cells.map(({key, valid}, index) => (
+					{cells.map((cell, index) => (
 						<div
-							key={key}
-							className={`cell${valid ? '' : ' invalid-input'}${
-								focused === index ? ' focused-cell' : ''
-							}`}
+							key={cell.index}
+							className={clsx('cell', {
+								'invalid-input': !sudoku.isCellValid(cell),
+								'focused-cell': focused === index,
+							})}
 							data-index={index}
 							onMouseDown={this.handleCellClick(index)}
 							onTouchStart={(event_): void => {
@@ -105,7 +107,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 								this.handleCellClick(index)();
 							}}
 						>
-							{this.#sudokuClass.getContent(index)}
+							{sudoku.getContent(cell)}
 						</div>
 					))}
 				</div>
@@ -150,11 +152,11 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 	}
 
 	solve = (): void => {
-		this.#sudokuClass.solve();
+		this.#sudoku.solve();
 	};
 
 	clear = (): void => {
-		this.#sudokuClass.clearAllCells();
+		this.#sudoku.clearAllCells();
 	};
 
 	handleCellClick = (index: number) => (): void => {
@@ -175,85 +177,87 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 	handleInput = (key: string, shiftKeyPressed = false): void => {
 		key = key.toLowerCase();
 
-		this.setState(
-			produce((state: AppState): void => {
-				switch (key) {
-					case 'arrowdown':
-					case 'arrowup': {
-						// Always wrap around to the *same* column
+		this.setState((state: AppState): Pick<AppState, 'focused'> => {
+			let focused = state.focused;
 
-						const direction = key === 'arrowdown' ? 9 : -9;
+			switch (key) {
+				case 'arrowdown':
+				case 'arrowup': {
+					// Always wrap around to the *same* column
 
-						state.focused = (state.focused + direction + 81) % 81;
+					const direction = key === 'arrowdown' ? 9 : -9;
 
-						break;
+					focused = (state.focused + direction + 81) % 81;
+
+					break;
+				}
+
+				case 'arrowright':
+				case 'arrowleft': {
+					// Always wrap around to the *same* row
+
+					const direction = key === 'arrowright' ? 1 : -1;
+
+					const col = (state.focused % 9) + direction;
+
+					if (col < 0) {
+						focused += 8;
+					} else if (col > 8) {
+						focused -= 8;
+					} else {
+						focused += direction;
 					}
 
-					case 'arrowright':
-					case 'arrowleft': {
-						// Always wrap around to the *same* row
+					break;
+				}
 
-						const direction = key === 'arrowright' ? 1 : -1;
+				case ' ': {
+					// Clear cell but also go to next cell
 
-						const col = (state.focused % 9) + direction;
+					this.#sudoku.clearCell(state.focused);
 
-						if (col < 0) {
-							state.focused += 8;
-						} else if (col > 8) {
-							state.focused -= 8;
-						} else {
-							state.focused += direction;
-						}
+					focused = (state.focused + 1) % 81;
 
-						break;
-					}
+					break;
+				}
 
-					case ' ': {
-						// Clear cell but also go to next cell
+				case 'tab': {
+					// If shift, go backwards
+					const direction = shiftKeyPressed ? -1 : 1;
 
-						this.#sudokuClass.clearCell(state.focused);
+					focused = (state.focused + direction + 81) % 81;
+					break;
+				}
 
-						state.focused = (state.focused + 1) % 81;
+				case 'delete': {
+					// Clear cell without changing focused cell
 
-						break;
-					}
+					this.#sudoku.clearCell(state.focused);
 
-					case 'tab': {
-						// If shift, go backwards
-						const direction = shiftKeyPressed ? -1 : 1;
+					break;
+				}
 
-						state.focused = (state.focused + direction + 81) % 81;
-						break;
-					}
+				case 'backspace': {
+					// Clear cell and change focused cell
 
-					case 'delete': {
-						// Clear cell without changing focused cell
+					this.#sudoku.clearCell(state.focused);
 
-						this.#sudokuClass.clearCell(state.focused);
+					// Back one step, wrap around to last cell
+					focused = (state.focused + 80) % 81;
+					break;
+				}
 
-						break;
-					}
+				default: {
+					if (/^[1-9]$/.test(key)) {
+						this.#sudoku.setContent(state.focused, key);
 
-					case 'backspace': {
-						// Clear cell and change focused cell
-
-						this.#sudokuClass.clearCell(state.focused);
-
-						// Back one step, wrap around to last cell
-						state.focused = (state.focused + 80) % 81;
-						break;
-					}
-
-					default: {
-						if (/^[1-9]$/.test(key)) {
-							this.#sudokuClass.setContent(state.focused, key);
-
-							state.focused = (state.focused + 1) % 81;
-						}
+						focused = (state.focused + 1) % 81;
 					}
 				}
-			}),
-		);
+			}
+
+			return {focused};
+		});
 	};
 
 	handleKeyboardlessClick = (number: string) => (): void => {
