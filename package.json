@@ -72,7 +72,7 @@
 	"private": true,
 	"scripts": {
 		"ava": "yarn build-ts-tests && ava",
-		"build": "yarn lint && yarn run ava && tsc --noEmit && yarn build-no-tests",
+		"build": "yarn fmt && yarn run ava && tsc --noEmit && yarn build-no-tests",
 		"parcel:w": "parcel serve --dist-dir dist/www --no-cache \"src/**/*.html\"",
 		"parcel:b": "parcel build --dist-dir dist/www --no-cache \"src/**/*.html\"",
 		"build-no-tests": "del-cli \"dist/www/*\" && yarn parcel:b",
@@ -80,7 +80,6 @@
 		"gulp:b": "gulp build",
 		"gulp:w": "gulp start",
 		"fmt": "prettier -w . && xo --fix",
-		"lint": "prettier -c . \"!{**/*,*}.{js,ts}{x,}\" && xo",
 		"start": "concurrently yarn:parcel:w yarn:gulp:w",
 		"test": "xo && yarn run ava",
 		"build-scripts": "del-cli \"dist/scripts/*\" && tsc --project scripts/tsconfig.json"
