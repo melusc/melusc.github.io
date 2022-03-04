@@ -4,6 +4,7 @@
 	"compilerOptions": {
 		"esModuleInterop": true,
 		"outDir": "../dist/scripts",
-		"rootDir": "."
+		"rootDir": ".",
+		"types": ["node"]
 	}
 }
