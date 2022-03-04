@@ -32,7 +32,7 @@ jobs:
         run: yarn run build-scripts
 
       - name: Fetch lingo words
-        run: node dist/scripts/get-lingo-words.js
+        run: node --experimental-fetch dist/scripts/get-lingo-words.js
 
       - name: Type checking
         run: yarn tsc --noEmit

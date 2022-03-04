@@ -1,32 +1,9 @@
 import fs from 'node:fs/promises';
-import https from 'node:https';
-import {Buffer} from 'node:buffer';
 
-const get = async (url: URL): Promise<string> =>
-	new Promise((resolve, reject) => {
-		console.log('Fetching', url.href);
-
-		https
-			.get(url, response => {
-				const result: Buffer[] = [];
-
-				response
-					.on('data', chunk => {
-						result.push(chunk);
-					})
-					.on('end', () => {
-						resolve(Buffer.concat(result).toString());
-					})
-					.on('error', reject);
-			})
-			.on('error', reject);
-	});
-
-const rawWords = await get(
-	new URL(
-		'https://raw.githubusercontent.com/RazorSh4rk/random-word-api/master/words.json',
-	),
+const request = await fetch(
+	'https://raw.githubusercontent.com/RazorSh4rk/random-word-api/master/words.json',
 );
+const rawWords = await request.text();
 const sanitizedWords = new Set<string>();
 
 for (const word of JSON.parse(rawWords) as string[]) {
