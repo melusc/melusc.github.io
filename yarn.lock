@@ -857,14 +857,6 @@
     chrome-trace-event "^1.0.2"
     nullthrows "^1.1.1"
 
-"@prettier/plugin-xml@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@prettier/plugin-xml/-/plugin-xml-1.2.0.tgz#8bc75e3f715338e2f72efae5cd3a370f4d3ad23f"
-  integrity sha512-bFvVAZKs59XNmntYjyefn3K4TBykS6E+d6ZW8IcylAs88ZO+TzLhp0dPpi0VKfPzq1Nb+kpDnPRTiwb4zY6NgA==
-  dependencies:
-    "@xml-tools/parser" "^1.0.11"
-    prettier ">=2.3"
-
 "@svgr/babel-plugin-add-jsx-attribute@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-6.0.0.tgz#bd6d1ff32a31b82b601e73672a789cc41e84fe18"
@@ -1142,13 +1134,6 @@
   dependencies:
     "@typescript-eslint/types" "5.12.0"
     eslint-visitor-keys "^3.0.0"
-
-"@xml-tools/parser@^1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@xml-tools/parser/-/parser-1.0.11.tgz#a118a14099ea5c3c537e4781fad2fc195b57f8ff"
-  integrity sha512-aKqQ077XnR+oQtHJlrAflaZaL7qZsulWc/i/ZEooar5JiWj1eLt0+Wg28cpa+XLney107wXqneC+oG1IZvxkTA==
-  dependencies:
-    chevrotain "7.1.1"
 
 abortcontroller-polyfill@^1.1.9:
   version "1.7.3"
@@ -1752,13 +1737,6 @@ chalk@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-5.0.0.tgz#bd96c6bb8e02b96e08c0c3ee2a9d90e050c7b832"
   integrity sha512-/duVOqst+luxCQRKEo4bNxinsOQtMP80ZYm7mMqzuh5PociNL0PvmHFvREJ9ueYL2TxlHjBcmLCdmocx9Vg+IQ==
-
-chevrotain@7.1.1:
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/chevrotain/-/chevrotain-7.1.1.tgz#5122814eafd1585a9601f9180a7be9c42d5699c6"
-  integrity sha512-wy3mC1x4ye+O+QkEinVJkPf5u2vsrDIYW9G7ZuwFl6v/Yu0LwUuT2POsb+NUWApebyxfkQq6+yDfRExbnI5rcw==
-  dependencies:
-    regexp-to-ast "0.5.0"
 
 "chokidar@>=3.0.0 <4.0.0", chokidar@^3.5.3:
   version "3.5.3"
@@ -5519,7 +5497,7 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@>=2.3, prettier@^2.5.1, prettier@^2.6.0:
+prettier@^2.5.1, prettier@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.0.tgz#12f8f504c4d8ddb76475f441337542fa799207d4"
   integrity sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==
@@ -5725,11 +5703,6 @@ regex-not@^1.0.0, regex-not@^1.0.2:
   dependencies:
     extend-shallow "^3.0.2"
     safe-regex "^1.1.0"
-
-regexp-to-ast@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/regexp-to-ast/-/regexp-to-ast-0.5.0.tgz#56c73856bee5e1fef7f73a00f1473452ab712a24"
-  integrity sha512-tlbJqcMHnPKI9zSrystikWKwHkBqu2a/Sgw01h3zFjvYrMxEDYHzzoMZnUrbIfpTFEsoRnnviOXNCzFiSc54Qw==
 
 regexp-tree@^0.1.24, regexp-tree@~0.1.1:
   version "0.1.24"
