@@ -1,4 +1,4 @@
-src/**/*.min.svg
+src/**/*.svg
 docs/
 dist/
 src/lingo/wordlist/words.json
