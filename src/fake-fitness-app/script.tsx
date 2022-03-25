@@ -12,7 +12,7 @@ import Help from './components/help';
 import * as CONSTS from './scripts/consts';
 
 const Main: React.FC = () => {
-	const [sizes, updateSize] = useState({width: 1440, height: 2960});
+	const [size, setSize] = useState({width: 1440, height: 2960});
 
 	const [duration, setDuration] = useState(CONSTS.duration);
 	const [distance, setDistance] = useState(CONSTS.distance);
@@ -23,14 +23,14 @@ const Main: React.FC = () => {
 			const value = Number(event_.currentTarget.value.trim());
 
 			if (Number.isInteger(value)) {
-				updateSize({
-					...sizes,
+				setSize({
+					...size,
 					[key]: value,
 				});
 			}
 		};
 
-	const biggestSize = Math.max(sizes.height, sizes.width);
+	const biggestSize = Math.max(size.height, size.width);
 
 	return (
 		<div className="App">
@@ -41,7 +41,7 @@ const Main: React.FC = () => {
 						id="width"
 						type="number"
 						placeholder="width"
-						value={sizes.width}
+						value={size.width}
 						onInput={handleSizeInput('width')}
 					/>
 				</div>
@@ -51,15 +51,15 @@ const Main: React.FC = () => {
 						id="height"
 						type="number"
 						placeholder="height"
-						value={sizes.height}
+						value={size.height}
 						onInput={handleSizeInput('height')}
 					/>
 				</div>
 			</div>
 			<div
 				style={{
-					width: `${(sizes.width / biggestSize) * 100}vmin`,
-					height: `${(sizes.height / biggestSize) * 100}vmin`,
+					width: `${(size.width / biggestSize) * 100}vmin`,
+					height: `${(size.height / biggestSize) * 100}vmin`,
 				}}
 				className="fake-app"
 			>

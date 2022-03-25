@@ -52,18 +52,18 @@ const TimeOverview: React.FC<{
 	setDuration: React.Dispatch<React.SetStateAction<string>>;
 	setDistance: React.Dispatch<React.SetStateAction<string>>;
 }> = ({setDuration: parentSetDuration, setDistance: parentSetDistance}) => {
-	const [durationValue, setDuration] = useState(CONSTS.duration);
-	const [distanceValue, setDistance] = useState(CONSTS.distance);
+	const [duration, setDuration] = useState(CONSTS.duration);
+	const [distance, setDistance] = useState(CONSTS.distance);
 
-	const timePerDistance = calcTimePerDistance(distanceValue, durationValue);
+	const timePerDistance = calcTimePerDistance(distance, duration);
 
 	return (
 		<div className="time-overview">
 			<div className="duration">
 				<input
-					value={durationValue}
+					value={duration}
 					className={clsx('input-remove-input-visuals', {
-						invalid: !isValidDuration(durationValue),
+						invalid: !isValidDuration(duration),
 					})}
 					onInput={(event_): void => {
 						const dur = event_.currentTarget.value.trim();
@@ -75,9 +75,9 @@ const TimeOverview: React.FC<{
 			<div className="distance">
 				<div>
 					<input
-						value={distanceValue}
+						value={distance}
 						className={clsx('input-remove-input-visuals', {
-							invalid: !CONSTS.distanceRegex.test(distanceValue.trim()),
+							invalid: !CONSTS.distanceRegex.test(distance.trim()),
 						})}
 						placeholder="0.00"
 						onInput={(event_): void => {

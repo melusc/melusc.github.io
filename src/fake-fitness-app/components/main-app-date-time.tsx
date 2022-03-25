@@ -21,7 +21,7 @@ const dateAtLoad = dayjs().format('D MMM');
 const MainAppDateTime: React.FC<{
 	duration: string;
 }> = ({duration}) => {
-	const [dateValue, setDate] = useState(dateAtLoad);
+	const [date, setDate] = useState(dateAtLoad);
 
 	const [timeFrom, setTimeFrom] = useState(dayjs().format('HH:mm'));
 
@@ -41,12 +41,12 @@ const MainAppDateTime: React.FC<{
 	return (
 		<div className="main-app-date-time">
 			<div className="day-date-inputs">
-				<span>{dateValid(dateValue) && toDate(dateValue).format('ddd, ')}</span>
+				<span>{dateValid(date) && toDate(date).format('ddd, ')}</span>
 				<input
 					className={clsx('input-remove-input-visuals', {
-						invalid: !dateValid(dateValue),
+						invalid: !dateValid(date),
 					})}
-					value={dateValue}
+					value={date}
 					onInput={handleDateInput}
 				/>
 			</div>

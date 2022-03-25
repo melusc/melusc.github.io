@@ -13,7 +13,7 @@ const TimeInput: React.FC<{
 	className?: string[] | string;
 	setTime?: React.Dispatch<React.SetStateAction<string>>;
 }> = ({className, setTime: parentSetTime}) => {
-	const [timeValue, setTime] = useState(timeAtLoad);
+	const [time, setTime] = useState(timeAtLoad);
 
 	const handleTimeInput: React.FormEventHandler<HTMLInputElement> = event_ => {
 		const value = event_.currentTarget.value;
@@ -29,11 +29,11 @@ const TimeInput: React.FC<{
 			className={clsx(
 				'input-remove-input-visuals',
 				{
-					invalid: !timeValid(timeValue),
+					invalid: !timeValid(time),
 				},
 				className,
 			)}
-			value={timeValue}
+			value={time}
 			placeholder="HH:mm"
 			onInput={handleTimeInput}
 		/>

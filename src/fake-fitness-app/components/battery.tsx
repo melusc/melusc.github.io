@@ -36,7 +36,7 @@ const getTextWidth = (text: string, font: string): number => {
 };
 
 const Battery: React.FC = () => {
-	const [batteryValue, updateBattery] = useState('100%');
+	const [battery, setBattery] = useState('100%');
 
 	const handleBatteryInput: React.FormEventHandler<
 		HTMLInputElement
@@ -46,9 +46,9 @@ const Battery: React.FC = () => {
 		if (isValidBatteryValue(value)) {
 			const percent = Number(/^\d+/.exec(value) ?? 0);
 
-			updateBattery(`${percent}%`);
+			setBattery(`${percent}%`);
 		} else {
-			updateBattery(value);
+			setBattery(value);
 		}
 	};
 
@@ -56,17 +56,17 @@ const Battery: React.FC = () => {
 		<>
 			<input
 				className={clsx('input-remove-input-visuals', 'battery-input', {
-					invalid: !isValidBatteryValue(batteryValue),
+					invalid: !isValidBatteryValue(battery),
 				})}
-				value={batteryValue}
+				value={battery}
 				style={{
 					width:
-						getTextWidth(batteryValue, `${0.9 * 2.3}vmin "Samsung Sans"`)
-							* 1.05 || 3, // If width 0 use 3 instead
+						getTextWidth(battery, `${0.9 * 2.3}vmin "Samsung Sans"`) * 1.05
+						|| 3, // If width 0 use 3 instead
 				}}
 				onInput={handleBatteryInput}
 			/>
-			<BatteryIcon batteryStatus={batteryValue} />
+			<BatteryIcon batteryStatus={battery} />
 		</>
 	);
 };

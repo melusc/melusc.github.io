@@ -90,7 +90,7 @@ export const Lingo: React.FC = () => {
 	const [solution, setSolution] = useState(() => randomWord(4));
 	const [table, setTable] = useState(() => generateEmptyTable(solution));
 	const [offset, setOffset] = useState(0);
-	const [isCorrect, setCorrect] = useState(false);
+	const [isCorrect, setIsCorrect] = useState(false);
 	const [startedAt, setStartedAt] = useState(new Date());
 	const previousWords = useRef<string[]>([]);
 	const autoFocus = useRef(false);
@@ -120,7 +120,7 @@ export const Lingo: React.FC = () => {
 
 	const incrementOffset = (word: string): void => {
 		table[offset]!.characters = word;
-		setCorrect(correct => correct || word === solution);
+		setIsCorrect(correct => correct || word === solution);
 		setTable([...table]);
 		setOffset(offset + 1);
 		autoFocus.current = true;
@@ -141,7 +141,7 @@ export const Lingo: React.FC = () => {
 		setSolution(newSolution);
 		setTable(generateEmptyTable(newSolution));
 		setOffset(0);
-		setCorrect(false);
+		setIsCorrect(false);
 		setStartedAt(new Date());
 		autoFocus.current = shouldAutoFocus;
 	};
