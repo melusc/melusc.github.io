@@ -166,24 +166,28 @@ export const LingoRow: React.FC<{
 
 	return (
 		<StyledLingoRow onClick={focusInput}>
-			{characters.map(({character, key}, i) =>
-				i === offset ? (
-					<input
-						ref={(input): void => {
-							activeInput.current = input;
-							scrollIntoView(input);
-						}}
-						// reuse input for mobile to keep keyboard open
-						key="active-input_constant"
-						// and always reset value
-						value=""
-						placeholder={hints[i]}
-						className="lingo-cell lingo-cell-active"
-						onKeyDown={onInput}
-						// shut react up about https://stackoverflow.com/q/43556212/13249743
-						onChange={noop}
-					/>
-				) : (
+			{characters.map(({character, key}, i) => {
+				if (i === offset) {
+					return (
+						<input
+							ref={(input): void => {
+								activeInput.current = input;
+								scrollIntoView(input);
+							}}
+							// reuse input for mobile to keep keyboard open
+							key="active-input_constant"
+							// and always reset value
+							value=""
+							placeholder={hints[i]}
+							className="lingo-cell lingo-cell-active"
+							onKeyDown={onInput}
+							// shut react up about https://stackoverflow.com/q/43556212/13249743
+							onChange={noop}
+						/>
+					);
+				}
+
+				return (
 					<div
 						key={key}
 						className={clsx('lingo-cell', {
@@ -192,8 +196,8 @@ export const LingoRow: React.FC<{
 					>
 						{character || hints[i]}
 					</div>
-				),
-			)}
+				);
+			})}
 		</StyledLingoRow>
 	);
 };
