@@ -22,7 +22,7 @@
 		"@lusc/sudoku": "^2.5.0",
 		"@lusc/truth-table": "^1.0.5",
 		"clsx": "^1.1.1",
-		"dayjs": "^1.11.0",
+		"dayjs": "^1.11.1",
 		"hex-rgb": "^5.0.0",
 		"immer": "^9.0.12",
 		"json5": "^2.2.1",
