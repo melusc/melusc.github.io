@@ -28,12 +28,6 @@ jobs:
       - name: CI tests
         run: yarn run ava
 
-      - name: Build scripts
-        run: yarn run build-scripts
-
-      - name: Fetch lingo words
-        run: node --experimental-fetch dist/scripts/get-lingo-words.js
-
       - name: Type checking
         run: yarn tsc --noEmit
 

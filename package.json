@@ -80,8 +80,7 @@
 		"gulp:w": "gulp start",
 		"fmt": "prettier -w . && xo --fix",
 		"start": "concurrently yarn:parcel:w yarn:gulp:w",
-		"test": "xo && yarn run ava",
-		"build-scripts": "del-cli \"dist/scripts/*\" && tsc --project scripts/tsconfig.json"
+		"test": "xo && yarn run ava"
 	},
 	"version": "1.0.0"
 }
