@@ -27,13 +27,13 @@ jobs:
           git --no-pager diff --exit-code
 
       - name: CI tests
-        run: yarn run ava
+        run: yarn test
 
       - name: Type checking
         run: yarn tsc --noEmit
 
       - name: Build
-        run: yarn run build-no-tests
+        run: yarn run build-only
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
