@@ -290,10 +290,10 @@
   resolved "https://registry.yarnpkg.com/@lusc/truth-table/-/truth-table-1.0.5.tgz#fdd78df59a21de3799a53fb4c642c5caf4ac236f"
   integrity sha512-q2gTmnFe1ICnRxw0EV1ge0WucHnnCQPiLEI1DTN+HsPGwsQcpxr8kO71/hsbXX1+TiJPhXQbXv8SAzG11Aw/VA==
 
-"@lusc/tsconfig@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@lusc/tsconfig/-/tsconfig-1.0.0.tgz#e169910ef888386ad26acf9389f0c0931d789bdc"
-  integrity sha512-p2AKvylOpbMJy0XrDpsgeV3UByp5KZbd6cmAPGTUR9WLtmhD7IH2h0fhQPw5R0pindNXM3gRyuOZrFcZLICEcw==
+"@lusc/tsconfig@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@lusc/tsconfig/-/tsconfig-1.1.0.tgz#09cbb296a6471da5e2c61a7ee486b03b863db385"
+  integrity sha512-Dgzixd358ju5/i/yvXidtR2h3ZxPzIdph4eWHfC/+dlQ3CjyoFu5uGGqPT/NSwFHrzsbx3KcfrygMtPSJ3WBWg==
 
 "@mischnic/json-sourcemap@^0.1.0":
   version "0.1.0"
