@@ -32,6 +32,9 @@
 		"rgb-hex": "^4.0.0",
 		"styled-components": "^5.3.5"
 	},
+	"resolutions": {
+		"terser": "5.13.1"
+	},
 	"devDependencies": {
 		"@ava/typescript": "^3.0.1",
 		"@lusc/tsconfig": "^1.1.0",
