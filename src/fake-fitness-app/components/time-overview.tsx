@@ -58,8 +58,8 @@ const TimeOverview: React.FC<{
 	const timePerDistance = calcTimePerDistance(distance, duration);
 
 	return (
-		<div className="time-overview">
-			<div className="duration">
+		<div className='time-overview'>
+			<div className='duration'>
 				<input
 					value={duration}
 					className={clsx('input-remove-input-visuals', {
@@ -72,14 +72,14 @@ const TimeOverview: React.FC<{
 					}}
 				/>
 			</div>
-			<div className="distance">
+			<div className='distance'>
 				<div>
 					<input
 						value={distance}
 						className={clsx('input-remove-input-visuals', {
 							invalid: !CONSTS.distanceRegex.test(distance.trim()),
 						})}
-						placeholder="0.00"
+						placeholder='0.00'
 						onInput={(event_): void => {
 							const distance = event_.currentTarget.value.trim();
 							setDistance(distance);
@@ -88,7 +88,7 @@ const TimeOverview: React.FC<{
 					/>
 					<small>km</small>
 				</div>
-				<div className="vertical-border height-12" />
+				<div className='vertical-border height-12' />
 				<div
 					className={clsx('time-per-distance', {
 						invalid: timePerDistance === invalid,

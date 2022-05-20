@@ -42,15 +42,15 @@ const WorkoutDetails: React.FC<{duration: string; distance: string}> = ({
 	const [maxSpeed, setMaxSpeed] = useState('0.0');
 
 	return (
-		<div className="workout-details">
-			<div className="workout-details-title">Workout details</div>
-			<div className="table">
-				<div className="row">
+		<div className='workout-details'>
+			<div className='workout-details-title'>Workout details</div>
+			<div className='table'>
+				<div className='row'>
 					<div>
-						<div className="table-value">{duration}</div>
-						<div className="table-explanation">Workout duration</div>
+						<div className='table-value'>{duration}</div>
+						<div className='table-explanation'>Workout duration</div>
 					</div>
-					<div className="vertical-border height-22" />
+					<div className='vertical-border height-22' />
 					<div>
 						<input
 							className={clsx(
@@ -61,7 +61,7 @@ const WorkoutDetails: React.FC<{duration: string; distance: string}> = ({
 								'table-value',
 							)}
 							value={totalDuration}
-							placeholder="HH:mm:ss"
+							placeholder='HH:mm:ss'
 							onInput={(event_): void => {
 								const value = event_.currentTarget.value;
 
@@ -72,40 +72,40 @@ const WorkoutDetails: React.FC<{duration: string; distance: string}> = ({
 								);
 							}}
 						/>
-						<div className="table-explanation">Total duration</div>
+						<div className='table-explanation'>Total duration</div>
 					</div>
 				</div>
 				<hr />
-				<div className="row">
+				<div className='row'>
 					<div>
-						<div className="table-value">{distance}</div>
-						<div className="table-explanation">Distance(km)</div>
+						<div className='table-value'>{distance}</div>
+						<div className='table-explanation'>Distance(km)</div>
 					</div>
-					<div className="vertical-border height-22" />
+					<div className='vertical-border height-22' />
 					<div>
 						<Run />
 					</div>
 				</div>
 				<hr />
-				<div className="row">
+				<div className='row'>
 					<div>
-						<div className="table-value">{toSpeed(duration, distance)}</div>
-						<div className="table-explanation">Avg. speed(km/h)</div>
+						<div className='table-value'>{toSpeed(duration, distance)}</div>
+						<div className='table-explanation'>Avg. speed(km/h)</div>
 					</div>
-					<div className="vertical-border height-22" />
+					<div className='vertical-border height-22' />
 					<div>
 						<input
 							className={clsx('input-remove-input-visuals', 'table-value', {
 								invalid: !CONSTS.speedRegex.test(maxSpeed),
 							})}
 							value={maxSpeed}
-							placeholder="0.0"
+							placeholder='0.0'
 							onInput={(event_): void => {
 								const value = event_.currentTarget.value.trim();
 								setMaxSpeed(value);
 							}}
 						/>
-						<div className="table-explanation">Max. speed(km/h)</div>
+						<div className='table-explanation'>Max. speed(km/h)</div>
 					</div>
 				</div>
 			</div>

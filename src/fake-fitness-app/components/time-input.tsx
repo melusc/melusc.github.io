@@ -34,7 +34,7 @@ const TimeInput: React.FC<{
 				className,
 			)}
 			value={time}
-			placeholder="HH:mm"
+			placeholder='HH:mm'
 			onInput={handleTimeInput}
 		/>
 	);

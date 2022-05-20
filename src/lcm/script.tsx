@@ -47,10 +47,10 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		const {inputValue, outputValue, state} = this.state;
 
 		return (
-			<div className="box">
+			<div className='box'>
 				<input
 					ref={this.inputRef}
-					placeholder="2, 5, 9-13"
+					placeholder='2, 5, 9-13'
 					onInput={this.handleInput}
 				/>
 				<div>Parsed input:</div>

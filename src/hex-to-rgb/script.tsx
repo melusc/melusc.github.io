@@ -28,7 +28,7 @@ type AppState = {
 const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = props => (
 	<>
 		<input {...props} />
-		<div className="input-pseudo-border" />
+		<div className='input-pseudo-border' />
 	</>
 );
 
@@ -107,18 +107,18 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 		return (
 			<div
-				className="horizontal-vertical-center"
+				className='horizontal-vertical-center'
 				style={{backgroundColor: hex}}
 			>
-				<div className="floating-box">
-					<div className="row">
+				<div className='floating-box'>
+					<div className='row'>
 						<div>Hex</div>
-						<div className="inputs-rows">
+						<div className='inputs-rows'>
 							<Input
 								maxLength={9}
 								value={hex}
-								placeholder="#"
-								name="hex"
+								placeholder='#'
+								name='hex'
 								className={clsx({
 									invalid: invalidInputs.has('hex'),
 								})}
@@ -127,15 +127,15 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 						</div>
 					</div>
 
-					<div className="row">
+					<div className='row'>
 						<div>Rgba</div>
-						<div className="inputs-rows">
+						<div className='inputs-rows'>
 							{labels.map(key => (
 								<Input
 									key={key}
-									type="number"
-									min="0"
-									max="255"
+									type='number'
+									min='0'
+									max='255'
 									maxLength={3}
 									name={key}
 									placeholder={key}
@@ -150,12 +150,12 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 							<Input
 								// [type="tel"] because percent is valid in our use-case
 								// but not valid for [type="number"]
-								type="tel"
-								min="0"
-								max="1"
-								placeholder="[alpha]"
+								type='tel'
+								min='0'
+								max='1'
+								placeholder='[alpha]'
 								value={alpha}
-								name="alpha"
+								name='alpha'
 								className={clsx({
 									invalid: invalidInputs.has('alpha'),
 								})}
@@ -164,12 +164,12 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 							/>
 						</div>
 					</div>
-					<div className="row">
-						<div className="rainbow-box">
-							<div className="rainbow-text" onClick={randomColour}>
+					<div className='row'>
+						<div className='rainbow-box'>
+							<div className='rainbow-text' onClick={randomColour}>
 								Random colour
 							</div>
-							<div className="rainbow-bg" />
+							<div className='rainbow-bg' />
 						</div>
 					</div>
 				</div>

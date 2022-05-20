@@ -11,9 +11,9 @@ import '../styles/notification-bar.scss';
 dayjs.extend(customParseFormat);
 
 const NotificationBar: React.FC = () => (
-	<div className="notification-bar">
-		<TimeInput className="clock" />
-		<div className="battery-and-icons">
+	<div className='notification-bar'>
+		<TimeInput className='clock' />
+		<div className='battery-and-icons'>
 			<Bluetooth />
 			<Wifi />
 			<Signal />

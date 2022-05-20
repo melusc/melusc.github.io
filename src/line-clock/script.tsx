@@ -17,7 +17,7 @@ const ClockLine: React.FC<{
 	active: string;
 }> = ({to, active}) => (
 	<div
-		className="clock-row"
+		className='clock-row'
 		style={{'--offset': active} as React.CSSProperties}
 	>
 		{Array.from({length: to + 1}, (_v, index) => (
@@ -66,13 +66,13 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		const {hour, min, sec} = this.state;
 
 		return (
-			<div className="clock">
+			<div className='clock'>
 				<ClockLine to={2} active={hour[0]} />
 				<ClockLine to={9} active={hour[1]} />
-				<div className="colon">:</div>
+				<div className='colon'>:</div>
 				<ClockLine to={5} active={min[0]} />
 				<ClockLine to={9} active={min[1]} />
-				<div className="colon">:</div>
+				<div className='colon'>:</div>
 				<ClockLine to={5} active={sec[0]} />
 				<ClockLine to={9} active={sec[1]} />
 			</div>

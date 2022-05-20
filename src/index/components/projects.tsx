@@ -30,8 +30,8 @@ const Project: React.FC<{
 
 	if (project.type === 'title') {
 		return (
-			<div className="project-row title">
-				<a href={id} className="id-anchor">
+			<div className='project-row title'>
+				<a href={id} className='id-anchor'>
 					#
 				</a>
 				<h1 id={key}>{text}</h1>
@@ -42,11 +42,11 @@ const Project: React.FC<{
 	const {href, description} = project;
 
 	return (
-		<div className="project-row">
-			<a href={id} className="id-anchor">
+		<div className='project-row'>
+			<a href={id} className='id-anchor'>
 				#
 			</a>
-			<div className="project" id={key}>
+			<div className='project' id={key}>
 				<a href={href}>{text}</a>
 				<div>{description}</div>
 				<div />
@@ -67,7 +67,7 @@ export const Projects: React.FC = () => {
 	}, []);
 
 	return (
-		<div className="projects">
+		<div className='projects'>
 			{projects.map(project => (
 				<Project key={project.key} project={project} />
 			))}

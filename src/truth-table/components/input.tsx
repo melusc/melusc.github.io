@@ -20,7 +20,7 @@ export const Input: React.FC<{
 	setInput: React.Dispatch<React.SetStateAction<string>>;
 }> = ({input, setInput}) => (
 	<StyledInput
-		type="text"
+		type='text'
 		value={input}
 		onInput={(ev): void => {
 			const newInput = ev.currentTarget.value;

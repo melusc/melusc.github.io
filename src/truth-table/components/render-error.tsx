@@ -31,10 +31,10 @@ export const RenderError: React.FC<{
 	if (error instanceof IndexedError) {
 		return (
 			<StyledError>
-				<div className="error-message">Malformed input</div>
-				<div className="error-input">
+				<div className='error-message'>Malformed input</div>
+				<div className='error-input'>
 					{input.slice(0, error.from)}
-					<span className="error-input-incorrect">
+					<span className='error-input-incorrect'>
 						{input.slice(error.from, error.to)}
 					</span>
 					{input.slice(error.to)}
@@ -45,7 +45,7 @@ export const RenderError: React.FC<{
 
 	return (
 		<StyledError>
-			<div className="error-message">{error.message}</div>
+			<div className='error-message'>{error.message}</div>
 		</StyledError>
 	);
 };

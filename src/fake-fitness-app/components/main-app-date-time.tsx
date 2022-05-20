@@ -39,8 +39,8 @@ const MainAppDateTime: React.FC<{
 		= calcDurationSecondsSinceMidnight(duration);
 
 	return (
-		<div className="main-app-date-time">
-			<div className="day-date-inputs">
+		<div className='main-app-date-time'>
+			<div className='day-date-inputs'>
 				<span>{dateValid(date) && toDate(date).format('ddd, ')}</span>
 				<input
 					className={clsx('input-remove-input-visuals', {
@@ -50,7 +50,7 @@ const MainAppDateTime: React.FC<{
 					onInput={handleDateInput}
 				/>
 			</div>
-			<div className="time-inputs">
+			<div className='time-inputs'>
 				<TimeInput setTime={setTimeFrom} />
 				<span>
 					{'-  '}

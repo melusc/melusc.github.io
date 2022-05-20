@@ -33,24 +33,24 @@ const Main: React.FC = () => {
 	const biggestSize = Math.max(size.height, size.width);
 
 	return (
-		<div className="App">
-			<div className="inputs">
+		<div className='App'>
+			<div className='inputs'>
 				<div>
-					<label htmlFor="width">Width:</label>
+					<label htmlFor='width'>Width:</label>
 					<input
-						id="width"
-						type="number"
-						placeholder="width"
+						id='width'
+						type='number'
+						placeholder='width'
 						value={size.width}
 						onInput={handleSizeInput('width')}
 					/>
 				</div>
 				<div>
-					<label htmlFor="height">Height:</label>
+					<label htmlFor='height'>Height:</label>
 					<input
-						id="height"
-						type="number"
-						placeholder="height"
+						id='height'
+						type='number'
+						placeholder='height'
 						value={size.height}
 						onInput={handleSizeInput('height')}
 					/>
@@ -61,7 +61,7 @@ const Main: React.FC = () => {
 					width: `${(size.width / biggestSize) * 100}vmin`,
 					height: `${(size.height / biggestSize) * 100}vmin`,
 				}}
-				className="fake-app"
+				className='fake-app'
 			>
 				<NotificationBar />
 				<Navbar />

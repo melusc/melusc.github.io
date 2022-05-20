@@ -18,10 +18,10 @@ class Main extends React.Component<Record<string, unknown>, MainState> {
 		return (
 			<svg
 				fill={`hsl(${colour}, 100%, 70%)`}
-				stroke="#000"
-				strokeLinejoin="round"
-				strokeWidth="1.5"
-				viewBox="0 0 256 256"
+				stroke='#000'
+				strokeLinejoin='round'
+				strokeWidth='1.5'
+				viewBox='0 0 256 256'
 			>
 				<path d={`M${posX} 10L246 246H10z`} />
 			</svg>
