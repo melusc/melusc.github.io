@@ -285,10 +285,10 @@
   resolved "https://registry.yarnpkg.com/@lusc/sudoku/-/sudoku-2.6.0.tgz#2cf1e925b3149bc19592526a493fe9715a9fa73f"
   integrity sha512-hgmk1LHBMSnbw11GZ6E98VlpJKDsrP1scUPB/LXvcai2dwXP8IfbUCr7qiS49IYfnYLvljy6cK/TKW6AbtQWLg==
 
-"@lusc/truth-table@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@lusc/truth-table/-/truth-table-1.0.5.tgz#fdd78df59a21de3799a53fb4c642c5caf4ac236f"
-  integrity sha512-q2gTmnFe1ICnRxw0EV1ge0WucHnnCQPiLEI1DTN+HsPGwsQcpxr8kO71/hsbXX1+TiJPhXQbXv8SAzG11Aw/VA==
+"@lusc/truth-table@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@lusc/truth-table/-/truth-table-1.1.0.tgz#3a75b740b481fe7ed7988fc4db911dadf0f05fbd"
+  integrity sha512-6+/AQ0d4Bnyj48n9zaVGMen4P482JSmwSoaNfHyrm7yj5HCvdCgTQ67Ec7DWErRy7CHVT7qgMD5ys5WnkLwJUQ==
 
 "@lusc/tsconfig@^1.1.0":
   version "1.1.0"
