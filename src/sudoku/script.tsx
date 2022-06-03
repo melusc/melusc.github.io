@@ -107,7 +107,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 								this.handleCellClick(index)();
 							}}
 						>
-							{sudoku.getContent(cell)}
+							{sudoku.getElement(cell)}
 						</div>
 					))}
 				</div>
@@ -249,7 +249,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 				default: {
 					if (/^[1-9]$/.test(key)) {
-						this.#sudoku.setContent(state.focused, key);
+						this.#sudoku.setElement(state.focused, key);
 
 						focused = (state.focused + 1) % 81;
 					}
