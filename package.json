@@ -57,7 +57,7 @@
 		"sass": "^1.52.3",
 		"type-fest": "^2.13.0",
 		"typescript": "^4.7.3",
-		"xo": "^0.49.0"
+		"xo": "^0.50.0"
 	},
 	"license": "MIT",
 	"name": "melusc.github.io",
