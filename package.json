@@ -38,7 +38,7 @@
 	"devDependencies": {
 		"@ava/typescript": "^3.0.1",
 		"@lusc/tsconfig": "^1.2.2",
-		"@parcel/transformer-sass": "^2.6.0",
+		"@parcel/transformer-sass": "^2.6.2",
 		"@parcel/transformer-svg-react": "^2.6.2",
 		"@types/lodash-es": "^4.17.6",
 		"@types/node": "^18.0.0",
