@@ -4,13 +4,6 @@
 	"overrides": [
 		{
 			"env": ["es2020", "node"],
-			"files": ["./gulpfile.js"],
-			"rules": {
-				"unicorn/prefer-module": "off"
-			}
-		},
-		{
-			"env": ["es2020", "node"],
 			"files": ["./test/**/*.test.ts"],
 			"rules": {
 				"max-nested-callbacks": "off",
