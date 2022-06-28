@@ -171,11 +171,25 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 			event_.preventDefault();
 		}
 
-		this.handleInput(event_.key, event_.shiftKey);
+		this.handleInput(event_.key, {
+			shift: event_.shiftKey,
+			ctrl: event_.ctrlKey,
+		});
 	};
 
-	handleInput = (key: string, shiftKeyPressed = false): void => {
+	handleInput = (
+		key: string,
+		{
+			shift,
+			ctrl,
+		}: {
+			shift?: boolean;
+			ctrl?: boolean;
+		} = {},
+	): void => {
 		key = key.toLowerCase();
+		shift ??= false;
+		ctrl ??= false;
 
 		this.setState((state: AppState): Pick<AppState, 'focused'> => {
 			let focused = state.focused;
@@ -223,7 +237,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 				case 'tab': {
 					// If shift, go backwards
-					const direction = shiftKeyPressed ? -1 : 1;
+					const direction = shift ? -1 : 1;
 
 					focused = (state.focused + direction + 81) % 81;
 					break;
@@ -248,7 +262,8 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 				}
 
 				default: {
-					if (/^[1-9]$/.test(key)) {
+					// Ctrl + 1 takes you to the first tab so ignore those
+					if (!ctrl && /^[1-9]$/.test(key)) {
 						this.#sudoku.setElement(state.focused, key);
 
 						focused = (state.focused + 1) % 81;
