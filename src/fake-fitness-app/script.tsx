@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client.js';
 
 import NotificationBar from './components/notification-bar';
 import Navbar from './components/navbar';
@@ -75,13 +75,13 @@ const Main: React.FC = () => {
 	);
 };
 
-const root = document.querySelector('#root');
+const rootNode = document.querySelector('#root');
 
-if (root) {
-	ReactDOM.render(
+if (rootNode) {
+	const root = createRoot(rootNode);
+	root.render(
 		<React.StrictMode>
 			<Main />
 		</React.StrictMode>,
-		root,
 	);
 }

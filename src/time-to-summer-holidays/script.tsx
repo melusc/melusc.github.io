@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client.js';
 
 const leadingZero = (n: number): string => {
 	n = Math.trunc(n);
@@ -98,12 +98,13 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 	}
 }
 
-const root = document.querySelector<HTMLDivElement>('#root')!;
+const container = document.querySelector('#root');
 
-ReactDOM.hydrate(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-
-	root,
-);
+if (container) {
+	const root = createRoot(container);
+	root.render(
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>,
+	);
+}

@@ -1,5 +1,5 @@
 import React, {createRef} from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client.js';
 
 import {gcdArray} from './functions';
 
@@ -144,12 +144,13 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 	};
 }
 
-const root = document.querySelector<HTMLDivElement>('#root');
-if (root) {
-	ReactDOM.render(
+const container = document.querySelector('#root');
+
+if (container) {
+	const root = createRoot(container);
+	root.render(
 		<React.StrictMode>
 			<App />
 		</React.StrictMode>,
-		root,
 	);
 }

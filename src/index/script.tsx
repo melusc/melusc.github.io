@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client.js';
 
 import {Header} from './components/header';
 
@@ -14,13 +14,13 @@ const App: React.FC = () => (
 	</>
 );
 
-const root = document.querySelector<HTMLDivElement>('#root');
+const container = document.querySelector('#root');
 
-if (root) {
-	ReactDOM.render(
+if (container) {
+	const root = createRoot(container);
+	root.render(
 		<React.StrictMode>
 			<App />
 		</React.StrictMode>,
-		root,
 	);
 }

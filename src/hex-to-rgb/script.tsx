@@ -6,7 +6,7 @@ import rgbHex from 'rgb-hex';
 import {debounce} from 'lodash-es';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client.js';
 import {produce} from 'immer';
 import clsx from 'clsx';
 
@@ -439,12 +439,13 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 	};
 }
 
-const root = document.querySelector<HTMLDivElement>('#root');
-if (root) {
-	ReactDOM.render(
+const container = document.querySelector('#root');
+
+if (container) {
+	const root = createRoot(container);
+	root.render(
 		<React.StrictMode>
 			<App />
 		</React.StrictMode>,
-		root,
 	);
 }

@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client.js';
 import {
 	generateTable,
 	type ParsedTable,
@@ -99,13 +99,13 @@ const Main: React.FC = () => {
 	);
 };
 
-const root = document.querySelector<HTMLDivElement>('#root');
+const container = document.querySelector('#root');
 
-if (root) {
-	ReactDOM.render(
+if (container) {
+	const root = createRoot(container);
+	root.render(
 		<React.StrictMode>
 			<Main />
 		</React.StrictMode>,
-		root,
 	);
 }

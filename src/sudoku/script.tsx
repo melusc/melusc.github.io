@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client.js';
 import {
 	type SubscriptionCallback,
 	Sudoku,
@@ -280,9 +280,13 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 	};
 }
 
-ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.querySelector('#App'),
-);
+const container = document.querySelector('#App');
+
+if (container) {
+	const root = createRoot(container);
+	root.render(
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>,
+	);
+}
