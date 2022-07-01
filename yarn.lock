@@ -331,10 +331,10 @@
   resolved "https://registry.yarnpkg.com/@lmdb/lmdb-win32-x64/-/lmdb-win32-x64-2.5.2.tgz#28f643fbc0bec30b07fbe95b137879b6b4d1c9c5"
   integrity sha512-zrBczSbXKxEyK2ijtbRdICDygRqWSRPpZMN5dD1T8VMEW5RIhIbwFWw2phDRXuBQdVDpSjalCIUMWMV2h3JaZA==
 
-"@lusc/sudoku@^2.7.0":
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/@lusc/sudoku/-/sudoku-2.7.0.tgz#ac0b29eeb2ea2fe5a66294ac7640e83807e9c0a5"
-  integrity sha512-cytDyS5c6nnvq46fngYR/nkFdrNe0WEwv9NMOsOBxbvUbmoq0ZQjEYGCbjRkGemtHudI4eFB/2ODZIn8/XY8Bg==
+"@lusc/sudoku@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@lusc/sudoku/-/sudoku-3.0.0.tgz#ba3af1ec9a0ffd4a1f8baa711267afd9770a6041"
+  integrity sha512-JWqtYMd5UM2FeMWgO85lGx7jR2ZsE2pJUk1uKNw3CxCnVKtJ533oFY/HDuqBRD1GwL40eSpzPwUM1VV2IL5Drw==
 
 "@lusc/truth-table@^1.1.0":
   version "1.1.0"
