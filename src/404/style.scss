@@ -1,3 +1,5 @@
+@use '../public/fonts/OpenSans-Regular';
+
 $background: #151a1e;
 $color: #ddd;
 $blue: #587ef8;
@@ -39,11 +41,4 @@ footer {
 a {
 	color: $blue;
 	font-size: 0.5em;
-}
-
-@font-face {
-	font-family: 'Open sans';
-	src: local('Open Sans'), local('Open-Sans'),
-		url('../public/fonts/OpenSans-Regular.ttf') format('TrueType');
-	font-display: swap;
 }

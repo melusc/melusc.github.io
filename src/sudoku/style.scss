@@ -1,6 +1,8 @@
 @use 'sass:color';
 @use 'sass:math';
 
+@use '../public/fonts/OpenSans-Regular';
+
 $thick-border: 2px solid #344861;
 $thin-border: 1px solid #aaa;
 $valid: #3fb950;
@@ -259,10 +261,4 @@ body {
 	.App {
 		font-size: 22px;
 	}
-}
-
-@font-face {
-	font-family: 'Open sans';
-	src: local('Open Sans'), local('Open-Sans'),
-		url('../public/fonts/OpenSans-Regular.ttf') format('TrueType');
 }

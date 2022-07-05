@@ -1,3 +1,5 @@
+@use '../public/fonts/OpenSans-Regular';
+
 @use 'sass:color';
 
 $bg: #0d1117;
@@ -99,10 +101,4 @@ textarea {
 }
 [disabled] {
 	cursor: not-allowed;
-}
-
-@font-face {
-	font-family: 'Open Sans';
-	src: local('Open Sans'), local('Open-Sans'),
-		url('../public/fonts/OpenSans-Regular.ttf') format('truetype');
 }

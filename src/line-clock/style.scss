@@ -1,5 +1,7 @@
 @use 'sass:math';
 
+@use '../public/fonts/OpenSans-Light';
+
 $bg: #0d1117;
 $text: #c9d1d9;
 $blue: #275efe;
@@ -58,9 +60,4 @@ html {
 .active {
 	color: $blue;
 	transition: color cubic-bezier(0.17, 0.67, 0.83, 0.67) 0.3s;
-}
-@font-face {
-	font-family: 'Open Sans';
-	src: local('Open Sans'), local('Open-Sans'),
-		url('../public/fonts/OpenSans-Light.woff2') format('woff2');
 }

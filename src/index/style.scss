@@ -1,3 +1,5 @@
+@use '../public/fonts/OpenSans-Regular';
+
 @import 'vars';
 
 html {
@@ -21,11 +23,4 @@ body,
 main {
 	background-color: $bg;
 	color: $text;
-}
-
-@font-face {
-	font-family: 'Open sans';
-	src: local('Open Sans'), local('Open-Sans'),
-		url('../public/fonts/OpenSans-Regular.ttf') format('TrueType');
-	font-display: swap;
 }

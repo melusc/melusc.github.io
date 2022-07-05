@@ -1,4 +1,7 @@
 @use 'sass:math';
+
+@use '../public/fonts/OpenSans-Light';
+
 $transition-dur: 0.75s;
 $bg-dark: #0d1117;
 $text-dark: #c9d1d9;
@@ -117,11 +120,6 @@ body {
 			@content;
 		}
 	}
-}
-
-@font-face {
-	font-family: 'Open sans';
-	src: url('../public/fonts/OpenSans-Light.woff2') format('woff2');
 }
 
 :root {

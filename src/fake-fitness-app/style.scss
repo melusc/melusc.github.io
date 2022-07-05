@@ -1,3 +1,6 @@
+@import '../public/fonts/SamsungSans';
+@import '../public/fonts/Orbitron';
+
 @import 'vars';
 
 html,
@@ -107,19 +110,4 @@ button {
 	&.height-22 {
 		height: 3.1vmin;
 	}
-}
-
-@font-face {
-	font-family: 'Samsung Sans';
-	font-style: normal;
-	font-weight: normal;
-	src: local('Samsung Sans Regular'), local('Samsung Sans'),
-		url('../public/fonts/SamsungSans-Regular.ttf') format('TrueType');
-}
-
-@font-face {
-	font-family: 'Orbitron';
-	font-style: normal;
-	font-weight: normal;
-	src: local('Orbitron'), url('../public/fonts/Orbitron.ttf') format('TrueType');
 }
