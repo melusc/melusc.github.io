@@ -21,7 +21,7 @@
 	"dependencies": {
 		"@lusc/sudoku": "^3.0.0",
 		"@lusc/truth-table": "^1.1.0",
-		"clsx": "^1.1.1",
+		"clsx": "^1.2.1",
 		"dayjs": "^1.11.3",
 		"hex-rgb": "^5.0.0",
 		"immer": "^9.0.15",
