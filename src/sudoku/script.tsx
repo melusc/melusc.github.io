@@ -174,6 +174,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		this.handleInput(event_.key, {
 			shift: event_.shiftKey,
 			ctrl: event_.ctrlKey,
+			alt: event_.altKey,
 		});
 	};
 
@@ -182,14 +183,18 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		{
 			shift,
 			ctrl,
+			alt,
 		}: {
 			shift?: boolean;
 			ctrl?: boolean;
+			alt?: boolean;
 		} = {},
 	): void => {
+		if (alt) {
+			return;
+		}
+
 		key = key.toLowerCase();
-		shift ??= false;
-		ctrl ??= false;
 
 		this.setState((state: AppState): Pick<AppState, 'focused'> => {
 			let focused = state.focused;
