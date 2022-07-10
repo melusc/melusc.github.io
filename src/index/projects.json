@@ -26,6 +26,13 @@
 		"type": "anchor"
 	},
 	{
+		"description": "Visualise the scraped menus from melusc/mensa-history.",
+		"href": "/mensa-history/",
+		"key": "mensa-history",
+		"text": "Mensa History",
+		"type": "anchor"
+	},
+	{
 		"description": "A simple page in which you can convert hex from and to rgb(a).",
 		"href": "/hex-to-rgb/",
 		"key": "hex-to-rgb",

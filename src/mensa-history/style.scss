@@ -1,0 +1,19 @@
+@use '../public/fonts/OpenSans-Regular';
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+html,
+body,
+#root {
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+html {
+	background: #151a1e;
+	color: #ddd;
+}
