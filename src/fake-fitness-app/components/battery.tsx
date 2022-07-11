@@ -4,22 +4,10 @@ import clsx from 'clsx';
 
 import {Battery as BatteryIcon} from './icons';
 
-const isValidBatteryValue = (v: string): boolean => {
-	v = v.trim();
-
-	if (!/^(?:\d{1,2}|100)%$/.test(v)) {
-		return false;
-	}
-
-	v = v.slice(0, -1);
-	const parsed = Number(v);
-
-	if (parsed <= 0 || parsed > 100) {
-		return false;
-	}
-
-	return true;
-};
+// Allow all numbers from 1-100
+// Disallow leading zeroes and zero
+const isValidBatteryValue = (v: string): boolean =>
+	/^([1-9]\d?|100)%$/.test(v.trim());
 
 const canvas = document.createElement('canvas');
 const context = canvas.getContext('2d');
@@ -42,14 +30,7 @@ const Battery: React.FC = () => {
 		HTMLInputElement
 	> = event_ => {
 		const value = event_.currentTarget.value;
-
-		if (isValidBatteryValue(value)) {
-			const percent = Number(/^\d+/.exec(value) ?? 0);
-
-			setBattery(`${percent}%`);
-		} else {
-			setBattery(value);
-		}
+		setBattery(value);
 	};
 
 	return (
@@ -60,9 +41,10 @@ const Battery: React.FC = () => {
 				})}
 				value={battery}
 				style={{
-					width:
-						getTextWidth(battery, `${0.9 * 2.3}vmin "Samsung Sans"`) * 1.05
-						|| 3, // If width 0 use 3 instead
+					width: Math.max(
+						getTextWidth(battery, `${0.9 * 2.3}vmin "Samsung Sans"`) * 1.1,
+						10,
+					),
 				}}
 				onInput={handleBatteryInput}
 			/>
