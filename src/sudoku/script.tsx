@@ -37,11 +37,22 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 	};
 
 	override componentDidMount(): void {
+		Object.assign(window, {
+			fromString: this.fromString,
+		});
+		this.init();
+	}
+
+	override componentWillUnmount(): void {
+		this.clean();
+	}
+
+	init(): void {
 		document.addEventListener('keydown', this.handleKeyDown);
 		this.#sudoku.subscribe(this.sudokuCallback);
 	}
 
-	override componentWillUnmount(): void {
+	clean(): void {
 		document.removeEventListener('keydown', this.handleKeyDown);
 		this.#sudoku.unsubscribe(this.sudokuCallback);
 	}
@@ -282,6 +293,17 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 	handleKeyboardlessClick = (number: string) => (): void => {
 		this.handleInput(number);
+	};
+
+	fromString = (input: string): void => {
+		this.clean();
+		const s = Sudoku.fromString(input, 9);
+		this.#sudoku = s;
+		this.init();
+		this.setState({
+			focused: 0,
+			cells: s.getCells(),
+		});
 	};
 }
 
