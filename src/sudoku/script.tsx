@@ -1,16 +1,32 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client.js';
-import {
-	type SubscriptionCallback,
-	Sudoku,
-	type ReadonlyCells,
-} from '@lusc/sudoku';
-import clsx from 'clsx';
+import {type SubscriptionCallback, Sudoku} from '@lusc/sudoku';
 
 import * as sudokuExamples from './sudoku-examples';
+import {Cell} from './components/cell';
+
+type StateCell = {
+	element: string | undefined;
+	isValid: boolean;
+	key: number;
+};
+
+const toStateCells = (s: Sudoku): readonly StateCell[] => {
+	const result: StateCell[] = [];
+
+	for (const cell of s.getCells()) {
+		result.push({
+			element: s.getElement(cell),
+			isValid: s.isCellValid(cell),
+			key: cell.index,
+		});
+	}
+
+	return result;
+};
 
 interface AppState {
-	cells: ReadonlyCells;
+	cells: readonly StateCell[];
 	error: undefined | string;
 	focused: number;
 }
@@ -31,7 +47,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 	#sudoku = Sudoku.fromPrefilled(sudokuExamples.sudokuExpert, 9);
 
 	override state: AppState = {
-		cells: this.#sudoku.getCells(),
+		cells: toStateCells(this.#sudoku),
 		error: undefined,
 		focused: 0,
 	};
@@ -61,7 +77,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		switch (type) {
 			case 'change': {
 				this.setState({
-					cells: sudoku.getCells(),
+					cells: toStateCells(sudoku),
 					error: undefined,
 				});
 
@@ -72,7 +88,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 				const isSolved = sudoku.isSolved();
 
 				this.setState({
-					cells: sudoku.getCells(),
+					cells: toStateCells(sudoku),
 					error: isSolved ? undefined : "Sudoku wasn't solved completely.",
 				});
 
@@ -81,6 +97,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 			case 'error': {
 				this.setState({
+					cells: toStateCells(sudoku),
 					error: 'Sudoku is invalid!',
 				});
 
@@ -96,30 +113,18 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 
 	override render(): JSX.Element {
 		const {cells, error, focused} = this.state;
-		const sudoku = this.#sudoku;
 
 		return (
 			<div className='App'>
 				<div className='sudoku'>
-					{cells.map((cell, index) => (
-						<div
-							key={cell.index}
-							className={clsx('cell', {
-								'invalid-input': !sudoku.isCellValid(cell),
-								'focused-cell': focused === index,
-							})}
-							data-index={index}
-							onMouseDown={this.handleCellClick(index)}
-							onTouchStart={(event_): void => {
-								// If this fires preventDefault because otherwise onMouseDown will fire a bit later
-								// and cause some flickering if onTouchStart, onTouchStart, onMouseDown, onMouseDown (in that order) fires
-								// if the user switches between cells too quickly
-								event_.preventDefault();
-								this.handleCellClick(index)();
-							}}
-						>
-							{sudoku.getElement(cell)}
-						</div>
+					{cells.map(({element, key, isValid}, index) => (
+						<Cell
+							key={key}
+							element={element}
+							isValid={isValid}
+							isFocused={focused === index}
+							onClick={this.handleCellClick(index)}
+						/>
 					))}
 				</div>
 				{typeof error !== 'undefined' && <div className='error'>{error}</div>}
@@ -302,7 +307,7 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		this.init();
 		this.setState({
 			focused: 0,
-			cells: s.getCells(),
+			cells: toStateCells(s),
 		});
 	};
 }
