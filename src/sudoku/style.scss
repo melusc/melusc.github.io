@@ -64,7 +64,7 @@ body {
 	grid-template: repeat(9, 1fr) / repeat(9, 1fr);
 
 	width: 80vmin;
-	height: 80vmin;
+	min-height: 80vmin;
 
 	border: $thick-border;
 	border-width: 1px;
