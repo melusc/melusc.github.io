@@ -26,6 +26,93 @@ const toStateCells = (s: Sudoku): readonly StateCell[] => {
 	return result;
 };
 
+type MetaKeys = {
+	ctrl?: boolean;
+	alt?: boolean;
+	shift?: boolean;
+};
+
+const getNewFocused = (
+	key: string,
+	focused: number,
+	{shift, ctrl}: MetaKeys,
+): number => {
+	key = key.toLowerCase();
+
+	switch (key) {
+		case 'arrowdown':
+		case 'arrowup': {
+			// Always wrap around to the *same* column
+
+			const direction = key === 'arrowdown' ? 9 : -9;
+
+			return (focused + direction + 81) % 81;
+		}
+
+		case 'arrowright':
+		case 'arrowleft': {
+			// Always wrap around to the *same* row
+
+			const direction = key === 'arrowright' ? 1 : -1;
+
+			const col = (focused % 9) + direction;
+
+			if (col < 0) {
+				return focused + 8;
+			}
+
+			if (col > 8) {
+				return focused - 8;
+			}
+
+			return focused + direction;
+		}
+
+		case ' ': {
+			return (focused + 1) % 81;
+		}
+
+		case 'tab': {
+			// If shift, go backwards
+			const direction = shift ? -1 : 1;
+
+			return (focused + direction + 81) % 81;
+		}
+
+		case 'backspace': {
+			// Back one step, wrap around to last cell
+			return (focused + 80) % 81;
+		}
+
+		default: {
+			// Ctrl + 1 takes you to the first tab so ignore those
+			if (!ctrl && /^[1-9]$/.test(key)) {
+				return (focused + 1) % 81;
+			}
+		}
+	}
+
+	return focused;
+};
+
+const handleSudokuInput = (
+	sudoku: Sudoku,
+	key: string,
+	focused: number,
+	{ctrl}: MetaKeys,
+): void => {
+	key = key.toLowerCase();
+
+	if (key === ' ' || key === 'delete' || key === 'backspace') {
+		sudoku.clearCell(focused);
+		return;
+	}
+
+	if (!ctrl && /^[1-9]$/.test(key)) {
+		sudoku.setElement(focused, key);
+	}
+};
+
 interface AppState {
 	cells: readonly StateCell[];
 	error: undefined | string;
@@ -164,106 +251,18 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 		});
 	};
 
-	handleInput = (
-		key: string,
-		{
-			shift,
-			ctrl,
-			alt,
-		}: {
-			shift?: boolean;
-			ctrl?: boolean;
-			alt?: boolean;
-		} = {},
-	): void => {
-		if (alt) {
+	handleInput = (key: string, metaKeys: MetaKeys = {}): void => {
+		if (metaKeys.alt) {
 			return;
 		}
 
-		key = key.toLowerCase();
+		handleSudokuInput(this.#sudoku, key, this.state.focused, metaKeys);
 
-		this.setState((state: AppState): Pick<AppState, 'focused'> => {
-			let focused = state.focused;
-
-			switch (key) {
-				case 'arrowdown':
-				case 'arrowup': {
-					// Always wrap around to the *same* column
-
-					const direction = key === 'arrowdown' ? 9 : -9;
-
-					focused = (state.focused + direction + 81) % 81;
-
-					break;
-				}
-
-				case 'arrowright':
-				case 'arrowleft': {
-					// Always wrap around to the *same* row
-
-					const direction = key === 'arrowright' ? 1 : -1;
-
-					const col = (state.focused % 9) + direction;
-
-					if (col < 0) {
-						focused += 8;
-					} else if (col > 8) {
-						focused -= 8;
-					} else {
-						focused += direction;
-					}
-
-					break;
-				}
-
-				case ' ': {
-					// Clear cell but also go to next cell
-
-					this.#sudoku.clearCell(state.focused);
-
-					focused = (state.focused + 1) % 81;
-
-					break;
-				}
-
-				case 'tab': {
-					// If shift, go backwards
-					const direction = shift ? -1 : 1;
-
-					focused = (state.focused + direction + 81) % 81;
-					break;
-				}
-
-				case 'delete': {
-					// Clear cell without changing focused cell
-
-					this.#sudoku.clearCell(state.focused);
-
-					break;
-				}
-
-				case 'backspace': {
-					// Clear cell and change focused cell
-
-					this.#sudoku.clearCell(state.focused);
-
-					// Back one step, wrap around to last cell
-					focused = (state.focused + 80) % 81;
-					break;
-				}
-
-				default: {
-					// Ctrl + 1 takes you to the first tab so ignore those
-					if (!ctrl && /^[1-9]$/.test(key)) {
-						this.#sudoku.setElement(state.focused, key);
-
-						focused = (state.focused + 1) % 81;
-					}
-				}
-			}
-
-			return {focused};
-		});
+		this.setState(
+			(state: AppState): Pick<AppState, 'focused'> => ({
+				focused: getNewFocused(key, state.focused, metaKeys),
+			}),
+		);
 	};
 
 	fromString = (input: string): void => {
