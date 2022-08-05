@@ -1,6 +1,5 @@
 {
 	"compilerOptions": {
-		"rootDir": "src",
 		"resolveJsonModule": true,
 		"jsxFactory": "React.createElement",
 		"jsxFragmentFactory": "React.Fragment",
