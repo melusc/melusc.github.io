@@ -1,11 +1,11 @@
 {
 	"compilerOptions": {
-		"rootDir": "./src",
 		"resolveJsonModule": true,
 		"jsxFactory": "React.createElement",
 		"jsxFragmentFactory": "React.Fragment",
-		"types": ["styled-components/cssprop"]
+		"types": ["styled-components/cssprop"],
+		"moduleResolution": "Node"
 	},
-	"include": ["./src/**/*"],
+	"include": ["src/**/*"],
 	"extends": "@lusc/tsconfig"
 }
