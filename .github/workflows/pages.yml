@@ -15,7 +15,7 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: 'pages'
+  group: ${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -28,6 +28,7 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v1
+        if: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Use Node.js
         uses: actions/setup-node@v3
@@ -53,11 +54,13 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           path: dist/www
 
   # Deployment job
   deploy:
+    if: ${{ github.ref == 'refs/heads/main' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
