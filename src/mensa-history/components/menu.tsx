@@ -66,15 +66,25 @@ const StyledMenu = styled.div`
 			border-top: 1px solid currentColor;
 		}
 	}
+
+	.unsupported {
+		font-size: 1.4em;
+	}
 `;
 
 const Menu: React.FC<{menu: MenuResult}> = ({menu}) => (
 	<StyledMenu>
-		<div className='table'>
-			{menu.menu.map((day, index) => (
-				<Day key={JSON.stringify(day)} menu={day} index={index} />
-			))}
-		</div>
+		{menu.version === 1 ? (
+			<div className='table'>
+				{menu.menu.map((day, index) => (
+					<Day key={JSON.stringify(day)} menu={day} index={index} />
+				))}
+			</div>
+		) : (
+			<div className='unsupported'>
+				New menu layout is not supported yet. Check back later.
+			</div>
+		)}
 	</StyledMenu>
 );
 

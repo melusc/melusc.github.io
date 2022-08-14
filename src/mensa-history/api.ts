@@ -3,6 +3,7 @@ import {makeStore} from '../public/shared/suspense-store';
 export type MenuResult = {
 	title: string;
 	menu: string[][][];
+	version: number;
 };
 
 export const getMenus = makeStore<MenuResult, [string]>(
