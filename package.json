@@ -48,7 +48,7 @@
 		"ava": "^4.3.3",
 		"babel-plugin-styled-components": "^2.0.7",
 		"eslint-config-xo-react": "^0.27.0",
-		"eslint-plugin-react": "^7.30.1",
+		"eslint-plugin-react": "^7.31.0",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"parcel": "^2.7.0",
 		"prettier": "^2.7.1",
