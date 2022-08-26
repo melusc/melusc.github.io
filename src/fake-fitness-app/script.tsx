@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {createRoot} from 'react-dom/client.js';
 
-import NotificationBar from './components/notification-bar';
-import Navbar from './components/navbar';
+import Help from './components/help';
 import MainAppDateTime from './components/main-app-date-time';
+import Navbar from './components/navbar';
+import NotificationBar from './components/notification-bar';
 import TimeOverview from './components/time-overview';
 import WorkoutDetails from './components/workout-details';
 import WorkoutImages from './components/workout-images';
-import Help from './components/help';
 
 import * as CONSTS from './scripts/consts';
 

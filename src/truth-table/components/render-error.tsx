@@ -1,7 +1,6 @@
+import {IndexedError} from '@lusc/truth-table';
 import React from 'react';
 import styled from 'styled-components';
-
-import {IndexedError} from '@lusc/truth-table';
 
 const StyledError = styled.div`
 	display: flex;

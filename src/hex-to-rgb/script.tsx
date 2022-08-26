@@ -1,14 +1,11 @@
-import type {Except} from 'type-fest';
-
+import clsx from 'clsx';
 import hexRgb from 'hex-rgb';
-import rgbHex from 'rgb-hex';
-
+import {produce} from 'immer';
 import {debounce} from 'lodash-es';
-
 import React from 'react';
 import {createRoot} from 'react-dom/client.js';
-import {produce} from 'immer';
-import clsx from 'clsx';
+import rgbHex from 'rgb-hex';
+import type {Except} from 'type-fest';
 
 import {isOfType} from './util';
 

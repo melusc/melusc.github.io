@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import clsx from 'clsx';
 import * as dayjs from 'dayjs';
 import * as customParseFormat from 'dayjs/plugin/customParseFormat';
-import clsx from 'clsx';
+import React, {useState} from 'react';
 
+import * as CONSTS from '../scripts/consts';
 import {
 	calcDurationSecondsSinceMidnight,
 	isValidDuration,
 	midnight,
 } from '../scripts/date-functions';
-import * as CONSTS from '../scripts/consts';
 
 import '../styles/time-overview.scss';
 

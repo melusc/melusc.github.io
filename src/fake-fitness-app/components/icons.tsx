@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
 import clsx from 'clsx';
+import React, {useState} from 'react';
 
-export {default as Bluetooth} from 'jsx:../icons/bluetooth.svg';
 export {default as AngleLeft} from 'jsx:../icons/angle-left.svg';
+export {default as Bluetooth} from 'jsx:../icons/bluetooth.svg';
 export {default as DotsVertical} from 'jsx:../icons/dots-vertical.svg';
-export {default as Run} from 'jsx:../icons/run.svg';
 export {default as Photo} from 'jsx:../icons/photo.svg';
+export {default as Run} from 'jsx:../icons/run.svg';
 
 export const Battery: React.FC<{
 	batteryStatus: string;

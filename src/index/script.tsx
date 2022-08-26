@@ -2,7 +2,6 @@ import React from 'react';
 import {createRoot} from 'react-dom/client.js';
 
 import {Header} from './components/header';
-
 import {Projects} from './components/projects';
 
 const App: React.FC = () => (

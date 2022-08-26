@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import clsx from 'clsx';
 import * as dayjs from 'dayjs';
 import * as customParseFormat from 'dayjs/plugin/customParseFormat';
-import clsx from 'clsx';
+import React, {useState} from 'react';
 
 import {timeValid, toTime} from '../scripts/date-functions';
 

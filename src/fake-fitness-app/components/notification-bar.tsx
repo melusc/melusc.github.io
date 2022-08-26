@@ -1,9 +1,9 @@
-import React from 'react';
 import * as dayjs from 'dayjs';
 import * as customParseFormat from 'dayjs/plugin/customParseFormat';
+import React from 'react';
 
-import {Wifi, Bluetooth, Signal} from './icons';
 import Battery from './battery';
+import {Bluetooth, Signal, Wifi} from './icons';
 import TimeInput from './time-input';
 
 import '../styles/notification-bar.scss';

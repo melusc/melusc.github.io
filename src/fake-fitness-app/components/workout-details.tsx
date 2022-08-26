@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 
 import * as CONSTS from '../scripts/consts';
 import {
+	calcDurationSecondsSinceMidnight,
 	isValidDuration,
 	parseDuration,
-	calcDurationSecondsSinceMidnight,
 } from '../scripts/date-functions';
 import {Run} from './icons';
 

@@ -1,9 +1,9 @@
 import React, {useEffect, useState, useTransition} from 'react';
 import styled from 'styled-components';
+
 import {getMenuFiles, getMenus} from '../api';
 
 import ErrorBoundary from './error-boundary';
-
 import Loader from './loader';
 import Menu from './menu';
 

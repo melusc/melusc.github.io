@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import type {MenuResult} from '../api';
 
 const Day: React.FC<{index: number; menu: string[][]}> = ({index, menu}) => {

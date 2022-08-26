@@ -1,15 +1,15 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react';
-import {createRoot} from 'react-dom/client.js';
 import {
 	generateTable,
-	type ParsedTable,
-	operationToString,
 	LogicalSymbolFromName,
+	operationToString,
+	type ParsedTable,
 } from '@lusc/truth-table';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
+import {createRoot} from 'react-dom/client.js';
 
-import {Table} from './components/table';
 import {Input} from './components/input';
 import {RenderError} from './components/render-error';
+import {Table} from './components/table';
 
 const getHash = (): string => decodeURIComponent(location.hash.slice(1));
 
