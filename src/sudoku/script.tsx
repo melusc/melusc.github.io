@@ -113,11 +113,12 @@ const handleSudokuInput = (
 	}
 };
 
-interface AppState {
+type AppState = {
 	cells: readonly StateCell[];
 	error: undefined | string;
 	focused: number;
-}
+};
+
 class App extends React.Component<Record<string, unknown>, AppState> {
 	#sudoku = Sudoku.fromPrefilled(sudokuExamples.sudokuExpert, 9);
 
