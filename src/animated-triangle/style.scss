@@ -21,7 +21,7 @@ html {
 @keyframes path {
 	0%,
 	100% {
-		d: path('M0 10L246 246H10z');
+		d: path('M10 10L246 246H10z');
 	}
 	50% {
 		d: path('M246 10L246 246H10z');
