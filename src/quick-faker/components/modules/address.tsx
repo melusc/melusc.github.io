@@ -24,6 +24,8 @@ export const Address: React.FC = () => (
 			'state',
 			'stateAbbr',
 			'street',
+			// With fr_CH address.streetAddress calls address.streetName
+			// which is deprecated. This shouldn't be an issue though
 			'streetAddress',
 			'timeZone',
 			'zipCode',
