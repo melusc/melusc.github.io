@@ -13,7 +13,7 @@ type FakerModule<Keys extends string> = Record<Keys, () => AcceptedTypes>;
 
 type Timeout = ReturnType<typeof setTimeout>;
 
-const toString = (input: AcceptedTypes): string => {
+const toString = (input: AcceptedTypes): string | undefined => {
 	// eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
 	switch (typeof input) {
 		case 'string':
@@ -22,6 +22,8 @@ const toString = (input: AcceptedTypes): string => {
 		case 'number':
 		case 'boolean':
 			return String(input);
+		case 'undefined':
+			return undefined;
 		// no default
 	}
 
@@ -33,7 +35,8 @@ const toString = (input: AcceptedTypes): string => {
 		return input.join(',');
 	}
 
-	throw new Error(`Unexpected input ${typeof input} "${String(input)}"`);
+	console.error(`Unexpected input ${typeof input} "${String(input)}"`);
+	return undefined;
 };
 
 const RedoIcon: React.FC = () => (
@@ -121,6 +124,10 @@ const Method: React.FC<{
 		regenerate();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [locale]);
+
+	if (result === undefined) {
+		return null;
+	}
 
 	return (
 		<div className='method'>
