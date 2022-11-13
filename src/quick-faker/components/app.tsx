@@ -37,10 +37,12 @@ export const App: React.FC = () => {
 	return (
 		<div className='App'>
 			<h1 className='app-title'>Quick Faker</h1>
-			<select className='language-select' onInput={setLocale_}>
-				<option selected value='en'>
-					en
-				</option>
+			<select
+				className='language-select'
+				defaultValue='en'
+				onInput={setLocale_}
+			>
+				<option value='en'>en</option>
 
 				{locales.map(locale => (
 					<option key={locale} value={locale}>

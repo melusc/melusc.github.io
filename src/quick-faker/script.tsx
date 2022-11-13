@@ -7,4 +7,8 @@ import {App} from './components/app';
 // @ts-expect-error It is not a defined as a global
 window.faker = faker;
 
-createRoot(document.querySelector('#root')!).render(<App />);
+createRoot(document.querySelector('#root')!).render(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+);
