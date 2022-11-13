@@ -25,7 +25,6 @@ export const Address: React.FC = () => (
 			'stateAbbr',
 			'street',
 			'streetAddress',
-			'streetName',
 			'timeZone',
 			'zipCode',
 
@@ -37,6 +36,7 @@ export const Address: React.FC = () => (
 			// 'citySuffix',
 			// 'streetPrefix',
 			// 'streetSuffix',
+			// 'streetName',
 		]}
 	/>
 );
