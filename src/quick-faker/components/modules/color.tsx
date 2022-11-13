@@ -1,11 +1,10 @@
-import {faker, type UsableLocale} from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
 import React from 'react';
 
 import {Module} from '../module';
 
-export const Color: React.FC<{locale: UsableLocale}> = ({locale}) => (
+export const Color: React.FC = () => (
 	<Module
-		locale={locale}
 		title='Color'
 		module={faker.color}
 		keys={[

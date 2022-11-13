@@ -1,5 +1,6 @@
 import {faker, type UsableLocale} from '@faker-js/faker';
 import React, {useState} from 'react';
+import {LocaleContext} from './locale';
 
 import {Address} from './modules/address';
 import {Animal} from './modules/animal';
@@ -51,26 +52,28 @@ export const App: React.FC = () => {
 				))}
 			</select>
 
-			<Address locale={locale} />
-			<Animal locale={locale} />
-			<Color locale={locale} />
-			<Commerce locale={locale} />
-			<Company locale={locale} />
-			<Database locale={locale} />
-			<Datatype locale={locale} />
-			<Date locale={locale} />
-			<Finance locale={locale} />
-			<Git locale={locale} />
-			<Hacker locale={locale} />
-			<Image locale={locale} />
-			<Internet locale={locale} />
-			<Lorem locale={locale} />
-			<Music locale={locale} />
-			<Name locale={locale} />
-			<Phone locale={locale} />
-			<Random locale={locale} />
-			<System locale={locale} />
-			<Vehicle locale={locale} />
+			<LocaleContext.Provider value={locale}>
+				<Address />
+				<Animal />
+				<Color />
+				<Commerce />
+				<Company />
+				<Database />
+				<Datatype />
+				<Date />
+				<Finance />
+				<Git />
+				<Hacker />
+				<Image />
+				<Internet />
+				<Lorem />
+				<Music />
+				<Name />
+				<Phone />
+				<Random />
+				<System />
+				<Vehicle />
+			</LocaleContext.Provider>
 		</div>
 	);
 };

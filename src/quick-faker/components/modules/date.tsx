@@ -1,11 +1,10 @@
-import {faker, type UsableLocale} from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
 import React from 'react';
 
 import {Module} from '../module';
 
-export const Date: React.FC<{locale: UsableLocale}> = ({locale}) => (
+export const Date: React.FC = () => (
 	<Module
-		locale={locale}
 		title='Date'
 		module={faker.date}
 		keys={[

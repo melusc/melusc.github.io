@@ -1,5 +1,5 @@
-import {type UsableLocale} from '@faker-js/faker';
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useContext} from 'react';
+import {LocaleContext} from './locale';
 
 type AcceptedTypes =
 	| string
@@ -109,8 +109,8 @@ const ClipboardButton: React.FC<{value: string}> = ({value}) => {
 const Method: React.FC<{
 	title: string;
 	method: () => AcceptedTypes;
-	locale: UsableLocale;
-}> = ({title, method, locale}) => {
+}> = ({title, method}) => {
+	const locale = useContext(LocaleContext);
 	const [result, setResult] = useState(() => toString(method()));
 
 	const regenerate = (): void => {
@@ -141,19 +141,17 @@ export const Module = <
 	module,
 	keys,
 	title,
-	locale,
 }: {
 	module: Module;
 	keys: Keys[];
 	title: string;
-	locale: UsableLocale;
 }): React.ReactElement => (
 	<details className='module'>
 		<summary>
 			<h2 className='module-title'>{title}</h2>
 		</summary>
 		{keys.map(key => (
-			<Method key={key} title={key} method={module[key]} locale={locale} />
+			<Method key={key} title={key} method={module[key]} />
 		))}
 	</details>
 );
