@@ -1,0 +1,92 @@
+@import '../public/fonts/SamsungSans';
+
+body {
+	background: #151a1e;
+	color: #ddd;
+
+	font-family: 'Samsung Sans', sans-serif;
+	padding: 1em 2em;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.App {
+	width: 100ch;
+	max-width: 90vw;
+	display: flex;
+	flex-direction: column;
+}
+
+.language-select {
+	align-self: center;
+}
+.app-title {
+	text-align: center;
+}
+
+summary > h2 {
+	display: inline;
+	font-size: 2em;
+}
+
+.clipboard-fade {
+	animation: clipboard-fade 2500ms ease-in-out forwards;
+}
+
+.method {
+	display: grid;
+	grid-template-columns:
+		minmax(0, 1fr)
+		minmax(0, 1fr)
+		2em 2em;
+	justify-content: center;
+	gap: 4px;
+
+	margin: 1em 0;
+	font-size: 1.3em;
+
+	input,
+	button {
+		border: none;
+		outline: none;
+		color: inherit;
+		background: none;
+		font: inherit;
+	}
+
+	input {
+		border-bottom: currentColor 2px solid;
+	}
+
+	button {
+		svg {
+			height: 1.3em;
+			width: 1.3em;
+		}
+
+		padding: 0.3em;
+
+		display: grid;
+		place-items: center;
+
+		:active {
+			scale: 0.9;
+		}
+	}
+}
+
+.method-title {
+	font-size: 1.1em;
+}
+
+@keyframes clipboard-fade {
+	4%,
+	85% {
+		opacity: 1;
+	}
+	0%,
+	100% {
+		opacity: 0;
+	}
+}
