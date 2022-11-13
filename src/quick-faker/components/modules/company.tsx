@@ -18,7 +18,9 @@ export const Company: React.FC = () => (
 			'catchPhraseNoun',
 			'companySuffix',
 			'name',
-			'suffixes',
+
+			// Returns all suffixes
+			// 'suffixes',
 
 			// Deprecated
 			// 'companyName',
