@@ -81,5 +81,5 @@
 		"test": "tsc --project tsconfig.test.json && ava"
 	},
 	"version": "1.0.0",
-	"packageManager": "yarn@1.22.19"
+	"packageManager": "yarn@3.2.4"
 }
