@@ -6,6 +6,8 @@
 
 - [Convert hex and rgb](https://melusc.github.io/hex-to-rgb/)
 
+- [Quick Faker](https://melusc.github.io/quick-faker/)
+
 - [Fake Fitness App](https://melusc.github.io/fake-fitness-app/)
 
 - [Line clock](https://melusc.github.io/line-clock/)
