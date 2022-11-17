@@ -68,7 +68,7 @@
 		"type": "anchor"
 	},
 	{
-		"description": "A tool which allows you to sort json5 by it's keys.",
+		"description": "A tool which allows you to sort json5 by its keys.",
 		"href": "/sort-json5-keys/",
 		"key": "sort-json5-keys",
 		"text": "Sort JSON5",
