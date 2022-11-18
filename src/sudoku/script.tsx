@@ -180,10 +180,9 @@ class App extends React.Component<Record<string, unknown>, AppState> {
 				break;
 			}
 
-			default: {
-				// Do nothing
-				// Shouldn't be reachable
-			}
+			default:
+			// Do nothing
+			// Shouldn't be reachable
 		}
 	};
 
