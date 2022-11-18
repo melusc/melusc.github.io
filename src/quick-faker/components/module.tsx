@@ -16,14 +16,19 @@ type Timeout = ReturnType<typeof setTimeout>;
 const toString = (input: AcceptedTypes): string | undefined => {
 	// eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
 	switch (typeof input) {
-		case 'string':
+		case 'string': {
 			return input;
+		}
+
 		case 'bigint':
 		case 'number':
-		case 'boolean':
+		case 'boolean': {
 			return String(input);
-		case 'undefined':
+		}
+
+		case 'undefined': {
 			return undefined;
+		}
 		// no default
 	}
 
