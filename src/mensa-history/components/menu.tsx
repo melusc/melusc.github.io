@@ -4,12 +4,9 @@ import styled from 'styled-components';
 import type {MenuResult} from '../api';
 
 const Day: React.FC<{index: number; menu: string[][]}> = ({index, menu}) => {
-	const day = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'][
-		index
-	];
-	if (!day) {
-		throw new Error(`Unexpected index ${index}`);
-	}
+	const d = new Date();
+	d.setDate(d.getDate() - d.getDay() + (index + 1));
+	const day = d.toLocaleString('en', {weekday: 'long'});
 
 	return (
 		<div className='table-row'>
