@@ -1,0 +1,75 @@
+@use 'sass:color';
+
+.app {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 1em;
+}
+
+@media screen and (min-width: 700px) {
+	.app {
+		flex-direction: row;
+	}
+}
+
+html,
+body,
+.app {
+	height: 100%;
+}
+
+html {
+	color: #cbd5e1;
+
+	$background: #0f172a;
+	background: $background;
+	background: linear-gradient(
+		170deg,
+		$background 0%,
+		lighten($background, 5%) 80%
+	);
+
+	padding: 16px;
+
+	font-size: 20px;
+	font-family: 'JetBrains Mono', monospace;
+}
+
+@media (prefers-color-scheme: light) {
+	html {
+		color: #0f172a;
+		$background: #cbd5e1;
+		background: $background;
+		background: linear-gradient(
+			170deg,
+			$background 0%,
+			darken($background, 5%) 80%
+		);
+	}
+}
+
+textarea {
+	--outline: currentColor;
+
+	color: inherit;
+	font: inherit;
+
+	padding: 2px 12px;
+
+	border: 2px solid var(--outline);
+	border-radius: 5px;
+	background: none;
+	box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.3);
+
+	flex: 1;
+
+	&:focus,
+	&:active {
+		outline: 3px solid var(--outline);
+	}
+
+	&.invalid {
+		--outline: #ef4444;
+	}
+}

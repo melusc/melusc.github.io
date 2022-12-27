@@ -19,6 +19,13 @@
 		"type": "anchor"
 	},
 	{
+		"description": "A tool to generate TypeScript definitions from JSON. Uses @lusc/json-dts",
+		"href": "/json-dts/",
+		"key": "json-dts",
+		"text": "JSON Dts",
+		"type": "anchor"
+	},
+	{
 		"description": "An interface for @faker-js/faker to generate data on a small, manual scale.",
 		"href": "/quick-faker/",
 		"key": "quick-faker",
