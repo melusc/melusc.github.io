@@ -20,6 +20,7 @@
 	"type": "module",
 	"dependencies": {
 		"@faker-js/faker": "^7.6.0",
+		"@lusc/json-dts": "^1.0.1",
 		"@lusc/sudoku": "^3.1.0",
 		"@lusc/truth-table": "^2.2.0",
 		"clsx": "^1.2.1",
@@ -31,10 +32,11 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"rgb-hex": "^4.0.0",
-		"styled-components": "^5.3.6"
+		"styled-components": "^5.3.6",
+		"type-fest": "^3.5.0"
 	},
 	"resolutions": {
-		"terser": "5.13.1"
+		"@lusc/json-dts@^1.0.1": "patch:@lusc/json-dts@npm%3A1.0.1#./.yarn/patches/@lusc-json-dts-npm-1.0.1-35ccdb6c61.patch"
 	},
 	"devDependencies": {
 		"@ava/typescript": "^3.0.1",
@@ -56,7 +58,6 @@
 		"process": "^0.11.10",
 		"rimraf": "^3.0.2",
 		"sass": "^1.57.1",
-		"type-fest": "^3.4.0",
 		"typescript": "^4.9.4",
 		"xo": "^0.53.1"
 	},

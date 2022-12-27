@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+index c07e20d9e092b1dded0d8e9fd08aca20b2a70f95..5ba1a917f51bba0545420386f3e427896ffe412d 100644
+--- a/package.json
++++ b/package.json
+@@ -20,6 +20,7 @@
+ 	"exports": {
+ 		".": "./dist/src/index.js"
+ 	},
++	"main": "./dist/src/index.js",
+ 	"packageManager": "yarn@3.3.1",
+ 	"description": "Convert json to typescript dts",
+ 	"devDependencies": {
