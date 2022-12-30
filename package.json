@@ -35,9 +35,6 @@
 		"styled-components": "^5.3.6",
 		"type-fest": "^3.5.0"
 	},
-	"resolutions": {
-		"@lusc/json-dts@^1.0.1": "patch:@lusc/json-dts@npm%3A1.0.1#./.yarn/patches/@lusc-json-dts-npm-1.0.1-35ccdb6c61.patch"
-	},
 	"devDependencies": {
 		"@ava/typescript": "^3.0.1",
 		"@lusc/tsconfig": "^2.0.0",
@@ -82,5 +79,8 @@
 		"test": "tsc --project tsconfig.test.json && ava"
 	},
 	"version": "1.0.0",
-	"packageManager": "yarn@3.3.1"
+	"packageManager": "yarn@3.3.1",
+	"resolutions": {
+		"@lusc/json-dts@^1.0.2": "patch:@lusc/json-dts@npm%3A1.0.2#./.yarn/patches/@lusc-json-dts-npm-1.0.2-17c93e48c7.patch"
+	}
 }
