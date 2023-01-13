@@ -10,7 +10,7 @@ import type {Except} from 'type-fest';
 import {isOfType} from './util';
 
 const inputKeys = ['hex', 'red', 'green', 'blue', 'alpha'] as const;
-type InputKeys = typeof inputKeys[number];
+type InputKeys = (typeof inputKeys)[number];
 
 type Inputs = {
 	[key in InputKeys]: string;
