@@ -81,6 +81,6 @@
 	"version": "1.0.0",
 	"packageManager": "yarn@3.3.1",
 	"resolutions": {
-		"@lusc/json-dts@^1.0.2": "patch:@lusc/json-dts@npm%3A1.0.2#./.yarn/patches/@lusc-json-dts-npm-1.0.2-17c93e48c7.patch"
+		"@lusc/json-dts@^1.0.3": "patch:@lusc/json-dts@npm%3A1.0.3#./.yarn/patches/@lusc-json-dts-npm-1.0.3-62f6f4059e.patch"
 	}
 }

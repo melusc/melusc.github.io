@@ -466,13 +466,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lusc/json-dts@npm:^1.0.3":
+"@lusc/json-dts@npm:1.0.3":
   version: 1.0.3
   resolution: "@lusc/json-dts@npm:1.0.3"
   dependencies:
     camelcase: ^7.0.1
     type-fest: ^3.5.2
   checksum: 38e64045df0005d963346fa9572ac4d64b127ea9cc3ee3d99137ffa7f6125c456b4e3cf84a1cd47047e229684c118b81a4afa81a07a61e591b33d6fd6a2052da
+  languageName: node
+  linkType: hard
+
+"@lusc/json-dts@patch:@lusc/json-dts@npm%3A1.0.3#./.yarn/patches/@lusc-json-dts-npm-1.0.3-62f6f4059e.patch::locator=melusc.github.io%40workspace%3A.":
+  version: 1.0.3
+  resolution: "@lusc/json-dts@patch:@lusc/json-dts@npm%3A1.0.3#./.yarn/patches/@lusc-json-dts-npm-1.0.3-62f6f4059e.patch::version=1.0.3&hash=8d03f9&locator=melusc.github.io%40workspace%3A."
+  dependencies:
+    camelcase: ^7.0.1
+    type-fest: ^3.5.2
+  checksum: 5129692613bc8a90a17c67d434f4ba65f7bfaaebe83b8063e83e29d3daf68acd9701f23cbe3bc3355787b8923165cf1ada134d40bf6356eac2b3d973127e4185
   languageName: node
   linkType: hard
 
