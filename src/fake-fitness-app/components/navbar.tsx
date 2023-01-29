@@ -1,4 +1,3 @@
-import React from 'react';
 import '../styles/navbar.scss';
 
 import {AngleLeft, DotsVertical} from './icons';

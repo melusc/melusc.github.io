@@ -1,4 +1,4 @@
-import {makeStore} from '../public/shared/suspense-store';
+import {makeStore} from '../shared/shared/suspense-store';
 
 export type MenuResult = {
 	title: string;

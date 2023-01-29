@@ -1,5 +1,6 @@
 import React, {createRef} from 'react';
-import {createRoot} from 'react-dom/client.js';
+// eslint-disable-next-line n/file-extension-in-import
+import {createRoot} from 'react-dom/client';
 
 import {lcmArray} from './functions';
 

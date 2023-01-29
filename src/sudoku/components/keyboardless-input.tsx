@@ -1,4 +1,5 @@
-import React from 'react';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type React from 'react';
 
 const SvgEraser: React.FC = () => (
 	<svg

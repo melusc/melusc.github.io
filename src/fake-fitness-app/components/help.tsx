@@ -1,5 +1,3 @@
-import React from 'react';
-
 import '../styles/help.scss';
 
 const Help: React.FC = () => (

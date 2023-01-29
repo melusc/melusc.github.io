@@ -7,7 +7,7 @@ import {
 	isValidDuration,
 	parseDuration,
 } from '../scripts/date-functions';
-import {Run} from './icons';
+import {ReactComponent as Run} from '../icons/run.svg';
 
 import '../styles/workout-details.scss';
 

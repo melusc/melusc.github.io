@@ -1,7 +1,8 @@
 import type {ParsedTable} from '@lusc/truth-table';
 import clsx from 'clsx';
-import React from 'react';
-import styled from 'styled-components';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type React from 'react';
+import styled from 'styled-components/macro';
 
 const StyledTable = styled.table`
 	table-layout: fixed;

@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type React from 'react';
+import styled from 'styled-components/macro';
 
 const StyledInput = styled.input`
 	font: inherit;

@@ -50,10 +50,10 @@ jobs:
         run: yarn test
 
       - name: Type checking
-        run: yarn tsc --noEmit
+        run: yarn check
 
       - name: Build
-        run: yarn run build-only
+        run: yarn vite build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

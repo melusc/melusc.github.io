@@ -3,21 +3,6 @@
 	"extends": ["xo-react"],
 	"overrides": [
 		{
-			"env": ["es2020", "node"],
-			"files": ["./test/**/*.test.ts"],
-			"rules": {
-				"max-nested-callbacks": "off",
-				"no-mixed-operators": "off",
-				"import/extensions": "error"
-			}
-		},
-		{
-			"files": ["./src/**/*"],
-			"rules": {
-				"node/prefer-global/process": "off"
-			}
-		},
-		{
 			"files": ["**/*.{ts,tsx}"],
 			"rules": {
 				"@typescript-eslint/indent": "off",
@@ -31,7 +16,8 @@
 				],
 				"@typescript-eslint/naming-convention": "off",
 				"import/extensions": "off",
-				"@typescript-eslint/explicit-function-return-type": "error"
+				"@typescript-eslint/explicit-function-return-type": "error",
+				"react/react-in-jsx-scope": "off"
 			}
 		}
 	],
@@ -61,5 +47,8 @@
 				"unnamedComponents": "arrow-function"
 			}
 		]
+	},
+	"settings": {
+		"svelte3/typescript": true
 	}
 }

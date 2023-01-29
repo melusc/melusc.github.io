@@ -1,22 +1,5 @@
 {
 	"author": "lusc",
-	"ava": {
-		"environmentVariables": {
-			"NODE_ENV": "AVA_TESTING"
-		},
-		"files": [
-			"src/**/test/*.ts"
-		],
-		"typescript": {
-			"compile": false,
-			"extensions": [
-				"ts"
-			],
-			"rewritePaths": {
-				"src/": "dist/test/"
-			}
-		}
-	},
 	"type": "module",
 	"dependencies": {
 		"@faker-js/faker": "^7.6.0",
@@ -36,26 +19,29 @@
 		"type-fest": "^3.5.3"
 	},
 	"devDependencies": {
-		"@ava/typescript": "^3.0.1",
-		"@lusc/tsconfig": "^2.0.0",
-		"@parcel/transformer-sass": "^2.8.3",
-		"@parcel/transformer-svg-react": "^2.8.3",
+		"@lusc/tsconfig": "^2.1.0",
+		"@sveltejs/vite-plugin-svelte": "^2.0.2",
 		"@types/lodash-es": "^4.17.6",
 		"@types/node": "^18.11.18",
 		"@types/react": "^18.0.27",
 		"@types/react-dom": "^18.0.10",
 		"@types/styled-components": "^5.1.26",
-		"ava": "^5.1.1",
-		"babel-plugin-styled-components": "^2.0.7",
+		"@vitejs/plugin-react": "^3.0.1",
 		"eslint-config-xo-react": "^0.27.0",
 		"eslint-plugin-react": "^7.32.1",
 		"eslint-plugin-react-hooks": "^4.6.0",
-		"parcel": "^2.8.3",
+		"fast-glob": "^3.2.12",
 		"prettier": "^2.8.3",
-		"process": "^0.11.10",
+		"prettier-plugin-svelte": "^2.9.0",
 		"rimraf": "^4.1.2",
 		"sass": "^1.57.1",
+		"svelte": "^3.55.1",
+		"svelte-check": "^3.0.3",
 		"typescript": "^4.9.4",
+		"vite": "^4.0.4",
+		"vite-plugin-babel-macros": "^1.0.6",
+		"vite-plugin-svgr": "^2.4.0",
+		"vitest": "^0.28.3",
 		"xo": "^0.53.1"
 	},
 	"license": "MIT",
@@ -70,13 +56,11 @@
 	},
 	"private": true,
 	"scripts": {
-		"build": "yarn fmt && yarn test && tsc --noEmit && yarn build-only",
-		"build-only": "rimraf dist/www && yarn parcel:b",
-		"parcel:w": "parcel serve --dist-dir dist/www --no-cache \"src/**/*.html\"",
-		"parcel:b": "parcel build --dist-dir dist/www --no-cache \"src/**/*.html\"",
+		"build": "yarn fmt && yarn test && yarn check && vite build",
 		"fmt": "prettier -w . && xo --fix",
-		"start": "yarn parcel:w",
-		"test": "tsc --project tsconfig.test.json && ava"
+		"dev": "vite dev",
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"test": "vitest run"
 	},
 	"version": "1.0.0",
 	"packageManager": "yarn@3.3.1",

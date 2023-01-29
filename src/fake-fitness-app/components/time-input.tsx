@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import * as dayjs from 'dayjs';
-import * as customParseFormat from 'dayjs/plugin/customParseFormat';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import React, {useState} from 'react';
 
 import {timeValid, toTime} from '../scripts/date-functions';
