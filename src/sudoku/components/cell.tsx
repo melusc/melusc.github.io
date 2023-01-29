@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import React from 'react';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type React from 'react';
 
 export const Cell: React.FC<{
 	isValid: boolean;

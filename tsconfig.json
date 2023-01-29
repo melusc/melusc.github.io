@@ -1,11 +1,33 @@
 {
+	"extends": "@lusc/tsconfig",
 	"compilerOptions": {
+		"moduleResolution": "node",
+		"importsNotUsedAsValues": "error",
+		"preserveValueImports": true,
+		"sourceMap": true,
+
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+
+		"target": "ESNext",
+		"useDefineForClassFields": true,
+		"module": "ESNext",
 		"resolveJsonModule": true,
-		"jsxFactory": "React.createElement",
-		"jsxFragmentFactory": "React.Fragment",
-		"types": ["styled-components/cssprop"],
-		"moduleResolution": "Node"
+		"allowJs": true,
+		"checkJs": true,
+		"isolatedModules": true,
+		"rootDir": "src",
+		"noEmit": true,
+		"jsx": "react-jsx",
+		"jsxImportSource": "react"
 	},
-	"include": ["src/**/*"],
-	"extends": "@lusc/tsconfig"
+	"include": [
+		"src/**/*.d.ts",
+		"src/**/*.ts",
+		"src/**/*.js",
+		"src/**/*.svelte",
+		"src/**/*.tsx"
+	],
+	"references": [{"path": "./tsconfig.node.json"}]
 }

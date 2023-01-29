@@ -1,5 +1,6 @@
 import {faker} from '@faker-js/faker';
-import React from 'react';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type React from 'react';
 
 import {Module} from '../module';
 

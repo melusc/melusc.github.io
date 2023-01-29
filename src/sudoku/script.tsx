@@ -1,6 +1,7 @@
 import {Sudoku, type SubscriptionCallback} from '@lusc/sudoku';
 import React from 'react';
-import {createRoot} from 'react-dom/client.js';
+// eslint-disable-next-line n/file-extension-in-import
+import {createRoot} from 'react-dom/client';
 
 import {Cell} from './components/cell';
 import {KeyboardlessInput} from './components/keyboardless-input';

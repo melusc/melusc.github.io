@@ -31,7 +31,8 @@
 				],
 				"@typescript-eslint/naming-convention": "off",
 				"import/extensions": "off",
-				"@typescript-eslint/explicit-function-return-type": "error"
+				"@typescript-eslint/explicit-function-return-type": "error",
+				"react/react-in-jsx-scope": "off"
 			}
 		}
 	],

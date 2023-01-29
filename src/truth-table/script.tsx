@@ -5,7 +5,8 @@ import {
 	type ParsedTable,
 } from '@lusc/truth-table';
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-import {createRoot} from 'react-dom/client.js';
+// eslint-disable-next-line n/file-extension-in-import
+import {createRoot} from 'react-dom/client';
 
 import {Input} from './components/input';
 import {RenderError} from './components/render-error';

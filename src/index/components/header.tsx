@@ -1,6 +1,4 @@
-import React from 'react';
-
-import Github from 'jsx:../icons/github.svg';
+import {ReactComponent as Github} from '../icons/github.svg';
 
 import '../styles/header.scss';
 

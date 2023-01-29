@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {Photo} from './icons';
 
 import '../styles/workout-images.scss';

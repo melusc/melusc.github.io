@@ -2,7 +2,7 @@
 @import '../vars';
 
 main {
-	display: flex;
+	display: flex !important;
 	justify-content: center;
 	/* Margin would seem more appropriate but on mobile the background color doesn't apply to that section */
 	padding: 2em 0;

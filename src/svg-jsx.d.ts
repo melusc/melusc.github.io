@@ -1,6 +1,5 @@
-declare module 'jsx:*' {
+declare module '*.svg' {
 	import type React from 'react';
 
-	const SvgComponent: React.FC<React.SVGProps<SVGElement>>;
-	export default SvgComponent;
+	export const ReactComponent: React.FC<React.SVGProps<SVGElement>>;
 }

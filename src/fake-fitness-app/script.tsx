@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {createRoot} from 'react-dom/client.js';
+// eslint-disable-next-line n/file-extension-in-import
+import {createRoot} from 'react-dom/client';
 
 import Help from './components/help';
 import MainAppDateTime from './components/main-app-date-time';
