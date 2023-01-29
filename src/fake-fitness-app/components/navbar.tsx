@@ -1,6 +1,6 @@
 import '../styles/navbar.scss';
 
-import {DotsVertical, AngleLeft} from './icons';
+import {AngleLeft, DotsVertical} from './icons';
 
 const Navbar: React.FC = () => (
 	<div className='navbar'>
