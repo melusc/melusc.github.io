@@ -4204,6 +4204,7 @@ __metadata:
     json5: ^2.2.3
     lodash-es: ^4.17.21
     prettier: ^2.8.3
+    prettier-plugin-svelte: ^2.9.0
     react: ^18.2.0
     react-dom: ^18.2.0
     rgb-hex: ^4.0.0
@@ -4969,6 +4970,16 @@ __metadata:
   dependencies:
     fast-diff: ^1.1.2
   checksum: 00ce8011cf6430158d27f9c92cfea0a7699405633f7f1d4a45f07e21bf78e99895911cbcdc3853db3a824201a7c745bd49bfea8abd5fb9883e765a90f74f8392
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-svelte@npm:^2.9.0":
+  version: 2.9.0
+  resolution: "prettier-plugin-svelte@npm:2.9.0"
+  peerDependencies:
+    prettier: ^1.16.4 || ^2.0.0
+    svelte: ^3.2.0
+  checksum: 2d74a960783a1974a4818ebac25145ee26095c5652a777584b7eb8f08907702160263538396c03dce7f9bcd5b313f914b234eb809ccc1550a5933fc5e919ca88
   languageName: node
   linkType: hard
 
