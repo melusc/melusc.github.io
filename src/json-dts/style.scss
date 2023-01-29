@@ -1,6 +1,6 @@
 @use 'sass:color';
 
-.app {
+#app {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -8,14 +8,14 @@
 }
 
 @media screen and (min-width: 700px) {
-	.app {
+	#app {
 		flex-direction: row;
 	}
 }
 
 html,
 body,
-.app {
+#app {
 	height: 100%;
 }
 
