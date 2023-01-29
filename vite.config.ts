@@ -22,7 +22,7 @@ export default defineConfig({
 	],
 	root: 'src',
 	build: {
-		outDir: '../dist/www',
+		outDir: '../dist',
 		emptyOutDir: true,
 		rollupOptions: {
 			input: Object.fromEntries(entryPoints.map(path => [path, `src/${path}`])),
