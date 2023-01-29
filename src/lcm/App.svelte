@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {gcdArray} from './functions';
+	import {lcmArray} from './functions';
 
 	const enum States {
 		valid,
@@ -53,7 +53,7 @@
 			const uniques = [...new Set(newVals)];
 			uniques.sort((a, b) => a - b);
 
-			output = gcdArray(uniques);
+			output = lcmArray(uniques);
 			state = States.valid;
 		}
 	}
@@ -69,6 +69,6 @@
 	{:else if state === States.notAnInteger}
 		<div>One or more numbers were not an integer</div>
 	{:else if state === States.valid}
-		<div>GCD: {output || 'Enter some numbers'}</div>
+		<div>LCM: {output || 'Enter some numbers'}</div>
 	{/if}
 </div>
