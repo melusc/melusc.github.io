@@ -123,6 +123,7 @@ type AppState = {
 class App extends React.Component<Record<string, unknown>, AppState> {
 	#sudoku = Sudoku.fromPrefilled(sudokuExamples.sudokuExpert, 9);
 
+	// eslint-disable-next-line @typescript-eslint/member-ordering
 	override state: AppState = {
 		cells: toStateCells(this.#sudoku),
 		error: undefined,
