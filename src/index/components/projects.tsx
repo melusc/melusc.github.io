@@ -7,7 +7,6 @@ type ProjectType = (
 	| {
 			type: 'anchor';
 			href: string;
-			short_description: string;
 			description: string;
 	  }
 	| {
