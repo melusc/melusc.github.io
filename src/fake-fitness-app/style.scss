@@ -5,7 +5,7 @@ body {
 	margin: 0;
 	padding: 0;
 
-	background-color: $background-grey;
+	background-color: var(--background-grey);
 
 	font-family: 'Samsung Sans', sans-serif;
 }
@@ -44,7 +44,7 @@ button {
 
 	font-size: 3vmin;
 
-	color: $text-black;
+	color: var(--text-black);
 
 	> div {
 		margin: 0.75em 0;
@@ -60,12 +60,12 @@ button {
 
 	label {
 		margin-right: 3px;
-		color: $text-white;
+		color: var(--text-white);
 	}
 }
 
 .fake-app {
-	background-color: $app-background;
+	background-color: var(--app-background);
 
 	grid-column: 2 / 3;
 
@@ -90,7 +90,7 @@ button {
 }
 
 .invalid {
-	color: $red;
+	color: var(--red);
 }
 
 .icon-interactive {
@@ -98,7 +98,7 @@ button {
 }
 
 .vertical-border {
-	border-right: 1px solid $border-color;
+	border-right: 1px solid var(--border-color);
 
 	&.height-12 {
 		height: 1.7vmin;
