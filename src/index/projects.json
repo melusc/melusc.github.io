@@ -82,13 +82,6 @@
 		"type": "anchor"
 	},
 	{
-		"description": "A page where you can see the amount of time left until summer holidays (in Switzerland).",
-		"href": "/time-to-summer-holidays/",
-		"key": "time-to-summer-holidays",
-		"text": "Countdown to Summer Holidays",
-		"type": "anchor"
-	},
-	{
 		"description": "A triangle that moves around and flashes.",
 		"href": "/animated-triangle/",
 		"key": "animated-triangle",
