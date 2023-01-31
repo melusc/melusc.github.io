@@ -5,6 +5,15 @@
 	const dispatch = createEventDispatcher<{
 		input: string;
 	}>();
+
+	function dispatchSpace() {
+		dispatch('input', ' ');
+	}
+	function dispatchIndex(index: number): () => void {
+		return (): void => {
+			dispatch('input', `${index + 1}`);
+		};
+	}
 </script>
 
 <div class="keyboardless-inputs">
@@ -12,12 +21,8 @@
 		<div
 			class="keyboardless-input"
 			title={`${index + 1}`}
-			on:click={() => {
-				dispatch('input', `${index + 1}`);
-			}}
-			on:keydown={() => {
-				dispatch('input', `${index + 1}`);
-			}}
+			on:click={dispatchIndex(index)}
+			on:keydown={dispatchIndex(index)}
 		>
 			{index + 1}
 		</div>
@@ -25,12 +30,8 @@
 	<div
 		class="keyboardless-input input-eraser"
 		title="Clear cell"
-		on:click={() => {
-			dispatch('input', ' ');
-		}}
-		on:keydown={() => {
-			dispatch('input', ' ');
-		}}
+		on:click={dispatchSpace}
+		on:keydown={dispatchSpace}
 	>
 		<Eraser />
 	</div>
