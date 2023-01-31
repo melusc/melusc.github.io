@@ -23,3 +23,9 @@
 		</option>
 	{/each}
 </select>
+
+<style>
+	.language-select {
+		align-self: center;
+	}
+</style>

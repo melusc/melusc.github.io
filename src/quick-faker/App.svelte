@@ -23,29 +23,33 @@
 	import Vehicle from './components/modules/vehicle.svelte';
 </script>
 
-<div class="App">
-	<h1 class="app-title">Quick Faker</h1>
+<h1 class="app-title">Quick Faker</h1>
 
-	<Locale />
+<Locale />
 
-	<Address />
-	<Animal />
-	<Color />
-	<Commerce />
-	<Company />
-	<Database />
-	<Datatype />
-	<Date />
-	<Finance />
-	<Git />
-	<Hacker />
-	<Image />
-	<Internet />
-	<Lorem />
-	<Music />
-	<Name />
-	<Phone />
-	<Random />
-	<System />
-	<Vehicle />
-</div>
+<Address />
+<Animal />
+<Color />
+<Commerce />
+<Company />
+<Database />
+<Datatype />
+<Date />
+<Finance />
+<Git />
+<Hacker />
+<Image />
+<Internet />
+<Lorem />
+<Music />
+<Name />
+<Phone />
+<Random />
+<System />
+<Vehicle />
+
+<style>
+	.app-title {
+		text-align: center;
+	}
+</style>

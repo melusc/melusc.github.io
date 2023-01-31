@@ -24,3 +24,10 @@
 		{/each}
 	{/if}
 </details>
+
+<style>
+	summary > h2 {
+		display: inline;
+		font-size: 2em;
+	}
+</style>

@@ -58,3 +58,20 @@
 		/>
 	</svg>
 </button>
+
+<style>
+	.clipboard-fade {
+		animation: clipboard-fade 2500ms ease-in-out forwards;
+	}
+
+	@keyframes clipboard-fade {
+		4%,
+		85% {
+			opacity: 1;
+		}
+		0%,
+		100% {
+			opacity: 0;
+		}
+	}
+</style>
