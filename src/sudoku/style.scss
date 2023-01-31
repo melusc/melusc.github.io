@@ -1,19 +1,18 @@
-@use 'sass:color';
-@use 'sass:math';
-
-$thick-border: 2px solid #344861;
-$thin-border: 1px solid #aaa;
-$valid: #3fb950;
-$warn: #fe8a4f;
-$invalid: #dc3545;
-$hover-invalid: #bb2d3b;
-$info: #0d6efd;
-$hover-info: #0b5ed7;
-$focused-cell-bg: #bbdefb;
-$hover-cell-bg: #ddeeff;
-$white: #fff;
-$text: #344861;
-$transition-properties: 0.15s ease-in-out;
+:root {
+	--thick-border: 2px solid #344861;
+	--thin-border: 1px solid #aaa;
+	--valid: #3fb950;
+	--warn: #fe8a4f;
+	--invalid: #dc3545;
+	--hover-invalid: #bb2d3b;
+	--info: #0d6efd;
+	--hover-info: #0b5ed7;
+	--focused-cell-bg: #bbdefb;
+	--hover-cell-bg: #ddeeff;
+	--white: #fff;
+	--text: #344861;
+	--transition-properties: 0.15s ease-in-out;
+}
 
 html,
 body {
@@ -25,13 +24,13 @@ body {
 
 	line-height: 1.4;
 
-	color: $text;
-	background-color: $white;
+	color: var(--text);
+	background-color: var(--white);
 
 	user-select: none;
 }
 
-.App {
+#app {
 	padding: 5px 1em;
 	font-size: 2.2em;
 	font-family: 'Open Sans', 'Open-Sans', sans-serif;
@@ -51,164 +50,8 @@ body {
 	min-height: 100%;
 }
 
-.invalid-input {
-	color: $invalid;
-}
-
-.sudoku {
-	grid-area: sudoku;
-
-	display: grid;
-	grid-template: repeat(9, 1fr) / repeat(9, 1fr);
-
-	width: 80vmin;
-	min-height: 80vmin;
-
-	border: $thick-border;
-	border-width: 1px;
-	border-radius: 2px;
-}
-.cell {
-	border: $thin-border;
-	text-align: center;
-
-	display: flex;
-	flex: 1 1 0;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-
-	&:nth-child(3n) {
-		border-right: $thick-border;
-	}
-	&:nth-child(9n + 1) {
-		border-left: $thick-border;
-	}
-
-	@for $i from 0 through 2 {
-		$lower-index: ($i * 27) + 1; // 1-based indexing
-		$upper-index: $lower-index + 8; // inclusive, so first one and the next 8
-
-		&:nth-child(n + #{$lower-index}):nth-child(-n + #{$upper-index}) {
-			border-top: $thick-border;
-		}
-	}
-
-	&:nth-child(n + 73) {
-		border-bottom: $thick-border;
-	}
-
-	&.focused-cell {
-		background-color: $focused-cell-bg;
-	}
-}
-
-.error {
-	margin-top: 0.3em;
-	text-align: center;
-
-	grid-area: error;
-	justify-self: center;
-	margin-left: 5px;
-
-	font-size: 0.9em;
-
-	color: $invalid;
-
-	cursor: text;
-	user-select: text;
-}
-
-.solve {
-	border: 2px solid $info;
-	color: $info;
-
-	grid-area: solve;
-
-	&:hover {
-		color: $white;
-		background-color: $info;
-	}
-}
-
-.clear {
-	border: 2px solid $invalid;
-	color: $invalid;
-
-	grid-area: clear;
-
-	&:hover {
-		color: $white;
-		background-color: $invalid;
-	}
-}
-
-.solve,
-.clear {
-	font: inherit;
-
-	border-radius: 5px;
-	background: none;
-	margin-top: 10px;
-	width: 100%;
-	outline: none;
-
-	cursor: pointer;
-
-	transition: $transition-properties transform,
-		$transition-properties background-color, $transition-properties color;
-
-	&:active {
-		transform: scale(0.98, 0.98);
-	}
-}
-
-.keyboardless-inputs {
-	grid-area: inputs;
-	margin-left: 4px;
-	border-radius: 3px;
-	border: $thick-border;
-
-	.keyboardless-input {
-		text-align: center;
-
-		width: 1.5em;
-		height: 1.5em;
-
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		cursor: pointer;
-
-		transition: $transition-properties background-color;
-
-		border-bottom: $thick-border;
-
-		&:last-child {
-			border-bottom: none;
-		}
-
-		&:hover {
-			background-color: #e9ecef;
-		}
-
-		.svg-eraser-fill {
-			width: 0.8em;
-			height: 0.8em;
-		}
-	}
-}
-
-@media (min-width: 500px) {
-	// Only here because it doesn't work and looks weird on mobile
-	.cell:hover:not(.focused-cell) {
-		background-color: $hover-cell-bg;
-	}
-}
-
 @media (max-width: 600px) {
-	.App {
+	#app {
 		grid-template:
 			'sudoku sudoku sudoku'
 			'solve solve solve'
@@ -218,45 +61,12 @@ body {
 		grid-template-columns: repeat(3, 1fr);
 
 		justify-items: center;
-	}
-
-	.clear,
-	.solve {
-		font-size: 30px;
-	}
-
-	.App {
 		font-size: 27px;
-	}
-
-	.keyboardless-inputs {
-		margin-top: 10px;
-		border-radius: 5px;
-		justify-self: center;
-
-		font-size: 33px;
-
-		width: max-content;
-
-		display: grid;
-		grid-gap: 2px;
-		box-sizing: border-box;
-
-		.keyboardless-input {
-			box-shadow: 0 0 0 2px #344861;
-			border-bottom: none;
-		}
-
-		grid-template: repeat(4, 1fr) / repeat(3, 1fr);
-
-		.input-eraser {
-			grid-area: 4 / 2;
-		}
 	}
 }
 
 @media (max-width: 500px) {
-	.App {
+	#app {
 		font-size: 22px;
 	}
 }
