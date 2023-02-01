@@ -1,8 +1,5 @@
 import {svelte} from '@sveltejs/vite-plugin-svelte';
-import react from '@vitejs/plugin-react';
 import {defineConfig} from 'vite';
-import svgr from 'vite-plugin-svgr';
-import macrosPlugin from 'vite-plugin-babel-macros';
 
 import glob from 'fast-glob';
 
@@ -16,9 +13,6 @@ export default defineConfig({
 		svelte({
 			configFile: '../svelte.config.js',
 		}),
-		react(),
-		svgr(),
-		macrosPlugin(),
 	],
 	root: 'src',
 	build: {

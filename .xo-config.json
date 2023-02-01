@@ -1,6 +1,5 @@
 {
 	"envs": ["browser", "es2021"],
-	"extends": ["xo-react"],
 	"overrides": [
 		{
 			"files": ["**/*.{ts,tsx}"],
@@ -16,8 +15,7 @@
 				],
 				"@typescript-eslint/naming-convention": "off",
 				"import/extensions": "off",
-				"@typescript-eslint/explicit-function-return-type": "error",
-				"react/react-in-jsx-scope": "off"
+				"@typescript-eslint/explicit-function-return-type": "error"
 			}
 		}
 	],
@@ -31,22 +29,7 @@
 				"allow": ["**/*.scss"]
 			}
 		],
-		"react/jsx-curly-newline": "off",
-		"react/jsx-indent": "off",
-		"react/jsx-tag-spacing": [
-			"error",
-			{
-				"beforeSelfClosing": "always"
-			}
-		],
-		"capitalized-comments": "off",
-		"react/function-component-definition": [
-			"error",
-			{
-				"namedComponents": "arrow-function",
-				"unnamedComponents": "arrow-function"
-			}
-		]
+		"capitalized-comments": "off"
 	},
 	"settings": {
 		"svelte3/typescript": true
