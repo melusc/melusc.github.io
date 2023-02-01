@@ -1,10 +1,10 @@
-$gradient: (#12c2e9, #c471ed, #f7797d) !default;
+@import 'vars';
 
 @function reverse($list) {
 	$result: ();
 
-	@for $i from length($list) * -1 through -1 {
-		$result: append($result, nth($list, abs($i)));
+	@for $i from -(length($list)) through -1 {
+		$result: append($result, nth($list, -$i));
 	}
 
 	@return $result;
@@ -22,7 +22,7 @@ $gradient: (#12c2e9, #c471ed, #f7797d) !default;
 
 $bg-width: 500px;
 $height: 28px;
-$display-gradient: false; // Show gradient seperately instead of as text bg
+$display-gradient: false; // Show gradient seperately instead of as text bg, for debugging
 
 @keyframes rainbow-animation {
 	from {
