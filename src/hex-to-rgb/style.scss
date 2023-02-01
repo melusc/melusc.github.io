@@ -2,12 +2,17 @@
 
 @use '../shared/fonts/OpenSans-Regular';
 
-$red: #dc3545;
-$cyan: #3c79b2;
-$font-colour: #111;
-$gradient: (#12c2e9, #c471ed, #f7797d);
+@use 'rainbow';
 
-@use 'rainbow' with($gradient: $gradient);
+@import 'vars';
+
+:root {
+	--red: #{$red};
+	--cyan: #{$cyan};
+	--text: #{$text};
+	--gradient: #{$gradient};
+	--background: #{$background};
+}
 
 * {
 	box-sizing: border-box;
@@ -18,7 +23,7 @@ html {
 	overflow: hidden;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1.3em;
-	color: $font-colour;
+	color: var(--text);
 	line-height: 1.25;
 
 	background-color: white;
@@ -28,7 +33,7 @@ input {
 	padding: 0.15em 0.3em;
 	font-size: 0.9em;
 
-	color: $font-colour;
+	color: var(--text);
 	background-color: transparent;
 
 	outline: 0;
@@ -36,29 +41,6 @@ input {
 	border-bottom: 1px solid #111;
 	transition: border-bottom 0.3s ease-in-out;
 	border-radius: 0;
-
-	+ .input-pseudo-border {
-		$height: 3px;
-
-		position: relative;
-		top: -$height - 0.5px;
-		margin-bottom: -$height - 1px;
-
-		border: none;
-		border-bottom: $height solid;
-		border-image: linear-gradient(to right, $gradient);
-		border-image-slice: 1;
-
-		transition: transform 0.3s ease-in-out;
-
-		transform: scaleX(0);
-		transform-origin: 100% 0;
-	}
-
-	&:focus + .input-pseudo-border {
-		transform: scaleX(1);
-		transform-origin: 0 0;
-	}
 }
 
 .inputs-rows {
@@ -84,8 +66,8 @@ input {
 
 .invalid,
 :invalid {
-	color: $red;
-	border-color: $red;
+	color: var(--red);
+	border-color: var(--red);
 }
 
 // Hide number spin buttons (arrows)
@@ -99,9 +81,9 @@ input[type='number'] {
 }
 
 .floating-box {
-	background-color: #fff;
+	background-color: var(--background);
 	border-radius: 3px;
-	border: 3px solid $cyan;
+	border: 3px solid var(--cyan);
 
 	padding: 0 4%;
 
