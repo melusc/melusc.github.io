@@ -1,5 +1,7 @@
 {
 	"envs": ["browser", "es2021"],
+	"extends": ["plugin:svelte/recommended"],
+	"extensions": [".svelte"],
 	"overrides": [
 		{
 			"files": ["**/*.{ts,tsx}"],
@@ -17,6 +19,24 @@
 				"import/extensions": "off",
 				"@typescript-eslint/explicit-function-return-type": "error"
 			}
+		},
+		{
+			"files": ["**/*.svelte"],
+			"parser": "svelte-eslint-parser",
+			"parserOptions": {
+				"parser": {
+					"typescript": "@typescript-eslint/parser",
+					"ts": "@typescript-eslint/parser"
+				}
+			}
+		},
+		{
+			"files": ["**/*.{ts,tsx}"],
+			"parser": "@typescript-eslint/parser",
+			"parserOptions": {
+				"project": "./tsconfig.json",
+				"extraFileExtensions": [".svelte"]
+			}
 		}
 	],
 	"rules": {
@@ -30,8 +50,5 @@
 			}
 		],
 		"capitalized-comments": "off"
-	},
-	"settings": {
-		"svelte3/typescript": true
 	}
 }
