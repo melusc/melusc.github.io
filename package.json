@@ -11,18 +11,18 @@
 		"json5": "^2.2.3",
 		"lodash-es": "^4.17.21",
 		"rgb-hex": "^4.0.0",
-		"type-fest": "^3.5.4"
+		"type-fest": "^3.5.7"
 	},
 	"devDependencies": {
 		"@lusc/tsconfig": "^2.1.0",
 		"@sveltejs/vite-plugin-svelte": "^2.0.2",
 		"@types/lodash-es": "^4.17.6",
-		"@types/node": "^18.11.18",
-		"@typescript-eslint/parser": "^5.50.0",
+		"@types/node": "^18.13.0",
+		"@typescript-eslint/parser": "^5.51.0",
 		"eslint": "^8.33.0",
-		"eslint-plugin-svelte": "^2.15.0",
+		"eslint-plugin-svelte": "^2.17.0",
 		"fast-glob": "^3.2.12",
-		"prettier": "^2.8.3",
+		"prettier": "^2.8.4",
 		"prettier-plugin-svelte": "^2.9.0",
 		"rimraf": "^4.1.2",
 		"sass": "^1.58.0",
@@ -30,7 +30,7 @@
 		"svelte-check": "^3.0.3",
 		"typescript": "^4.9.5",
 		"vite": "^4.1.1",
-		"vitest": "^0.28.3",
+		"vitest": "^0.28.4",
 		"xo": "^0.53.1"
 	},
 	"license": "MIT",
