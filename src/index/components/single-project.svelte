@@ -23,7 +23,7 @@
 
 <style lang="scss">
 	@use 'sass:color';
-	@import '../vars';
+	@import '../../common/theme.scss';
 
 	.title {
 		grid-template-columns: 2em auto;

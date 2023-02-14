@@ -15,7 +15,7 @@
 
 <style lang="scss">
 	@use 'sass:color';
-	@import '../vars';
+	@import '../../common/theme.scss';
 
 	header {
 		background-color: $card;
