@@ -1,4 +1,5 @@
 import json5 from 'json5';
+import {sortJson} from './sort';
 
 const input = document.querySelector<HTMLTextAreaElement>('#input')!;
 const output = document.querySelector<HTMLTextAreaElement>('#output')!;
@@ -11,7 +12,7 @@ const indentWrapper
 let shouldIndent: boolean;
 let amountIndent: number | string;
 
-const updateVals = (): void => {
+function updateVals(): void {
 	shouldIndent = prettyPrintInput.checked;
 
 	const parsed = Number(indent.value);
@@ -19,39 +20,14 @@ const updateVals = (): void => {
 
 	indent.disabled = !shouldIndent;
 	indentWrapper.classList.toggle('input-active', !shouldIndent);
-};
+}
 
 updateVals();
 
-const sortJSON = (value: unknown): unknown => {
-	if (typeof value !== 'object' || value === null) {
-		return value;
-	}
-
-	if (Array.isArray(value)) {
-		return value.map(value => sortJSON(value));
-	}
-
-	const keys = Object.keys(value).sort((a, b) =>
-		a.localeCompare(b, 'en', {
-			sensitivity: 'case',
-			caseFirst: 'lower',
-		}),
-	);
-
-	const object: Record<string, unknown> = {};
-
-	for (const key of keys) {
-		object[key] = sortJSON((value as Record<string, unknown>)[key]);
-	}
-
-	return object;
-};
-
-const prettify = (): void => {
+function prettify(): void {
 	errorDiv.textContent = '';
 	try {
-		const json = sortJSON(json5.parse(input.value));
+		const json = sortJson(json5.parse(input.value));
 
 		output.value = JSON.stringify(
 			json,
@@ -62,13 +38,13 @@ const prettify = (): void => {
 		errorDiv.textContent
 			= error instanceof Error ? error.message : String(error);
 	}
-};
+}
 
-const updateFunction = (): void => {
+function updateFunction(): void {
 	updateVals();
 
 	prettify();
-};
+}
 
 prettyPrintInput.addEventListener('change', updateFunction);
 
