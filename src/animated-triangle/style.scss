@@ -1,5 +1,7 @@
 @use 'sass:math';
 
+@import '../common/theme.scss';
+
 svg {
 	width: 100vmin;
 	height: 100vmin;
@@ -15,7 +17,7 @@ html {
 	margin: 0;
 }
 html {
-	background-color: steelblue;
+	background-color: $bg;
 }
 
 @keyframes path {
