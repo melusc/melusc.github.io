@@ -1,8 +1,6 @@
 @use 'sass:math';
 
-$bg: #83adb5;
-$bg-box: #f5f5f5;
-$text: #428bca;
+@import '../common/theme.scss';
 
 html,
 body {
@@ -26,23 +24,27 @@ body {
 .box {
 	text-align: center;
 	width: 40ch;
-	padding: 1em;
-	border: 2px solid $text;
-	border-radius: 4px;
-	background-color: $bg-box;
+	padding: 1.5em 3em;
+	border-radius: 6px;
+	background-color: $card;
+
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+
+	box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 input {
-	$padding: 0.5em;
 	font-size: inherit;
-	background-color: $bg-box;
+	background-color: $card;
+	color: inherit;
+
 	outline: none;
 	border: none;
 	border-bottom: 2px solid $text;
 	margin-bottom: 1.5em;
 
-	width: calc(100% - #{2 * $padding});
 	text-align: center;
-	padding: math.div($padding, 2) $padding;
-	color: $text;
+	padding: 0.25em 0.5em;
 }
