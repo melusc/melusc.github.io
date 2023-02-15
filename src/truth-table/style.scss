@@ -1,11 +1,12 @@
 @use 'sass:math';
 
-@import 'vars';
+@import '../common/theme.scss';
+@import './vars.scss';
 
 html {
 	font-family: 'Open Sans';
 	font-size: 23px;
-	background-color: #0d1117;
-	color: #ddd;
+	background-color: $bg;
+	color: $text;
 	padding: 0.5em 1em;
 }
