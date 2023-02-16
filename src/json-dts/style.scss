@@ -1,5 +1,7 @@
 @use 'sass:color';
 
+@import '../common/theme.scss';
+
 #app {
 	display: flex;
 	flex-direction: column;
@@ -22,13 +24,8 @@ body,
 html {
 	color: #cbd5e1;
 
-	$background: #0f172a;
-	background: $background;
-	background: linear-gradient(
-		170deg,
-		$background 0%,
-		lighten($background, 5%) 80%
-	);
+	background: $bg;
+	background: linear-gradient(170deg, $bg 0%, lighten($bg, 5%) 80%);
 
 	padding: 16px;
 
@@ -36,22 +33,10 @@ html {
 	font-family: 'JetBrains Mono', monospace;
 }
 
-@media (prefers-color-scheme: light) {
-	html {
-		color: #0f172a;
-		$background: #cbd5e1;
-		background: $background;
-		background: linear-gradient(
-			170deg,
-			$background 0%,
-			darken($background, 5%) 80%
-		);
-	}
-}
-
 textarea {
-	--outline: currentColor;
+	--outline: #{$text};
 
+	resize: none;
 	color: inherit;
 	font: inherit;
 
@@ -70,6 +55,6 @@ textarea {
 	}
 
 	&.invalid {
-		--outline: #ef4444;
+		--outline: #{$red};
 	}
 }
