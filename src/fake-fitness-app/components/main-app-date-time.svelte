@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
 	import dayjs from 'dayjs';
 	import customParseFormat from 'dayjs/plugin/customParseFormat';
+
 	dayjs.extend(customParseFormat);
 
 	const dateAtLoad = dayjs().format('D MMM');
@@ -8,8 +9,6 @@
 </script>
 
 <script lang="ts">
-	import TimeInput from './time-input.svelte';
-
 	import {
 		calcDurationSecondsSinceMidnight,
 		dateValid,
@@ -18,12 +17,19 @@
 		toTime,
 	} from '../util';
 
+	import TimeInput from './time-input.svelte';
+
 	export let duration: string;
 	let date = dateAtLoad;
 	let timeFrom = timeAtLoad;
 
-	$: durationTimeSinceMidnightInSeconds =
-		calcDurationSecondsSinceMidnight(duration);
+	$: durationTimeSinceMidnightInSeconds
+		= calcDurationSecondsSinceMidnight(duration);
+
+	function onDateInput(event: {currentTarget: HTMLInputElement}): void {
+		const input = event.currentTarget.value;
+		date = dateValid(input) ? toDate(input).format('D MMM') : input;
+	}
 </script>
 
 <div class="main-app-date-time">
@@ -35,10 +41,7 @@
 			class="input-remove-input-visuals"
 			class:invalid={!dateValid(date)}
 			bind:value={date}
-			on:input={event => {
-				const input = event.currentTarget.value;
-				date = dateValid(input) ? toDate(input).format('D MMM') : input;
-			}}
+			on:input={onDateInput}
 		/>
 	</div>
 	<div class="time-inputs">

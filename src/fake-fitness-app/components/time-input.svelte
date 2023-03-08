@@ -14,6 +14,11 @@
 	export {className as class};
 	export let time = timeAtLoad;
 	export let width: string | undefined = undefined;
+
+	function onInput(event: {currentTarget: HTMLInputElement}): void {
+		const value = event.currentTarget.value;
+		time = timeValid(value) ? toTime(value).format('HH:mm') : value;
+	}
 </script>
 
 <input
@@ -21,9 +26,6 @@
 	class:invalid={!timeValid(time)}
 	value={time}
 	placeholder="HH:mm"
-	on:input={event => {
-		const value = event.currentTarget.value;
-		time = timeValid(value) ? toTime(value).format('HH:mm') : value;
-	}}
+	on:input={onInput}
 	style:width
 />

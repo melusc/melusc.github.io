@@ -1,13 +1,19 @@
 <script lang="ts">
 	import * as CONSTS from '../consts';
-	import {isValidDuration, parseDuration} from '../util';
-	import {toSpeed} from '../util';
+	import {isValidDuration, parseDuration, toSpeed} from '../util';
 	import Run from './icons/run.svelte';
 
 	export let duration: string;
 	export let distance: string;
 	let totalDuration = CONSTS.duration;
 	let maxSpeed = '0.0';
+
+	function onDurationInput(event: {currentTarget: HTMLInputElement}): void {
+		const value = event.currentTarget.value;
+		totalDuration = isValidDuration(value)
+			? parseDuration(value).format('HH:mm:ss')
+			: value.trim();
+	}
 </script>
 
 <div class="workout-details">
@@ -25,12 +31,7 @@
 					class:invalid={!isValidDuration(totalDuration)}
 					value={totalDuration}
 					placeholder="HH:mm:ss"
-					on:input={event => {
-						const value = event.currentTarget.value;
-						totalDuration = isValidDuration(value)
-							? parseDuration(value).format('HH:mm:ss')
-							: value.trim();
-					}}
+					on:input={onDurationInput}
 				/>
 				<div class="table-explanation">Total duration</div>
 			</div>

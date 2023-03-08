@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let batteryLevel: string = '100%';
+	export let batteryLevel = '100%';
 	$: batteryPercent = Number(/^\d+/.exec(batteryLevel)?.[0] ?? 0);
 </script>
 

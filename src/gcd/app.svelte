@@ -10,8 +10,8 @@
 
 	let state: States = States.valid;
 
-	let input: string = '';
-	let output: string = '';
+	let input = '';
+	let output = '';
 
 	$: {
 		const split = input

@@ -1,10 +1,8 @@
 {
-	"envs": ["browser", "es2021"],
-	"extends": ["plugin:svelte/recommended"],
-	"extensions": [".svelte"],
+	"extensions": ["svelte"],
 	"overrides": [
 		{
-			"files": ["**/*.{ts,tsx}"],
+			"files": ["**/*.{ts,tsx}", "**/*.svelte"],
 			"rules": {
 				"@typescript-eslint/indent": "off",
 				"@typescript-eslint/no-explicit-any": "error",
@@ -24,10 +22,15 @@
 			"files": ["**/*.svelte"],
 			"parser": "svelte-eslint-parser",
 			"parserOptions": {
-				"parser": {
-					"typescript": "@typescript-eslint/parser",
-					"ts": "@typescript-eslint/parser"
-				}
+				"parser": "@typescript-eslint/parser",
+				"extraFileExtensions": [".svelte"]
+			},
+			"extends": ["xo-typescript", "plugin:svelte/recommended"],
+			"plugins": ["@typescript-eslint"],
+			"rules": {
+				"import/no-mutable-exports": "off",
+				"no-unused-vars": "off",
+				"no-undef-init": "off"
 			}
 		},
 		{

@@ -9,7 +9,7 @@
 	export let isFocused: boolean;
 	export let element: string | undefined;
 
-	function dispatchFocus() {
+	function dispatchFocus(): void {
 		dispatch('focus');
 	}
 </script>

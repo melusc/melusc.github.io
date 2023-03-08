@@ -1,4 +1,5 @@
 <script lang="ts">
+	// eslint-disable-next-line import/default, import/no-named-as-default-member, import/no-named-as-default
 	import rgbHex from 'rgb-hex';
 	import type {FormEventHandler} from 'svelte/elements';
 
