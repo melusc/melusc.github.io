@@ -19,13 +19,15 @@
 
 	$: {
 		// Listen for changes
+		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 		locale;
+		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 		method;
 		// Do this
 		regenerate();
 	}
 
-	function regenerate() {
+	function regenerate(): void {
 		result = toString(method());
 	}
 

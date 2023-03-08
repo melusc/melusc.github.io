@@ -18,10 +18,10 @@
 		sudoku.subscribe(sudokuHandler);
 	}
 
-	const sudokuHandler: SubscriptionCallback = async function sudokuHandler(
+	const sudokuHandler: SubscriptionCallback = async (
 		sudoku,
 		type,
-	) {
+	): Promise<void> => {
 		cells = getCells(sudoku);
 
 		switch (type) {
@@ -50,7 +50,7 @@
 		}
 	};
 
-	function handleKeyDown(event_: KeyboardEvent) {
+	function handleKeyDown(event_: KeyboardEvent): void {
 		if (event_.key.toLowerCase() === 'tab') {
 			// Otherwise it starts going around and focusing the buttons, the tab, the url bar
 			event_.preventDefault();
@@ -63,7 +63,7 @@
 		});
 	}
 
-	function handleInput(key: string, metaKeys: MetaKeys = {}) {
+	function handleInput(key: string, metaKeys: MetaKeys = {}): void {
 		if (metaKeys.alt) {
 			return;
 		}
@@ -73,11 +73,31 @@
 		if (key === ' ' || key === 'delete' || key === 'backspace') {
 			sudoku.clearCell(focused);
 			return;
-		} else if (!metaKeys.ctrl && /^[1-9]$/.test(key)) {
+		}
+
+		if (!metaKeys.ctrl && /^[1-9]$/.test(key)) {
 			sudoku.setElement(focused, key);
 		}
 
 		focused = getNewFocused(key, focused, metaKeys);
+	}
+
+	function clearSudoku(): void {
+		sudoku.clearAllCells();
+	}
+
+	function solve(): void {
+		sudoku.solve();
+	}
+
+	function onFocus(index: number): () => void {
+		return (): void => {
+			focused = index;
+		};
+	}
+
+	function onKeyboardlessInput(event: {detail: string}): void {
+		handleInput(event.detail);
 	}
 
 	Object.assign(window, {
@@ -92,35 +112,23 @@
 <svelte:window on:keydown={handleKeyDown} />
 
 <div class="sudoku">
-	{#each cells as { element, key, isValid }, index (key)}
+	{#each cells as {element, key, isValid}, index (key)}
 		<Cell
 			{element}
 			{isValid}
 			isFocused={focused === index}
-			on:focus={() => {
-				focused = index;
-			}}
+			on:focus={onFocus(index)}
 		/>
 	{/each}
 </div>
 {#if typeof error !== 'undefined'}<div class="error">{error}</div>{/if}
-<button
-	type="button"
-	title="Solve sudoku"
-	class="solve"
-	on:click={() => sudoku.solve()}
->
+<button type="button" title="Solve sudoku" class="solve" on:click={solve}>
 	Solve
 </button>
-<button
-	type="button"
-	title="Clear sudoku"
-	class="clear"
-	on:click={() => sudoku.clearAllCells()}
->
+<button type="button" title="Clear sudoku" class="clear" on:click={clearSudoku}>
 	Clear
 </button>
-<KeyboardlessInput on:input={({detail}) => handleInput(detail)} />
+<KeyboardlessInput on:input={onKeyboardlessInput} />
 
 <style lang="scss">
 	.sudoku {

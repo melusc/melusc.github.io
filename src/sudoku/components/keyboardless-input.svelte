@@ -6,7 +6,7 @@
 		input: string;
 	}>();
 
-	function dispatchSpace() {
+	function dispatchSpace(): void {
 		dispatch('input', ' ');
 	}
 	function dispatchIndex(index: number): () => void {

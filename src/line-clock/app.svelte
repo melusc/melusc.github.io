@@ -9,7 +9,7 @@
 	let min: TimeValue;
 	let sec: TimeValue;
 
-	function update() {
+	function update(): void {
 		const date = new Date();
 		hour = toTimeValue(date.getHours());
 		min = toTimeValue(date.getMinutes());

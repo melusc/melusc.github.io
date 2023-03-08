@@ -1,34 +1,34 @@
 <script lang="ts">
 	import {debounce} from 'lodash-es';
+	// eslint-disable-next-line import/default, import/no-named-as-default-member, import/no-named-as-default
 	import rgbHex from 'rgb-hex';
 	import HexInput from './components/hex-input.svelte';
 	import RgbaInput from './components/rgba-input.svelte';
 	import {hexRgb} from './util';
 
-	let red: number = 0;
-	let blue: number = 0;
-	let green: number = 0;
+	let red = 0;
+	let blue = 0;
+	let green = 0;
 	let alpha: number | undefined;
 
-	function randomColour() {
+	function randomColour(): void {
 		const [red_, blue_, green_] = crypto.getRandomValues(new Uint8Array(3));
 		red = red_!;
 		blue = blue_!;
 		green = green_!;
 		alpha = undefined;
 
-		setHashInstantly();
+		setHashInstantly(red, green, blue, alpha);
 	}
 
-	$: {
-		red;
-		blue;
-		green;
-		alpha;
-		setHashDebounced();
-	}
+	$: setHashDebounced(red, green, blue, alpha);
 
-	function setHashInstantly(): void {
+	function setHashInstantly(
+		red: number,
+		green: number,
+		blue: number,
+		alpha: number | undefined,
+	): void {
 		const hex = `#${rgbHex(red, green, blue, alpha)}`;
 
 		if (hex !== location.hash) {

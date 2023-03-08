@@ -11,7 +11,7 @@
 	export let title: string;
 	export let keys: Keys[];
 
-	let isOpen: boolean = false;
+	let isOpen = false;
 </script>
 
 <details class="module" bind:open={isOpen}>

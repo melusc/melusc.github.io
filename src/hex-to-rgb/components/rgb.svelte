@@ -6,7 +6,7 @@
 	export let value: number;
 	let valid = true;
 
-	function clamp(value: number) {
+	function clamp(value: number): number {
 		value = Math.round(value);
 		// Minimum 0
 		value = Math.max(0, value);

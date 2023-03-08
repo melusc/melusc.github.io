@@ -3,8 +3,7 @@
 	import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 	import * as CONSTS from '../consts';
-	import {isValidDuration} from '../util';
-	import {calcTimePerDistance} from '../util';
+	import {isValidDuration, calcTimePerDistance} from '../util';
 
 	dayjs.extend(customParseFormat);
 

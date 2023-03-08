@@ -5,7 +5,7 @@
 	export let value: number | undefined;
 	let invalid = false;
 
-	function clamp(alpha: number) {
+	function clamp(alpha: number): number {
 		alpha = Math.round(alpha * 100) / 100;
 		// Minimum 0
 		alpha = Math.max(0, alpha);

@@ -6,10 +6,10 @@
 	import Table from './components/table.svelte';
 	import {getHash, tryGenerateTable} from './util';
 
-	let input: string = 'a & b -> (a | b)';
+	let input = 'a & b -> (a | b)';
 	$: parsed = tryGenerateTable(input);
 
-	function getInputFromHash() {
+	function getInputFromHash(): void {
 		const hashInput = getHash();
 		if (hashInput && hashInput !== input) {
 			input = hashInput;
@@ -18,7 +18,7 @@
 	getInputFromHash();
 
 	$: {
-		const newURL = new URL(location.href);
+		const newUrl = new URL(location.href);
 
 		let newHash: string;
 		let shouldPush = true;
@@ -37,12 +37,12 @@
 		const oldHash = getHash();
 
 		if (newHash !== oldHash) {
-			newURL.hash = newHash;
+			newUrl.hash = newHash;
 
 			if (shouldPush) {
-				history.pushState({}, '', newURL);
+				history.pushState({}, '', newUrl);
 			} else {
-				history.replaceState({}, '', newURL);
+				history.replaceState({}, '', newUrl);
 			}
 		}
 	}

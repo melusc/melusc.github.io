@@ -24,12 +24,12 @@
 		}, 3000);
 	}
 
-	async function handleCopy() {
+	async function handleCopy(): Promise<void> {
 		try {
 			await navigator.clipboard.writeText(value);
-			setValidity('valid');
+			await setValidity('valid');
 		} catch {
-			setValidity('invalid');
+			await setValidity('invalid');
 		}
 	}
 </script>
