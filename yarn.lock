@@ -1700,6 +1700,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-config-xo-typescript@npm:^0.56.0":
+  version: 0.56.0
+  resolution: "eslint-config-xo-typescript@npm:0.56.0"
+  peerDependencies:
+    "@typescript-eslint/eslint-plugin": ">=5.43.0"
+    "@typescript-eslint/parser": ">=5.43.0"
+    eslint: ">=8.0.0"
+    typescript: ">=4.4"
+  checksum: 1811eeee6a5b7fbcc567d26f51b90a01cd9254d732cabfd30a3cc092e56fd8203ae4b84caefe3ae29f7e4ff28a5932fbd24c495d51fdc2f314b3e61fe34afbac
+  languageName: node
+  linkType: hard
+
 "eslint-config-xo@npm:^0.43.1":
   version: 0.43.1
   resolution: "eslint-config-xo@npm:0.43.1"
@@ -3436,6 +3448,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.55.0
     dayjs: ^1.11.7
     eslint: ^8.36.0
+    eslint-config-xo-typescript: ^0.56.0
     eslint-plugin-svelte: ^2.21.0
     fast-glob: ^3.2.12
     hex-rgb: ^5.0.0
