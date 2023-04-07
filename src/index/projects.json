@@ -26,6 +26,13 @@
 		"type": "anchor"
 	},
 	{
+		"description": "A tool to unlock .docx and .xlsx that have been set to readonly.",
+		"href": "/unlock-office-documents/",
+		"key": "unlock-office-documents",
+		"text": "Unlock Office Documents",
+		"type": "anchor"
+	},
+	{
 		"description": "An interface for @faker-js/faker to generate data on a small, manual scale.",
 		"href": "/quick-faker/",
 		"key": "quick-faker",
