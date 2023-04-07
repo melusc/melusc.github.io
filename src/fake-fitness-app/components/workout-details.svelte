@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as CONSTS from '../consts';
 	import {isValidDuration, parseDuration, toSpeed} from '../util';
+
 	import Run from './icons/run.svelte';
 
 	export let duration: string;

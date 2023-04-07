@@ -52,6 +52,13 @@
 				"allow": ["**/*.scss"]
 			}
 		],
-		"capitalized-comments": "off"
+		"capitalized-comments": "off",
+		"import/order": [
+			"error",
+			{
+				"newlines-between": "always",
+				"warnOnUnassignedImports": true
+			}
+		]
 	}
 }

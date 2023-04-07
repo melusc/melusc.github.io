@@ -4,6 +4,7 @@
 	import type {FormEventHandler} from 'svelte/elements';
 
 	import {hexRgb} from '../util';
+
 	import FancyBorder from './fancy-border.svelte';
 
 	export let red: number;

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {getTextWidth} from '../util';
+
 	import BatteryIcon from './icons/battery.svelte';
 
 	// Allow all numbers from 1-100

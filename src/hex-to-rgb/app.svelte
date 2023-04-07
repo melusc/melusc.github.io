@@ -2,6 +2,7 @@
 	import {debounce} from 'lodash-es';
 	// eslint-disable-next-line import/default, import/no-named-as-default-member, import/no-named-as-default
 	import rgbHex from 'rgb-hex';
+
 	import HexInput from './components/hex-input.svelte';
 	import RgbaInput from './components/rgba-input.svelte';
 	import {hexRgb} from './util';

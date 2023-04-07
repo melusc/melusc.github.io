@@ -3,7 +3,6 @@
 	import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 	import TimeInput from './time-input.svelte';
-
 	import Battery from './battery.svelte';
 	import Bluetooth from './icons/bluetooth.svelte';
 	import Signal from './icons/signal.svelte';

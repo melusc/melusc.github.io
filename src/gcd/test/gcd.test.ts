@@ -1,4 +1,5 @@
 import {test, expect} from 'vitest';
+
 import {gcd, gcdArray} from '../functions.js';
 
 test('gcd 150, 100 should return 50', () => {

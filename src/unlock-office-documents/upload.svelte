@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {createEventDispatcher} from 'svelte';
+
 	import XlsxIcon from './icons/xlsx.svelte';
 	import DocxIcon from './icons/docx.svelte';
 	import UploadIcon from './icons/upload.svelte';

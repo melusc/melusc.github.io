@@ -1,4 +1,5 @@
 import json5 from 'json5';
+
 import {sortJson} from './sort';
 
 const input = document.querySelector<HTMLTextAreaElement>('#input')!;

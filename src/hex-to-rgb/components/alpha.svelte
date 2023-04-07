@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type {FormEventHandler, WheelEventHandler} from 'svelte/elements';
+
 	import FancyBorder from './fancy-border.svelte';
 
 	export let value: number | undefined;

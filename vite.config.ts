@@ -1,6 +1,5 @@
 import {svelte} from '@sveltejs/vite-plugin-svelte';
 import {defineConfig} from 'vite';
-
 import glob from 'fast-glob';
 
 const entryPoints = await glob('**/*.html', {

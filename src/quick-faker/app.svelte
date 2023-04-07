@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Locale from './components/locale.svelte';
-
 	import Address from './components/modules/address.svelte';
 	import Animal from './components/modules/animal.svelte';
 	import Color from './components/modules/color.svelte';

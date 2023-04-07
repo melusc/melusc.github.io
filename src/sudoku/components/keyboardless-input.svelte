@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {createEventDispatcher} from 'svelte';
+
 	import Eraser from './icons/eraser.svelte';
 
 	const dispatch = createEventDispatcher<{

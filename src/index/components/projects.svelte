@@ -1,7 +1,9 @@
 <script lang="ts">
 	import {onMount} from 'svelte';
+
 	import type {Project} from '../project';
 	import projects_ from '../projects.json';
+
 	import SingleProject from './single-project.svelte';
 
 	const projects = projects_ as readonly Project[];
