@@ -2,8 +2,6 @@
 	"extends": "@lusc/tsconfig",
 	"compilerOptions": {
 		"moduleResolution": "node",
-		"importsNotUsedAsValues": "error",
-		"preserveValueImports": true,
 		"sourceMap": true,
 
 		"esModuleInterop": true,
@@ -20,7 +18,8 @@
 		"rootDir": "src",
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"jsxImportSource": "react"
+		"jsxImportSource": "react",
+		"verbatimModuleSyntax": true
 	},
 	"include": [
 		"src/**/*.d.ts",
