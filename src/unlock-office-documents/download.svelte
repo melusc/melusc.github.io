@@ -4,7 +4,6 @@
 	export let file: Blob;
 	export let name: string;
 
-	// eslint-disable-next-line prefer-const
 	let url: string;
 
 	$: {
