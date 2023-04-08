@@ -26,10 +26,15 @@ export async function unlock(file: File): Promise<Blob> {
 			}
 
 			const dom = parser.parseFromString(text, 'text/xml');
-			for (const element of dom.querySelectorAll(
-				'sheetProtection,workbookProtection,w\\:documentProtection',
-			)) {
-				element.remove();
+			for (const tag of [
+				'sheetProtection',
+				'workbookProtection',
+				'w:documentProtection',
+			]) {
+				// eslint-disable-next-line unicorn/prefer-query-selector
+				for (const element of dom.getElementsByTagName(tag)) {
+					element.remove();
+				}
 			}
 
 			zip.file(name, serializer.serializeToString(dom));

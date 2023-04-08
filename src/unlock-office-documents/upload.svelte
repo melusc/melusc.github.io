@@ -143,8 +143,7 @@
 	}
 
 	.icon {
-		width: 5em;
-		height: 5em;
+		width: 25%;
 		grid-row: 2;
 	}
 
@@ -156,15 +155,24 @@
 		cursor: not-allowed;
 	}
 
-	@media (min-width: 600px) {
+	@media (min-width: 800px) {
+		.upload-form {
+			width: 50vw;
+			height: 50vw;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.upload-form {
+			width: 40vw;
+			height: 40vw;
+		}
+	}
+
+	@media (min-width: 1400px) {
 		.upload-form {
 			width: 30vw;
 			height: 30vw;
-		}
-
-		.icon {
-			width: 8em;
-			height: 8em;
 		}
 	}
 </style>
