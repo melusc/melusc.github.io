@@ -54,17 +54,10 @@
 		"type": "anchor"
 	},
 	{
-		"description": "Find the greatest common divisor of any amount of numbers.",
-		"href": "/gcd/",
-		"key": "gcd",
-		"text": "Greatest Common Divisor",
-		"type": "anchor"
-	},
-	{
-		"description": "Find the least common multiple of any amount of numbers.",
-		"href": "/lcm/",
-		"key": "lcm",
-		"text": "Least Common Multiple",
+		"description": "Calculate the least common multiple (lcm) and greatest common divisor (gcd).",
+		"href": "/lcm-gcd/",
+		"key": "lcm-gcd",
+		"text": "Least Common Multple & Greatest Common Divisor",
 		"type": "anchor"
 	},
 	{
