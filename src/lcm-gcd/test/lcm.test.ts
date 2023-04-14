@@ -1,6 +1,6 @@
-import {test, expect} from 'vitest';
+import {expect, test} from 'vitest';
 
-import {absBigInt, gcd, lcm, lcmArray} from '../functions.js';
+import {absBigInt, lcm, lcmArray} from '../math.js';
 
 test('-1 should return 1n', () => {
 	expect(absBigInt(-1)).toBe(1n);
@@ -12,14 +12,6 @@ test('-1n should return 1n', () => {
 
 test('20 should return 20n', () => {
 	expect(absBigInt(20)).toBe(20n);
-});
-
-test('2, 4 should return 2n', () => {
-	expect(gcd(2, 4)).toBe(2n);
-});
-
-test('-2, -4 should return 2n', () => {
-	expect(gcd(-2, -4)).toBe(2n);
 });
 
 test('4, 12 should return 12n', () => {

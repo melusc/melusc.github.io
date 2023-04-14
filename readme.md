@@ -18,6 +18,4 @@
 
 - [Animated triangle using requestAnimationFrame](https://melusc.github.io/animated-triangle/)
 
-- [Find the least common multiple (lcm) of x numbers](https://melusc.github.io/lcm/)
-
-- [Find the greatest common divisor (gcd) of any amount of numbers](https://melusc.github.io/gcd/)
+- [Calculate the least common multiple (lcm) and greatest common divisor (gcd)](https://melusc.github.io/lcm-gcd/)
