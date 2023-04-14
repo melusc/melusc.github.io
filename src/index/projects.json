@@ -61,7 +61,7 @@
 		"type": "anchor"
 	},
 	{
-		"description": "A clock which is made up of a bunch of bars that are constantly shifting up and down to display the time.",
+		"description": "A fancy clock made up of bars moving up and down.",
 		"href": "/line-clock/",
 		"key": "line-clock",
 		"text": "Line Clock",
