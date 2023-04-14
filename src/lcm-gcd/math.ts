@@ -49,15 +49,15 @@ function wrap(fn: (a: ExpectedNumber, b: ExpectedNumber) => bigint) {
 	return (numbers: ExpectedNumber[]): string => {
 		let result: ExpectedNumber | undefined;
 
-	for (const n of numbers) {
-		result = result === undefined ? n : fn(result, n);
-	}
+		for (const n of numbers) {
+			result = result === undefined ? n : fn(result, n);
+		}
 
-	if (result === undefined) {
-		return '';
-	}
+		if (result === undefined) {
+			return '';
+		}
 
-	return `${result}`;
+		return `${result}`;
 	};
 }
 

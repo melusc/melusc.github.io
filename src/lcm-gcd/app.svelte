@@ -17,7 +17,7 @@
 	{:else if state === States.notAnInteger}
 		<div>One or more numbers were not an integer</div>
 	{:else if state === States.valid}
-		{#if uniques && uniques.length}
+		{#if uniques?.length}
 			<div>Least common multiple: {lcmArray(uniques)}</div>
 			<div>Greatest common divisor: {gcdArray(uniques)}</div>
 		{:else}
