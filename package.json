@@ -16,6 +16,8 @@
 	},
 	"devDependencies": {
 		"@lusc/tsconfig": "^2.2.0",
+		"@sveltejs/adapter-static": "^2.0.2",
+		"@sveltejs/kit": "^1.15.5",
 		"@sveltejs/vite-plugin-svelte": "^2.0.4",
 		"@types/lodash-es": "^4.17.7",
 		"@types/node": "^18.15.11",
@@ -50,7 +52,7 @@
 		"build": "yarn fmt && yarn test && yarn check && vite build",
 		"fmt": "prettier -w . && xo --fix",
 		"dev": "vite dev",
-		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"test": "vitest run"
 	},
 	"version": "1.0.0",

@@ -1,0 +1,33 @@
+[
+	{
+		"key": "projects",
+		"text": "Projects",
+		"type": "title"
+	},
+	{
+		"description": "A tool to generate TypeScript definitions from JSON. Uses @lusc/json-dts",
+		"href": "/json-dts/",
+		"key": "json-dts",
+		"text": "JSON Dts",
+		"type": "anchor"
+	},
+	{
+		"key": "also-see",
+		"text": "Also see",
+		"type": "title"
+	},
+	{
+		"description": "An extension for Firefox that allows you to get a summary of your marks from schulNetz and tells you if you're passing or failing.",
+		"href": "https://github.com/melusc/schulnetz-extension/",
+		"key": "schulnetz-extension",
+		"text": "schulNetz extension",
+		"type": "anchor"
+	},
+	{
+		"description": "A bunch of userscripts that improve the experience on moodle like hiding unused courses from the sidebar (Clean Moodle) or adding icons to courses on the sidebar (Custom Icons).",
+		"href": "https://github.com/melusc/moodle_userscripts/",
+		"key": "moodle-userscripts",
+		"text": "Moodle Userscripts",
+		"type": "anchor"
+	}
+]
