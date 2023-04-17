@@ -5,7 +5,7 @@
 @import '../../common/theme.scss';
 
 #app {
-	display: flex;
+	display: flex !important;
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 1em;

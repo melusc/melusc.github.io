@@ -32,5 +32,5 @@
 	<title>JSON Dts</title>
 </svelte:head>
 
-<textarea id="in" bind:value={input} class:invalid />
-<textarea id="out" readonly value={output} />
+<textarea bind:value={input} class:invalid />
+<textarea readonly value={output} />
