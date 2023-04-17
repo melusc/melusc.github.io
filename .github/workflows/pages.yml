@@ -41,6 +41,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      - name: Type checking
+        run: yarn check
+
       - name: Check code style
         run: |
           yarn run fmt
@@ -48,9 +51,6 @@ jobs:
 
       - name: CI tests
         run: yarn test
-
-      - name: Type checking
-        run: yarn check
 
       - name: Build
         run: yarn vite build
