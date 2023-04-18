@@ -15,7 +15,7 @@
 	<div class="project-row">
 		<a href={id} class="id-anchor">#</a>
 		<div class="single-project" id={key}>
-			<a href={project.href}>{text}</a>
+			<a href={project.href} data-sveltekit-reload>{text}</a>
 			<div>{project.description}</div>
 		</div>
 	</div>
