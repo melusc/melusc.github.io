@@ -1,0 +1,9 @@
+@import '../../common/theme.scss';
+
+$table-border: 3px solid $border;
+
+:root {
+	--table-border: #{$table-border};
+	--red: #{$red};
+	--green: #{$green};
+}
