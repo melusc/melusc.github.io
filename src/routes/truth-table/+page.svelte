@@ -1,6 +1,4 @@
 <script lang="ts">
-	import {browser} from '$app/environment';
-
 	import {operationToString} from '@lusc/truth-table';
 
 	import Input from './components/input.svelte';
@@ -8,6 +6,8 @@
 	import Table from './components/table.svelte';
 	import {getHash, tryGenerateTable} from './util';
 	import './style.scss';
+
+	import {browser} from '$app/environment';
 
 	let input = 'a & b -> (a | b)';
 	$: parsed = tryGenerateTable(input);
