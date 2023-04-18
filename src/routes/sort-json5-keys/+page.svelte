@@ -5,17 +5,17 @@
 	import './style.scss';
 
 	let input = '{}';
-	let output: string = '';
-	let errorMsg: undefined | string;
+	let output = '';
+	let errorMessage: undefined | string;
 
 	$: try {
-		errorMsg = undefined;
+		errorMessage = undefined;
 
 		const json = sortJson(json5.parse(input));
 
 		output = JSON.stringify(json, undefined, '\t');
 	} catch (error: unknown) {
-		errorMsg = error instanceof Error ? error.message : String(error);
+		errorMessage = error instanceof Error ? error.message : String(error);
 	}
 </script>
 
@@ -24,5 +24,5 @@
 </svelte:head>
 
 <textarea placeholder="Paste JSON5 here" bind:value={input} />
-<div class="error">{errorMsg ?? ''}</div>
+<div class="error">{errorMessage ?? ''}</div>
 <textarea readonly value={output} />
