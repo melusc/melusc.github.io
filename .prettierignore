@@ -1,4 +1,3 @@
 src/**/*.svg
-dist/
 build
 .svelte-kit
