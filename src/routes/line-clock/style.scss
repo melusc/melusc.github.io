@@ -1,0 +1,63 @@
+@use 'sass:math';
+
+@use '../../common/fonts/OpenSans-Light.scss';
+
+@import '../../common/theme.scss';
+
+$line-height: math.div(100vh, 20);
+$font-size: math.div($line-height, 5) * 4;
+
+html {
+	background-color: $bg;
+	color: $text;
+	font-family: 'Open Sans', 'Segoe UI', sans-serif;
+	font-size: $font-size;
+}
+
+body,
+html {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+
+#app {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.clock {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	transform: translateY($line-height * 4.5);
+}
+.colon {
+	margin: 0 2px;
+}
+
+.clock-row {
+	border-radius: 5px;
+	margin: 0 2px;
+	padding: 5px 10px;
+	background-color: $card;
+	box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
+
+	transition: transform cubic-bezier(0.17, 0.67, 0.83, 0.67) 0.3s;
+
+	transform: translateY(calc(#{-$line-height} * var(--offset, 0)));
+
+	* {
+		line-height: $line-height;
+	}
+}
+
+.active {
+	color: $blue;
+	transition: color cubic-bezier(0.17, 0.67, 0.83, 0.67) 0.3s;
+}

@@ -1,0 +1,15 @@
+@use 'sass:math';
+
+@use '../../common/fonts/OpenSans-Regular.scss';
+@use '../../common/fonts/JetBrainsMono-Regular.scss';
+
+@import '../../common/theme.scss';
+@import './vars.scss';
+
+html {
+	font-family: 'Open Sans';
+	font-size: 23px;
+	background-color: $bg;
+	color: $text;
+	padding: 0.5em 1em;
+}

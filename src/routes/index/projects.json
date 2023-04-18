@@ -1,0 +1,103 @@
+[
+	{
+		"key": "projects",
+		"text": "Projects",
+		"type": "title"
+	},
+	{
+		"description": "A sudoku solver that can solve even evil sudokus using multiple strategies such as \"Hidden Pairs\", \"Naked Pairs\", and \"Pointing Arrows\".",
+		"href": "/sudoku",
+		"key": "sudoku-solver",
+		"text": "Sudoku Solver",
+		"type": "anchor"
+	},
+	{
+		"description": "A truth table generator which goes through all the possible combinations and lists them in a table.",
+		"href": "/truth-table",
+		"key": "truth-table",
+		"text": "Truth table",
+		"type": "anchor"
+	},
+	{
+		"description": "A tool to generate TypeScript definitions from JSON. Uses @lusc/json-dts",
+		"href": "/json-dts",
+		"key": "json-dts",
+		"text": "JSON Dts",
+		"type": "anchor"
+	},
+	{
+		"description": "A tool to unlock .docx and .xlsx that have been set to readonly.",
+		"href": "/unlock-office-documents",
+		"key": "unlock-office-documents",
+		"text": "Unlock Office Documents",
+		"type": "anchor"
+	},
+	{
+		"description": "An interface for @faker-js/faker to generate data on a small, manual scale.",
+		"href": "/quick-faker",
+		"key": "quick-faker",
+		"text": "Quick Faker",
+		"type": "anchor"
+	},
+	{
+		"description": "A little page which imitates Samsung Health, but instead of actually exercising you can just modify the values right from your sofa. I made this so I don't have to do PE homework when I don't feel like doing it.",
+		"href": "/fake-fitness-app",
+		"key": "fake-fitness-app",
+		"text": "Fake Fitness App",
+		"type": "anchor"
+	},
+	{
+		"description": "A simple page in which you can convert hex from and to rgb(a).",
+		"href": "/hex-to-rgb",
+		"key": "hex-to-rgb",
+		"text": "Hex-Rgb converter",
+		"type": "anchor"
+	},
+	{
+		"description": "Calculate the least common multiple (lcm) and greatest common divisor (gcd).",
+		"href": "/lcm-gcd",
+		"key": "lcm-gcd",
+		"text": "Least Common Multple & Greatest Common Divisor",
+		"type": "anchor"
+	},
+	{
+		"description": "A fancy clock made up of bars moving up and down.",
+		"href": "/line-clock",
+		"key": "line-clock",
+		"text": "Line Clock",
+		"type": "anchor"
+	},
+	{
+		"description": "A tool which allows you to sort json5 by its keys.",
+		"href": "/sort-json5-keys",
+		"key": "sort-json5-keys",
+		"text": "Sort JSON5",
+		"type": "anchor"
+	},
+	{
+		"description": "A triangle that moves around and flashes.",
+		"href": "/animated-triangle",
+		"key": "animated-triangle",
+		"text": "Animated Triangle",
+		"type": "anchor"
+	},
+	{
+		"key": "also-see",
+		"text": "Also see",
+		"type": "title"
+	},
+	{
+		"description": "An extension for Firefox that allows you to get a summary of your marks from schulNetz and tells you if you're passing or failing.",
+		"href": "https://github.com/melusc/schulnetz-extension/",
+		"key": "schulnetz-extension",
+		"text": "schulNetz extension",
+		"type": "anchor"
+	},
+	{
+		"description": "A bunch of userscripts that improve the experience on moodle like hiding unused courses from the sidebar (Clean Moodle) or adding icons to courses on the sidebar (Custom Icons).",
+		"href": "https://github.com/melusc/moodle_userscripts/",
+		"key": "moodle-userscripts",
+		"text": "Moodle Userscripts",
+		"type": "anchor"
+	}
+]

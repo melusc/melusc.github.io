@@ -1,0 +1,46 @@
+@use '../../common/fonts/OpenSans-Regular';
+
+@import '../../common/theme.scss';
+
+html {
+	background-color: $bg;
+	color: $text;
+	font-family: 'Segoe UI', 'Open Sans', 'sans-serif';
+
+	font-size: 45px;
+	text-align: center;
+
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+
+	display: grid;
+	grid-template-rows: 1fr auto;
+	justify-content: center;
+}
+
+#app {
+	display: contents;
+}
+
+main {
+	align-self: center;
+}
+
+footer {
+	align-self: flex-end;
+	padding: 1em;
+}
+
+.emphasise {
+	color: $anchor;
+}
+
+a {
+	color: $anchor;
+	font-size: 0.5em;
+}

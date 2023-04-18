@@ -16,7 +16,8 @@
 	},
 	"devDependencies": {
 		"@lusc/tsconfig": "^2.2.0",
-		"@sveltejs/vite-plugin-svelte": "^2.0.4",
+		"@sveltejs/adapter-static": "^2.0.2",
+		"@sveltejs/kit": "^1.15.5",
 		"@types/lodash-es": "^4.17.7",
 		"@types/node": "^18.15.11",
 		"@typescript-eslint/parser": "^5.58.0",
@@ -50,12 +51,14 @@
 		"build": "yarn fmt && yarn test && yarn check && vite build",
 		"fmt": "prettier -w . && xo --fix",
 		"dev": "vite dev",
-		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"test": "vitest run"
 	},
 	"version": "1.0.0",
 	"packageManager": "yarn@3.5.0",
 	"resolutions": {
-		"@lusc/json-dts@^2.0.0": "patch:@lusc/json-dts@npm%3A2.0.0#./.yarn/patches/@lusc-json-dts-npm-2.0.0-cac5a08022.patch"
+		"@lusc/json-dts@^2.0.0": "patch:@lusc/json-dts@npm%3A2.0.0#./.yarn/patches/@lusc-json-dts-npm-2.0.0-cac5a08022.patch",
+		"tsconfig-paths": "^4.0.0"
 	}
 }

@@ -1,0 +1,51 @@
+@use 'sass:color';
+
+@use '../../common/fonts/OpenSans-Regular.scss';
+
+@import '../../common/theme.scss';
+
+html {
+	background-color: $bg;
+	color: $text;
+	padding: 0;
+}
+html,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	font-family: 'Open Sans', 'Segoe UI', sans-serif;
+}
+body {
+	padding: 10px;
+}
+
+textarea {
+	background-color: transparent;
+	border: 3px solid $text;
+	border-radius: 8px;
+	color: inherit;
+	outline: none;
+
+	width: 100%;
+	height: 100%;
+
+	resize: none;
+	padding: 10px;
+	font-size: 1.5em;
+
+	&::placeholder {
+		text-align: center;
+	}
+}
+#app {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 5fr 2fr 5fr;
+	place-items: center;
+}
+
+.error {
+	margin: 10px;
+}
