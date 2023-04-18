@@ -10,9 +10,9 @@
 
 	import {browser} from '$app/environment';
 
-	let red = 0xff;
-	let green = 0xff;
-	let blue = 0xff;
+	let red = 0xFF;
+	let green = 0xFF;
+	let blue = 0xFF;
 	let alpha: number | undefined;
 
 	function randomColour(): void {
