@@ -22,10 +22,10 @@
 	}
 
 	const sudokuHandler: SubscriptionCallback = async (
-		sudoku,
+		sudoku_,
 		type,
 	): Promise<void> => {
-		cells = getCells(sudoku);
+		sudoku = sudoku_;
 
 		switch (type) {
 			case 'change': {
@@ -35,7 +35,7 @@
 			}
 
 			case 'finish': {
-				const isSolved = sudoku.isSolved();
+				const isSolved = sudoku_.isSolved();
 				error = isSolved ? undefined : "Sudoku wasn't solved completely.";
 
 				break;

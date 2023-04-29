@@ -30,7 +30,9 @@
 			"rules": {
 				"import/no-mutable-exports": "off",
 				"no-unused-vars": "off",
-				"no-undef-init": "off"
+				"no-undef-init": "off",
+				"svelte/no-immutable-reactive-statements": "error",
+				"svelte/no-reactive-reassign": "error"
 			}
 		},
 		{
