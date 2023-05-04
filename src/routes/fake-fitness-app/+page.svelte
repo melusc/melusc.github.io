@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as CONSTS from './consts';
+	import * as CONSTS from './consts.ts';
 	import Help from './components/help.svelte';
 	import MainAppDateTime from './components/main-app-date-time.svelte';
 	import Navbar from './components/navbar.svelte';

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
-	import customParseFormat from 'dayjs/plugin/customParseFormat';
+	import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
-	import * as CONSTS from '../consts';
-	import {isValidDuration, calcTimePerDistance} from '../util';
+	import * as CONSTS from '../consts.ts';
+	import {isValidDuration, calcTimePerDistance} from '../util.ts';
 
 	dayjs.extend(customParseFormat);
 

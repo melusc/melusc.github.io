@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {getTextWidth} from '../util';
+	import {getTextWidth} from '../util.ts';
 
 	import BatteryIcon from './icons/battery.svelte';
 

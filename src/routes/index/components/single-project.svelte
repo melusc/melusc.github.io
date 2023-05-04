@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type {Project} from '../project.d';
+	import type {Project} from '../project.d.ts';
 
 	export let project: Project;
 	$: ({text, key} = project);

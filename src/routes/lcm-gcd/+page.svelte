@@ -1,6 +1,6 @@
 <script lang="ts">
-	import {gcdArray, lcmArray} from './math';
-	import {States, parseInput} from './parse-input';
+	import {gcdArray, lcmArray} from './math.ts';
+	import {States, parseInput} from './parse-input.ts';
 	import './style.scss';
 
 	let input = '';

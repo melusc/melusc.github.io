@@ -5,7 +5,7 @@
 
 	import HexInput from './components/hex-input.svelte';
 	import RgbaInput from './components/rgba-input.svelte';
-	import {hexRgb} from './util';
+	import {hexRgb} from './util.ts';
 	import './style.scss';
 
 	import {browser} from '$app/environment';

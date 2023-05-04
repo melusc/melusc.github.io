@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import dayjs from 'dayjs';
-	import customParseFormat from 'dayjs/plugin/customParseFormat';
+	import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
 	dayjs.extend(customParseFormat);
 
@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-	import {timeValid, toTime} from '../util';
+	import {timeValid, toTime} from '../util.ts';
 
 	let className: string | undefined = undefined;
 	export {className as class};

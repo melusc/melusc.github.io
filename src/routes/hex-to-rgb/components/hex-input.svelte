@@ -3,7 +3,7 @@
 	import rgbHex from 'rgb-hex';
 	import type {FormEventHandler} from 'svelte/elements';
 
-	import {hexRgb} from '../util';
+	import {hexRgb} from '../util.ts';
 
 	import FancyBorder from './fancy-border.svelte';
 

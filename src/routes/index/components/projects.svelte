@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {onMount} from 'svelte';
 
-	import type {Project} from '../project';
+	import type {Project} from '../project.d.ts';
 	import projects_ from '../projects.json';
 
 	import SingleProject from './single-project.svelte';

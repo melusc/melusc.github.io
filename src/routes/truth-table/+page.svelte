@@ -4,7 +4,7 @@
 	import Input from './components/input.svelte';
 	import RenderError from './components/render-error.svelte';
 	import Table from './components/table.svelte';
-	import {getHash, tryGenerateTable} from './util';
+	import {getHash, tryGenerateTable} from './util.ts';
 	import './style.scss';
 
 	import {browser} from '$app/environment';

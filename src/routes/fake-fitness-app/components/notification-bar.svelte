@@ -1,6 +1,6 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
-	import customParseFormat from 'dayjs/plugin/customParseFormat';
+	import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
 	import TimeInput from './time-input.svelte';
 	import Battery from './battery.svelte';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import json5 from 'json5';
 
-	import {sortJson} from './sort';
+	import {sortJson} from './sort.ts';
 	import './style.scss';
 
 	let input = '{}';

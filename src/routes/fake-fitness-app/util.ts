@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
-import {distanceRegex} from './consts';
+import {distanceRegex} from './consts.ts';
 
 import {browser} from '$app/environment';
 

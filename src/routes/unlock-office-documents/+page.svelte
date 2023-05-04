@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Download from './download.svelte';
-	import {unlock} from './unlock';
+	import {unlock} from './unlock.ts';
 	import Upload from './upload.svelte';
 	import './style.scss';
 

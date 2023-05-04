@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import dayjs from 'dayjs';
-	import customParseFormat from 'dayjs/plugin/customParseFormat';
+	import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
 	dayjs.extend(customParseFormat);
 
@@ -15,7 +15,7 @@
 		timeValid,
 		toDate,
 		toTime,
-	} from '../util';
+	} from '../util.ts';
 
 	import TimeInput from './time-input.svelte';
 
