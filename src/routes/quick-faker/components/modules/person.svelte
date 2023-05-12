@@ -1,13 +1,11 @@
 <script lang="ts">
-	import {faker} from '@faker-js/faker';
-
 	import Module from '../module.svelte';
 </script>
 
 <Module
-	title="Name"
-	module={faker.name}
+	module="person"
 	keys={[
+		'bio',
 		'firstName',
 		'fullName',
 		'gender',
@@ -21,8 +19,6 @@
 		'sex',
 		'sexType',
 		'suffix',
-
-		// Deprecated
-		// 'findName'
+		'zodiacSign',
 	]}
 />

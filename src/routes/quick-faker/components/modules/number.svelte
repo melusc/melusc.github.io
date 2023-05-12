@@ -3,6 +3,6 @@
 </script>
 
 <Module
-	module="git"
-	keys={['branch', 'commitEntry', 'commitMessage', 'commitSha']}
+	module="number"
+	keys={['bigInt', 'binary', 'float', 'hex', 'int', 'octal']}
 />

@@ -1,12 +1,9 @@
 <script lang="ts">
-	import {faker} from '@faker-js/faker';
-
 	import Module from '../module.svelte';
 </script>
 
 <Module
-	title="System"
-	module={faker.system}
+	module="system"
 	keys={[
 		'commonFileExt',
 		'commonFileName',

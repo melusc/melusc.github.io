@@ -1,12 +1,9 @@
 <script lang="ts">
-	import {faker} from '@faker-js/faker';
-
 	import Module from '../module.svelte';
 </script>
 
 <Module
-	title="Commerce"
-	module={faker.commerce}
+	module="commerce"
 	keys={[
 		'department',
 		'price',
@@ -15,8 +12,5 @@
 		'productDescription',
 		'productMaterial',
 		'productName',
-
-		// Deprecated
-		// 'color',
 	]}
 />

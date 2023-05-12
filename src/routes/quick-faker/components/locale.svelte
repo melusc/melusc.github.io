@@ -1,17 +1,11 @@
 <script lang="ts" context="module">
-	import type {UsableLocale} from '@faker-js/faker';
+	import {allFakers} from '@faker-js/faker';
 	// eslint-disable-next-line n/file-extension-in-import
 	import {writable} from 'svelte/store';
 
-	export const locale = writable<UsableLocale>('en');
-</script>
+	export const locale = writable<keyof typeof allFakers>('en');
 
-<script lang="ts">
-	import {faker} from '@faker-js/faker';
-
-	$: faker.setLocale($locale);
-
-	const locales: UsableLocale[] = Object.keys(faker.locales);
+	const locales = Object.keys(allFakers);
 </script>
 
 <select class="language-select" bind:value={$locale}>

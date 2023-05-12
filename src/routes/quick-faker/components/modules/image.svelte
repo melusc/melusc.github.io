@@ -1,35 +1,17 @@
 <script lang="ts">
-	import {faker} from '@faker-js/faker';
-
 	import Module from '../module.svelte';
 </script>
 
 <Module
-	title="Image"
-	module={faker.image}
+	module="image"
 	keys={[
-		'abstract',
-		'animals',
 		'avatar',
-		'business',
-		'cats',
-		'city',
+		'avatarGitHub',
+		'avatarLegacy',
 		'dataUri',
-		'fashion',
-		'food',
-		'image',
-		'imageUrl',
-		'nature',
-		'nightlife',
-		'people',
-		'sports',
-		'technics',
-		'transport',
-
-		// Not included due to incompatible types
-		// 'lorempicsum',
-		// 'lorempixel',
-		// 'placeholder',
-		// 'unsplash',
+		'url',
+		'urlLoremFlickr',
+		'urlPicsumPhotos',
+		'urlPlaceholder',
 	]}
 />

@@ -1,12 +1,9 @@
 <script lang="ts">
-	import {faker} from '@faker-js/faker';
-
 	import Module from '../module.svelte';
 </script>
 
 <Module
-	title="Word"
-	module={faker.word}
+	module="word"
 	keys={[
 		'adjective',
 		'adverb',
@@ -14,6 +11,8 @@
 		'interjection',
 		'noun',
 		'preposition',
+		'sample',
 		'verb',
+		'words',
 	]}
 />
