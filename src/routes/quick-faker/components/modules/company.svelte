@@ -1,28 +1,18 @@
 <script lang="ts">
-	import {faker} from '@faker-js/faker';
-
 	import Module from '../module.svelte';
 </script>
 
 <Module
-	title="Company"
-	module={faker.company}
+	module="company"
 	keys={[
-		'bs',
-		'bsAdjective',
-		'bsBuzz',
-		'bsNoun',
+		'buzzAdjective',
+		'buzzNoun',
+		'buzzPhrase',
+		'buzzVerb',
 		'catchPhrase',
 		'catchPhraseAdjective',
 		'catchPhraseDescriptor',
 		'catchPhraseNoun',
-		'companySuffix',
 		'name',
-
-		// Returns all suffixes
-		// 'suffixes',
-
-		// Deprecated
-		// 'companyName',
 	]}
 />

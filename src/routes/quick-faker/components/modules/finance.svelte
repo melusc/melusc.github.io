@@ -1,27 +1,26 @@
 <script lang="ts">
-	import {faker} from '@faker-js/faker';
-
 	import Module from '../module.svelte';
 </script>
 
 <Module
-	title="Finance"
-	module={faker.finance}
+	module="finance"
 	keys={[
-		'account',
 		'accountName',
+		'accountNumber',
 		'amount',
 		'bic',
 		'bitcoinAddress',
 		'creditCardCVV',
 		'creditCardIssuer',
 		'creditCardNumber',
+		'currency',
 		'currencyCode',
 		'currencyName',
 		'currencySymbol',
 		'ethereumAddress',
 		'iban',
-		'mask',
+		'litecoinAddress',
+		'maskedNumber',
 		'pin',
 		'routingNumber',
 		'transactionDescription',

@@ -1,17 +1,15 @@
 <script lang="ts">
-	import {faker} from '@faker-js/faker';
-
 	import Module from '../module.svelte';
 </script>
 
 <Module
-	title="Lorem"
-	module={faker.lorem}
+	module="lorem"
 	keys={[
 		'lines',
 		'paragraph',
 		'paragraphs',
 		'sentence',
+		'sentences',
 		'slug',
 		'text',
 		'word',

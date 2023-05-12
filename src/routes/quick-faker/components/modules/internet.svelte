@@ -1,16 +1,16 @@
 <script lang="ts">
-	import {faker} from '@faker-js/faker';
-
 	import Module from '../module.svelte';
 </script>
 
 <Module
-	title="Internet"
-	module={faker.internet}
+	module="internet"
 	keys={[
 		'avatar',
 		'color',
+		'displayName',
 		'domainName',
+		'domainSuffix',
+		'domainWord',
 		'email',
 		'emoji',
 		'exampleEmail',

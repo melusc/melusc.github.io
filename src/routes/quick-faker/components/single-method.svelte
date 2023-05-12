@@ -9,26 +9,37 @@
 </script>
 
 <script lang="ts">
+	import {allFakers} from '@faker-js/faker';
+
 	import ClipboardButton from './clipboard-button.svelte';
 	import Redo from './redo.svelte';
 
+	type ModuleKey = $$Generic<keyof Faker>;
+	type Module = $$Generic<Faker[ModuleKey]>;
+	type MethodKey = $$Generic<keyof Module>;
+
 	export let title: string;
-	export let method: () => AcceptedTypes;
-	export let locale: string;
+	export let module: ModuleKey;
+	export let key: MethodKey;
+	export let locale: keyof typeof allFakers;
 	let result: string | undefined;
 
 	$: {
-		// Listen for changes
-		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-		locale;
-		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-		method;
-		// Do this
-		regenerate();
+		regenerate(locale, module, key);
 	}
 
-	function regenerate(): void {
-		result = toString(method());
+	function handleClick(): void {
+		regenerate(locale, module, key);
+	}
+
+	function regenerate(
+		locale: keyof typeof allFakers,
+		module: ModuleKey,
+		key: MethodKey,
+	): void {
+		// @ts-expect-error Making this work is not worth the effort
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-call
+		result = toString(allFakers[locale][module][key]());
 	}
 
 	function toString(input: AcceptedTypes): string | undefined {
@@ -65,7 +76,7 @@
 		<div class="method-title">{title}</div>
 		<input readOnly class="method-result" value={result} />
 		<ClipboardButton value={result} />
-		<button class="method-regenerate" type="button" on:click={regenerate}>
+		<button class="method-regenerate" type="button" on:click={handleClick}>
 			<Redo />
 		</button>
 	</div>
