@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Locale from './components/locale.svelte';
-	import Address from './components/modules/address.svelte';
+	import Airline from './components/modules/airline.svelte';
 	import Animal from './components/modules/animal.svelte';
 	import Color from './components/modules/color.svelte';
 	import Commerce from './components/modules/commerce.svelte';
@@ -13,13 +13,16 @@
 	import Hacker from './components/modules/hacker.svelte';
 	import Image from './components/modules/image.svelte';
 	import Internet from './components/modules/internet.svelte';
+	import Location from './components/modules/location.svelte';
 	import Lorem from './components/modules/lorem.svelte';
 	import Music from './components/modules/music.svelte';
-	import Name from './components/modules/name.svelte';
+	import Number from './components/modules/number.svelte';
+	import Person from './components/modules/person.svelte';
 	import Phone from './components/modules/phone.svelte';
-	import Random from './components/modules/random.svelte';
+	import String from './components/modules/string.svelte';
 	import System from './components/modules/system.svelte';
 	import Vehicle from './components/modules/vehicle.svelte';
+	import Word from './components/modules/word.svelte';
 	import './style.scss';
 </script>
 
@@ -30,8 +33,7 @@
 <h1 class="app-title">Quick Faker</h1>
 
 <Locale />
-
-<Address />
+<Airline />
 <Animal />
 <Color />
 <Commerce />
@@ -44,13 +46,16 @@
 <Hacker />
 <Image />
 <Internet />
+<Location />
 <Lorem />
 <Music />
-<Name />
+<Number />
+<Person />
 <Phone />
-<Random />
+<String />
 <System />
 <Vehicle />
+<Word />
 
 <style>
 	.app-title {

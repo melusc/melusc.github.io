@@ -2,7 +2,7 @@
 	"author": "lusc",
 	"type": "module",
 	"dependencies": {
-		"@faker-js/faker": "^7.6.0",
+		"@faker-js/faker": "^8.0.0",
 		"@lusc/json-dts": "^3.0.0",
 		"@lusc/sudoku": "^4.0.0",
 		"@lusc/truth-table": "^3.0.0",

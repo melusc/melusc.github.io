@@ -9,26 +9,40 @@
 </script>
 
 <script lang="ts">
+	import {allFakers} from '@faker-js/faker';
+
 	import ClipboardButton from './clipboard-button.svelte';
 	import Redo from './redo.svelte';
 
-	export let title: string;
-	export let method: () => AcceptedTypes;
-	export let locale: string;
+	type ModuleKey = $$Generic<keyof Faker>;
+	type Module = $$Generic<Faker[ModuleKey]>;
+	type MethodKey = $$Generic<keyof Module>;
+
+	export let module: ModuleKey;
+	export let key: MethodKey;
+	export let locale: keyof typeof allFakers;
 	let result: string | undefined;
 
 	$: {
-		// Listen for changes
-		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-		locale;
-		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-		method;
-		// Do this
-		regenerate();
+		regenerate(locale, module, key);
 	}
 
-	function regenerate(): void {
-		result = toString(method());
+	function handleClick(): void {
+		regenerate(locale, module, key);
+	}
+
+	function regenerate(
+		locale: keyof typeof allFakers,
+		module: ModuleKey,
+		key: MethodKey,
+	): void {
+		try {
+			// @ts-expect-error Making this work is not worth the effort
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-call
+			result = toString(allFakers[locale][module][key]());
+		} catch {
+			console.error('Error when invoking faker.%s.%s', module, key);
+		}
 	}
 
 	function toString(input: AcceptedTypes): string | undefined {
@@ -55,17 +69,23 @@
 			return input.join(',');
 		}
 
-		console.error(`Unexpected input ${typeof input} "${String(input)}"`);
+		console.error(
+			'Unexpected input %s "%s" for faker.%s.%s',
+			typeof input,
+			String(input),
+			module,
+			key,
+		);
 		return undefined;
 	}
 </script>
 
 {#if result !== undefined}
 	<div class="method">
-		<div class="method-title">{title}</div>
+		<div class="method-title">{key}</div>
 		<input readOnly class="method-result" value={result} />
 		<ClipboardButton value={result} />
-		<button class="method-regenerate" type="button" on:click={regenerate}>
+		<button class="method-regenerate" type="button" on:click={handleClick}>
 			<Redo />
 		</button>
 	</div>
