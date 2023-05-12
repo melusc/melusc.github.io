@@ -13,7 +13,6 @@
 		'creditCardCVV',
 		'creditCardIssuer',
 		'creditCardNumber',
-		'currency',
 		'currencyCode',
 		'currencyName',
 		'currencySymbol',

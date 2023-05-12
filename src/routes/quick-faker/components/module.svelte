@@ -33,7 +33,7 @@
 	{#if isOpen}
 		{#each keys as key (key)}
 			<!--  eslint-disable-next-line unicorn/prefer-module -->
-			<SingleMethod locale={$locale} {title} {module} {key} />
+			<SingleMethod locale={$locale} {module} {key} />
 		{/each}
 	{/if}
 </details>

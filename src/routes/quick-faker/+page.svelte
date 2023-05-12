@@ -19,7 +19,6 @@
 	import Number from './components/modules/number.svelte';
 	import Person from './components/modules/person.svelte';
 	import Phone from './components/modules/phone.svelte';
-	import Science from './components/modules/science.svelte';
 	import String from './components/modules/string.svelte';
 	import System from './components/modules/system.svelte';
 	import Vehicle from './components/modules/vehicle.svelte';
@@ -53,7 +52,6 @@
 <Number />
 <Person />
 <Phone />
-<Science />
 <String />
 <System />
 <Vehicle />

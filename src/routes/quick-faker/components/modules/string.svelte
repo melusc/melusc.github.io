@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Module from '../module.svelte.ts';
+	import Module from '../module.svelte';
 </script>
 
 <Module
@@ -8,7 +8,6 @@
 		'alpha',
 		'alphanumeric',
 		'binary',
-		'fromCharacters',
 		'hexadecimal',
 		'nanoid',
 		'numeric',

@@ -2,14 +2,4 @@
 	import Module from '../module.svelte';
 </script>
 
-<Module
-	module="airline"
-	keys={[
-		'aircraftType',
-		'airline',
-		'airplane',
-		'airport',
-		'flightNumber',
-		'seat',
-	]}
-/>
+<Module module="airline" keys={['aircraftType', 'flightNumber', 'seat']} />

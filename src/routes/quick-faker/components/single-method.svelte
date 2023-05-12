@@ -18,7 +18,6 @@
 	type Module = $$Generic<Faker[ModuleKey]>;
 	type MethodKey = $$Generic<keyof Module>;
 
-	export let title: string;
 	export let module: ModuleKey;
 	export let key: MethodKey;
 	export let locale: keyof typeof allFakers;
@@ -37,9 +36,13 @@
 		module: ModuleKey,
 		key: MethodKey,
 	): void {
-		// @ts-expect-error Making this work is not worth the effort
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-call
-		result = toString(allFakers[locale][module][key]());
+		try {
+			// @ts-expect-error Making this work is not worth the effort
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-call
+			result = toString(allFakers[locale][module][key]());
+		} catch {
+			console.error('Error when invoking faker.%s.%s', module, key);
+		}
 	}
 
 	function toString(input: AcceptedTypes): string | undefined {
@@ -66,14 +69,20 @@
 			return input.join(',');
 		}
 
-		console.error(`Unexpected input ${typeof input} "${String(input)}"`);
+		console.error(
+			'Unexpected input %s "%s" for faker.%s.%s',
+			typeof input,
+			String(input),
+			module,
+			key,
+		);
 		return undefined;
 	}
 </script>
 
 {#if result !== undefined}
 	<div class="method">
-		<div class="method-title">{title}</div>
+		<div class="method-title">{key}</div>
 		<input readOnly class="method-result" value={result} />
 		<ClipboardButton value={result} />
 		<button class="method-regenerate" type="button" on:click={handleClick}>
