@@ -6,11 +6,12 @@ export function getHash(): string {
 
 export function tryGenerateTable(
 	input: string,
+	includeSteps: boolean,
 ): {valid: true; table: ParsedTable} | {valid: false; error: Error} {
 	try {
 		return {
 			valid: true,
-			table: generateTable(input),
+			table: generateTable(input, includeSteps),
 		};
 	} catch (error: unknown) {
 		return {

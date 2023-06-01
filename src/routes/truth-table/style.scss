@@ -6,6 +6,12 @@
 @import '../../common/theme.scss';
 @import './vars.scss';
 
+html,
+body,
+#app {
+	display: contents;
+}
+
 html {
 	font-family: 'Open Sans';
 	font-size: 23px;

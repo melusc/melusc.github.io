@@ -14,7 +14,6 @@
 
 		border-bottom: var(--table-border);
 		padding: 0.3em;
-		margin-bottom: 1em;
 
 		width: 100%;
 	}

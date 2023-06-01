@@ -346,12 +346,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lusc/truth-table@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@lusc/truth-table@npm:3.0.0"
+"@lusc/truth-table@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@lusc/truth-table@npm:3.1.0"
   dependencies:
-    type-fest: ^3.9.0
-  checksum: 90fd5f24c6af6228a7b9524c09aebb561270f4db35382233863860e6e4cb466eb530466f263df808e85b947d1ff1041b1e2b9140229e7f4f151deeb9796b19a8
+    type-fest: ^3.11.0
+  checksum: dcdb5f5de2bc2ceda1440233374653720561039f9c0eab7994455c8b31641c58cd0c66260030625780f9bdb124abca869318bfc4e03da2f09e4d677b275f4628
   languageName: node
   linkType: hard
 
@@ -3664,7 +3664,7 @@ __metadata:
     "@faker-js/faker": ^8.0.1
     "@lusc/json-dts": ^3.0.0
     "@lusc/sudoku": ^4.0.0
-    "@lusc/truth-table": ^3.0.0
+    "@lusc/truth-table": ^3.1.0
     "@lusc/tsconfig": ^2.2.0
     "@sveltejs/adapter-static": ^2.0.2
     "@sveltejs/kit": ^1.19.0

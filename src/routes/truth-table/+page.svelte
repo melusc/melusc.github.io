@@ -1,16 +1,18 @@
 <script lang="ts">
 	import {operationToString} from '@lusc/truth-table';
 
+	import IncludeStepsInput from './components/include-steps-input.svelte';
 	import Input from './components/input.svelte';
 	import RenderError from './components/render-error.svelte';
 	import Table from './components/table.svelte';
-	import {getHash, tryGenerateTable} from './util.ts';
 	import './style.scss';
+	import {getHash, tryGenerateTable} from './util.ts';
 
 	import {browser} from '$app/environment';
 
 	let input = 'a & b -> (a | b)';
-	$: parsed = tryGenerateTable(input);
+	let includeSteps = true;
+	$: parsed = tryGenerateTable(input, includeSteps);
 
 	function getInputFromHash(): void {
 		const hashInput = getHash();
@@ -63,9 +65,20 @@
 	<title>Truth Table Generator</title>
 </svelte:head>
 
-<Input bind:input />
-{#if parsed.valid}
-	<Table table={parsed.table} />
-{:else}
-	<RenderError {input} error={parsed.error} />
-{/if}
+<div id="truth-table-app">
+	<Input bind:input />
+	<IncludeStepsInput bind:includeSteps />
+	{#if parsed.valid}
+		<Table table={parsed.table} />
+	{:else}
+		<RenderError {input} error={parsed.error} />
+	{/if}
+</div>
+
+<style>
+	#truth-table-app {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+	}
+</style>
