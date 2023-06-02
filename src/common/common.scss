@@ -1,0 +1,19 @@
+@use './fonts/OpenSans-Regular.scss';
+
+html,
+body,
+#app {
+	display: contents;
+}
+
+html {
+	font-family: 'Open Sans', 'Segoe UI', 'sans-serif';
+	scroll-behavior: smooth;
+
+	background-color: var(--bg);
+	color: var(--text);
+}
+
+a {
+	color: var(--anchor);
+}

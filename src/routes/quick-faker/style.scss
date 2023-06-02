@@ -1,17 +1,11 @@
-@use '../../common/fonts/OpenSans-Regular.scss';
-
-body {
-	background: #151a1e;
-	color: #ddd;
-
-	font-family: 'Open Sans', sans-serif;
-	padding: 1em 2em;
+#quick-faker {
 	display: flex;
 	justify-content: center;
 	width: 100%;
+	padding: 1em 2em;
 }
 
-#app {
+.align-center {
 	width: 100ch;
 	max-width: 90vw;
 	display: flex;

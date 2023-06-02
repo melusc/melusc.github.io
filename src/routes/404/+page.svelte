@@ -6,11 +6,13 @@
 	<title>Not Found</title>
 </svelte:head>
 
-<main>
-	<div class="emphasise">404</div>
-	<div>Not found</div>
-</main>
+<div id="_404">
+	<main>
+		<div class="emphasise">404</div>
+		<div>Not found</div>
+	</main>
 
-<footer>
-	<a href="/">melusc.github.io</a>
-</footer>
+	<footer>
+		<a href="/">melusc.github.io</a>
+	</footer>
+</div>

@@ -18,27 +18,29 @@
 	<title>Unlock Office Documents</title>
 </svelte:head>
 
-<Upload on:input={handleUpload} />
+<div id="unlock-office-documents">
+	<Upload on:input={handleUpload} />
 
-{#if output}
-	{#await output then file}
-		<Download {file} {name} />
-	{:catch error}
-		<div class="error">
-			{error instanceof Error ? error.message : error}
-		</div>
-	{/await}
-{/if}
+	{#if output}
+		{#await output then file}
+			<Download {file} {name} />
+		{:catch error}
+			<div class="error">
+				{error instanceof Error ? error.message : error}
+			</div>
+		{/await}
+	{/if}
 
-<div class="report-issue">
-	Not working as expected?
-	<a
-		href="https://github.com/melusc/melusc.github.io/issues"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		Report an issue
-	</a>
+	<div class="report-issue">
+		Not working as expected?
+		<a
+			href="https://github.com/melusc/melusc.github.io/issues"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			Report an issue
+		</a>
+	</div>
 </div>
 
 <style>

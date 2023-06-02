@@ -9,4 +9,14 @@ $border: #30363d;
 
 $card: #252530;
 $anchor: $blue;
-$anchor-visited: purple;
+
+:root {
+	--blue: #{$blue};
+	--red: #{$red};
+	--green: #{$green};
+	--bg: #{$bg};
+	--text: #{$text};
+	--border: #{$border};
+	--card: #{$card};
+	--anchor: #{$anchor};
+}

@@ -32,5 +32,7 @@
 	<title>JSON Dts</title>
 </svelte:head>
 
-<textarea bind:value={input} class:invalid />
-<textarea readonly value={output} />
+<div id="json-dts">
+	<textarea bind:value={input} class:invalid />
+	<textarea readonly value={output} />
+</div>

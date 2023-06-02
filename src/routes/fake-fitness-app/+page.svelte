@@ -31,7 +31,7 @@
 	<title>Fake Fitness App</title>
 </svelte:head>
 
-<div class="App">
+<div id="fake-fitness-app">
 	<div class="inputs">
 		<div>
 			<label for="width">Width:</label>

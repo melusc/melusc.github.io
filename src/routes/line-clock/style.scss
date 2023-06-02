@@ -2,32 +2,17 @@
 
 @use '../../common/fonts/OpenSans-Light.scss';
 
-@import '../../common/theme.scss';
-
 $line-height: math.div(100vh, 20);
 $font-size: math.div($line-height, 5) * 4;
 
-html {
-	background-color: $bg;
-	color: $text;
-	font-family: 'Open Sans', 'Segoe UI', sans-serif;
+#line-clock {
 	font-size: $font-size;
-}
-
-body,
-html {
-	padding: 0;
-	margin: 0;
-	height: 100%;
-	width: 100%;
-}
-
-#app {
-	height: 100%;
-	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	width: 100vw;
+	height: 100vh;
 }
 
 .clock {
@@ -45,7 +30,7 @@ html {
 	border-radius: 5px;
 	margin: 0 2px;
 	padding: 5px 10px;
-	background-color: $card;
+	background-color: var(--card);
 	box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
 
 	transition: transform cubic-bezier(0.17, 0.67, 0.83, 0.67) 0.3s;
@@ -58,6 +43,6 @@ html {
 }
 
 .active {
-	color: $blue;
+	color: var(--blue);
 	transition: color cubic-bezier(0.17, 0.67, 0.83, 0.67) 0.3s;
 }

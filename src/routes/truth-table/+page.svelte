@@ -65,7 +65,7 @@
 	<title>Truth Table Generator</title>
 </svelte:head>
 
-<div id="truth-table-app">
+<div id="truth-table">
 	<Input bind:input />
 	<IncludeStepsInput bind:includeSteps />
 	{#if parsed.valid}
@@ -76,7 +76,7 @@
 </div>
 
 <style>
-	#truth-table-app {
+	#truth-table {
 		display: flex;
 		flex-direction: column;
 		gap: 1em;

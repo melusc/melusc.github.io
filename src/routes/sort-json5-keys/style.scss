@@ -1,28 +1,18 @@
 @use 'sass:color';
 
-@use '../../common/fonts/OpenSans-Regular.scss';
-
-@import '../../common/theme.scss';
-
-html {
-	background-color: $bg;
-	color: $text;
-	padding: 0;
-}
-html,
-body {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	font-family: 'Open Sans', 'Segoe UI', sans-serif;
-}
-body {
+#sort-json5-keys {
 	padding: 10px;
+
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 5fr 2fr 5fr;
+	place-items: center;
 }
 
 textarea {
 	background-color: transparent;
-	border: 3px solid $text;
+	border: 4px solid var(--border);
 	border-radius: 8px;
 	color: inherit;
 	outline: none;
@@ -37,13 +27,6 @@ textarea {
 	&::placeholder {
 		text-align: center;
 	}
-}
-#app {
-	width: 100%;
-	height: 100%;
-	display: grid;
-	grid-template-columns: 5fr 2fr 5fr;
-	place-items: center;
 }
 
 .error {
