@@ -12,14 +12,12 @@
 	--background: #{$background};
 }
 
-* {
-	box-sizing: border-box;
-}
-
 #hex-to-rgb {
 	overflow: hidden;
 	color: var(--text);
 	line-height: 1.25;
+
+	font-size: 1.3em;
 
 	background-color: var(--background);
 }

@@ -1,7 +1,5 @@
 @use 'sass:math';
 
-@use '../../common/fonts/OpenSans-Light.scss';
-
 $line-height: math.div(100vh, 20);
 $font-size: math.div($line-height, 5) * 4;
 
