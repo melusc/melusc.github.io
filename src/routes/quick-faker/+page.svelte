@@ -30,32 +30,36 @@
 	<title>Quick Faker</title>
 </svelte:head>
 
-<h1 class="app-title">Quick Faker</h1>
+<div id="quick-faker">
+	<div class="align-center">
+		<h1 class="app-title">Quick Faker</h1>
 
-<Locale />
-<Airline />
-<Animal />
-<Color />
-<Commerce />
-<Company />
-<Database />
-<Datatype />
-<Date />
-<Finance />
-<Git />
-<Hacker />
-<Image />
-<Internet />
-<Location />
-<Lorem />
-<Music />
-<Number />
-<Person />
-<Phone />
-<String />
-<System />
-<Vehicle />
-<Word />
+		<Locale />
+		<Airline />
+		<Animal />
+		<Color />
+		<Commerce />
+		<Company />
+		<Database />
+		<Datatype />
+		<Date />
+		<Finance />
+		<Git />
+		<Hacker />
+		<Image />
+		<Internet />
+		<Location />
+		<Lorem />
+		<Music />
+		<Number />
+		<Person />
+		<Phone />
+		<String />
+		<System />
+		<Vehicle />
+		<Word />
+	</div>
+</div>
 
 <style>
 	.app-title {

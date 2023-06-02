@@ -23,6 +23,8 @@
 	<title>Sort json5 by its keys</title>
 </svelte:head>
 
-<textarea placeholder="Paste JSON5 here" bind:value={input} />
-<div class="error">{errorMessage ?? ''}</div>
-<textarea readonly value={output} />
+<div id="sort-json5-keys">
+	<textarea placeholder="Paste JSON5 here" bind:value={input} />
+	<div class="error">{errorMessage ?? ''}</div>
+	<textarea readonly value={output} />
+</div>

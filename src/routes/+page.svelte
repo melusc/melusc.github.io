@@ -8,5 +8,7 @@
 	<title>My Projects</title>
 </svelte:head>
 
-<Header />
-<Projects />
+<div id="index">
+	<Header />
+	<Projects />
+</div>

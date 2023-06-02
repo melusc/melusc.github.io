@@ -3,14 +3,10 @@
 
 @import 'vars';
 
-html,
-body {
-	margin: 0;
-	padding: 0;
+html {
+	font-family: 'Samsung Sans', sans-serif;
 
 	background-color: var(--background-grey);
-
-	font-family: 'Samsung Sans', sans-serif;
 }
 
 input,
@@ -21,7 +17,7 @@ button {
 	color: currentColor;
 }
 
-.App {
+#fake-fitness-app {
 	height: 100vh;
 	width: 100vw;
 

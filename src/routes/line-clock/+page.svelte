@@ -30,13 +30,15 @@
 	<title>Line clock</title>
 </svelte:head>
 
-<div class="clock">
-	<ClockLine to={2} active={hour[0]} />
-	<ClockLine to={9} active={hour[1]} />
-	<div class="colon">:</div>
-	<ClockLine to={5} active={min[0]} />
-	<ClockLine to={9} active={min[1]} />
-	<div class="colon">:</div>
-	<ClockLine to={5} active={sec[0]} />
-	<ClockLine to={9} active={sec[1]} />
+<div id="line-clock">
+	<div class="clock">
+		<ClockLine to={2} active={hour[0]} />
+		<ClockLine to={9} active={hour[1]} />
+		<div class="separator">:</div>
+		<ClockLine to={5} active={min[0]} />
+		<ClockLine to={9} active={min[1]} />
+		<div class="separator">:</div>
+		<ClockLine to={5} active={sec[0]} />
+		<ClockLine to={9} active={sec[1]} />
+	</div>
 </div>

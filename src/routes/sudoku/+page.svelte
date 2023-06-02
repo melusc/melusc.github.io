@@ -119,24 +119,31 @@
 	<title>Sudoku solver</title>
 </svelte:head>
 
-<div class="sudoku">
-	{#each cells as {element, key, isValid}, index (key)}
-		<Cell
-			{element}
-			{isValid}
-			isFocused={focused === index}
-			on:focus={onFocus(index)}
-		/>
-	{/each}
+<div id="sudoku">
+	<div class="sudoku">
+		{#each cells as {element, key, isValid}, index (key)}
+			<Cell
+				{element}
+				{isValid}
+				isFocused={focused === index}
+				on:focus={onFocus(index)}
+			/>
+		{/each}
+	</div>
+	{#if typeof error !== 'undefined'}<div class="error">{error}</div>{/if}
+	<button type="button" title="Solve sudoku" class="solve" on:click={solve}>
+		Solve
+	</button>
+	<button
+		type="button"
+		title="Clear sudoku"
+		class="clear"
+		on:click={clearSudoku}
+	>
+		Clear
+	</button>
+	<KeyboardlessInput on:input={onKeyboardlessInput} />
 </div>
-{#if typeof error !== 'undefined'}<div class="error">{error}</div>{/if}
-<button type="button" title="Solve sudoku" class="solve" on:click={solve}>
-	Solve
-</button>
-<button type="button" title="Clear sudoku" class="clear" on:click={clearSudoku}>
-	Clear
-</button>
-<KeyboardlessInput on:input={onKeyboardlessInput} />
 
 <style lang="scss">
 	.sudoku {

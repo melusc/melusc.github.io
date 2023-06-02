@@ -81,34 +81,36 @@
 	<title>Hex-RGB converter</title>
 </svelte:head>
 
-<div
-	class="horizontal-vertical-center"
-	style:background-color="rgba({red}, {green}, {blue}, {alpha ?? 1})"
->
-	<div class="floating-box">
-		<div class="row">
-			<div>Hex</div>
-			<div class="inputs-rows">
-				<HexInput bind:red bind:green bind:blue bind:alpha />
-			</div>
-		</div>
-
-		<div class="row">
-			<div>Rgba</div>
-			<div class="inputs-rows">
-				<RgbaInput bind:red bind:green bind:blue bind:alpha />
-			</div>
-		</div>
-		<div class="row">
-			<div class="rainbow-box">
-				<div
-					class="rainbow-text"
-					on:click={randomColour}
-					on:keydown={randomColour}
-				>
-					Random colour
+<div id="hex-to-rgb">
+	<div
+		class="horizontal-vertical-center"
+		style:background-color="rgba({red}, {green}, {blue}, {alpha ?? 1})"
+	>
+		<div class="floating-box">
+			<div class="row">
+				<div>Hex</div>
+				<div class="inputs-rows">
+					<HexInput bind:red bind:green bind:blue bind:alpha />
 				</div>
-				<div class="rainbow-bg" />
+			</div>
+
+			<div class="row">
+				<div>Rgba</div>
+				<div class="inputs-rows">
+					<RgbaInput bind:red bind:green bind:blue bind:alpha />
+				</div>
+			</div>
+			<div class="row">
+				<div class="rainbow-box">
+					<div
+						class="rainbow-text"
+						on:click={randomColour}
+						on:keydown={randomColour}
+					>
+						Random colour
+					</div>
+					<div class="rainbow-bg" />
+				</div>
 			</div>
 		</div>
 	</div>
