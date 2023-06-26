@@ -24,6 +24,8 @@
 			title={`${index + 1}`}
 			on:click={dispatchIndex(index)}
 			on:keydown={dispatchIndex(index)}
+			role="button"
+			tabindex="0"
 		>
 			{index + 1}
 		</div>
@@ -33,6 +35,8 @@
 		title="Clear cell"
 		on:click={dispatchSpace}
 		on:keydown={dispatchSpace}
+		role="button"
+		tabindex="0"
 	>
 		<Eraser />
 	</div>

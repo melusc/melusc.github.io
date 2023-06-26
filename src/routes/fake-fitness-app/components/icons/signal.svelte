@@ -12,6 +12,8 @@
 	class="icon-reception icon-interactive"
 	on:click={changeBars}
 	on:keydown={changeBars}
+	role="button"
+	tabindex="0"
 >
 	<path
 		d="M3.684 14H2.421c-.233 0-.421.224-.421.5v3c0 .276.188.5.421.5h1.263c.233 0 .421-.224.421-.5v-3c0-.276-.188-.5-.42-.5z"

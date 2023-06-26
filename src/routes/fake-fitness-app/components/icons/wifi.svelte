@@ -17,6 +17,8 @@
 	class="icon-interactive"
 	on:click={changeBars}
 	on:keydown={changeBars}
+	role="button"
+	tabindex="0"
 >
 	<path d="M12 18h.01" />
 	{#if bars > 1}<path d="M9.172 15.172a4 4 0 0 1 5.656 0" />{/if}

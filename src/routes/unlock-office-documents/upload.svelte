@@ -96,6 +96,8 @@
 	on:drop|preventDefault={handleDrop}
 	on:dragover|preventDefault={handleDragOver}
 	on:dragleave|preventDefault={handleDragLeave}
+	role="button"
+	tabindex="0"
 >
 	<form bind:this={form}>
 		<input

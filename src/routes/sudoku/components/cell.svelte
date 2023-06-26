@@ -20,6 +20,8 @@
 	class:focused-cell={isFocused}
 	on:mousedown={dispatchFocus}
 	on:touchstart|preventDefault={dispatchFocus}
+	role="button"
+	tabindex="0"
 >
 	{element ?? ''}
 </div>
