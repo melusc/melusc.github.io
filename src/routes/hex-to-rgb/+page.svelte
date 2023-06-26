@@ -106,6 +106,8 @@
 						class="rainbow-text"
 						on:click={randomColour}
 						on:keydown={randomColour}
+						role="button"
+						tabindex="0"
 					>
 						Random colour
 					</div>
