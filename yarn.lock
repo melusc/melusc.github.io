@@ -2142,9 +2142,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-svelte@npm:^2.32.0":
-  version: 2.32.0
-  resolution: "eslint-plugin-svelte@npm:2.32.0"
+"eslint-plugin-svelte@npm:^2.32.1":
+  version: 2.32.1
+  resolution: "eslint-plugin-svelte@npm:2.32.1"
   dependencies:
     "@eslint-community/eslint-utils": ^4.2.0
     "@jridgewell/sourcemap-codec": ^1.4.14
@@ -2163,7 +2163,7 @@ __metadata:
   peerDependenciesMeta:
     svelte:
       optional: true
-  checksum: 73d4d5c094e0c8a64241e0dc565d720812cb7a484ee2af87d6f5d77967e2ac6034dbd7571d1a2a526eaaf7bc770d3e28b78b032847b17ee17b09ea182f29a595
+  checksum: 636a4cc9b3121bc2779fd25dbdd91b7842f250683e8ac930742bb1e095a78e12d7255d6adc8076d12e85f8f0d755dc3729d947bb12af2ae8b52368d3da5d3cf1
   languageName: node
   linkType: hard
 
@@ -3827,7 +3827,7 @@ __metadata:
     dayjs: ^1.11.8
     eslint: ^8.43.0
     eslint-config-xo-typescript: ^0.57.0
-    eslint-plugin-svelte: ^2.32.0
+    eslint-plugin-svelte: ^2.32.1
     fast-glob: ^3.2.12
     hex-rgb: ^5.0.0
     json5: ^2.2.3
