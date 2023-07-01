@@ -13,6 +13,6 @@
 	</main>
 
 	<footer>
-		<a href="/">melusc.github.io</a>
+		<a href="/">lusc.ch</a>
 	</footer>
 </div>
