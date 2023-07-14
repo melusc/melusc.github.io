@@ -47,7 +47,8 @@
 	},
 	"private": true,
 	"scripts": {
-		"build": "yarn check && vite build",
+		"build": "yarn check && vite build && yarn postbuild",
+		"postbuild": "node scripts/postbuild.mjs",
 		"fmt": "prettier -w . && xo --fix",
 		"dev": "vite dev",
 		"preview": "vite preview",
