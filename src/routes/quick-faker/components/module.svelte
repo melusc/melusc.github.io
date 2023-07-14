@@ -17,7 +17,6 @@
 	type Module = $$Generic<Faker[ModuleKey]>;
 	type Keys = $$Generic<keyof Module & string>;
 
-	// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 	export let module: ModuleKey & string;
 	export let keys: Keys[];
 
