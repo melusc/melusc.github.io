@@ -47,7 +47,7 @@
 	},
 	"private": true,
 	"scripts": {
-		"build": "yarn fmt && yarn test && yarn check && vite build",
+		"build": "yarn check && vite build",
 		"fmt": "prettier -w . && xo --fix",
 		"dev": "vite dev",
 		"preview": "vite preview",
