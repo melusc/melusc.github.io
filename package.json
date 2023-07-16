@@ -12,7 +12,7 @@
 		"jszip": "^3.10.1",
 		"lodash-es": "^4.17.21",
 		"rgb-hex": "^4.0.1",
-		"type-fest": "^3.13.0"
+		"type-fest": "^3.13.1"
 	},
 	"devDependencies": {
 		"@lusc/tsconfig": "^2.3.0",
