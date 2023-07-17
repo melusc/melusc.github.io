@@ -12,6 +12,13 @@
 		"type": "anchor"
 	},
 	{
+		"description": "A 3D version of Tic Tac Toe.",
+		"href": "/3d-tic-tac-toe",
+		"key": "3d-tic-tac-toe",
+		"text": "3D Tic Tac Toe",
+		"type": "anchor"
+	},
+	{
 		"description": "A truth table generator which goes through all the possible combinations and lists them in a table.",
 		"href": "/truth-table",
 		"key": "truth-table",
