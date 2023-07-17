@@ -91,7 +91,7 @@ export class TicTacToe extends TypedEventTarget<{
 		return layers;
 	}
 
-	makeMove(index: number): this {
+	makeMove(index: number): void {
 		const cells = [...this.#cells];
 		const cell = cells[index];
 
