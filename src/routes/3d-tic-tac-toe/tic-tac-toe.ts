@@ -22,7 +22,7 @@ export type Layer = readonly Cell[];
 
 export type Group = Opaque<readonly Cell[], 'group'>;
 
-function * getStart(direction: number): Iterable<number> {
+function * getStart(direction: -1 | 0 | 1): Iterable<number> {
 	if (direction === 1) {
 		yield 0;
 	} else if (direction === -1) {
