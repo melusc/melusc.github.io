@@ -3,14 +3,14 @@
 	import type {Layer as LayerType} from './tic-tac-toe.ts';
 
 	export let layer: LayerType;
-	export let animationDelays: Map<number, number>;
+	export let winningCells: Set<number>;
 </script>
 
 <div class="layer-perspective">
 	<div class="layer-tilted">
 
 		{#each layer as cell (cell.index)}
-			<Cell {cell} on:choice {animationDelays} />
+			<Cell {cell} on:choice {winningCells} />
 		{/each}
 	</div>
 </div>

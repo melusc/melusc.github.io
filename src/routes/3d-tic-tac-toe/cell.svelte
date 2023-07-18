@@ -10,12 +10,10 @@
 	}>();
 
 	export let cell: CellType;
-	export let animationDelays: Map<number, number>;
+	export let winningCells: Set<number>;
 
 	$: content = cell.content;
 	$: index = cell.index;
-
-	$: console.log($content);
 
 	function onClick(): void {
 		if ($content === undefined) {
@@ -38,8 +36,7 @@
 	class="cell"
 	class:p1={$content === Player.p1}
 	class:p2={$content === Player.p2}
-	class:isWinning={animationDelays.has(index)}
-	style:--delay={`${400 * (animationDelays.get(index) ?? 0)}ms`}
+	class:winning={winningCells.has(index)}
 	role="button"
 >
 	{#if $content === Player.p1}
@@ -59,21 +56,27 @@
 		display: grid;
 		place-items: center;
 		user-select: none;
+		background-color: var(--background);
 	}
 
 	.p1 {
-		background: var(--blue);
+		--background: var(--blue);
 	}
 	.p2 {
-		background: var(--red);
+		--background: var(--red);
 	}
 
 	.cell:focus-visible {
 		outline: 4px dotted var(--border);
 	}
 
-	.isWinning {
-		animation: winning-green 100ms ease-in-out var(--delay) forwards;
+	.winning {
+		animation-name: winning-green;
+		animation-delay: 300ms;
+		animation-duration: 500ms;
+		animation-timing-function: ease-out;
+		animation-direction: alternate;
+		animation-iteration-count: infinite;
 	}
 
 	.cell :global(svg) {
@@ -85,7 +88,7 @@
 		0% {}
 
 		100% {
-			background-color: var(--green);
+			background-color: transparent;
 		}
 	}
 </style>
