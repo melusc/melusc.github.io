@@ -17,10 +17,10 @@ test('#resolveIndex', () => {
 test('#getGroups', () => {
 	const t = new TicTacToe();
 
-	const foundGroups = new Set<string>();
+	const foundGroups: string[] = [];
 
 	for (const group of t.getGroups()) {
-		foundGroups.add(group.map(({index}) => index).join(', '));
+		foundGroups.push(group.map(({index}) => index).join(', '));
 	}
 
 	// prettier-ignore
@@ -29,9 +29,13 @@ test('#getGroups', () => {
 		+ (2 * 4 * 3) // 2d diagonals, 2 per layer, 4 layers, 3 directiosn
 		+ 4; // 3d diagonals
 
-	expect(foundGroups.size).toStrictEqual(expectedSize);
+	const deduplicated = new Set(foundGroups.sort());
 
-	expect(foundGroups).toMatchSnapshot();
+	expect(deduplicated).toMatchSnapshot();
+	// Test if it contains all
+	expect(deduplicated.size).toStrictEqual(expectedSize);
+	// Test that there are also no duplicates
+	expect(foundGroups.length).toStrictEqual(expectedSize);
 });
 
 test('Winning', () => {
