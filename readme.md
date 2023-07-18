@@ -2,6 +2,8 @@
 
 - [Sudoku solver](https://melusc.github.io/sudoku/)
 
+- [3D Tic Tac Toe](https://melusc.github.io/3d-tic-tac-toe)
+
 - [Truth table](https://melusc.github.io/truth-table/)
 
 - [Convert hex and rgb](https://melusc.github.io/hex-to-rgb/)
