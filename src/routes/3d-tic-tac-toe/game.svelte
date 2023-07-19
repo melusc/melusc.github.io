@@ -29,10 +29,12 @@
 		winningCells = cells;
 	}
 
-	function onWin(event: CustomEvent<{
-		winner: Player;
-		winningGroups: readonly Group[];
-	}>): void {
+	function onWin(
+		event: CustomEvent<{
+			winner: Player;
+			winningGroups: readonly Group[];
+		}>,
+	): void {
 		winner = event.detail.winner;
 		setWinningCells(event.detail.winningGroups);
 	}
@@ -45,14 +47,17 @@
 	}
 
 	$: game.on('win', onWin);
-
 </script>
 
 <div class="title-rules">
-	<h1>3d Tic Tac Toe </h1>
+	<h1>3d Tic Tac Toe</h1>
 	<Rules />
 </div>
-<div class:win-info={winner !== undefined} class:turn-info={winner === undefined} class="player-info">
+<div
+	class:win-info={winner !== undefined}
+	class:turn-info={winner === undefined}
+	class="player-info"
+>
 	<div class="play-state">
 		{#if winner !== undefined}
 			<FormatPlayer player={winner} /> has won!
@@ -119,7 +124,7 @@
 			transition: transform ease-in-out 100ms;
 
 			&:active {
-				// Taking too long makes it seem laggy
+				/* Taking too long makes it seem laggy */
 				transition-duration: 20ms;
 				transform: scale(0.95);
 			}

@@ -68,7 +68,7 @@
 
 		transition: transform ease 0.2s;
 
-		// box-shadow: 3px 3px 7px color.adjust($card, $lightness: -5%);
+		/* box-shadow: 3px 3px 7px color.adjust($card, $lightness: -5%); */
 
 		> a {
 			margin-bottom: 1em;

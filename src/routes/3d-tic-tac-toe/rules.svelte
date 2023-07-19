@@ -9,8 +9,10 @@
 
 	<div class="tooltip">
 		<h2>Rules</h2>
-		<p>Whoever can place four markers in
-		one row, column, vertical, or diagonal first wins.</p>
+		<p>
+			Whoever can place four markers in one row, column, vertical, or diagonal
+			first wins.
+		</p>
 		<p>Players take turns placing markers.</p>
 	</div>
 </div>

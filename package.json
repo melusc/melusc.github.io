@@ -38,18 +38,11 @@
 	},
 	"license": "MIT",
 	"name": "melusc.github.io",
-	"prettier": {
-		"arrowParens": "avoid",
-		"bracketSpacing": false,
-		"jsxSingleQuote": true,
-		"singleQuote": true,
-		"useTabs": true
-	},
 	"private": true,
 	"scripts": {
 		"build": "yarn check && vite build && yarn postbuild",
 		"postbuild": "node scripts/postbuild.js",
-		"fmt": "prettier -w . && xo --fix",
+		"fmt": "prettier -w . **/*.svelte && xo --fix",
 		"dev": "vite dev",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",

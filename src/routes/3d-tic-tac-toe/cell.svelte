@@ -26,7 +26,6 @@
 			onClick();
 		}
 	}
-
 </script>
 
 <div
@@ -40,7 +39,7 @@
 	role="button"
 >
 	{#if $content === Player.p1}
-		<X/>
+		<X />
 	{:else if $content === Player.p2}
 		<O />
 	{:else}
@@ -85,7 +84,8 @@
 	}
 
 	@keyframes winning-green {
-		0% {}
+		0% {
+		}
 
 		100% {
 			background-color: transparent;

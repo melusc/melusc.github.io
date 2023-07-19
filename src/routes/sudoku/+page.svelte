@@ -212,7 +212,8 @@
 
 		cursor: pointer;
 
-		transition: var(--transition-properties) transform,
+		transition:
+			var(--transition-properties) transform,
 			var(--transition-properties) background-color,
 			var(--transition-properties) color;
 

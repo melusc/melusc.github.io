@@ -8,7 +8,6 @@
 
 <div class="layer-perspective">
 	<div class="layer-tilted">
-
 		{#each layer as cell (cell.index)}
 			<Cell {cell} on:choice {winningCells} />
 		{/each}
@@ -23,13 +22,13 @@
 	}
 
 	.layer-tilted {
-			transform: rotateX(50deg);
+		transform: rotateX(50deg);
 
-			display: grid;
-			grid-template: repeat(4, minmax(0, 1fr)) / repeat(4, minmax(0, 1fr));
+		display: grid;
+		grid-template: repeat(4, minmax(0, 1fr)) / repeat(4, minmax(0, 1fr));
 
-			border: 1px solid var(--border);
-			height: 100%;
+		border: 1px solid var(--border);
+		height: 100%;
 	}
 
 	@media (min-width: 600px) {

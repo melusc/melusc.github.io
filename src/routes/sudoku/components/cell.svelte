@@ -45,8 +45,8 @@
 		}
 
 		@for $i from 0 through 2 {
-			$lower-index: ($i * 27) + 1; // 1-based indexing
-			$upper-index: $lower-index + 8; // inclusive, so first one and the next 8
+			$lower-index: ($i * 27) + 1; /* 1-based indexing */
+			$upper-index: $lower-index + 8; /* inclusive, so first one and the next 8 */
 
 			&:nth-child(n + #{$lower-index}):nth-child(-n + #{$upper-index}) {
 				border-top: var(--thick-border);
@@ -67,7 +67,7 @@
 	}
 
 	@media (min-width: 500px) {
-		// Only here because it doesn't work and looks weird on mobile
+		/* Only here because it doesn't work and looks weird on mobile */
 		.cell:hover:not(.focused-cell) {
 			background-color: var(--hover-cell-bg);
 		}
