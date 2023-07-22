@@ -19,7 +19,7 @@
 		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.22.3",
 		"@types/lodash-es": "^4.17.7",
-		"@types/node": "^20.4.2",
+		"@types/node": "^20.4.3",
 		"@typescript-eslint/parser": "^6.1.0",
 		"eslint": "^8.45.0",
 		"eslint-config-xo-typescript": "^1.0.1",
