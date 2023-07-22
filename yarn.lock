@@ -2442,7 +2442,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.7, fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.0, fast-glob@npm:^3.3.1":
+"fast-glob@npm:^3.2.7, fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.0":
   version: 3.3.1
   resolution: "fast-glob@npm:3.3.1"
   dependencies:
@@ -3850,7 +3850,6 @@ __metadata:
     eslint: ^8.45.0
     eslint-config-xo-typescript: ^1.0.1
     eslint-plugin-svelte: ^2.32.4
-    fast-glob: ^3.3.1
     hex-rgb: ^5.0.0
     json5: ^2.2.3
     jszip: ^3.10.1
