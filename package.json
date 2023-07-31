@@ -17,7 +17,7 @@
 	"devDependencies": {
 		"@lusc/tsconfig": "^2.3.0",
 		"@sveltejs/adapter-static": "^2.0.3",
-		"@sveltejs/kit": "^1.22.3",
+		"@sveltejs/kit": "^1.22.4",
 		"@types/lodash-es": "^4.17.7",
 		"@types/node": "^20.4.5",
 		"@typescript-eslint/parser": "^6.2.0",
