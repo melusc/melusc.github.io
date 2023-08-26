@@ -66,7 +66,9 @@
 		text-align: center;
 		padding: 1em 2em;
 
-		transition: transform ease 0.2s;
+		transition:
+			transform ease 0.2s,
+			background-color ease 0.2s;
 
 		/* box-shadow: 3px 3px 7px color.adjust($card, $lightness: -5%); */
 
