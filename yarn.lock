@@ -349,13 +349,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lusc/json-dts@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@lusc/json-dts@npm:3.1.0"
+"@lusc/json-dts@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@lusc/json-dts@npm:3.1.1"
   dependencies:
-    camelcase: ^7.0.1
-    type-fest: ^3.11.1
-  checksum: 9250e9852c8f1069acd0a19a85dcd3e397c600eee4fedfd4185b69991f492358e6ecf187a36552f5b9d25b01f33ff27a4192a84c337ec390edee53b991571886
+    camelcase: ^8.0.0
+    type-fest: ^4.3.0
+  checksum: 67605710757dc0a86013024e04aa42832b833f6276a81a0019824a8c7e65a33bcaccce7b0002d7445a7e3c13293514ec40eceb3b5bd698549644ebff6db29786
   languageName: node
   linkType: hard
 
@@ -366,12 +366,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lusc/truth-table@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@lusc/truth-table@npm:4.0.0"
+"@lusc/truth-table@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@lusc/truth-table@npm:4.0.1"
   dependencies:
-    type-fest: ^4.0.0
-  checksum: 6c6d0332b99d64b65d214fb5ac0f80736a70975979c2870847dcf4c3ba47a8e43dfc1b7299b3bcd5741557669882f4da7d0774c920215294fcec67763abbf95b
+    type-fest: ^4.3.0
+  checksum: 39e81ae729fadc1e992216225387402784744235179c907e160c42b8b57cf01e399ff831fbcf8c65d64e76af7b1ac7b0de211d7483e19222d9d190b8566f6457
   languageName: node
   linkType: hard
 
@@ -572,12 +572,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash-es@npm:^4.17.7":
-  version: 4.17.7
-  resolution: "@types/lodash-es@npm:4.17.7"
+"@types/lodash-es@npm:^4.17.8":
+  version: 4.17.8
+  resolution: "@types/lodash-es@npm:4.17.8"
   dependencies:
     "@types/lodash": "*"
-  checksum: 4b1f39fd1d921311c37a846c0e0df9d1fa23e27448a6ad1efd7574e703abd2b2fa5e8f3b5037146000f167ba231d0d01e52747d902654151b4ceeff9f2a9b380
+  checksum: 36356169a1862e2a1b09cde3b11b3790ab2c2e477778d70f825b216479ea93bd1a960767dbefcd00d6604312170a1b15209f0fa1c35ddf8861bc233c9b0d3e56
   languageName: node
   linkType: hard
 
@@ -1271,10 +1271,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"camelcase@npm:^7.0.0, camelcase@npm:^7.0.1":
+"camelcase@npm:^7.0.0":
   version: 7.0.1
   resolution: "camelcase@npm:7.0.1"
   checksum: 86ab8f3ebf08bcdbe605a211a242f00ed30d8bfb77dab4ebb744dd36efbc84432d1c4adb28975ba87a1b8be40a80fbd1e60e2f06565315918fa7350011a26d3d
+  languageName: node
+  linkType: hard
+
+"camelcase@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "camelcase@npm:8.0.0"
+  checksum: 6da7abe997af29e80052f17aa21628c7cce14af364cef9f07a2a44d59614dd6f361d405f121938e673424d673697a8c53ad17be8c4b03b0a727307c4db8b5b5e
   languageName: node
   linkType: hard
 
@@ -3837,13 +3844,13 @@ __metadata:
   resolution: "melusc.github.io@workspace:."
   dependencies:
     "@faker-js/faker": ^8.0.2
-    "@lusc/json-dts": ^3.1.0
+    "@lusc/json-dts": ^3.1.1
     "@lusc/sudoku": ^4.1.0
-    "@lusc/truth-table": ^4.0.0
+    "@lusc/truth-table": ^4.0.1
     "@lusc/tsconfig": ^3.0.0
     "@sveltejs/adapter-static": ^2.0.3
     "@sveltejs/kit": ^1.23.0
-    "@types/lodash-es": ^4.17.7
+    "@types/lodash-es": ^4.17.8
     "@types/node": ^20.5.6
     "@typescript-eslint/parser": ^6.4.1
     dayjs: ^1.11.9
@@ -3860,7 +3867,7 @@ __metadata:
     sass: ^1.66.1
     svelte: ^4.2.0
     svelte-check: ^3.5.0
-    type-fest: ^4.2.0
+    type-fest: ^4.3.0
     typescript: ^5.2.2
     vite: ^4.4.9
     vitest: ^0.34.3
@@ -5823,17 +5830,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^3.1.0, type-fest@npm:^3.11.1, type-fest@npm:^3.9.0":
+"type-fest@npm:^3.1.0, type-fest@npm:^3.9.0":
   version: 3.13.0
   resolution: "type-fest@npm:3.13.0"
   checksum: f7be142ae1ad0582eafd52d085350799c8cd918c15455896a06c82c147b61f8cea58892bedf1348943478e37740562219375b3b59fd855db99cd2b2766510f98
   languageName: node
   linkType: hard
 
-"type-fest@npm:^4.0.0, type-fest@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "type-fest@npm:4.2.0"
-  checksum: 76c5dfde9293b1b185b266a07df669f68d58ae3e19c06e33f0ff0dd0ba68628f05389bc26bcee8476e29a79ab7da054653670b9778399ceb079c4c259bac29f0
+"type-fest@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "type-fest@npm:4.3.0"
+  checksum: 3786b95d17f18cbb24664b96845805391e1aee74eb573981d55acd742f545c379eb65221e2f3bf9f969fbb84b4d2b4670fcfa64acbcd9d2a7593fe566237beb7
   languageName: node
   linkType: hard
 

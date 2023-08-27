@@ -3,22 +3,22 @@
 	"type": "module",
 	"dependencies": {
 		"@faker-js/faker": "^8.0.2",
-		"@lusc/json-dts": "^3.1.0",
+		"@lusc/json-dts": "^3.1.1",
 		"@lusc/sudoku": "^4.1.0",
-		"@lusc/truth-table": "^4.0.0",
+		"@lusc/truth-table": "^4.0.1",
 		"dayjs": "^1.11.9",
 		"hex-rgb": "^5.0.0",
 		"json5": "^2.2.3",
 		"jszip": "^3.10.1",
 		"lodash-es": "^4.17.21",
 		"rgb-hex": "^4.0.1",
-		"type-fest": "^4.2.0"
+		"type-fest": "^4.3.0"
 	},
 	"devDependencies": {
 		"@lusc/tsconfig": "^3.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.23.0",
-		"@types/lodash-es": "^4.17.7",
+		"@types/lodash-es": "^4.17.8",
 		"@types/node": "^20.5.6",
 		"@typescript-eslint/parser": "^6.4.1",
 		"eslint-config-xo-typescript": "^1.0.1",
