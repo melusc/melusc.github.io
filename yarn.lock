@@ -573,12 +573,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash-es@npm:^4.17.8":
-  version: 4.17.8
-  resolution: "@types/lodash-es@npm:4.17.8"
+"@types/lodash-es@npm:^4.17.9":
+  version: 4.17.9
+  resolution: "@types/lodash-es@npm:4.17.9"
   dependencies:
     "@types/lodash": "*"
-  checksum: 36356169a1862e2a1b09cde3b11b3790ab2c2e477778d70f825b216479ea93bd1a960767dbefcd00d6604312170a1b15209f0fa1c35ddf8861bc233c9b0d3e56
+  checksum: a2c7ab8da13892f89ab86b61dd9a0125c767b9db7b9bdaac7fd8508c9fa884bbb19a9760dbdc1e7e698e3322b7a8ba03daa80832371da32a8bd42da0920be838
   languageName: node
   linkType: hard
 
@@ -596,10 +596,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.5.7":
-  version: 20.5.7
-  resolution: "@types/node@npm:20.5.7"
-  checksum: fc284c8e16ddc04569730d58e87eae349eb1c3dd9020cb79a1862d9d9add6f04e7367a236f3252db8db2572f90278e250f4cd43d27d264972b54394eaba1ed76
+"@types/node@npm:*, @types/node@npm:^20.5.8":
+  version: 20.5.8
+  resolution: "@types/node@npm:20.5.8"
+  checksum: ccd73e0e99ddfcf42e10b7a30a58a432bc39eeb9d1d59084ed818be468e05375b212a29d03529149aff58366c0eddb9bf367cb335db6620a4855ce315c5ecf28
   languageName: node
   linkType: hard
 
@@ -3865,8 +3865,8 @@ __metadata:
     "@lusc/tsconfig": ^3.0.0
     "@sveltejs/adapter-static": ^2.0.3
     "@sveltejs/kit": ^1.24.0
-    "@types/lodash-es": ^4.17.8
-    "@types/node": ^20.5.7
+    "@types/lodash-es": ^4.17.9
+    "@types/node": ^20.5.8
     "@typescript-eslint/parser": ^6.5.0
     dayjs: ^1.11.9
     eslint-config-xo-typescript: ^1.0.1
@@ -3877,7 +3877,7 @@ __metadata:
     lodash-es: ^4.17.21
     prettier: ^3.0.3
     prettier-plugin-svelte: ^3.0.3
-    rgb-hex: ^4.0.1
+    rgb-hex: ^4.1.0
     rimraf: ^5.0.1
     sass: ^1.66.1
     svelte: ^4.2.0
@@ -4992,10 +4992,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rgb-hex@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "rgb-hex@npm:4.0.1"
-  checksum: 474505b0fbab1f10b3f72cee4350a491d6d491a0a72576025c6f72f2fe13490ddd46f4f00bb77916da5f5238d2f2adb3255543c64c7358a2c65577d27e7085e2
+"rgb-hex@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "rgb-hex@npm:4.1.0"
+  checksum: 662dcc1e9016852a0cd28250edc68a6bcf5ad07bf0ab92c2419da79b3ad6880cf94cdf93412f035c88662e2b8482d6852171a3c015ed5eec031613740edd791e
   languageName: node
   linkType: hard
 
