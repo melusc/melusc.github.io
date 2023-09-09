@@ -596,10 +596,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.5.9":
-  version: 20.5.9
-  resolution: "@types/node@npm:20.5.9"
-  checksum: 717490e94131722144878b4ca1a963ede1673bb8f2ef78c2f5b50b918df6dc9b35e7f8283e5c2a7a9f137730f7c08dc6228e53d4494a94c9ee16881e6ce6caed
+"@types/node@npm:*, @types/node@npm:^20.6.0":
+  version: 20.6.0
+  resolution: "@types/node@npm:20.6.0"
+  checksum: 52611801af5cf151c6fac1963aa4a8a8ca2e388a9e9ed82b01b70bca762088ded5b32cc789c5564220d5d7dccba2b8dd34446a3d4fc74736805e1f2cf262e29d
   languageName: node
   linkType: hard
 
@@ -2163,9 +2163,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-svelte@npm:^2.33.0":
-  version: 2.33.0
-  resolution: "eslint-plugin-svelte@npm:2.33.0"
+"eslint-plugin-svelte@npm:^2.33.1":
+  version: 2.33.1
+  resolution: "eslint-plugin-svelte@npm:2.33.1"
   dependencies:
     "@eslint-community/eslint-utils": ^4.2.0
     "@jridgewell/sourcemap-codec": ^1.4.14
@@ -2184,7 +2184,7 @@ __metadata:
   peerDependenciesMeta:
     svelte:
       optional: true
-  checksum: 8bbd184bd4576ea46298f1769f76ecd88f604ee97412fbb28d72130d5ae61a1e8632a3b0c6801614d5fde3d65e648ed8e80744229c7f464cc0a0134d4995179d
+  checksum: 5b45b1a12eba7753f985111148dd244410f4161c8241d79bace484502a9cc2ee9ccb8b11f4358f5a0ee33816da6796b4f55a7a45a34ba080b0dffcceb0a0a858
   languageName: node
   linkType: hard
 
@@ -3866,11 +3866,11 @@ __metadata:
     "@sveltejs/adapter-static": ^2.0.3
     "@sveltejs/kit": ^1.24.1
     "@types/lodash-es": ^4.17.9
-    "@types/node": ^20.5.9
+    "@types/node": ^20.6.0
     "@typescript-eslint/parser": ^6.6.0
     dayjs: ^1.11.9
     eslint-config-xo-typescript: ^1.0.1
-    eslint-plugin-svelte: ^2.33.0
+    eslint-plugin-svelte: ^2.33.1
     hex-rgb: ^5.0.0
     json5: ^2.2.3
     jszip: ^3.10.1
