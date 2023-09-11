@@ -15,7 +15,7 @@
 		"type-fest": "^4.3.1"
 	},
 	"devDependencies": {
-		"@lusc/tsconfig": "^3.0.0",
+		"@lusc/tsconfig": "^4.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.24.1",
 		"@types/lodash-es": "^4.17.9",
