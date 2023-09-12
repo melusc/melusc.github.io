@@ -349,29 +349,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lusc/json-dts@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "@lusc/json-dts@npm:3.1.1"
+"@lusc/json-dts@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@lusc/json-dts@npm:4.0.0"
   dependencies:
     camelcase: ^8.0.0
-    type-fest: ^4.3.0
-  checksum: 67605710757dc0a86013024e04aa42832b833f6276a81a0019824a8c7e65a33bcaccce7b0002d7445a7e3c13293514ec40eceb3b5bd698549644ebff6db29786
+    type-fest: ^4.3.1
+  checksum: cedd473462de5e8aaef454700bbec356b87f42f69cd6570c2ca465c1cb912fa1ba508cb6718d89f5542570df69891ce561b735eabe302d5d480e108c2d0f29b0
   languageName: node
   linkType: hard
 
-"@lusc/sudoku@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "@lusc/sudoku@npm:4.1.0"
-  checksum: 817c543c095a6c39207d7b85e970f5bb1dbc55d6623475a731bd2849f7245836b928fda986c7942f57cf263904983bed4e57fcea02f1f937746a8cba3dee2413
+"@lusc/sudoku@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@lusc/sudoku@npm:5.0.0"
+  checksum: 0c96d3de35a6411370e71e565c94e9bcd677a64ace86c7a346dfa3876c34907b13c67e6e567c48a76feac09f28dd0f5d622c915e1845ce2fd44639976dd89bc9
   languageName: node
   linkType: hard
 
-"@lusc/truth-table@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@lusc/truth-table@npm:4.0.1"
+"@lusc/truth-table@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@lusc/truth-table@npm:5.0.0"
   dependencies:
-    type-fest: ^4.3.0
-  checksum: 39e81ae729fadc1e992216225387402784744235179c907e160c42b8b57cf01e399ff831fbcf8c65d64e76af7b1ac7b0de211d7483e19222d9d190b8566f6457
+    type-fest: ^4.3.1
+  checksum: d3b1fbe5f472d075174b9dbce7b19b68444b699b093257cc77838e8d03f39872f734317e7e986cf7be7af78a14dc741a7aa2a0147c5f165d6ab98eebfd67e4a9
   languageName: node
   linkType: hard
 
@@ -3859,9 +3859,9 @@ __metadata:
   resolution: "melusc.github.io@workspace:."
   dependencies:
     "@faker-js/faker": ^8.0.2
-    "@lusc/json-dts": ^3.1.1
-    "@lusc/sudoku": ^4.1.0
-    "@lusc/truth-table": ^4.0.1
+    "@lusc/json-dts": ^4.0.0
+    "@lusc/sudoku": ^5.0.0
+    "@lusc/truth-table": ^5.0.0
     "@lusc/tsconfig": ^4.0.0
     "@sveltejs/adapter-static": ^2.0.3
     "@sveltejs/kit": ^1.24.1
@@ -5862,7 +5862,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^4.3.0, type-fest@npm:^4.3.1":
+"type-fest@npm:^4.3.1":
   version: 4.3.1
   resolution: "type-fest@npm:4.3.1"
   checksum: 04e0f073dcc31c113c1b8856c089b388e7e9f4383a9ed72cc1466a89ec50d9d67678844eeec342b5a1ce71b21e817764d4f067aa148f6bcb5df9005ff3803382

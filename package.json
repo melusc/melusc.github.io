@@ -3,9 +3,9 @@
 	"type": "module",
 	"dependencies": {
 		"@faker-js/faker": "^8.0.2",
-		"@lusc/json-dts": "^3.1.1",
-		"@lusc/sudoku": "^4.1.0",
-		"@lusc/truth-table": "^4.0.1",
+		"@lusc/json-dts": "^4.0.0",
+		"@lusc/sudoku": "^5.0.0",
+		"@lusc/truth-table": "^5.0.0",
 		"dayjs": "^1.11.9",
 		"hex-rgb": "^5.0.0",
 		"json5": "^2.2.3",
