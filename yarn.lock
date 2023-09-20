@@ -245,10 +245,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@faker-js/faker@npm:^8.0.2":
-  version: 8.0.2
-  resolution: "@faker-js/faker@npm:8.0.2"
-  checksum: cf73daf9a50397eb0b3f04a7ef3fbb6f54acc026b167707136a7e58a517fd805a46c9e8c5f017f3022f104a4ff984765daaeee2cb98b3c34646db05c2acad441
+"@faker-js/faker@npm:^8.1.0":
+  version: 8.1.0
+  resolution: "@faker-js/faker@npm:8.1.0"
+  checksum: 76036cbad2f0735fe2a2834bb3e16233e7c1aa4998cf90dbd097631465f3fcd4e7022c901f80b6de1c25b47154880f06916609a81dacb039a25f9cb000a3ab4e
   languageName: node
   linkType: hard
 
@@ -596,10 +596,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.6.2":
-  version: 20.6.2
-  resolution: "@types/node@npm:20.6.2"
-  checksum: 96fe5303872640a173f3fd43e289a451776ed5b8f0090094447c6790b43f23fb607eea8268af0829cef4d132e5afa0bfa4cd871aa7412e9042a414a698e9e971
+"@types/node@npm:*, @types/node@npm:^20.6.3":
+  version: 20.6.3
+  resolution: "@types/node@npm:20.6.3"
+  checksum: 444a6f1f41cfa8d3e20ce0108e6e43960fb2ae0e481f233bb1c14d6252aa63a92e021de561cd317d9fdb411688f871065f40175a1f18763282dee2613a08f8a3
   languageName: node
   linkType: hard
 
@@ -3858,7 +3858,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "melusc.github.io@workspace:."
   dependencies:
-    "@faker-js/faker": ^8.0.2
+    "@faker-js/faker": ^8.1.0
     "@lusc/json-dts": ^4.0.0
     "@lusc/sudoku": ^5.0.0
     "@lusc/truth-table": ^5.0.0
@@ -3866,7 +3866,7 @@ __metadata:
     "@sveltejs/adapter-static": ^2.0.3
     "@sveltejs/kit": ^1.25.0
     "@types/lodash-es": ^4.17.9
-    "@types/node": ^20.6.2
+    "@types/node": ^20.6.3
     "@typescript-eslint/parser": ^6.7.2
     dayjs: ^1.11.10
     eslint-config-xo-typescript: ^1.0.1
