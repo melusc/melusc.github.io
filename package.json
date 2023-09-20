@@ -2,7 +2,7 @@
 	"author": "lusc",
 	"type": "module",
 	"dependencies": {
-		"@faker-js/faker": "^8.0.2",
+		"@faker-js/faker": "^8.1.0",
 		"@lusc/json-dts": "^4.0.0",
 		"@lusc/sudoku": "^5.0.0",
 		"@lusc/truth-table": "^5.0.0",
@@ -19,7 +19,7 @@
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.25.0",
 		"@types/lodash-es": "^4.17.9",
-		"@types/node": "^20.6.2",
+		"@types/node": "^20.6.3",
 		"@typescript-eslint/parser": "^6.7.2",
 		"eslint-config-xo-typescript": "^1.0.1",
 		"eslint-plugin-svelte": "^2.33.2",
