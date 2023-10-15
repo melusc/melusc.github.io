@@ -245,10 +245,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@faker-js/faker@npm:^8.1.0":
-  version: 8.1.0
-  resolution: "@faker-js/faker@npm:8.1.0"
-  checksum: 76036cbad2f0735fe2a2834bb3e16233e7c1aa4998cf90dbd097631465f3fcd4e7022c901f80b6de1c25b47154880f06916609a81dacb039a25f9cb000a3ab4e
+"@faker-js/faker@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "@faker-js/faker@npm:8.2.0"
+  checksum: febc17018acfb841a348591bfe415e815ea981bf7fa0a12670ac2b449479ad7e9e7b130c42878ec30210da964c13a620a3303dc00d63cb13ded00c6fc701e2be
   languageName: node
   linkType: hard
 
@@ -596,12 +596,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.8.4":
-  version: 20.8.4
-  resolution: "@types/node@npm:20.8.4"
+"@types/node@npm:*, @types/node@npm:^20.8.6":
+  version: 20.8.6
+  resolution: "@types/node@npm:20.8.6"
   dependencies:
     undici-types: ~5.25.1
-  checksum: 2106b9ef9750297cac68249428d7067c4d22c26908854165b70a164e34e900f4c34bb9bf3887c9391206b500d3e87171d03b1846e25788925236a0354390d278
+  checksum: ccfb7ac482c5a96edeb239893c5c099f5257fcc2ed9ae62fefdfbc782b79e16dbc2af9a85b379665237bf759904b44ca2be68e75d239e0297882aad42f61905c
   languageName: node
   linkType: hard
 
@@ -3862,7 +3862,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "melusc.github.io@workspace:."
   dependencies:
-    "@faker-js/faker": ^8.1.0
+    "@faker-js/faker": ^8.2.0
     "@lusc/json-dts": ^4.0.0
     "@lusc/sudoku": ^5.0.0
     "@lusc/truth-table": ^5.0.0
@@ -3870,7 +3870,7 @@ __metadata:
     "@sveltejs/adapter-static": ^2.0.3
     "@sveltejs/kit": ^1.25.2
     "@types/lodash-es": ^4.17.9
-    "@types/node": ^20.8.4
+    "@types/node": ^20.8.6
     "@typescript-eslint/parser": ^6.7.5
     dayjs: ^1.11.10
     eslint-config-xo-typescript: ^1.0.1
@@ -3883,7 +3883,7 @@ __metadata:
     prettier-plugin-svelte: ^3.0.3
     rgb-hex: ^4.1.0
     rimraf: ^5.0.5
-    sass: ^1.69.1
+    sass: ^1.69.3
     svelte: ^4.2.1
     svelte-check: ^3.5.2
     type-fest: ^4.4.0
@@ -5121,16 +5121,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.69.1":
-  version: 1.69.1
-  resolution: "sass@npm:1.69.1"
+"sass@npm:^1.69.3":
+  version: 1.69.3
+  resolution: "sass@npm:1.69.3"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: e3f0754fc8e1ffc239919cba8d1cc8d89908d596161992c562d0679a6aa1e1c57b0a11846726f9222f96622495a5bfc00461b3f31182e71a54ad91a86dd10a8f
+  checksum: b89a3370c7ede462b344e2136bf1407bf375855c1ec54f73b6257b18fe59dae5377eb9f7b25f21ae4a25d8f0bc41a165d8d7e5f693d8285b1aa51ac6056c4d19
   languageName: node
   linkType: hard
 
