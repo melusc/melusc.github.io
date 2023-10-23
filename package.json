@@ -47,7 +47,7 @@
 		"test": "vitest run"
 	},
 	"version": "1.0.0",
-	"packageManager": "yarn@3.6.4",
+	"packageManager": "yarn@4.0.0",
 	"resolutions": {
 		"tsconfig-paths": "^4.2.0"
 	}
