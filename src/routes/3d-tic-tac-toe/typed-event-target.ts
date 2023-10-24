@@ -5,7 +5,7 @@ export class TypedEventTarget<EventMap extends Record<string, unknown>> {
 	// because that way it can only have the methods it needs
 	// and overriding the original methods doesn't work
 	// because the original and new methods are not compatible
-	#eventTarget = new EventTarget();
+	readonly #eventTarget = new EventTarget();
 
 	on<Event extends keyof EventMap & string>(
 		name: Event,
