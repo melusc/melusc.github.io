@@ -2,7 +2,7 @@
 	"author": "lusc",
 	"type": "module",
 	"dependencies": {
-		"@faker-js/faker": "^8.2.0",
+		"@faker-js/faker": "^8.3.1",
 		"@lusc/json-dts": "^4.0.0",
 		"@lusc/sudoku": "^5.0.0",
 		"@lusc/truth-table": "^5.0.0",
@@ -17,13 +17,13 @@
 	"devDependencies": {
 		"@lusc/tsconfig": "^4.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",
-		"@sveltejs/kit": "^1.27.5",
+		"@sveltejs/kit": "^1.27.6",
 		"@types/lodash-es": "^4.17.11",
 		"@types/node": "^20.9.0",
-		"@typescript-eslint/parser": "^6.10.0",
+		"@typescript-eslint/parser": "^6.11.0",
 		"eslint-config-xo-typescript": "^1.0.1",
 		"eslint-plugin-svelte": "^2.35.0",
-		"prettier": "^3.0.3",
+		"prettier": "^3.1.0",
 		"prettier-plugin-svelte": "^3.1.0",
 		"rimraf": "^5.0.5",
 		"sass": "^1.69.5",
@@ -47,7 +47,7 @@
 		"test": "vitest run"
 	},
 	"version": "1.0.0",
-	"packageManager": "yarn@4.0.1",
+	"packageManager": "yarn@4.0.2",
 	"resolutions": {
 		"tsconfig-paths": "^4.2.0"
 	}
