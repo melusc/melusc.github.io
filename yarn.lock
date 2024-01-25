@@ -246,10 +246,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@faker-js/faker@npm:^8.3.1":
-  version: 8.3.1
-  resolution: "@faker-js/faker@npm:8.3.1"
-  checksum: ed50c27a5674a8c755574ccc0c79c29fa70cd17d524b701269f584d2f78720c690da219f6111b0e743a4f6570fb08685d826b2d9e80ca9c1484b8c26047864c6
+"@faker-js/faker@npm:^8.4.0":
+  version: 8.4.0
+  resolution: "@faker-js/faker@npm:8.4.0"
+  checksum: 2dd9a3f6a38a70baa8d8ae222d9d371eea2b56eba4bd12bb138230e9481687686330fddee7581d3f285cf8ea8fe1534e08e43a110de8743e561a6eccc3fdc670
   languageName: node
   linkType: hard
 
@@ -540,9 +540,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^2.4.3":
-  version: 2.4.3
-  resolution: "@sveltejs/kit@npm:2.4.3"
+"@sveltejs/kit@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "@sveltejs/kit@npm:2.5.0"
   dependencies:
     "@types/cookie": "npm:^0.6.0"
     cookie: "npm:^0.6.0"
@@ -562,7 +562,7 @@ __metadata:
     vite: ^5.0.3
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 48962df546b96489d11511bf8444df8f6b5e2379ae091c7eeb9d3fb12519676982c270460c298c50e4e9aad7b5163e230e7194c7bb357b679e2f8d58eaf9ecce
+  checksum: 216bdf2b75d22d47f6295813b45f62df2d80eee2bd6441a46d2b5c3108cfbd63514d16a1e53bb98c862f72a5d27d3e5e6df3a53f1db08ee54ec45255738178f7
   languageName: node
   linkType: hard
 
@@ -3906,13 +3906,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "melusc.github.io@workspace:."
   dependencies:
-    "@faker-js/faker": "npm:^8.3.1"
+    "@faker-js/faker": "npm:^8.4.0"
     "@lusc/json-dts": "npm:^4.0.1"
     "@lusc/sudoku": "npm:^5.0.0"
     "@lusc/truth-table": "npm:^5.0.1"
     "@lusc/tsconfig": "npm:^4.0.0"
     "@sveltejs/adapter-static": "npm:^3.0.1"
-    "@sveltejs/kit": "npm:^2.4.3"
+    "@sveltejs/kit": "npm:^2.5.0"
     "@sveltejs/vite-plugin-svelte": "npm:^3.0.1"
     "@types/lodash-es": "npm:^4.17.12"
     "@types/node": "npm:^20.11.6"
