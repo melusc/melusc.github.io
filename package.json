@@ -2,7 +2,7 @@
 	"author": "lusc",
 	"type": "module",
 	"dependencies": {
-		"@faker-js/faker": "^8.3.1",
+		"@faker-js/faker": "^8.4.0",
 		"@lusc/json-dts": "^4.0.1",
 		"@lusc/sudoku": "^5.0.0",
 		"@lusc/truth-table": "^5.0.1",
@@ -17,7 +17,7 @@
 	"devDependencies": {
 		"@lusc/tsconfig": "^4.0.0",
 		"@sveltejs/adapter-static": "^3.0.1",
-		"@sveltejs/kit": "^2.4.3",
+		"@sveltejs/kit": "^2.5.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
 		"@types/lodash-es": "^4.17.12",
 		"@types/node": "^20.11.6",
