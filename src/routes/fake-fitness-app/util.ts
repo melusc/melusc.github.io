@@ -25,7 +25,7 @@ export function getTextWidth(text: string, font: string): number {
 	return Math.floor(metrics.width);
 }
 
-export function calcTimePerDistance(
+export function calculateTimePerDistance(
 	distance: string,
 	duration: string,
 ): string | false {
@@ -44,7 +44,7 @@ export function calcTimePerDistance(
 		return '0\'00"';
 	}
 
-	const secondsSinceMidnight = calcDurationSecondsSinceMidnight(duration);
+	const secondsSinceMidnight = calculateSecondsSinceMidnight(duration);
 
 	if (secondsSinceMidnight === false) {
 		return false;
@@ -61,7 +61,7 @@ export function calcTimePerDistance(
 }
 
 export function toSpeed(duration: string, distance: string): string | false {
-	const durationInSeconds = calcDurationSecondsSinceMidnight(duration);
+	const durationInSeconds = calculateSecondsSinceMidnight(duration);
 
 	if (durationInSeconds === false) {
 		return false;
@@ -90,7 +90,7 @@ export const parseDuration = (duration: string): dayjs.Dayjs =>
 export const isValidDuration = (duration: string): boolean =>
 	parseDuration(duration).isValid();
 
-export const calcDurationSecondsSinceMidnight = (
+export const calculateSecondsSinceMidnight = (
 	duration: string,
 ): number | false => {
 	const parsedDuration = parseDuration(duration);

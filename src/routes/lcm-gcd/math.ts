@@ -45,12 +45,12 @@ export function lcm(a: ExpectedNumber, b: ExpectedNumber): bigint {
 	return (absBigInt(a) * absBigInt(b)) / gcd(a, b);
 }
 
-function wrap(fn: (a: ExpectedNumber, b: ExpectedNumber) => bigint) {
+function wrap(function_: (a: ExpectedNumber, b: ExpectedNumber) => bigint) {
 	return (numbers: ExpectedNumber[]): string => {
 		let result: ExpectedNumber | undefined;
 
 		for (const n of numbers) {
-			result = result === undefined ? n : fn(result, n);
+			result = result === undefined ? n : function_(result, n);
 		}
 
 		if (result === undefined) {

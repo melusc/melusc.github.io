@@ -1,5 +1,6 @@
-import {loadAsync} from 'jszip';
+/* eslint-disable import/no-duplicates */
 import type JSZip from 'jszip';
+import {loadAsync} from 'jszip';
 
 export async function unlock(file: File): Promise<Blob> {
 	let zip: JSZip;

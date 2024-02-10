@@ -1,6 +1,7 @@
 import type {Opaque} from 'type-fest';
-// eslint-disable-next-line n/file-extension-in-import
-import {get, writable, type Readable, type Writable} from 'svelte/store';
+import {
+get, writable, type Readable, type Writable,
+} from 'svelte/store';
 
 import {TypedEventTarget} from './typed-event-target.ts';
 
@@ -110,28 +111,28 @@ export class TicTacToe extends TypedEventTarget<{
 		this.emitOnWinner();
 	}
 
-	protected * getGroupByDir(dir: {
+	protected * getGroupByDir(direction: {
 		x?: 1 | -1;
 		y?: 1 | -1;
 		z?: 1 | -1;
 	}): Iterable<Group> {
-		const dirX = dir.x ?? 0;
-		const dirY = dir.y ?? 0;
-		const dirZ = dir.z ?? 0;
+		const directionX = direction.x ?? 0;
+		const directionY = direction.y ?? 0;
+		const directionZ = direction.z ?? 0;
 
-		if (dirX === 0 && dirY === 0 && dirZ === 0) {
+		if (directionX === 0 && directionY === 0 && directionZ === 0) {
 			throw new Error('Expected at least on of directions to be non-null.');
 		}
 
-		for (const x of getStart(dirX)) {
-			for (const y of getStart(dirY)) {
-				for (const z of getStart(dirZ)) {
+		for (const x of getStart(directionX)) {
+			for (const y of getStart(directionY)) {
+				for (const z of getStart(directionZ)) {
 					const result: Cell[] = [];
 					for (let i = 0; i < 4; ++i) {
 						result.push(
 							this.#cells[
 								// prettier-ignore
-								resolveIndex(x + (dirX * i), y + (dirY * i), z + (dirZ * i))
+								resolveIndex(x + (directionX * i), y + (directionY * i), z + (directionZ * i))
 							]!,
 						);
 					}

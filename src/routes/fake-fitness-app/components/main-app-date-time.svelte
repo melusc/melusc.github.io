@@ -10,7 +10,7 @@
 
 <script lang="ts">
 	import {
-		calcDurationSecondsSinceMidnight,
+		calculateSecondsSinceMidnight,
 		dateValid,
 		timeValid,
 		toDate,
@@ -24,7 +24,7 @@
 	let timeFrom = timeAtLoad;
 
 	$: durationTimeSinceMidnightInSeconds
-		= calcDurationSecondsSinceMidnight(duration);
+		= calculateSecondsSinceMidnight(duration);
 
 	function onDateInput(event: {currentTarget: HTMLInputElement}): void {
 		const input = event.currentTarget.value;
