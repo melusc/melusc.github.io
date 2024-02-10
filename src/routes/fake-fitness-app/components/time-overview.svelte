@@ -3,14 +3,14 @@
 	import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
 	import * as CONSTS from '../consts.ts';
-	import {isValidDuration, calcTimePerDistance} from '../util.ts';
+	import {isValidDuration, calculateTimePerDistance} from '../util.ts';
 
 	dayjs.extend(customParseFormat);
 
 	export let duration: string;
 	export let distance: string;
 
-	$: timePerDistance = calcTimePerDistance(distance, duration);
+	$: timePerDistance = calculateTimePerDistance(distance, duration);
 </script>
 
 <div class="time-overview">

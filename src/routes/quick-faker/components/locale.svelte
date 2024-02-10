@@ -1,6 +1,5 @@
 <script lang="ts" context="module">
 	import {allFakers} from '@faker-js/faker';
-	// eslint-disable-next-line n/file-extension-in-import
 	import {writable} from 'svelte/store';
 
 	export const locale = writable<keyof typeof allFakers>('en');

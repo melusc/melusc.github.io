@@ -9,9 +9,9 @@ import {exit} from 'node:process';
 // Removing the original file would probably work (I haven't tested it),
 // but this is safer anyway
 
-const buildDirPath = new URL('../build/', import.meta.url);
+const buildDirectoryPath = new URL('../build/', import.meta.url);
 
-for (const file of await readdir(buildDirPath, {
+for (const file of await readdir(buildDirectoryPath, {
 	withFileTypes: true,
 })) {
 	if (!file.isFile() || !file.name.endsWith('.html')) {
@@ -19,14 +19,17 @@ for (const file of await readdir(buildDirPath, {
 	}
 
 	const name = file.name.slice(0, -5 /* '.html'.length */);
-	const newDirPath = new URL(`${name}/`, buildDirPath);
+	const newDirectoryPath = new URL(`${name}/`, buildDirectoryPath);
 
 	try {
-		await mkdir(newDirPath);
+		await mkdir(newDirectoryPath);
 	} catch {
 		console.error('Directory build/%s already exists', name);
 		exit(1);
 	}
 
-	await cp(new URL(file.name, buildDirPath), new URL('index.html', newDirPath));
+	await cp(
+		new URL(file.name, buildDirectoryPath),
+		new URL('index.html', newDirectoryPath),
+	);
 }
