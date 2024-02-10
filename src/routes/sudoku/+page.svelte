@@ -27,6 +27,7 @@
 	): Promise<void> => {
 		sudoku = sudoku_;
 
+		// eslint-disable-next-line default-case
 		switch (type) {
 			case 'change': {
 				error = undefined;
@@ -46,10 +47,6 @@
 
 				break;
 			}
-
-			default:
-			// Do nothing
-			// Shouldn't be reachable
 		}
 	};
 
