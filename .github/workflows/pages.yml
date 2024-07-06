@@ -52,9 +52,6 @@ jobs:
       - name: Build
         run: yarn vite build
 
-      - name: Postbuild
-        run: yarn run postbuild
-
       - name: Upload build
         uses: actions/upload-artifact@v4
         if: ${{ github.ref == 'refs/heads/main' }}
