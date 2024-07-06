@@ -71,7 +71,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build
-      - run: ls -R
+      - run: ls -RA
       - name: Copy file via ssh
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -79,6 +79,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           rm: true
-          source: 'build/*'
-          strip_components: 1
+          source: '*'
           target: '/home/${{ secrets.SSH_USERNAME }}/www'
