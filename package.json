@@ -39,7 +39,8 @@
 	"name": "melusc.github.io",
 	"private": true,
 	"scripts": {
-		"build": "yarn check && vite build",
+		"build": "yarn check && vite build && yarn postbuild",
+		"postbuild": "yarn node scripts/postbuild.js",
 		"fmt": "prettier -w . **/*.svelte && xo --fix",
 		"dev": "vite dev",
 		"preview": "vite preview",
