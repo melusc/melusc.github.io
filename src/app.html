@@ -18,9 +18,12 @@
 	<script type="module">
 		// Taken and modified from https://gist.github.com/fawkesley/bb900465c21b8570d8763af9a07fcfc7/
 		const dnt =
-			navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+			navigator.doNotTrack ||
+			window.doNotTrack ||
+			navigator.msDoNotTrack ||
+			navigator.globalPrivacyControl;
 
-		if (dnt === '1' || dnt === 'yes') {
+		if (dnt === '1' || dnt === 'yes' || dnt === 'true') {
 			console.debug('Respecting Do-Not-Track, not loading analytics.');
 		} else {
 			const script = document.createElement('script');
