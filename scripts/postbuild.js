@@ -1,4 +1,5 @@
 import {readdir, writeFile} from 'node:fs/promises';
+import {gzipSync} from 'node:zlib';
 
 const buildDirectoryPath = new URL('../build/', import.meta.url);
 
@@ -30,4 +31,9 @@ sitemapLines.push('</urlset>');
 await writeFile(
 	new URL('../build/sitemap.xml', import.meta.url),
 	sitemapLines.join('\n'),
+);
+
+await writeFile(
+	new URL('../build/sitemap.xml.gz', import.meta.url),
+	gzipSync(sitemapLines.join('\n')),
 );
