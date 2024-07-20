@@ -5,7 +5,6 @@
 			"files": ["**/*.{ts,tsx}", "**/*.svelte"],
 			"rules": {
 				"@typescript-eslint/indent": "off",
-				"@typescript-eslint/no-explicit-any": "error",
 				"@typescript-eslint/quotes": [
 					"error",
 					"single",
@@ -13,9 +12,7 @@
 						"avoidEscape": true
 					}
 				],
-				"@typescript-eslint/naming-convention": "off",
-				"import/extensions": "off",
-				"@typescript-eslint/explicit-function-return-type": "error"
+				"import/extensions": "off"
 			}
 		},
 		{
@@ -48,15 +45,7 @@
 		}
 	],
 	"rules": {
-		"no-bitwise": "off",
-		"indent": "off",
 		"no-mixed-spaces-and-tabs": "off",
-		"import/no-unassigned-import": [
-			"error",
-			{
-				"allow": ["**/*.scss"]
-			}
-		],
 		"capitalized-comments": "off",
 		"import/order": [
 			"error",

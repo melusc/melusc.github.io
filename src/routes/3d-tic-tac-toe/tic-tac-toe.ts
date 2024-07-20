@@ -44,7 +44,6 @@ export function resolveIndex(x: number, y: number, z: number): number {
 	return x + (y * 4) + (z * 16);
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function createTurnStore() {
 	const {subscribe, update} = writable(Player.p1);
 
