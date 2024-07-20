@@ -89,12 +89,12 @@
 			grid-gap: 2px;
 			box-sizing: border-box;
 
+			grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+
 			.keyboardless-input {
 				box-shadow: 0 0 0 2px #344861;
 				border-bottom: none;
 			}
-
-			grid-template: repeat(4, 1fr) / repeat(3, 1fr);
 
 			.input-eraser {
 				grid-area: 4 / 2;
