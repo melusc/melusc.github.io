@@ -22,7 +22,7 @@
 		"@types/lodash-es": "^4.17.12",
 		"@types/node": "^20.14.11",
 		"@typescript-eslint/parser": "^7.16.1",
-		"eslint-config-xo-typescript": "^4.0.0",
+		"eslint-config-xo-typescript": "^5.0.0",
 		"eslint-plugin-svelte": "^2.42.0",
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.6",
@@ -33,7 +33,7 @@
 		"typescript": "^5.5.3",
 		"vite": "^5.3.4",
 		"vitest": "^2.0.3",
-		"xo": "^0.58.0"
+		"xo": "^0.59.0"
 	},
 	"license": "MIT",
 	"name": "melusc.github.io",

@@ -65,12 +65,6 @@
 				"warnOnUnassignedImports": true
 			}
 		],
-		"n/file-extension-in-import": [
-			"error",
-			"always",
-			{
-				".ts": "always"
-			}
-		]
+		"n/file-extension-in-import": "off"
 	}
 }
