@@ -71,12 +71,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build
-      - name: Copy file via ssh
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          rm: true
-          source: '*'
-          target: '/var/www/lusc.ch'
+      - name: Write ssh key
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/ssh-key
+          chmod 600 ~/.ssh/ssh-key
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+      - name: Sync
+        run: rsync -vha --delete -e "ssh -i ~/.ssh/ssh-key -o StrictHostKeyChecking=accept-new" . "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST}}:/var/www/lusc.ch/"
+      - run: rm ~/.ssh/ssh-key
