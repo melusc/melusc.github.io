@@ -23,8 +23,10 @@
 			navigator.msDoNotTrack ||
 			navigator.globalPrivacyControl;
 
-		if (dnt === '1' || dnt === 'yes' || dnt === 'true') {
-			console.debug('Respecting Do-Not-Track, not loading analytics.');
+		if ([true, 'true', 1, '1', 'yes'].includes(dnt)) {
+			console.debug(
+				'Respecting Do-Not-Track / Global Privacy Control: Not loading analytics.',
+			);
 		} else {
 			const script = document.createElement('script');
 			script.dataset.goatcounter = 'https://lusc.goatcounter.com/count';
