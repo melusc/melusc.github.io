@@ -80,5 +80,5 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
       - name: Sync
-        run: rsync -vha --delete -e "ssh -i ~/.ssh/ssh-key -o StrictHostKeyChecking=accept-new" . "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST}}:/var/www/lusc.ch/"
+        run: rsync -vha --checksum --delete -e "ssh -i ~/.ssh/ssh-key -o StrictHostKeyChecking=accept-new" . "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST}}:/var/www/lusc.ch/"
       - run: rm ~/.ssh/ssh-key
