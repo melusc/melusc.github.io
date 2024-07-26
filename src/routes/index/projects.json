@@ -64,7 +64,7 @@
 		"description": "Calculate the least common multiple (lcm) and greatest common divisor (gcd).",
 		"href": "/lcm-gcd",
 		"key": "lcm-gcd",
-		"text": "Least Common Multple & Greatest Common Divisor",
+		"text": "Least Common Multiple & Greatest Common Divisor",
 		"type": "anchor"
 	},
 	{
