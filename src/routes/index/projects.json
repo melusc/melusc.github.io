@@ -26,14 +26,14 @@
 		"type": "anchor"
 	},
 	{
-		"description": "A tool to generate TypeScript definitions from JSON. Uses @lusc/json-dts",
+		"description": "A tool to generate TypeScript definitions from JSON. Uses @lusc/json-dts.",
 		"href": "/json-dts",
 		"key": "json-dts",
 		"text": "JSON Dts",
 		"type": "anchor"
 	},
 	{
-		"description": "A tool to unlock .docx and .xlsx that have been set to readonly.",
+		"description": "A tool to unlock .docx and .xlsx that have been set to read-only.",
 		"href": "/unlock-office-documents",
 		"key": "unlock-office-documents",
 		"text": "Unlock Office Documents",
@@ -54,14 +54,14 @@
 		"type": "anchor"
 	},
 	{
-		"description": "A simple page in which you can convert hex from and to rgb(a).",
+		"description": "A simple page in which you can convert hex from and to rgb.",
 		"href": "/hex-to-rgb",
 		"key": "hex-to-rgb",
-		"text": "Hex-Rgb converter",
+		"text": "Hex-RGB Converter",
 		"type": "anchor"
 	},
 	{
-		"description": "Calculate the least common multiple (lcm) and greatest common divisor (gcd).",
+		"description": "Calculate the least common multiple (LCM) and greatest common divisor (GCD).",
 		"href": "/lcm-gcd",
 		"key": "lcm-gcd",
 		"text": "Least Common Multiple & Greatest Common Divisor",
@@ -75,7 +75,7 @@
 		"type": "anchor"
 	},
 	{
-		"description": "A tool which allows you to sort json5 by its keys.",
+		"description": "A tool which allows you to sort JSON5 by its keys.",
 		"href": "/sort-json5-keys",
 		"key": "sort-json5-keys",
 		"text": "Sort JSON5",
