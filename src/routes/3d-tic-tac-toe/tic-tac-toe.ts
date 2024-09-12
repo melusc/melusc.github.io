@@ -168,7 +168,7 @@ export class TicTacToe extends TypedEventTarget<{
 		let lastPlayer: Player | undefined;
 
 		for (const cell of group) {
-			const content = get(cell.content);
+			const content = get<Player>(cell.content);
 
 			if (content === undefined) {
 				return false;
