@@ -19,6 +19,7 @@
 	let output = '';
 
 	$: try {
+		// @ts-expect-error JsonValue is not resolved correctly??
 		const json = JSON.parse(input) as JsonValue;
 		invalid = false;
 
