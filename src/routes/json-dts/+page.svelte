@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {jsonDts} from '@lusc/json-dts';
+	// @ts-expect-error JsonValue is not resolved correctly??
 	import type {JsonValue} from 'type-fest';
 
 	import './style.scss';
@@ -19,7 +20,6 @@
 	let output = '';
 
 	$: try {
-		// @ts-expect-error JsonValue is not resolved correctly??
 		const json = JSON.parse(input) as JsonValue;
 		invalid = false;
 
