@@ -22,7 +22,11 @@
 }
 
 html {
-	background: linear-gradient(170deg, $bg 0%, lighten($bg, 5%) 80%);
+	background: linear-gradient(
+		170deg,
+		$bg 0%,
+		color.adjust($bg, $lightness: 5%) 80%
+	);
 
 	font-size: 20px;
 	font-family: 'JetBrains Mono', monospace;
