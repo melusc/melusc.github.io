@@ -12,7 +12,9 @@
 		"allowImportingTsExtensions": true,
 		"noEmit": true,
 		"verbatimModuleSyntax": false,
-		"moduleResolution": "nodenext"
+		"moduleResolution": "Bundler",
+		"module": "ESNext",
+		"types": ["@types/node"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
