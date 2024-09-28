@@ -1,0 +1,1660 @@
+diff --git a/index.d.ts b/index.d.ts
+index 642e3c8e0cf21db94412553e25a288f5e8a62a4e..c7e7ed5b81706750ae6a917a1e38b82c563e18c1 100644
+--- a/index.d.ts
++++ b/index.d.ts
+@@ -1,76 +1,77 @@
+ // Basic
+-export * from './source/primitive';
+-export * from './source/typed-array';
+-export * from './source/basic';
+-export * from './source/observable-like';
++
++export type * from './source/primitive.d.ts';
++export type * from './source/typed-array.d.ts';
++export type * from './source/basic.d.ts';
++export type * from './source/observable-like.d.ts';
+ 
+ // Utilities
+-export type {KeysOfUnion} from './source/keys-of-union';
+-export type {DistributedOmit} from './source/distributed-omit';
+-export type {DistributedPick} from './source/distributed-pick';
+-export type {EmptyObject, IsEmptyObject} from './source/empty-object';
+-export type {IfEmptyObject} from './source/if-empty-object';
+-export type {NonEmptyObject} from './source/non-empty-object';
+-export type {UnknownRecord} from './source/unknown-record';
+-export type {UnknownArray} from './source/unknown-array';
+-export type {Except} from './source/except';
+-export type {TaggedUnion} from './source/tagged-union';
+-export type {Writable} from './source/writable';
+-export type {WritableDeep} from './source/writable-deep';
+-export type {Merge} from './source/merge';
+-export type {MergeDeep, MergeDeepOptions} from './source/merge-deep';
+-export type {MergeExclusive} from './source/merge-exclusive';
+-export type {RequireAtLeastOne} from './source/require-at-least-one';
+-export type {RequireExactlyOne} from './source/require-exactly-one';
+-export type {RequireAllOrNone} from './source/require-all-or-none';
+-export type {RequireOneOrNone} from './source/require-one-or-none';
+-export type {SingleKeyObject} from './source/single-key-object';
+-export type {OmitIndexSignature} from './source/omit-index-signature';
+-export type {PickIndexSignature} from './source/pick-index-signature';
+-export type {PartialDeep, PartialDeepOptions} from './source/partial-deep';
+-export type {RequiredDeep} from './source/required-deep';
+-export type {PickDeep} from './source/pick-deep';
+-export type {OmitDeep} from './source/omit-deep';
+-export type {PartialOnUndefinedDeep, PartialOnUndefinedDeepOptions} from './source/partial-on-undefined-deep';
+-export type {UndefinedOnPartialDeep} from './source/undefined-on-partial-deep';
+-export type {ReadonlyDeep} from './source/readonly-deep';
+-export type {LiteralUnion} from './source/literal-union';
+-export type {Promisable} from './source/promisable';
+-export type {Arrayable} from './source/arrayable';
+-export type {Opaque, UnwrapOpaque, Tagged, GetTagMetadata, UnwrapTagged} from './source/tagged';
+-export type {InvariantOf} from './source/invariant-of';
+-export type {SetOptional} from './source/set-optional';
+-export type {SetReadonly} from './source/set-readonly';
+-export type {SetRequired} from './source/set-required';
+-export type {SetNonNullable} from './source/set-non-nullable';
+-export type {ValueOf} from './source/value-of';
+-export type {AsyncReturnType} from './source/async-return-type';
+-export type {ConditionalExcept} from './source/conditional-except';
+-export type {ConditionalKeys} from './source/conditional-keys';
+-export type {ConditionalPick} from './source/conditional-pick';
+-export type {ConditionalPickDeep, ConditionalPickDeepOptions} from './source/conditional-pick-deep';
+-export type {UnionToIntersection} from './source/union-to-intersection';
+-export type {Stringified} from './source/stringified';
+-export type {StringSlice} from './source/string-slice';
+-export type {FixedLengthArray} from './source/fixed-length-array';
+-export type {MultidimensionalArray} from './source/multidimensional-array';
+-export type {MultidimensionalReadonlyArray} from './source/multidimensional-readonly-array';
+-export type {IterableElement} from './source/iterable-element';
+-export type {Entry} from './source/entry';
+-export type {Entries} from './source/entries';
+-export type {SetReturnType} from './source/set-return-type';
+-export type {SetParameterType} from './source/set-parameter-type';
+-export type {Asyncify} from './source/asyncify';
+-export type {Simplify} from './source/simplify';
+-export type {SimplifyDeep} from './source/simplify-deep';
+-export type {Jsonify} from './source/jsonify';
+-export type {Jsonifiable} from './source/jsonifiable';
+-export type {StructuredCloneable} from './source/structured-cloneable';
+-export type {Schema} from './source/schema';
+-export type {LiteralToPrimitive} from './source/literal-to-primitive';
+-export type {LiteralToPrimitiveDeep} from './source/literal-to-primitive-deep';
+-export type {
+-	PositiveInfinity,
++
++export type {KeysOfUnion} from './source/keys-of-union.d.ts';
++export type {DistributedOmit} from './source/distributed-omit.d.ts';
++export type {DistributedPick} from './source/distributed-pick.d.ts';
++export type {EmptyObject, IsEmptyObject} from './source/empty-object.d.ts';
++export type {IfEmptyObject} from './source/if-empty-object.d.ts';
++export type {NonEmptyObject} from './source/non-empty-object.d.ts';
++export type {UnknownRecord} from './source/unknown-record.d.ts';
++export type {UnknownArray} from './source/unknown-array.d.ts';
++export type {Except} from './source/except.d.ts';
++export type {TaggedUnion} from './source/tagged-union.d.ts';
++export type {Writable} from './source/writable.d.ts';
++export type {WritableDeep} from './source/writable-deep.d.ts';
++export type {Merge} from './source/merge.d.ts';
++export type {MergeDeep, MergeDeepOptions} from './source/merge-deep.d.ts';
++export type {MergeExclusive} from './source/merge-exclusive.d.ts';
++export type {RequireAtLeastOne} from './source/require-at-least-one.d.ts';
++export type {RequireExactlyOne} from './source/require-exactly-one.d.ts';
++export type {RequireAllOrNone} from './source/require-all-or-none.d.ts';
++export type {RequireOneOrNone} from './source/require-one-or-none.d.ts';
++export type {SingleKeyObject} from './source/single-key-object.d.ts';
++export type {OmitIndexSignature} from './source/omit-index-signature.d.ts';
++export type {PickIndexSignature} from './source/pick-index-signature.d.ts';
++export type {PartialDeep, PartialDeepOptions} from './source/partial-deep.d.ts';
++export type {RequiredDeep} from './source/required-deep.d.ts';
++export type {PickDeep} from './source/pick-deep.d.ts';
++export type {OmitDeep} from './source/omit-deep.d.ts';
++export type {PartialOnUndefinedDeep, PartialOnUndefinedDeepOptions} from './source/partial-on-undefined-deep.d.ts';
++export type {UndefinedOnPartialDeep} from './source/undefined-on-partial-deep.d.ts';
++export type {ReadonlyDeep} from './source/readonly-deep.d.ts';
++export type {LiteralUnion} from './source/literal-union.d.ts';
++export type {Promisable} from './source/promisable.d.ts';
++export type {Arrayable} from './source/arrayable.d.ts';
++export type {Opaque, UnwrapOpaque, Tagged, GetTagMetadata, UnwrapTagged} from './source/tagged.d.ts';
++export type {InvariantOf} from './source/invariant-of.d.ts';
++export type {SetOptional} from './source/set-optional.d.ts';
++export type {SetReadonly} from './source/set-readonly.d.ts';
++export type {SetRequired} from './source/set-required.d.ts';
++export type {SetNonNullable} from './source/set-non-nullable.d.ts';
++export type {ValueOf} from './source/value-of.d.ts';
++export type {AsyncReturnType} from './source/async-return-type.d.ts';
++export type {ConditionalExcept} from './source/conditional-except.d.ts';
++export type {ConditionalKeys} from './source/conditional-keys.d.ts';
++export type {ConditionalPick} from './source/conditional-pick.d.ts';
++export type {ConditionalPickDeep, ConditionalPickDeepOptions} from './source/conditional-pick-deep.d.ts';
++export type {UnionToIntersection} from './source/union-to-intersection.d.ts';
++export type {Stringified} from './source/stringified.d.ts';
++export type {StringSlice} from './source/string-slice.d.ts';
++export type {FixedLengthArray} from './source/fixed-length-array.d.ts';
++export type {MultidimensionalArray} from './source/multidimensional-array.d.ts';
++export type {MultidimensionalReadonlyArray} from './source/multidimensional-readonly-array.d.ts';
++export type {IterableElement} from './source/iterable-element.d.ts';
++export type {Entry} from './source/entry.d.ts';
++export type {Entries} from './source/entries.d.ts';
++export type {SetReturnType} from './source/set-return-type.d.ts';
++export type {SetParameterType} from './source/set-parameter-type.d.ts';
++export type {Asyncify} from './source/asyncify.d.ts';
++export type {Simplify} from './source/simplify.d.ts';
++export type {SimplifyDeep} from './source/simplify-deep.d.ts';
++export type {Jsonify} from './source/jsonify.d.ts';
++export type {Jsonifiable} from './source/jsonifiable.d.ts';
++export type {StructuredCloneable} from './source/structured-cloneable.d.ts';
++export type {Schema} from './source/schema.d.ts';
++export type {LiteralToPrimitive} from './source/literal-to-primitive.d.ts';
++export type {LiteralToPrimitiveDeep} from './source/literal-to-primitive-deep.d.ts';
++export type {PositiveInfinity,
+ 	NegativeInfinity,
+ 	Finite,
+ 	Integer,
+@@ -80,88 +81,85 @@ export type {
+ 	NonNegative,
+ 	NegativeInteger,
+ 	NonNegativeInteger,
+-	IsNegative,
+-} from './source/numeric';
+-export type {GreaterThan} from './source/greater-than';
+-export type {GreaterThanOrEqual} from './source/greater-than-or-equal';
+-export type {LessThan} from './source/less-than';
+-export type {LessThanOrEqual} from './source/less-than-or-equal';
+-export type {Sum} from './source/sum';
+-export type {Subtract} from './source/subtract';
+-export type {StringKeyOf} from './source/string-key-of';
+-export type {Exact} from './source/exact';
+-export type {ReadonlyTuple} from './source/readonly-tuple';
+-export type {OptionalKeysOf} from './source/optional-keys-of';
+-export type {OverrideProperties} from './source/override-properties';
+-export type {HasOptionalKeys} from './source/has-optional-keys';
+-export type {RequiredKeysOf} from './source/required-keys-of';
+-export type {HasRequiredKeys} from './source/has-required-keys';
+-export type {ReadonlyKeysOf} from './source/readonly-keys-of';
+-export type {HasReadonlyKeys} from './source/has-readonly-keys';
+-export type {WritableKeysOf} from './source/writable-keys-of';
+-export type {HasWritableKeys} from './source/has-writable-keys';
+-export type {Spread} from './source/spread';
+-export type {IsInteger} from './source/is-integer';
+-export type {IsFloat} from './source/is-float';
+-export type {TupleToUnion} from './source/tuple-to-union';
+-export type {UnionToTuple} from './source/union-to-tuple';
+-export type {IntRange} from './source/int-range';
+-export type {IsEqual} from './source/is-equal';
+-export type {
+-	IsLiteral,
++	IsNegative,} from './source/numeric.d.ts';
++export type {GreaterThan} from './source/greater-than.d.ts';
++export type {GreaterThanOrEqual} from './source/greater-than-or-equal.d.ts';
++export type {LessThan} from './source/less-than.d.ts';
++export type {LessThanOrEqual} from './source/less-than-or-equal.d.ts';
++export type {Sum} from './source/sum.d.ts';
++export type {Subtract} from './source/subtract.d.ts';
++export type {StringKeyOf} from './source/string-key-of.d.ts';
++export type {Exact} from './source/exact.d.ts';
++export type {ReadonlyTuple} from './source/readonly-tuple.d.ts';
++export type {OptionalKeysOf} from './source/optional-keys-of.d.ts';
++export type {OverrideProperties} from './source/override-properties.d.ts';
++export type {HasOptionalKeys} from './source/has-optional-keys.d.ts';
++export type {RequiredKeysOf} from './source/required-keys-of.d.ts';
++export type {HasRequiredKeys} from './source/has-required-keys.d.ts';
++export type {ReadonlyKeysOf} from './source/readonly-keys-of.d.ts';
++export type {HasReadonlyKeys} from './source/has-readonly-keys.d.ts';
++export type {WritableKeysOf} from './source/writable-keys-of.d.ts';
++export type {HasWritableKeys} from './source/has-writable-keys.d.ts';
++export type {Spread} from './source/spread.d.ts';
++export type {IsInteger} from './source/is-integer.d.ts';
++export type {IsFloat} from './source/is-float.d.ts';
++export type {TupleToUnion} from './source/tuple-to-union.d.ts';
++export type {UnionToTuple} from './source/union-to-tuple.d.ts';
++export type {IntRange} from './source/int-range.d.ts';
++export type {IsEqual} from './source/is-equal.d.ts';
++export type {IsLiteral,
+ 	IsStringLiteral,
+ 	IsNumericLiteral,
+ 	IsBooleanLiteral,
+-	IsSymbolLiteral,
+-} from './source/is-literal';
+-export type {IsAny} from './source/is-any';
+-export type {IfAny} from './source/if-any';
+-export type {IsNever} from './source/is-never';
+-export type {IfNever} from './source/if-never';
+-export type {IsUnknown} from './source/is-unknown';
+-export type {IfUnknown} from './source/if-unknown';
+-export type {ArrayIndices} from './source/array-indices';
+-export type {ArrayValues} from './source/array-values';
+-export type {ArraySlice} from './source/array-slice';
+-export type {ArraySplice} from './source/array-splice';
+-export type {ArrayTail} from './source/array-tail';
+-export type {SetFieldType} from './source/set-field-type';
+-export type {Paths} from './source/paths';
+-export type {SharedUnionFieldsDeep} from './source/shared-union-fields-deep';
+-export type {IsNull} from './source/is-null';
+-export type {IfNull} from './source/if-null';
+-export type {And} from './source/and';
+-export type {Or} from './source/or';
+-export type {NonEmptyTuple} from './source/non-empty-tuple';
+-export type {FindGlobalInstanceType, FindGlobalType} from './source/find-global-type';
++	IsSymbolLiteral,} from './source/is-literal.d.ts';
++export type {IsAny} from './source/is-any.d.ts';
++export type {IfAny} from './source/if-any.d.ts';
++export type {IsNever} from './source/is-never.d.ts';
++export type {IfNever} from './source/if-never.d.ts';
++export type {IsUnknown} from './source/is-unknown.d.ts';
++export type {IfUnknown} from './source/if-unknown.d.ts';
++export type {ArrayIndices} from './source/array-indices.d.ts';
++export type {ArrayValues} from './source/array-values.d.ts';
++export type {ArraySlice} from './source/array-slice.d.ts';
++export type {ArraySplice} from './source/array-splice.d.ts';
++export type {ArrayTail} from './source/array-tail.d.ts';
++export type {SetFieldType} from './source/set-field-type.d.ts';
++export type {Paths} from './source/paths.d.ts';
++export type {SharedUnionFieldsDeep} from './source/shared-union-fields-deep.d.ts';
++export type {IsNull} from './source/is-null.d.ts';
++export type {IfNull} from './source/if-null.d.ts';
++export type {And} from './source/and.d.ts';
++export type {Or} from './source/or.d.ts';
++export type {NonEmptyTuple} from './source/non-empty-tuple.d.ts';
++export type {FindGlobalInstanceType, FindGlobalType} from './source/find-global-type.d.ts';
+ 
+ // Template literal types
+-export type {CamelCase} from './source/camel-case';
+-export type {CamelCasedProperties} from './source/camel-cased-properties';
+-export type {CamelCasedPropertiesDeep} from './source/camel-cased-properties-deep';
+-export type {KebabCase} from './source/kebab-case';
+-export type {KebabCasedProperties} from './source/kebab-cased-properties';
+-export type {KebabCasedPropertiesDeep} from './source/kebab-cased-properties-deep';
+-export type {PascalCase} from './source/pascal-case';
+-export type {PascalCasedProperties} from './source/pascal-cased-properties';
+-export type {PascalCasedPropertiesDeep} from './source/pascal-cased-properties-deep';
+-export type {SnakeCase} from './source/snake-case';
+-export type {SnakeCasedProperties} from './source/snake-cased-properties';
+-export type {SnakeCasedPropertiesDeep} from './source/snake-cased-properties-deep';
+-export type {ScreamingSnakeCase} from './source/screaming-snake-case';
+-export type {DelimiterCase} from './source/delimiter-case';
+-export type {DelimiterCasedProperties} from './source/delimiter-cased-properties';
+-export type {DelimiterCasedPropertiesDeep} from './source/delimiter-cased-properties-deep';
+-export type {Join} from './source/join';
+-export type {Split} from './source/split';
+-export type {Trim} from './source/trim';
+-export type {Replace} from './source/replace';
+-export type {StringRepeat} from './source/string-repeat';
+-export type {Includes} from './source/includes';
+-export type {Get} from './source/get';
+-export type {LastArrayElement} from './source/last-array-element';
++export type {CamelCase} from './source/camel-case.d.ts';
++export type {CamelCasedProperties} from './source/camel-cased-properties.d.ts';
++export type {CamelCasedPropertiesDeep} from './source/camel-cased-properties-deep.d.ts';
++export type {KebabCase} from './source/kebab-case.d.ts';
++export type {KebabCasedProperties} from './source/kebab-cased-properties.d.ts';
++export type {KebabCasedPropertiesDeep} from './source/kebab-cased-properties-deep.d.ts';
++export type {PascalCase} from './source/pascal-case.d.ts';
++export type {PascalCasedProperties} from './source/pascal-cased-properties.d.ts';
++export type {PascalCasedPropertiesDeep} from './source/pascal-cased-properties-deep.d.ts';
++export type {SnakeCase} from './source/snake-case.d.ts';
++export type {SnakeCasedProperties} from './source/snake-cased-properties.d.ts';
++export type {SnakeCasedPropertiesDeep} from './source/snake-cased-properties-deep.d.ts';
++export type {ScreamingSnakeCase} from './source/screaming-snake-case.d.ts';
++export type {DelimiterCase} from './source/delimiter-case.d.ts';
++export type {DelimiterCasedProperties} from './source/delimiter-cased-properties.d.ts';
++export type {DelimiterCasedPropertiesDeep} from './source/delimiter-cased-properties-deep.d.ts';
++export type {Join} from './source/join.d.ts';
++export type {Split} from './source/split.d.ts';
++export type {Trim} from './source/trim.d.ts';
++export type {Replace} from './source/replace.d.ts';
++export type {StringRepeat} from './source/string-repeat.d.ts';
++export type {Includes} from './source/includes.d.ts';
++export type {Get} from './source/get.d.ts';
++export type {LastArrayElement} from './source/last-array-element.d.ts';
+ 
+ // Miscellaneous
+-export type {GlobalThis} from './source/global-this';
+-export type {PackageJson} from './source/package-json';
+-export type {TsConfigJson} from './source/tsconfig-json';
++export type {GlobalThis} from './source/global-this.d.ts';
++export type {PackageJson} from './source/package-json.d.ts';
++export type {TsConfigJson} from './source/tsconfig-json.d.ts';
+diff --git a/source/and.d.ts b/source/and.d.ts
+index 3f9659fd6ef0d39d880458c61ae5d2eca148d078..b6d94124a08a67c23118c4c612a71466fd5fda1a 100644
+--- a/source/and.d.ts
++++ b/source/and.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsEqual} from './is-equal';
++import type {IsEqual} from './is-equal.d.ts';
+ 
+ /**
+ Returns a boolean for whether two given types are both true.
+diff --git a/source/array-slice.d.ts b/source/array-slice.d.ts
+index b339fd6ba65d0a0d3d234cb9a05abf4768563c50..80d26ae9ac0a69c49efad70c9ef81e7708e8d56f 100644
+--- a/source/array-slice.d.ts
++++ b/source/array-slice.d.ts
+@@ -1,12 +1,12 @@
+-import type {Sum} from './sum';
+-import type {LessThanOrEqual} from './less-than-or-equal';
+-import type {GreaterThanOrEqual} from './greater-than-or-equal';
+-import type {GreaterThan} from './greater-than';
+-import type {IsNegative} from './numeric';
+-import type {Not, TupleMin} from './internal';
+-import type {IsEqual} from './is-equal';
+-import type {And} from './and';
+-import type {ArraySplice} from './array-splice';
++import type {Sum} from './sum.d.ts';
++import type {LessThanOrEqual} from './less-than-or-equal.d.ts';
++import type {GreaterThanOrEqual} from './greater-than-or-equal.d.ts';
++import type {GreaterThan} from './greater-than.d.ts';
++import type {IsNegative} from './numeric.d.ts';
++import type {Not, TupleMin} from './internal/index.d.ts';
++import type {IsEqual} from './is-equal.d.ts';
++import type {And} from './and.d.ts';
++import type {ArraySplice} from './array-splice.d.ts';
+ 
+ /**
+ Returns an array slice of a given range, just like `Array#slice()`.
+diff --git a/source/array-splice.d.ts b/source/array-splice.d.ts
+index 6e03a2fb74a1ed7e4a338c0f070b7a8d73ceda59..84adc5d605157215e6f42604023b86c3f1fd2a38 100644
+--- a/source/array-splice.d.ts
++++ b/source/array-splice.d.ts
+@@ -1,7 +1,7 @@
+-import type {BuildTuple, StaticPartOfArray, VariablePartOfArray} from './internal';
+-import type {GreaterThanOrEqual} from './greater-than-or-equal';
+-import type {Subtract} from './subtract';
+-import type {UnknownArray} from './unknown-array';
++import type {BuildTuple, StaticPartOfArray, VariablePartOfArray} from './internal/index.d.ts';
++import type {GreaterThanOrEqual} from './greater-than-or-equal.d.ts';
++import type {Subtract} from './subtract.d.ts';
++import type {UnknownArray} from './unknown-array.d.ts';
+ 
+ /**
+ The implementation of `SplitArrayByIndex` for fixed length arrays.
+diff --git a/source/array-tail.d.ts b/source/array-tail.d.ts
+index efac9c497a82185f0fa16de45940c2f905b1f5e3..ea2a14d0e4edf497c8f88aae53e7185882b8d108 100644
+--- a/source/array-tail.d.ts
++++ b/source/array-tail.d.ts
+@@ -1,4 +1,4 @@
+-import type {UnknownArrayOrTuple} from './internal';
++import type {UnknownArrayOrTuple} from './internal/index.d.ts';
+ 
+ /**
+ Extracts the type of an array or tuple minus the first element.
+diff --git a/source/asyncify.d.ts b/source/asyncify.d.ts
+index b1ca7870446bb52e474cbe13c1132e76ba9a91ed..9a273cccfc512d2574e59cbf261789559a7e21fe 100644
+--- a/source/asyncify.d.ts
++++ b/source/asyncify.d.ts
+@@ -1,4 +1,4 @@
+-import type {SetReturnType} from './set-return-type';
++import type {SetReturnType} from './set-return-type.d.ts';
+ 
+ /**
+ Create an async version of the given function type, by boxing the return type in `Promise` while keeping the same parameter types.
+diff --git a/source/camel-case.d.ts b/source/camel-case.d.ts
+index 76722861d4eccb5c342011acd0a0ec4a4d8b1233..f346dd5da1f207304179b016984407a66dcb86db 100644
+--- a/source/camel-case.d.ts
++++ b/source/camel-case.d.ts
+@@ -1,4 +1,4 @@
+-import type {SplitWords} from './split-words';
++import type {SplitWords} from './split-words.d.ts';
+ 
+ /**
+ CamelCase options.
+diff --git a/source/camel-cased-properties-deep.d.ts b/source/camel-cased-properties-deep.d.ts
+index d7756fd48722d1158289a370b1b6c5ee5fb36fef..c6676dd1d704128f253f119dd2a7067d7e32881d 100644
+--- a/source/camel-cased-properties-deep.d.ts
++++ b/source/camel-cased-properties-deep.d.ts
+@@ -1,6 +1,6 @@
+-import type {CamelCase, CamelCaseOptions} from './camel-case';
+-import type {NonRecursiveType} from './internal';
+-import type {UnknownArray} from './unknown-array';
++import type {CamelCase, CamelCaseOptions} from './camel-case.d.ts';
++import type {NonRecursiveType} from './internal/index.d.ts';
++import type {UnknownArray} from './unknown-array.d.ts';
+ 
+ /**
+ Convert object properties to camel case recursively.
+diff --git a/source/camel-cased-properties.d.ts b/source/camel-cased-properties.d.ts
+index 99e14819bb9582c3db21f5a4a29eee22ff05eb70..98501d9ca8a3cd908034ddd8faa27e4b5ea2218b 100644
+--- a/source/camel-cased-properties.d.ts
++++ b/source/camel-cased-properties.d.ts
+@@ -1,4 +1,4 @@
+-import type {CamelCase, CamelCaseOptions} from './camel-case';
++import type {CamelCase, CamelCaseOptions} from './camel-case.d.ts';
+ 
+ /**
+ Convert object properties to camel case but not recursively.
+diff --git a/source/conditional-except.d.ts b/source/conditional-except.d.ts
+index 9b40b3476d89a1a2c4d00905a0a7a609480eb236..ac2764c6ebf31ed16fd270a36c52854b3a048abd 100644
+--- a/source/conditional-except.d.ts
++++ b/source/conditional-except.d.ts
+@@ -1,5 +1,5 @@
+-import type {Except} from './except';
+-import type {ConditionalKeys} from './conditional-keys';
++import type {Except} from './except.d.ts';
++import type {ConditionalKeys} from './conditional-keys.d.ts';
+ 
+ /**
+ Exclude keys from a shape that matches the given `Condition`.
+diff --git a/source/conditional-keys.d.ts b/source/conditional-keys.d.ts
+index 735561d4ad80956329b44e5e66c8e89b77c6083b..d5571f6f91c9b841dc3116c51c48f1f44029ad83 100644
+--- a/source/conditional-keys.d.ts
++++ b/source/conditional-keys.d.ts
+@@ -1,4 +1,4 @@
+-import type {IfNever} from './if-never';
++import type {IfNever} from './if-never.d.ts';
+ 
+ /**
+ Extract the keys from a type where the value type of the key extends the given `Condition`.
+diff --git a/source/conditional-pick-deep.d.ts b/source/conditional-pick-deep.d.ts
+index 2f84b3a12f24326b242a575ec6e64a21490362f7..c4faee00b910d85e00b2942788418bad4b89ba8b 100644
+--- a/source/conditional-pick-deep.d.ts
++++ b/source/conditional-pick-deep.d.ts
+@@ -1,9 +1,9 @@
+-import type {IsEqual} from './is-equal';
+-import type {ConditionalExcept} from './conditional-except';
+-import type {ConditionalSimplifyDeep} from './conditional-simplify';
+-import type {UnknownRecord} from './unknown-record';
+-import type {EmptyObject} from './empty-object';
+-import type {IsPlainObject} from './internal';
++import type {IsEqual} from './is-equal.d.ts';
++import type {ConditionalExcept} from './conditional-except.d.ts';
++import type {ConditionalSimplifyDeep} from './conditional-simplify.d.ts';
++import type {UnknownRecord} from './unknown-record.d.ts';
++import type {EmptyObject} from './empty-object.d.ts';
++import type {IsPlainObject} from './internal/index.d.ts';
+ 
+ /**
+ Used to mark properties that should be excluded.
+diff --git a/source/conditional-pick.d.ts b/source/conditional-pick.d.ts
+index 2a24cb2e495b8af5bbe509b9f138d4036f1e60e8..207842c5f1571b1a4db1768115b1489a22f63788 100644
+--- a/source/conditional-pick.d.ts
++++ b/source/conditional-pick.d.ts
+@@ -1,4 +1,4 @@
+-import type {ConditionalKeys} from './conditional-keys';
++import type {ConditionalKeys} from './conditional-keys.d.ts';
+ 
+ /**
+ Pick keys from the shape that matches the given `Condition`.
+diff --git a/source/delimiter-case.d.ts b/source/delimiter-case.d.ts
+index 15bceaa32dc7e7e8ebce1e0e70af55b41380575d..e57af8a6750d4516b08256dd1d6f716773fc8c06 100644
+--- a/source/delimiter-case.d.ts
++++ b/source/delimiter-case.d.ts
+@@ -1,4 +1,4 @@
+-import type {UpperCaseCharacters, WordSeparators} from './internal';
++import type {UpperCaseCharacters, WordSeparators} from './internal/index.d.ts';
+ 
+ // Transforms a string that is fully uppercase into a fully lowercase version. Needed to add support for SCREAMING_SNAKE_CASE, see https://github.com/sindresorhus/type-fest/issues/385
+ type UpperCaseToLowerCase<T extends string> = T extends Uppercase<T> ? Lowercase<T> : T;
+diff --git a/source/delimiter-cased-properties-deep.d.ts b/source/delimiter-cased-properties-deep.d.ts
+index b91ff25ebf814dc8ce1d4b19af93f8a838552cfc..e18f340b090ec96d986ce47192e83617f61313c3 100644
+--- a/source/delimiter-cased-properties-deep.d.ts
++++ b/source/delimiter-cased-properties-deep.d.ts
+@@ -1,6 +1,6 @@
+-import type {DelimiterCase} from './delimiter-case';
+-import type {NonRecursiveType} from './internal';
+-import type {UnknownArray} from './unknown-array';
++import type {DelimiterCase} from './delimiter-case.d.ts';
++import type {NonRecursiveType} from './internal/index.d.ts';
++import type {UnknownArray} from './unknown-array.d.ts';
+ 
+ /**
+ Convert object properties to delimiter case recursively.
+diff --git a/source/delimiter-cased-properties.d.ts b/source/delimiter-cased-properties.d.ts
+index c73e07f64a913c357eec101d20e91fc749be55e0..a869bd4bbe3a769927b35e11e4275b976143ab72 100644
+--- a/source/delimiter-cased-properties.d.ts
++++ b/source/delimiter-cased-properties.d.ts
+@@ -1,4 +1,4 @@
+-import type {DelimiterCase} from './delimiter-case';
++import type {DelimiterCase} from './delimiter-case.d.ts';
+ 
+ /**
+ Convert object properties to delimiter case but not recursively.
+diff --git a/source/distributed-omit.d.ts b/source/distributed-omit.d.ts
+index 5a61404b7c655690c97f94bee8618066b2b17a60..3f64eb2e1f7606f1775a4418a9aba979ffdac8f7 100644
+--- a/source/distributed-omit.d.ts
++++ b/source/distributed-omit.d.ts
+@@ -1,4 +1,4 @@
+-import type {KeysOfUnion} from './keys-of-union';
++import type {KeysOfUnion} from './keys-of-union.d.ts';
+ 
+ /**
+ Omits keys from a type, distributing the operation over a union.
+diff --git a/source/distributed-pick.d.ts b/source/distributed-pick.d.ts
+index 3b10058f6c5660151171a15239d0b73f012c55ae..82ed115a5faed0f8304e805c1cf9b525f6bd319b 100644
+--- a/source/distributed-pick.d.ts
++++ b/source/distributed-pick.d.ts
+@@ -1,4 +1,4 @@
+-import type {KeysOfUnion} from './keys-of-union';
++import type {KeysOfUnion} from './keys-of-union.d.ts';
+ 
+ /**
+ Pick keys from a type, distributing the operation over a union.
+diff --git a/source/enforce-optional.d.ts b/source/enforce-optional.d.ts
+index 8b4a9b58adf748ef8297c73998a4c20f454f5b53..b70cfdb496a17e399d6415b14304a5d25e314906 100644
+--- a/source/enforce-optional.d.ts
++++ b/source/enforce-optional.d.ts
+@@ -1,4 +1,4 @@
+-import type {Simplify} from './simplify';
++import type {Simplify} from './simplify.d.ts';
+ 
+ // Returns `never` if the key is optional otherwise return the key type.
+ type RequiredFilter<Type, Key extends keyof Type> = undefined extends Type[Key]
+diff --git a/source/entries.d.ts b/source/entries.d.ts
+index b5bec7fe20b6ddc25dfd8f152b0f94c0ef710060..e6e07a1d89f35072c44ab6b4767660e043666180 100644
+--- a/source/entries.d.ts
++++ b/source/entries.d.ts
+@@ -1,4 +1,4 @@
+-import type {ArrayEntry, MapEntry, ObjectEntry, SetEntry} from './entry';
++import type {ArrayEntry, MapEntry, ObjectEntry, SetEntry} from './entry.d.ts';
+ 
+ type ArrayEntries<BaseType extends readonly unknown[]> = Array<ArrayEntry<BaseType>>;
+ type MapEntries<BaseType> = Array<MapEntry<BaseType>>;
+diff --git a/source/exact.d.ts b/source/exact.d.ts
+index 923131d7f29cfcfd2347b1de8d59acc1af7e3066..715096b254f27e6b99c3b5dfe393c52c7bbee1a0 100644
+--- a/source/exact.d.ts
++++ b/source/exact.d.ts
+@@ -1,8 +1,8 @@
+-import type {ArrayElement, ObjectValue} from './internal';
+-import type {IsEqual} from './is-equal';
+-import type {KeysOfUnion} from './keys-of-union';
+-import type {IsUnknown} from './is-unknown';
+-import type {Primitive} from './primitive';
++import type {ArrayElement, ObjectValue} from './internal/index.d.ts';
++import type {IsEqual} from './is-equal.d.ts';
++import type {KeysOfUnion} from './keys-of-union.d.ts';
++import type {IsUnknown} from './is-unknown.d.ts';
++import type {Primitive} from './primitive.d.ts';
+ 
+ /**
+ Create a type from `ParameterType` and `InputType` and change keys exclusive to `InputType` to `never`.
+diff --git a/source/except.d.ts b/source/except.d.ts
+index 7abf3027c1616f89478b4dd6d3a096b1d2651996..9cc84c1ef7b560a9c79705eee936ddcf71b786f4 100644
+--- a/source/except.d.ts
++++ b/source/except.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsEqual} from './is-equal';
++import type {IsEqual} from './is-equal.d.ts';
+ 
+ /**
+ Filter out keys from an object.
+diff --git a/source/get.d.ts b/source/get.d.ts
+index 96d086b97bdb1c231aa058aa8ba4380075f05be2..7dae0e973443c623bdc8385786bd8ea3277a1efd 100644
+--- a/source/get.d.ts
++++ b/source/get.d.ts
+@@ -1,8 +1,8 @@
+-import type {StringDigit, ToString} from './internal';
+-import type {LiteralStringUnion} from './literal-union';
+-import type {Paths} from './paths';
+-import type {Split} from './split';
+-import type {StringKeyOf} from './string-key-of';
++import type {StringDigit, ToString} from './internal/index.d.ts';
++import type {LiteralStringUnion} from './literal-union.d.ts';
++import type {Paths} from './paths.d.ts';
++import type {Split} from './split.d.ts';
++import type {StringKeyOf} from './string-key-of.d.ts';
+ 
+ type GetOptions = {
+ 	/**
+diff --git a/source/greater-than-or-equal.d.ts b/source/greater-than-or-equal.d.ts
+index 47c3de3f72d7c7313d419ce15f74afff81e3a2c2..c154d19afdeda6355ed753b32ee2a175bc590def 100644
+--- a/source/greater-than-or-equal.d.ts
++++ b/source/greater-than-or-equal.d.ts
+@@ -1,4 +1,4 @@
+-import type {GreaterThan} from './greater-than';
++import type {GreaterThan} from './greater-than.d.ts';
+ 
+ /**
+ Returns a boolean for whether a given number is greater than or equal to another number.
+diff --git a/source/greater-than.d.ts b/source/greater-than.d.ts
+index 37f04be5391e2e2e8a33e20057986a2e76e08db8..bf801d09bc5ee516eb17293ba3a9d7757da7c30d 100644
+--- a/source/greater-than.d.ts
++++ b/source/greater-than.d.ts
+@@ -1,8 +1,8 @@
+-import type {NumberAbsolute, PositiveNumericStringGt} from './internal';
+-import type {IsEqual} from './is-equal';
+-import type {PositiveInfinity, NegativeInfinity, IsNegative} from './numeric';
+-import type {And} from './and';
+-import type {Or} from './or';
++import type {NumberAbsolute, PositiveNumericStringGt} from './internal/index.d.ts';
++import type {IsEqual} from './is-equal.d.ts';
++import type {PositiveInfinity, NegativeInfinity, IsNegative} from './numeric.d.ts';
++import type {And} from './and.d.ts';
++import type {Or} from './or.d.ts';
+ 
+ /**
+ Returns a boolean for whether a given number is greater than another number.
+diff --git a/source/has-optional-keys.d.ts b/source/has-optional-keys.d.ts
+index 5978a719490e9316d42205a1abd9640e248fc7c7..da72d0d0ea6ea49c5961289cf1de19908ba17e78 100644
+--- a/source/has-optional-keys.d.ts
++++ b/source/has-optional-keys.d.ts
+@@ -1,4 +1,4 @@
+-import type {OptionalKeysOf} from './optional-keys-of';
++import type {OptionalKeysOf} from './optional-keys-of.d.ts';
+ 
+ /**
+ Creates a type that represents `true` or `false` depending on whether the given type has any optional fields.
+diff --git a/source/has-readonly-keys.d.ts b/source/has-readonly-keys.d.ts
+index 722138c530133db947fd2f11ea669bc2dda225ea..58955c12f130e42b760aa52c98d9ab759c3cff11 100644
+--- a/source/has-readonly-keys.d.ts
++++ b/source/has-readonly-keys.d.ts
+@@ -1,4 +1,4 @@
+-import type {ReadonlyKeysOf} from './readonly-keys-of';
++import type {ReadonlyKeysOf} from './readonly-keys-of.d.ts';
+ 
+ /**
+ Creates a type that represents `true` or `false` depending on whether the given type has any readonly fields.
+diff --git a/source/has-required-keys.d.ts b/source/has-required-keys.d.ts
+index 6e0d9a78b9196a3120380b98c71a56e73e62ce7d..dca1f60bc3f60f0885e2656ed053f97a0fe79db5 100644
+--- a/source/has-required-keys.d.ts
++++ b/source/has-required-keys.d.ts
+@@ -1,4 +1,4 @@
+-import type {RequiredKeysOf} from './required-keys-of';
++import type {RequiredKeysOf} from './required-keys-of.d.ts';
+ 
+ /**
+ Creates a type that represents `true` or `false` depending on whether the given type has any required fields.
+diff --git a/source/has-writable-keys.d.ts b/source/has-writable-keys.d.ts
+index 388c40abdda1894afad8cb0016f64e61f2ebb270..9dffa3a73f908c6e044a5df02c1889b5970cf221 100644
+--- a/source/has-writable-keys.d.ts
++++ b/source/has-writable-keys.d.ts
+@@ -1,4 +1,4 @@
+-import type {WritableKeysOf} from './writable-keys-of';
++import type {WritableKeysOf} from './writable-keys-of.d.ts';
+ 
+ /**
+ Creates a type that represents `true` or `false` depending on whether the given type has any writable fields.
+diff --git a/source/if-any.d.ts b/source/if-any.d.ts
+index 1c17b76f60db2ace7a6091d2d195afa5af5b8251..0136512d190c49ad36fd65dbfdac82ef7381775e 100644
+--- a/source/if-any.d.ts
++++ b/source/if-any.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsAny} from './is-any';
++import type {IsAny} from './is-any.d.ts';
+ 
+ /**
+ An if-else-like type that resolves depending on whether the given type is `any`.
+diff --git a/source/if-empty-object.d.ts b/source/if-empty-object.d.ts
+index b422969e908f1dea60e19d01a3d026d1870439c0..8485bd0b4dc61dcb3c908acc60c10c4cb5b61f3a 100644
+--- a/source/if-empty-object.d.ts
++++ b/source/if-empty-object.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsEmptyObject} from './empty-object';
++import type {IsEmptyObject} from './empty-object.d.ts';
+ 
+ /**
+ An if-else-like type that resolves depending on whether the given type is `{}`.
+diff --git a/source/if-never.d.ts b/source/if-never.d.ts
+index d33af2e8cc104a85b6ff14e3bc049b36dc448dd6..daeab15530314490d10dfed310fdfa3cf6306cb4 100644
+--- a/source/if-never.d.ts
++++ b/source/if-never.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsNever} from './is-never';
++import type {IsNever} from './is-never.d.ts';
+ 
+ /**
+ An if-else-like type that resolves depending on whether the given type is `never`.
+diff --git a/source/if-null.d.ts b/source/if-null.d.ts
+index 8d5875a54152f3a1eaa750888958d5f7d1a2d759..c10c5b5677c1d4d8c1a70a2bebd1bdd53864aa38 100644
+--- a/source/if-null.d.ts
++++ b/source/if-null.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsNull} from './is-null';
++import type {IsNull} from './is-null.d.ts';
+ 
+ /**
+ An if-else-like type that resolves depending on whether the given type is `null`.
+diff --git a/source/if-unknown.d.ts b/source/if-unknown.d.ts
+index 828268c56bd24bb29e94992086557d3a66954e23..544bfaf575f79d158752260d5f2defe3dd25e651 100644
+--- a/source/if-unknown.d.ts
++++ b/source/if-unknown.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsUnknown} from './is-unknown';
++import type {IsUnknown} from './is-unknown.d.ts';
+ 
+ /**
+ An if-else-like type that resolves depending on whether the given type is `unknown`.
+diff --git a/source/includes.d.ts b/source/includes.d.ts
+index b269dd48e259309df5e056c887ee6f2df3982f60..39dbd67210bd0c22cb85e55675334579b98eb158 100644
+--- a/source/includes.d.ts
++++ b/source/includes.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsEqual} from './is-equal';
++import type {IsEqual} from './is-equal.d.ts';
+ 
+ /**
+ Returns a boolean for whether the given array includes the given item.
+diff --git a/source/int-range.d.ts b/source/int-range.d.ts
+index 77ded8f99728fc24331f64e46c0e07c5f4fb2639..8ee5f58b0a8903c5f31a099e1a791452e3dff625 100644
+--- a/source/int-range.d.ts
++++ b/source/int-range.d.ts
+@@ -1,5 +1,5 @@
+-import type {BuildTuple} from './internal';
+-import type {Subtract} from './subtract';
++import type {BuildTuple} from './internal/index.d.ts';
++import type {Subtract} from './subtract.d.ts';
+ 
+ /**
+ Generate a union of numbers.
+diff --git a/source/internal/array.d.ts b/source/internal/array.d.ts
+index 566f40592139cf1c0c506a9ee3a8fc8ae2530362..e1f9a2f8c14e1d06f9332e117a58ab28419ac727 100644
+--- a/source/internal/array.d.ts
++++ b/source/internal/array.d.ts
+@@ -1,4 +1,4 @@
+-import type {UnknownArray} from '../unknown-array';
++import type {UnknownArray} from '../unknown-array.d.ts';
+ 
+ /**
+ Infer the length of the given array `<T>`.
+diff --git a/source/internal/index.d.ts b/source/internal/index.d.ts
+index 31c0711ab50b37e1e8fbb1b61a41bd19a4dbf220..e9ce679164a31a8c3dcafe7003ce5b9d99769ba8 100644
+--- a/source/internal/index.d.ts
++++ b/source/internal/index.d.ts
+@@ -1,8 +1,8 @@
+-export type * from './array';
+-export type * from './characters';
+-export type * from './keys';
+-export type * from './numeric';
+-export type * from './object';
+-export type * from './string';
+-export type * from './tuple';
+-export type * from './type';
++export type * from './array.d.ts';
++export type * from './characters.d.ts';
++export type * from './keys.d.ts';
++export type * from './numeric.d.ts';
++export type * from './object.d.ts';
++export type * from './string.d.ts';
++export type * from './tuple.d.ts';
++export type * from './type.d.ts';
+diff --git a/source/internal/keys.d.ts b/source/internal/keys.d.ts
+index 2758dcf4739db6cfc0043e3a319a6f3c8fe9ca83..b674a1e4d3309cfe74ab30860b81c8e158e38693 100644
+--- a/source/internal/keys.d.ts
++++ b/source/internal/keys.d.ts
+@@ -1,6 +1,6 @@
+-import type {IsAny} from '../is-any';
+-import type {IsLiteral} from '../is-literal';
+-import type {ToString} from './string';
++import type {IsAny} from '../is-any.d.ts';
++import type {IsLiteral} from '../is-literal.d.ts';
++import type {ToString} from './string.d.ts';
+ 
+ // Returns `never` if the key or property is not jsonable without testing whether the property is required or optional otherwise return the key.
+ type BaseKeyFilter<Type, Key extends keyof Type> = Key extends symbol
+diff --git a/source/internal/numeric.d.ts b/source/internal/numeric.d.ts
+index b2e14882b41eadae611d7fadfce4322a095b7bd5..4a81e671626facf7d8bc5c416d89aa96b72c40db 100644
+--- a/source/internal/numeric.d.ts
++++ b/source/internal/numeric.d.ts
+@@ -1,6 +1,6 @@
+-import type {IsNever} from '../is-never';
+-import type {UnknownArray} from '../unknown-array';
+-import type {StringToNumber} from './string';
++import type {IsNever} from '../is-never.d.ts';
++import type {UnknownArray} from '../unknown-array.d.ts';
++import type {StringToNumber} from './string.d.ts';
+ 
+ /**
+ Returns the absolute value of a given value.
+diff --git a/source/internal/object.d.ts b/source/internal/object.d.ts
+index 5a6edda2211beefff501d20ac4e56b0f59d1e4ae..fd5532858a6a814fde9b8842c36c3ba9784bb663 100644
+--- a/source/internal/object.d.ts
++++ b/source/internal/object.d.ts
+@@ -1,8 +1,8 @@
+-import type {Simplify} from '../simplify';
+-import type {UnknownArray} from '../unknown-array';
+-import type {FilterDefinedKeys, FilterOptionalKeys} from './keys';
+-import type {NonRecursiveType} from './type';
+-import type {ToString} from './string';
++import type {Simplify} from '../simplify.d.ts';
++import type {UnknownArray} from '../unknown-array.d.ts';
++import type {FilterDefinedKeys, FilterOptionalKeys} from './keys.d.ts';
++import type {NonRecursiveType} from './type.d.ts';
++import type {ToString} from './string.d.ts';
+ 
+ /**
+ Create an object type with the given key `<Key>` and value `<Value>`.
+diff --git a/source/internal/string.d.ts b/source/internal/string.d.ts
+index 5c3f8ef75b523fa9d89f3cdbcd4e0a82ac032299..b82832e17539e86523851eff2c3002945764dde2 100644
+--- a/source/internal/string.d.ts
++++ b/source/internal/string.d.ts
+@@ -1,7 +1,7 @@
+-import type {NegativeInfinity, PositiveInfinity} from '../numeric';
+-import type {Trim} from '../trim';
+-import type {Whitespace} from './characters';
+-import type {BuildTuple} from './tuple';
++import type {NegativeInfinity, PositiveInfinity} from '../numeric.d.ts';
++import type {Trim} from '../trim.d.ts';
++import type {Whitespace} from './characters.d.ts';
++import type {BuildTuple} from './tuple.d.ts';
+ 
+ /**
+ Return a string representation of the given string or number.
+diff --git a/source/internal/tuple.d.ts b/source/internal/tuple.d.ts
+index 6d173e70b5107f7f537f80e01a0725e94a9357b6..fc9575f1b6394b11dd017084ba919b09acb8c845 100644
+--- a/source/internal/tuple.d.ts
++++ b/source/internal/tuple.d.ts
+@@ -1,7 +1,7 @@
+-import type {GreaterThan} from '../greater-than';
+-import type {LessThan} from '../less-than';
+-import type {NegativeInfinity, PositiveInfinity} from '../numeric';
+-import type {UnknownArray} from '../unknown-array';
++import type {GreaterThan} from '../greater-than.d.ts';
++import type {LessThan} from '../less-than.d.ts';
++import type {NegativeInfinity, PositiveInfinity} from '../numeric.d.ts';
++import type {UnknownArray} from '../unknown-array.d.ts';
+ 
+ /**
+ Infer the length of the given tuple `<T>`.
+diff --git a/source/internal/type.d.ts b/source/internal/type.d.ts
+index 46c0343b42ef45f2cbb218d88e1c2a922fa27382..b7684bb1992e8e24acfc072f4d8ee062e0bf4964 100644
+--- a/source/internal/type.d.ts
++++ b/source/internal/type.d.ts
+@@ -1,5 +1,5 @@
+-import type {IsNever} from '../is-never';
+-import type {Primitive} from '../primitive';
++import type {IsNever} from '../is-never.d.ts';
++import type {Primitive} from '../primitive.d.ts';
+ 
+ /**
+ Matches any primitive, `void`, `Date`, or `RegExp` value.
+diff --git a/source/is-float.d.ts b/source/is-float.d.ts
+index dd3c2723cb3135d287a823b560a20ae74586873c..a411cbfde343106108c274448413dc78442f20e9 100644
+--- a/source/is-float.d.ts
++++ b/source/is-float.d.ts
+@@ -1,4 +1,4 @@
+-import type {Zero} from './numeric';
++import type {Zero} from './numeric.d.ts';
+ 
+ /**
+ Returns a boolean for whether the given number is a float, like `1.5` or `-1.5`.
+diff --git a/source/is-integer.d.ts b/source/is-integer.d.ts
+index 56ba901fc51c5cd72b985f87a13575ff4c2736d1..7cea06183f5ff248188789eafc3358d00322a665 100644
+--- a/source/is-integer.d.ts
++++ b/source/is-integer.d.ts
+@@ -1,6 +1,6 @@
+-import type {Not} from './internal';
+-import type {IsFloat} from './is-float';
+-import type {PositiveInfinity, NegativeInfinity} from './numeric';
++import type {Not} from './internal/index.d.ts';
++import type {IsFloat} from './is-float.d.ts';
++import type {PositiveInfinity, NegativeInfinity} from './numeric.d.ts';
+ 
+ /**
+ Returns a boolean for whether the given number is a integer, like `-5`, `1.0` or `100`.
+diff --git a/source/is-literal.d.ts b/source/is-literal.d.ts
+index 262d4a61dc71bee78bfabfb2ada68b13be2f1945..35b96ae21f42f18f0e5b5bab0012405e7225555d 100644
+--- a/source/is-literal.d.ts
++++ b/source/is-literal.d.ts
+@@ -1,7 +1,7 @@
+-import type {Primitive} from './primitive';
+-import type {Numeric} from './numeric';
+-import type {IsNotFalse, IsPrimitive} from './internal';
+-import type {IsNever} from './is-never';
++import type {Primitive} from './primitive.d.ts';
++import type {Numeric} from './numeric.d.ts';
++import type {IsNotFalse, IsPrimitive} from './internal/index.d.ts';
++import type {IsNever} from './is-never.d.ts';
+ 
+ /**
+ Returns a boolean for whether the given type `T` is the specified `LiteralType`.
+diff --git a/source/is-unknown.d.ts b/source/is-unknown.d.ts
+index a6a93ca8933ebd1ee7df433ba8e2b6380aaa8775..5aceee45a35a38ef243bcea483bfc391f9f60224 100644
+--- a/source/is-unknown.d.ts
++++ b/source/is-unknown.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsNull} from './is-null';
++import type {IsNull} from './is-null.d.ts';
+ 
+ /**
+ Returns a boolean for whether the given type is `unknown`.
+diff --git a/source/jsonifiable.d.ts b/source/jsonifiable.d.ts
+index 03a1d4f66ffbb570d7922cf7cd15983a7613391c..541d096636b507044f93e31f915c81dcdd60e3da 100644
+--- a/source/jsonifiable.d.ts
++++ b/source/jsonifiable.d.ts
+@@ -1,4 +1,4 @@
+-import type {JsonPrimitive} from './basic';
++import type {JsonPrimitive} from './basic.d.ts';
+ 
+ type JsonifiableObject = {[Key in string]?: Jsonifiable} | {toJSON: () => Jsonifiable};
+ type JsonifiableArray = readonly Jsonifiable[];
+diff --git a/source/jsonify.d.ts b/source/jsonify.d.ts
+index a1954cd2006394bfc7942365600b71a72d6c603b..effb184c7c8b10a19c134a327d413f8a3e0f55ee 100644
+--- a/source/jsonify.d.ts
++++ b/source/jsonify.d.ts
+@@ -1,12 +1,12 @@
+-import type {JsonPrimitive, JsonValue} from './basic';
+-import type {EmptyObject} from './empty-object';
+-import type {UndefinedToOptional} from './internal';
+-import type {IsAny} from './is-any';
+-import type {IsNever} from './is-never';
+-import type {IsUnknown} from './is-unknown';
+-import type {NegativeInfinity, PositiveInfinity} from './numeric';
+-import type {TypedArray} from './typed-array';
+-import type {UnknownArray} from './unknown-array';
++import type {JsonPrimitive, JsonValue} from './basic.d.ts';
++import type {EmptyObject} from './empty-object.d.ts';
++import type {UndefinedToOptional} from './internal/index.d.ts';
++import type {IsAny} from './is-any.d.ts';
++import type {IsNever} from './is-never.d.ts';
++import type {IsUnknown} from './is-unknown.d.ts';
++import type {NegativeInfinity, PositiveInfinity} from './numeric.d.ts';
++import type {TypedArray} from './typed-array.d.ts';
++import type {UnknownArray} from './unknown-array.d.ts';
+ 
+ // Note: The return value has to be `any` and not `unknown` so it can match `void`.
+ type NotJsonable = ((...arguments_: any[]) => any) | undefined | symbol;
+diff --git a/source/kebab-case.d.ts b/source/kebab-case.d.ts
+index f6dc6cc6f2be55385433936545975b86d0d25347..3ed94c40cc6ce492ac62c13a721e079ec34b1131 100644
+--- a/source/kebab-case.d.ts
++++ b/source/kebab-case.d.ts
+@@ -1,4 +1,4 @@
+-import type {DelimiterCase} from './delimiter-case';
++import type {DelimiterCase} from './delimiter-case.d.ts';
+ 
+ /**
+ Convert a string literal to kebab-case.
+diff --git a/source/kebab-cased-properties-deep.d.ts b/source/kebab-cased-properties-deep.d.ts
+index d524c5276de7b0007ca36a920fe98709ef18560a..c6ebfc59eb4d9f76a5314750c61f1ace887a0b31 100644
+--- a/source/kebab-cased-properties-deep.d.ts
++++ b/source/kebab-cased-properties-deep.d.ts
+@@ -1,4 +1,4 @@
+-import type {DelimiterCasedPropertiesDeep} from './delimiter-cased-properties-deep';
++import type {DelimiterCasedPropertiesDeep} from './delimiter-cased-properties-deep.d.ts';
+ 
+ /**
+ Convert object properties to kebab case recursively.
+diff --git a/source/kebab-cased-properties.d.ts b/source/kebab-cased-properties.d.ts
+index 2260ace44d147f1aaf34ad9eff0d98565a42245d..460628b2ed5c75e2e2cd68bec835279b3ed0b6d3 100644
+--- a/source/kebab-cased-properties.d.ts
++++ b/source/kebab-cased-properties.d.ts
+@@ -1,4 +1,4 @@
+-import type {DelimiterCasedProperties} from './delimiter-cased-properties';
++import type {DelimiterCasedProperties} from './delimiter-cased-properties.d.ts';
+ 
+ /**
+ Convert object properties to kebab case but not recursively.
+diff --git a/source/less-than-or-equal.d.ts b/source/less-than-or-equal.d.ts
+index 9e8cedd6e52a47d86fbcf8490217ba7095a6aa0b..1675ebb0239a9241f89e4e1da474c34e46e02738 100644
+--- a/source/less-than-or-equal.d.ts
++++ b/source/less-than-or-equal.d.ts
+@@ -1,4 +1,4 @@
+-import type {GreaterThan} from './greater-than';
++import type {GreaterThan} from './greater-than.d.ts';
+ 
+ /**
+  Returns a boolean for whether a given number is less than or equal to another number.
+diff --git a/source/less-than.d.ts b/source/less-than.d.ts
+index cbbc72ab8fa29432a11d1f9e21cc56e8f937739e..7f5894f2b88807f9be05461d9405cd8fd8c5df2f 100644
+--- a/source/less-than.d.ts
++++ b/source/less-than.d.ts
+@@ -1,4 +1,4 @@
+-import type {GreaterThanOrEqual} from './greater-than-or-equal';
++import type {GreaterThanOrEqual} from './greater-than-or-equal.d.ts';
+ 
+ /**
+ Returns a boolean for whether a given number is less than another number.
+diff --git a/source/literal-to-primitive-deep.d.ts b/source/literal-to-primitive-deep.d.ts
+index e36ff04a9a9efb1715a7a00d480a23c9d7ce437e..2521bfaa4e5d739ab1a7a68ca86ab524792eed33 100644
+--- a/source/literal-to-primitive-deep.d.ts
++++ b/source/literal-to-primitive-deep.d.ts
+@@ -1,5 +1,5 @@
+-import type {LiteralToPrimitive} from './literal-to-primitive';
+-import type {OmitIndexSignature} from './omit-index-signature';
++import type {LiteralToPrimitive} from './literal-to-primitive.d.ts';
++import type {OmitIndexSignature} from './omit-index-signature.d.ts';
+ 
+ /**
+ Like `LiteralToPrimitive` except it converts literal types inside an object or array deeply.
+diff --git a/source/literal-union.d.ts b/source/literal-union.d.ts
+index 9e0df8d8709667be7fd3deda8197ac2b83d2c0ae..6640819b01b6e11c8eb49f2c9e009f025a7d8a2b 100644
+--- a/source/literal-union.d.ts
++++ b/source/literal-union.d.ts
+@@ -1,4 +1,4 @@
+-import type {Primitive} from './primitive';
++import type {Primitive} from './primitive.d.ts';
+ 
+ export type LiteralStringUnion<T> = LiteralUnion<T, string>;
+ 
+diff --git a/source/merge-deep.d.ts b/source/merge-deep.d.ts
+index b0c0fd72a8cc105de45eda64f1cdcca047c6771d..349c430b9192a4e77f770768e49c9253b186db67 100644
+--- a/source/merge-deep.d.ts
++++ b/source/merge-deep.d.ts
+@@ -1,18 +1,16 @@
+-import type {ConditionalSimplifyDeep} from './conditional-simplify';
+-import type {OmitIndexSignature} from './omit-index-signature';
+-import type {PickIndexSignature} from './pick-index-signature';
+-import type {Merge} from './merge';
+-import type {
+-	FirstArrayElement,
++import type {ConditionalSimplifyDeep} from './conditional-simplify.d.ts';
++import type {OmitIndexSignature} from './omit-index-signature.d.ts';
++import type {PickIndexSignature} from './pick-index-signature.d.ts';
++import type {Merge} from './merge.d.ts';
++import type {FirstArrayElement,
+ 	IsBothExtends,
+-	UnknownArrayOrTuple,
+-} from './internal';
+-import type {NonEmptyTuple} from './non-empty-tuple';
+-import type {ArrayTail} from './array-tail';
+-import type {UnknownRecord} from './unknown-record';
+-import type {EnforceOptional} from './enforce-optional';
+-import type {SimplifyDeep} from './simplify-deep';
+-import type {UnknownArray} from './unknown-array';
++	UnknownArrayOrTuple,} from './internal.d.ts';
++import type {NonEmptyTuple} from './non-empty-tuple.d.ts';
++import type {ArrayTail} from './array-tail.d.ts';
++import type {UnknownRecord} from './unknown-record.d.ts';
++import type {EnforceOptional} from './enforce-optional.d.ts';
++import type {SimplifyDeep} from './simplify-deep.d.ts';
++import type {UnknownArray} from './unknown-array.d.ts';
+ 
+ type SimplifyDeepExcludeArray<T> = SimplifyDeep<T, UnknownArray>;
+ 
+diff --git a/source/merge.d.ts b/source/merge.d.ts
+index e4c4a878fa8c77198d24f3503751519bac4b2051..5be87e295e06630bbacebbb9eebe3562d425a4ee 100644
+--- a/source/merge.d.ts
++++ b/source/merge.d.ts
+@@ -1,6 +1,6 @@
+-import type {OmitIndexSignature} from './omit-index-signature';
+-import type {PickIndexSignature} from './pick-index-signature';
+-import type {Simplify} from './simplify';
++import type {OmitIndexSignature} from './omit-index-signature.d.ts';
++import type {PickIndexSignature} from './pick-index-signature.d.ts';
++import type {Simplify} from './simplify.d.ts';
+ 
+ // Merges two objects without worrying about index signatures.
+ type SimpleMerge<Destination, Source> = {
+diff --git a/source/multidimensional-array.d.ts b/source/multidimensional-array.d.ts
+index ae565ad0364feefc70c147f1d09fae0a5fd956d8..537ad0dfada805c97b67757b0cb28cf7d30ba352 100644
+--- a/source/multidimensional-array.d.ts
++++ b/source/multidimensional-array.d.ts
+@@ -1,5 +1,5 @@
+-import type {Subtract} from './subtract';
+-import type {IsEqual} from './is-equal';
++import type {Subtract} from './subtract.d.ts';
++import type {IsEqual} from './is-equal.d.ts';
+ 
+ type Recursive<T> = Array<Recursive<T>>;
+ 
+diff --git a/source/multidimensional-readonly-array.d.ts b/source/multidimensional-readonly-array.d.ts
+index 017a3316366c23dc46d5a74581df6920274b28ca..88052b36e6a741038e3a912129e7befed66339a0 100644
+--- a/source/multidimensional-readonly-array.d.ts
++++ b/source/multidimensional-readonly-array.d.ts
+@@ -1,5 +1,5 @@
+-import type {Subtract} from './subtract';
+-import type {IsEqual} from './is-equal';
++import type {Subtract} from './subtract.d.ts';
++import type {IsEqual} from './is-equal.d.ts';
+ 
+ type Recursive<T> = ReadonlyArray<Recursive<T>>;
+ 
+diff --git a/source/non-empty-object.d.ts b/source/non-empty-object.d.ts
+index 0f65417a7082cbd5a538e7ecbc6f0565feed9ba4..042a70775dbf6e26c19babbbd056fcb80e949fe2 100644
+--- a/source/non-empty-object.d.ts
++++ b/source/non-empty-object.d.ts
+@@ -1,5 +1,5 @@
+-import type {HasRequiredKeys} from './has-required-keys';
+-import type {RequireAtLeastOne} from './require-at-least-one';
++import type {HasRequiredKeys} from './has-required-keys.d.ts';
++import type {RequireAtLeastOne} from './require-at-least-one.d.ts';
+ 
+ /**
+ Represents an object with at least 1 non-optional key.
+diff --git a/source/numeric.d.ts b/source/numeric.d.ts
+index c02847ec4db0ba85e837a458c5a4bf2823e666bd..5491001ab095237a69430015d8d4211d70811247 100644
+--- a/source/numeric.d.ts
++++ b/source/numeric.d.ts
+@@ -1,5 +1,5 @@
+-import type {IsFloat} from './is-float';
+-import type {IsInteger} from './is-integer';
++import type {IsFloat} from './is-float.d.ts';
++import type {IsInteger} from './is-integer.d.ts';
+ 
+ export type Numeric = number | bigint;
+ 
+diff --git a/source/omit-deep.d.ts b/source/omit-deep.d.ts
+index 72ec6445b0674d239800eb9dfcc2405684002f6a..fea09d250facac250f4aaa70c7804a80d1b0326d 100644
+--- a/source/omit-deep.d.ts
++++ b/source/omit-deep.d.ts
+@@ -1,12 +1,12 @@
+-import type {ArraySplice} from './array-splice';
+-import type {ExactKey, IsArrayReadonly, NonRecursiveType, SetArrayAccess, ToString} from './internal';
+-import type {IsEqual} from './is-equal';
+-import type {IsNever} from './is-never';
+-import type {LiteralUnion} from './literal-union';
+-import type {Paths} from './paths';
+-import type {SharedUnionFieldsDeep} from './shared-union-fields-deep';
+-import type {SimplifyDeep} from './simplify-deep';
+-import type {UnknownArray} from './unknown-array';
++import type {ArraySplice} from './array-splice.d.ts';
++import type {ExactKey, IsArrayReadonly, NonRecursiveType, SetArrayAccess, ToString} from './internal/index.d.ts';
++import type {IsEqual} from './is-equal.d.ts';
++import type {IsNever} from './is-never.d.ts';
++import type {LiteralUnion} from './literal-union.d.ts';
++import type {Paths} from './paths.d.ts';
++import type {SharedUnionFieldsDeep} from './shared-union-fields-deep.d.ts';
++import type {SimplifyDeep} from './simplify-deep.d.ts';
++import type {UnknownArray} from './unknown-array.d.ts';
+ 
+ /**
+ Omit properties from a deeply-nested object.
+diff --git a/source/opaque.d.ts b/source/opaque.d.ts
+index 5b95bafa47f6a78a2364a6b110b9679ebb12d559..836184cfcae6c6cf19ce646a876707e160b6fe90 100644
+--- a/source/opaque.d.ts
++++ b/source/opaque.d.ts
+@@ -1 +1 @@
+-export * from './tagged';
++export type * from './tagged.d.ts';
+diff --git a/source/or.d.ts b/source/or.d.ts
+index 2794ed80efb988367980ba6e529ffcbcc4886c8a..3e393e197ba461420716317f53e49782ce1f19bb 100644
+--- a/source/or.d.ts
++++ b/source/or.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsEqual} from './is-equal';
++import type {IsEqual} from './is-equal.d.ts';
+ 
+ /**
+ Returns a boolean for whether either of two given types are true.
+diff --git a/source/override-properties.d.ts b/source/override-properties.d.ts
+index 7eb3908af5f24bd2943473fc31ab04eaaa11c1d4..5653ceebd2dc132ccb6cc16b804c950431d84097 100644
+--- a/source/override-properties.d.ts
++++ b/source/override-properties.d.ts
+@@ -1,4 +1,4 @@
+-import type {Merge} from './merge';
++import type {Merge} from './merge.d.ts';
+ 
+ /**
+ Override existing properties of the given type. Similar to `Merge`, but enforces that the original type has the properties you want to override.
+diff --git a/source/package-json.d.ts b/source/package-json.d.ts
+index 9c310f1f2590fe3c64f3934a6cdf01035bb7d2f0..ca22aeabdb825afc5b395a938be28a327218c9ec 100644
+--- a/source/package-json.d.ts
++++ b/source/package-json.d.ts
+@@ -1,5 +1,5 @@
+-import type {LiteralUnion} from './literal-union';
+-import type {JsonObject, JsonValue} from './basic';
++import type {LiteralUnion} from './literal-union.d.ts';
++import type {JsonObject, JsonValue} from './basic.d.ts';
+ 
+ declare namespace PackageJson {
+ 	/**
+diff --git a/source/partial-deep.d.ts b/source/partial-deep.d.ts
+index b2299be6b99a68d72786fa3585cf6cab674b0dde..fb469b9b1e2254c1d4ef3d3aadf694e14ba4e293 100644
+--- a/source/partial-deep.d.ts
++++ b/source/partial-deep.d.ts
+@@ -1,4 +1,4 @@
+-import type {BuiltIns} from './internal';
++import type {BuiltIns} from './internal/index.d.ts';
+ 
+ /**
+ @see PartialDeep
+diff --git a/source/partial-on-undefined-deep.d.ts b/source/partial-on-undefined-deep.d.ts
+index b271ceee05e6784c4af8d97c77872644efb882bf..70966769ed93e503ab07aa7adfbd9d142735ae97 100644
+--- a/source/partial-on-undefined-deep.d.ts
++++ b/source/partial-on-undefined-deep.d.ts
+@@ -1,6 +1,6 @@
+-import type {IfUnknown} from './if-unknown';
+-import type {BuiltIns, LiteralKeyOf} from './internal';
+-import type {Merge} from './merge';
++import type {IfUnknown} from './if-unknown.d.ts';
++import type {BuiltIns, LiteralKeyOf} from './internal/index.d.ts';
++import type {Merge} from './merge.d.ts';
+ 
+ /**
+ @see PartialOnUndefinedDeep
+diff --git a/source/pascal-case.d.ts b/source/pascal-case.d.ts
+index 86782963714ddaf358d9441c128373c1809ff0b2..eee7390b6247f93ab9673c3920b388f41d041547 100644
+--- a/source/pascal-case.d.ts
++++ b/source/pascal-case.d.ts
+@@ -1,4 +1,4 @@
+-import type {CamelCase, CamelCaseOptions} from './camel-case';
++import type {CamelCase, CamelCaseOptions} from './camel-case.d.ts';
+ 
+ /**
+ Converts a string literal to pascal-case.
+diff --git a/source/pascal-cased-properties-deep.d.ts b/source/pascal-cased-properties-deep.d.ts
+index a8bbc603d4924723184abf182db48849cb900e5c..a3be78d0d1819c8e011dd03842487db5c88902b2 100644
+--- a/source/pascal-cased-properties-deep.d.ts
++++ b/source/pascal-cased-properties-deep.d.ts
+@@ -1,5 +1,5 @@
+-import type {CamelCaseOptions} from './camel-case';
+-import type {PascalCase} from './pascal-case';
++import type {CamelCaseOptions} from './camel-case.d.ts';
++import type {PascalCase} from './pascal-case.d.ts';
+ 
+ /**
+ Convert object properties to pascal case recursively.
+diff --git a/source/pascal-cased-properties.d.ts b/source/pascal-cased-properties.d.ts
+index b6d433036c7d42aef0059dde5be9d7ca62458fac..d511ede0ddb9405692f8677acdf95997eec6d72e 100644
+--- a/source/pascal-cased-properties.d.ts
++++ b/source/pascal-cased-properties.d.ts
+@@ -1,5 +1,5 @@
+-import type {CamelCaseOptions} from './camel-case';
+-import type {PascalCase} from './pascal-case';
++import type {CamelCaseOptions} from './camel-case.d.ts';
++import type {PascalCase} from './pascal-case.d.ts';
+ 
+ /**
+ Convert object properties to pascal case but not recursively.
+diff --git a/source/paths.d.ts b/source/paths.d.ts
+index 7e9f365990dd1abb9c379afcf49166b2c78bcc7d..dbf755e924755534c14e25a17f6ff92897c92d86 100644
+--- a/source/paths.d.ts
++++ b/source/paths.d.ts
+@@ -1,9 +1,9 @@
+-import type {StaticPartOfArray, VariablePartOfArray, NonRecursiveType, ToString, IsNumberLike} from './internal';
+-import type {EmptyObject} from './empty-object';
+-import type {IsAny} from './is-any';
+-import type {UnknownArray} from './unknown-array';
+-import type {Subtract} from './subtract';
+-import type {GreaterThan} from './greater-than';
++import type {StaticPartOfArray, VariablePartOfArray, NonRecursiveType, ToString, IsNumberLike} from './internal/index.d.ts';
++import type {EmptyObject} from './empty-object.d.ts';
++import type {IsAny} from './is-any.d.ts';
++import type {UnknownArray} from './unknown-array.d.ts';
++import type {Subtract} from './subtract.d.ts';
++import type {GreaterThan} from './greater-than.d.ts';
+ 
+ /**
+ Paths options.
+diff --git a/source/pick-deep.d.ts b/source/pick-deep.d.ts
+index d65bf743b2519678bd2a8766d34a6b889bea91b1..492d24f2a873289ff1583bcdc6b39dafb6a73d9c 100644
+--- a/source/pick-deep.d.ts
++++ b/source/pick-deep.d.ts
+@@ -1,9 +1,9 @@
+-import type {BuildObject, BuildTuple, NonRecursiveType, ObjectValue} from './internal';
+-import type {IsNever} from './is-never';
+-import type {Paths} from './paths';
+-import type {Simplify} from './simplify.d';
+-import type {UnionToIntersection} from './union-to-intersection.d';
+-import type {UnknownArray} from './unknown-array';
++import type {BuildObject, BuildTuple, NonRecursiveType, ObjectValue} from './internal/index.d.ts';
++import type {IsNever} from './is-never.d.ts';
++import type {Paths} from './paths.d.ts';
++import type {Simplify} from './simplify.d.d.ts';
++import type {UnionToIntersection} from './union-to-intersection.d.d.ts';
++import type {UnknownArray} from './unknown-array.d.ts';
+ 
+ /**
+ Pick properties from a deeply-nested object.
+diff --git a/source/readonly-deep.d.ts b/source/readonly-deep.d.ts
+index ab7b84913af7a57a29380ec487dfd12ac10cf36d..740b239a571b78d7b1cc8ce41905ac44fb2406f1 100644
+--- a/source/readonly-deep.d.ts
++++ b/source/readonly-deep.d.ts
+@@ -1,4 +1,4 @@
+-import type {BuiltIns, HasMultipleCallSignatures} from './internal';
++import type {BuiltIns, HasMultipleCallSignatures} from './internal/index.d.ts';
+ 
+ /**
+ Convert `object`s, `Map`s, `Set`s, and `Array`s and all of their keys/elements into immutable structures recursively.
+diff --git a/source/readonly-keys-of.d.ts b/source/readonly-keys-of.d.ts
+index f7c31f4060d2af0c5a9c0d62dfe90c0f6274a56c..e93904b2dd80f47bfc53f178d145f3c0977fb6d2 100644
+--- a/source/readonly-keys-of.d.ts
++++ b/source/readonly-keys-of.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsEqual} from './is-equal';
++import type {IsEqual} from './is-equal.d.ts';
+ 
+ /**
+ Extract all readonly keys from the given type.
+diff --git a/source/require-all-or-none.d.ts b/source/require-all-or-none.d.ts
+index f3f65f831adb02eddc4ac929538d14ff54d268f5..1fc6e385b35cd7e5e6ad36305b4fa1f1671da748 100644
+--- a/source/require-all-or-none.d.ts
++++ b/source/require-all-or-none.d.ts
+@@ -1,4 +1,4 @@
+-import type {RequireNone} from './internal';
++import type {RequireNone} from './internal/index.d.ts';
+ 
+ /**
+ Requires all of the keys in the given object.
+diff --git a/source/require-at-least-one.d.ts b/source/require-at-least-one.d.ts
+index c52e204b6df84b71bf99fb8c8f40083188f02365..3bf6fd10d103468e18e4741e2fc2fbc173846389 100644
+--- a/source/require-at-least-one.d.ts
++++ b/source/require-at-least-one.d.ts
+@@ -1,4 +1,4 @@
+-import type {Except} from './except';
++import type {Except} from './except.d.ts';
+ 
+ /**
+ Create a type that requires at least one of the given keys. The remaining keys are kept as is.
+diff --git a/source/require-one-or-none.d.ts b/source/require-one-or-none.d.ts
+index 5227382ec6948ae73815bafc9d3253c4d7e68006..2313cc49c28cb21456056d91dd847ad2a94addd7 100644
+--- a/source/require-one-or-none.d.ts
++++ b/source/require-one-or-none.d.ts
+@@ -1,5 +1,5 @@
+-import type {RequireExactlyOne} from './require-exactly-one';
+-import type {RequireNone} from './internal';
++import type {RequireExactlyOne} from './require-exactly-one.d.ts';
++import type {RequireNone} from './internal/index.d.ts';
+ 
+ /**
+ Create a type that requires exactly one of the given keys and disallows more, or none of the given keys. The remaining keys are kept as is.
+diff --git a/source/required-deep.d.ts b/source/required-deep.d.ts
+index 75c959cbdc2cbdcae509c13ec7bfd7dd9226eea0..f2690a5d9f0f11e3b844d62b7bfdc5c8ddd3bcd3 100644
+--- a/source/required-deep.d.ts
++++ b/source/required-deep.d.ts
+@@ -1,4 +1,4 @@
+-import type {BuiltIns, HasMultipleCallSignatures} from './internal';
++import type {BuiltIns, HasMultipleCallSignatures} from './internal/index.d.ts';
+ 
+ type ExcludeUndefined<T> = Exclude<T, undefined>;
+ 
+diff --git a/source/screaming-snake-case.d.ts b/source/screaming-snake-case.d.ts
+index 93599625aeb9e8e8af97dbbe69e504fc70609c6c..3653ed6acc2a5da161b9f4f482669e24c1c51d64 100644
+--- a/source/screaming-snake-case.d.ts
++++ b/source/screaming-snake-case.d.ts
+@@ -1,6 +1,6 @@
+-import type {SplitIncludingDelimiters} from './delimiter-case';
+-import type {SnakeCase} from './snake-case';
+-import type {Includes} from './includes';
++import type {SplitIncludingDelimiters} from './delimiter-case.d.ts';
++import type {SnakeCase} from './snake-case.d.ts';
++import type {Includes} from './includes.d.ts';
+ 
+ /**
+ Returns a boolean for whether the string is screaming snake case.
+diff --git a/source/set-field-type.d.ts b/source/set-field-type.d.ts
+index 973cad6fa2f3de932bfbd42379151e6e2a7c330d..d5ef61346205843085ea6bc0068f1e8d73470693 100644
+--- a/source/set-field-type.d.ts
++++ b/source/set-field-type.d.ts
+@@ -1,5 +1,5 @@
+-import type {Except} from './except';
+-import type {Simplify} from './simplify';
++import type {Except} from './except.d.ts';
++import type {Simplify} from './simplify.d.ts';
+ 
+ /**
+ Create a type that changes the type of the given keys.
+diff --git a/source/set-optional.d.ts b/source/set-optional.d.ts
+index 224004dcfea38a4b82d79be986cdc0f269eb0fc5..03f58105f217d369322c18b58f6a7c5ec972a022 100644
+--- a/source/set-optional.d.ts
++++ b/source/set-optional.d.ts
+@@ -1,5 +1,5 @@
+-import type {Except} from './except';
+-import type {Simplify} from './simplify';
++import type {Except} from './except.d.ts';
++import type {Simplify} from './simplify.d.ts';
+ 
+ /**
+ Create a type that makes the given keys optional. The remaining keys are kept as is. The sister of the `SetRequired` type.
+diff --git a/source/set-parameter-type.d.ts b/source/set-parameter-type.d.ts
+index d9bc787ecdca681e3c76520e6f905984d0058f24..ef8f506f64c8904f0a7c9a7423294a4e49951097 100644
+--- a/source/set-parameter-type.d.ts
++++ b/source/set-parameter-type.d.ts
+@@ -1,6 +1,6 @@
+-import type {IsUnknown} from './is-unknown';
+-import type {StaticPartOfArray, VariablePartOfArray} from './internal';
+-import type {UnknownArray} from './unknown-array';
++import type {IsUnknown} from './is-unknown.d.ts';
++import type {StaticPartOfArray, VariablePartOfArray} from './internal/index.d.ts';
++import type {UnknownArray} from './unknown-array.d.ts';
+ 
+ /**
+ Create an array that replaces the given `TArray`'s elements with the given `TObject`'s values at the given indices.
+diff --git a/source/set-readonly.d.ts b/source/set-readonly.d.ts
+index f8f4aa90c64f5318e92dfb7660f85606db3213c8..83e3434b5607031d67c6dca60749f88df5c56365 100644
+--- a/source/set-readonly.d.ts
++++ b/source/set-readonly.d.ts
+@@ -1,5 +1,5 @@
+-import type {Except} from './except';
+-import type {Simplify} from './simplify';
++import type {Except} from './except.d.ts';
++import type {Simplify} from './simplify.d.ts';
+ 
+ /**
+ Create a type that makes the given keys readonly. The remaining keys are kept as is.
+diff --git a/source/set-required.d.ts b/source/set-required.d.ts
+index 735c227c464e34be980dae889e23ffb7651511c8..dd8a6d1a7f8f4aa040c777b7fa7676fafdee26f2 100644
+--- a/source/set-required.d.ts
++++ b/source/set-required.d.ts
+@@ -1,5 +1,5 @@
+-import type {Except} from './except';
+-import type {Simplify} from './simplify';
++import type {Except} from './except.d.ts';
++import type {Simplify} from './simplify.d.ts';
+ 
+ /**
+ Create a type that makes the given keys required. The remaining keys are kept as is. The sister of the `SetOptional` type.
+diff --git a/source/set-return-type.d.ts b/source/set-return-type.d.ts
+index 53988d07a01f42a04f421755393e86e755397a62..7113e3c94bda965edb520fa8254830d97769a378 100644
+--- a/source/set-return-type.d.ts
++++ b/source/set-return-type.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsUnknown} from './is-unknown';
++import type {IsUnknown} from './is-unknown.d.ts';
+ 
+ /**
+ Create a function type with a return type of your choice and the same parameters as the given function type.
+diff --git a/source/shared-union-fields-deep.d.ts b/source/shared-union-fields-deep.d.ts
+index 57101c3913afd6add6c09ce5ff61052f7e49e0f9..1a128e00a7c8c059fc62ae7731e17733afaa0cf9 100644
+--- a/source/shared-union-fields-deep.d.ts
++++ b/source/shared-union-fields-deep.d.ts
+@@ -1,6 +1,6 @@
+-import type {NonRecursiveType, UnionMin, UnionMax, TupleLength, StaticPartOfArray, VariablePartOfArray, IsUnion, IsArrayReadonly, SetArrayAccess} from './internal';
+-import type {IsNever} from './is-never';
+-import type {UnknownArray} from './unknown-array';
++import type {NonRecursiveType, UnionMin, UnionMax, TupleLength, StaticPartOfArray, VariablePartOfArray, IsUnion, IsArrayReadonly, SetArrayAccess} from './internal/index.d.ts';
++import type {IsNever} from './is-never.d.ts';
++import type {UnknownArray} from './unknown-array.d.ts';
+ 
+ /**
+ SharedUnionFieldsDeep options.
+diff --git a/source/simplify-deep.d.ts b/source/simplify-deep.d.ts
+index a5653fce6c83dc2a9f0b5cdb3d98fc6a3dbcaf12..39dacf7680d47738e73a075ce7fa8f4cd501ba60 100644
+--- a/source/simplify-deep.d.ts
++++ b/source/simplify-deep.d.ts
+@@ -1,5 +1,5 @@
+-import type {ConditionalSimplifyDeep} from './conditional-simplify';
+-import type {NonRecursiveType} from './internal';
++import type {ConditionalSimplifyDeep} from './conditional-simplify.d.ts';
++import type {NonRecursiveType} from './internal/index.d.ts';
+ 
+ /**
+ Deeply simplifies an object type.
+diff --git a/source/single-key-object.d.ts b/source/single-key-object.d.ts
+index 54ebece54dd6be8125a14b4f65ea0fc4a7fed197..ff842a7d5f7ff1aabe8354ce9f62d8e3973d9741 100644
+--- a/source/single-key-object.d.ts
++++ b/source/single-key-object.d.ts
+@@ -1,5 +1,5 @@
+-import type {IfEmptyObject} from './if-empty-object';
+-import type {IsUnion} from './internal';
++import type {IfEmptyObject} from './if-empty-object.d.ts';
++import type {IsUnion} from './internal/index.d.ts';
+ 
+ /**
+ Create a type that only accepts an object with a single key.
+diff --git a/source/snake-case.d.ts b/source/snake-case.d.ts
+index 5a0674cceb7146784e88b58e6dcf889917bcb439..223600854b957a3aca5b35c999d21188853e867f 100644
+--- a/source/snake-case.d.ts
++++ b/source/snake-case.d.ts
+@@ -1,4 +1,4 @@
+-import type {DelimiterCase} from './delimiter-case';
++import type {DelimiterCase} from './delimiter-case.d.ts';
+ 
+ /**
+ Convert a string literal to snake-case.
+diff --git a/source/snake-cased-properties-deep.d.ts b/source/snake-cased-properties-deep.d.ts
+index 9e7ee3dd828433d8391f6fbfea4bddbf87b170fd..327fb21f9ec57c14dfa48b01aa7bbfc2e6070268 100644
+--- a/source/snake-cased-properties-deep.d.ts
++++ b/source/snake-cased-properties-deep.d.ts
+@@ -1,4 +1,4 @@
+-import type {DelimiterCasedPropertiesDeep} from './delimiter-cased-properties-deep';
++import type {DelimiterCasedPropertiesDeep} from './delimiter-cased-properties-deep.d.ts';
+ 
+ /**
+ Convert object properties to snake case recursively.
+diff --git a/source/snake-cased-properties.d.ts b/source/snake-cased-properties.d.ts
+index a1c36602c403903b70a2223f7fc686ecd575f58a..6dce95b27b9d162cb2ef7c2f8db35eecc73fde7e 100644
+--- a/source/snake-cased-properties.d.ts
++++ b/source/snake-cased-properties.d.ts
+@@ -1,4 +1,4 @@
+-import type {DelimiterCasedProperties} from './delimiter-cased-properties';
++import type {DelimiterCasedProperties} from './delimiter-cased-properties.d.ts';
+ 
+ /**
+ Convert object properties to snake case but not recursively.
+diff --git a/source/split-words.d.ts b/source/split-words.d.ts
+index dd9ca2b257b1d41c1169849aa430e1e308a2cb44..b45dcf259511819afbda42496650b0c8ba0752aa 100644
+--- a/source/split-words.d.ts
++++ b/source/split-words.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsLowerCase, IsNumeric, IsUpperCase, WordSeparators} from './internal';
++import type {IsLowerCase, IsNumeric, IsUpperCase, WordSeparators} from './internal/index.d.ts';
+ 
+ type SkipEmptyWord<Word extends string> = Word extends '' ? [] : [Word];
+ 
+diff --git a/source/spread.d.ts b/source/spread.d.ts
+index 8d2c353a89d134e535c34eb8a64788adf0d3c9a0..a5f8c3b2850ebd44509b99b8287dead836872f3f 100644
+--- a/source/spread.d.ts
++++ b/source/spread.d.ts
+@@ -1,5 +1,5 @@
+-import type {RequiredKeysOf} from './required-keys-of';
+-import type {Simplify} from './simplify';
++import type {RequiredKeysOf} from './required-keys-of.d.ts';
++import type {Simplify} from './simplify.d.ts';
+ 
+ type SpreadObject<FirstType extends object, SecondType extends object> = {
+ 	[Key in keyof FirstType]: Key extends keyof SecondType
+diff --git a/source/string-repeat.d.ts b/source/string-repeat.d.ts
+index b03581b81237bde1309e7941ffa790b88d458e7c..237e39df1d19214b47970c42c26c9e44155bc005 100644
+--- a/source/string-repeat.d.ts
++++ b/source/string-repeat.d.ts
+@@ -1,5 +1,5 @@
+-import type {IsNegative} from './numeric';
+-import type {Subtract} from './subtract';
++import type {IsNegative} from './numeric.d.ts';
++import type {Subtract} from './subtract.d.ts';
+ 
+ /**
+ Returns a new string which contains the specified number of copies of a given string, just like `String#repeat()`.
+diff --git a/source/string-slice.d.ts b/source/string-slice.d.ts
+index e610e8f0c40ac3b57fd440abc00cdee5269099bc..dedc2706427ff68d5c0dd04aefdd6d5a3587bb38 100644
+--- a/source/string-slice.d.ts
++++ b/source/string-slice.d.ts
+@@ -1,6 +1,6 @@
+-import type {Join} from './join';
+-import type {ArraySlice} from './array-slice';
+-import type {StringToArray} from './internal';
++import type {Join} from './join.d.ts';
++import type {ArraySlice} from './array-slice.d.ts';
++import type {StringToArray} from './internal/index.d.ts';
+ 
+ /**
+ Returns a string slice of a given range, just like `String#slice()`.
+diff --git a/source/structured-cloneable.d.ts b/source/structured-cloneable.d.ts
+index 3fd9c1874c5d24135ac9e6a0a89da27ffcc31d70..76767334e49b6a439831b35438b41b9c168c6d92 100644
+--- a/source/structured-cloneable.d.ts
++++ b/source/structured-cloneable.d.ts
+@@ -1,5 +1,5 @@
+-import type {TypedArray} from './typed-array';
+-import type {FindGlobalInstanceType} from './find-global-type';
++import type {TypedArray} from './typed-array.d.ts';
++import type {FindGlobalInstanceType} from './find-global-type.d.ts';
+ 
+ type StructuredCloneablePrimitive =
+ 	| string
+diff --git a/source/subtract.d.ts b/source/subtract.d.ts
+index 02b0f10fa2883365e33abb7b6854ef132bfd1d37..bdad28e6ce652f8fd70ae672c61f096f6acb49df 100644
+--- a/source/subtract.d.ts
++++ b/source/subtract.d.ts
+@@ -1,10 +1,10 @@
+-import type {NumberAbsolute, BuildTuple} from './internal';
+-import type {IsEqual} from './is-equal';
+-import type {PositiveInfinity, NegativeInfinity, IsNegative} from './numeric';
+-import type {LessThan} from './less-than';
+-import type {Sum} from './sum';
+-import type {And} from './and';
+-import type {Or} from './or';
++import type {NumberAbsolute, BuildTuple} from './internal/index.d.ts';
++import type {IsEqual} from './is-equal.d.ts';
++import type {PositiveInfinity, NegativeInfinity, IsNegative} from './numeric.d.ts';
++import type {LessThan} from './less-than.d.ts';
++import type {Sum} from './sum.d.ts';
++import type {And} from './and.d.ts';
++import type {Or} from './or.d.ts';
+ 
+ /**
+ Returns the difference between two numbers.
+diff --git a/source/sum.d.ts b/source/sum.d.ts
+index 29d07dc30c1f2056b607623483fab45e00f33a8e..60eba930fc09376fe68031b60ab2c9061848ffa3 100644
+--- a/source/sum.d.ts
++++ b/source/sum.d.ts
+@@ -1,9 +1,9 @@
+-import type {NumberAbsolute, BuildTuple, TupleMax, TupleMin} from './internal';
+-import type {IsEqual} from './is-equal';
+-import type {PositiveInfinity, NegativeInfinity, IsNegative} from './numeric';
+-import type {Subtract} from './subtract';
+-import type {And} from './and';
+-import type {Or} from './or';
++import type {NumberAbsolute, BuildTuple, TupleMax, TupleMin} from './internal/index.d.ts';
++import type {IsEqual} from './is-equal.d.ts';
++import type {PositiveInfinity, NegativeInfinity, IsNegative} from './numeric.d.ts';
++import type {Subtract} from './subtract.d.ts';
++import type {And} from './and.d.ts';
++import type {Or} from './or.d.ts';
+ 
+ /**
+ Returns the sum of two numbers.
+diff --git a/source/trim.d.ts b/source/trim.d.ts
+index d4bf4835a58858580d9ae49bf512ed2d491b6e95..850498600569e8844cff0060e7e767a22a2b8716 100644
+--- a/source/trim.d.ts
++++ b/source/trim.d.ts
+@@ -1,4 +1,4 @@
+-import type {Whitespace} from './internal';
++import type {Whitespace} from './internal/index.d.ts';
+ 
+ /**
+ Remove spaces from the left side.
+diff --git a/source/undefined-on-partial-deep.d.ts b/source/undefined-on-partial-deep.d.ts
+index ed7eef9f67b054c24105975f9f5d7f5b2e695a8d..b24b31804afc26b01e1a112e271babb090631a06 100644
+--- a/source/undefined-on-partial-deep.d.ts
++++ b/source/undefined-on-partial-deep.d.ts
+@@ -1,4 +1,4 @@
+-import type {BuiltIns} from './internal';
++import type {BuiltIns} from './internal/index.d.ts';
+ 
+ /**
+ Create a deep version of another type where all optional keys are set to also accept `undefined`.
+diff --git a/source/union-to-tuple.d.ts b/source/union-to-tuple.d.ts
+index 618d8cc12b3463f78ab02b2193e5d9b8dc0669f6..11bf8848793530222f56e906e412c40afe91ab75 100644
+--- a/source/union-to-tuple.d.ts
++++ b/source/union-to-tuple.d.ts
+@@ -1,5 +1,5 @@
+-import type {IsNever} from './is-never';
+-import type {UnionToIntersection} from './union-to-intersection';
++import type {IsNever} from './is-never.d.ts';
++import type {UnionToIntersection} from './union-to-intersection.d.ts';
+ 
+ /**
+ Returns the last element of a union type.
+diff --git a/source/writable-deep.d.ts b/source/writable-deep.d.ts
+index bb01395f56288a5c6823622b47cb386cd498655a..5ca658e915af022c731bfe9b3b5256887bea2729 100644
+--- a/source/writable-deep.d.ts
++++ b/source/writable-deep.d.ts
+@@ -1,4 +1,4 @@
+-import type {BuiltIns, HasMultipleCallSignatures} from './internal';
++import type {BuiltIns, HasMultipleCallSignatures} from './internal/index.d.ts';
+ 
+ /**
+ Create a deeply mutable version of an `object`/`ReadonlyMap`/`ReadonlySet`/`ReadonlyArray` type. The inverse of `ReadonlyDeep<T>`. Use `Writable<T>` if you only need one level deep.
+@@ -80,4 +80,3 @@ type WritableArrayDeep<ArrayType extends readonly unknown[]> =
+ 				: ArrayType extends ReadonlyArray<infer U> ? Array<WritableDeep<U>>
+ 					: ArrayType extends Array<infer U> ? Array<WritableDeep<U>>
+ 						: ArrayType;
+-
+diff --git a/source/writable-keys-of.d.ts b/source/writable-keys-of.d.ts
+index 7432c9f29640c4c0c03f66f2fdcc098e3af5685b..258f5c6f87785d584d95d00535cf60fce00adc3e 100644
+--- a/source/writable-keys-of.d.ts
++++ b/source/writable-keys-of.d.ts
+@@ -1,4 +1,4 @@
+-import type {IsEqual} from './is-equal';
++import type {IsEqual} from './is-equal.d.ts';
+ 
+ /**
+ Extract all writable keys from the given type.
+diff --git a/source/writable.d.ts b/source/writable.d.ts
+index 851a03c566ec0f1711b1671949e05970cad35d0b..262ff990109d7e910bc12b6904216f542101247b 100644
+--- a/source/writable.d.ts
++++ b/source/writable.d.ts
+@@ -1,5 +1,5 @@
+-import type {Except} from './except';
+-import type {Simplify} from './simplify';
++import type {Except} from './except.d.ts';
++import type {Simplify} from './simplify.d.ts';
+ 
+ /**
+ Create a writable version of the given array type.

@@ -25,6 +25,7 @@
 		setHashInstantly(red, green, blue, alpha);
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 	$: setHashDebounced(red, green, blue, alpha);
 
 	function setHashInstantly(
@@ -55,6 +56,7 @@
 	/*
 		To not spam the history
 	*/
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
 	const setHashDebounced = debounce(setHashInstantly, 800, {
 		leading: true,
 		trailing: true,
