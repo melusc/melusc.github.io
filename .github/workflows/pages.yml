@@ -79,6 +79,8 @@ jobs:
           chmod 600 ~/.ssh/ssh-key
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
+      - name: debug connect
+        run: ssh -i ~/.ssh/ssh-key -o StrictHostKeyChecking=accept-new "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST}}" -v
       - name: Sync
         run: rsync -vha --checksum --delete -e "ssh -i ~/.ssh/ssh-key -o StrictHostKeyChecking=accept-new" . "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST}}:/var/www/lusc.ch/"
       - run: rm ~/.ssh/ssh-key
