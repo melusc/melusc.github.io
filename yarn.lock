@@ -351,29 +351,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lusc/json-dts@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "@lusc/json-dts@npm:4.1.0"
+"@lusc/json-dts@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "@lusc/json-dts@npm:4.1.1"
   dependencies:
     camelcase: "npm:^8.0.0"
-    type-fest: "npm:^4.12.0"
-  checksum: 10c0/3591120619c3e09b4c39013c62344d31ee11c34e847a9dd4343bb8fe889dbf69cb3424b0ac3bdc046cefdf143071fd299547dea618ab2ef8d62493d15ae7f797
+    type-fest: "npm:^4.26.1"
+  checksum: 10c0/a76ce006cc8f2d8a79c854b6c7f2e8a9e35298c6f672799b3cafab93f8573257eb551f07bc469e4034b1b32da7d4ca2a0bc75df47f0a647665a50336dc76be3c
   languageName: node
   linkType: hard
 
-"@lusc/sudoku@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "@lusc/sudoku@npm:5.1.0"
-  checksum: 10c0/9d8f1ef940dc1c4062b326e8a7ffe6a765b6f22e933f4dcd2147b184f477a6362925c2906f77e2ab75d03cadfe9d6d6c7224097f21af3b5eb2e865432d13aaa4
+"@lusc/sudoku@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "@lusc/sudoku@npm:5.1.1"
+  checksum: 10c0/093e1a42100d29790adb391c4a099f6fc0938763986800acd444080c3723eb37fe961e7593ce8edf09ed462112d36f2791c386131a9f0ef34aab8849511a21bb
   languageName: node
   linkType: hard
 
-"@lusc/truth-table@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "@lusc/truth-table@npm:5.2.0"
+"@lusc/truth-table@npm:^5.2.1":
+  version: 5.2.1
+  resolution: "@lusc/truth-table@npm:5.2.1"
   dependencies:
-    type-fest: "npm:^4.12.0"
-  checksum: 10c0/9576618db97f242e8bad5e727afc47cb9f29bbc8b767630edd04428760bc81bcfc5b763320120529fe95ac3e75a7114cb5e136624782454edf69c6702d0e8000
+    type-fest: "npm:^4.26.1"
+  checksum: 10c0/9f77c9bf623d52ebab34a8fcd3d520c486cb49692c804e76902fd335d4d585cfc80c39ee5404b4437b43d538c284e388bcd4d1d334673108ca5245dd7f62318d
   languageName: node
   linkType: hard
 
@@ -4056,9 +4056,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "melusc.github.io@workspace:."
   dependencies:
-    "@lusc/json-dts": "npm:^4.1.0"
-    "@lusc/sudoku": "npm:^5.1.0"
-    "@lusc/truth-table": "npm:^5.2.0"
+    "@lusc/json-dts": "npm:^4.1.1"
+    "@lusc/sudoku": "npm:^5.1.1"
+    "@lusc/truth-table": "npm:^5.2.1"
     "@lusc/tsconfig": "npm:^5.1.0"
     "@sveltejs/adapter-static": "npm:^3.0.5"
     "@sveltejs/kit": "npm:^2.6.1"
@@ -5897,7 +5897,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^4.12.0, type-fest@npm:^4.26.1":
+"type-fest@npm:^4.26.1":
   version: 4.26.1
   resolution: "type-fest@npm:4.26.1"
   checksum: 10c0/d2719ff8d380befe8a3c61068f37f28d6fa2849fd140c5d2f0f143099e371da6856aad7c97e56b83329d45bfe504afe9fd936a7cff600cc0d46aa9ffb008d6c6
