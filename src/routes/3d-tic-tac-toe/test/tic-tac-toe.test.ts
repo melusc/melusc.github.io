@@ -20,7 +20,6 @@ test('#getGroups', () => {
 	const foundGroups: string[] = [];
 
 	for (const group of t.getGroups()) {
-		// @ts-expect-error index does exist
 		foundGroups.push(group.map(({index}) => index).join(', '));
 	}
 

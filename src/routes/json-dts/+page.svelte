@@ -1,6 +1,5 @@
 <script lang="ts">
 	import {jsonDts} from '@lusc/json-dts';
-	// @ts-expect-error JsonValue is not resolved correctly??
 	import type {JsonValue} from 'type-fest';
 
 	import './style.scss';

@@ -1,4 +1,3 @@
-import type {Opaque} from 'type-fest';
 import {
 get, writable, type Readable, type Writable,
 } from 'svelte/store';
@@ -21,7 +20,7 @@ type InternalCell = {
 
 export type Layer = readonly Cell[];
 
-export type Group = Opaque<readonly Cell[], 'group'>;
+export type Group = readonly Cell[];
 
 function * getStart(direction: -1 | 0 | 1): Iterable<number> {
 	if (direction === 1) {
@@ -168,7 +167,7 @@ export class TicTacToe extends TypedEventTarget<{
 		let lastPlayer: Player | undefined;
 
 		for (const cell of group) {
-			const content = get<Player>(cell.content);
+			const content = get<Player | undefined>(cell.content);
 
 			if (content === undefined) {
 				return false;
