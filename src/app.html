@@ -14,25 +14,4 @@
 	<body data-sveltekit-preload-data="hover">
 		<div id="app">%sveltekit.body%</div>
 	</body>
-
-	<script type="module">
-		// Taken and modified from https://gist.github.com/fawkesley/bb900465c21b8570d8763af9a07fcfc7/
-		const dnt =
-			navigator.doNotTrack ||
-			window.doNotTrack ||
-			navigator.msDoNotTrack ||
-			navigator.globalPrivacyControl;
-
-		if ([true, 'true', 1, '1', 'yes'].includes(dnt)) {
-			console.debug(
-				'Respecting Do-Not-Track / Global Privacy Control: Not loading analytics.',
-			);
-		} else {
-			const script = document.createElement('script');
-			script.dataset.goatcounter = 'https://lusc.goatcounter.com/count';
-			script.async = true;
-			script.src = 'https://gc.zgo.at/count.js';
-			document.head.append(script);
-		}
-	</script>
 </html>
