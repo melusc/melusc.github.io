@@ -20,13 +20,13 @@
 		"@sveltejs/vite-plugin-svelte": "^3.1.2",
 		"@types/lodash-es": "^4.17.12",
 		"@types/node": "^22.7.6",
-		"@typescript-eslint/parser": "^8.9.0",
+		"@typescript-eslint/parser": "^8.10.0",
 		"eslint-config-xo-typescript": "^5.0.0",
 		"eslint-plugin-svelte": "^2.45.1",
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.7",
 		"rimraf": "^6.0.1",
-		"sass": "^1.80.1",
+		"sass": "^1.80.2",
 		"svelte": "^4.2.19",
 		"svelte-check": "^4.0.5",
 		"typescript": "^5.6.3",
@@ -47,5 +47,5 @@
 		"test": "vitest run"
 	},
 	"version": "1.0.0",
-	"packageManager": "yarn@4.5.0"
+	"packageManager": "yarn@4.5.1"
 }
