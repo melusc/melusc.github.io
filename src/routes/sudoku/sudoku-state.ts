@@ -73,7 +73,6 @@ export function makeSudokuState(initialSudoku: Sudoku): {
 			});
 		},
 		setFocus(index: number) {
-			console.log('new focus', index);
 			update(state => ({...state, focused: index}));
 		},
 		setElement(index: number, value: string) {
