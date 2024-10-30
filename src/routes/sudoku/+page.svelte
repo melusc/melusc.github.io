@@ -8,24 +8,10 @@
 	import './style.scss';
 	import {makeSudokuState} from './sudoku-state';
 
-	let inputCapture = $state<HTMLTextAreaElement>();
 	const sudokuState = makeSudokuState(
 		Sudoku.fromPrefilled(sudokuExamples.sudokuExpert, 9),
 	);
 	const {cells, focused, error} = $derived($sudokuState);
-
-	function handleKeyDown(event: KeyboardEvent): void {
-		if (event.key.toLowerCase() === 'tab') {
-			// Otherwise it starts going around and focusing the buttons, the tab, the url bar
-			event.preventDefault();
-		}
-
-		handleInput(event.key, {
-			shift: event.shiftKey,
-			ctrl: event.ctrlKey,
-			alt: event.altKey,
-		});
-	}
 
 	function handleInput(key: string, metaKeys: MetaKeys = {}): void {
 		if (metaKeys.alt) {
@@ -35,18 +21,18 @@
 		key = key.toLowerCase();
 
 		if (key === ' ' || key === 'delete' || key === 'backspace') {
-			sudokuState.clearCell(focused);
+			sudokuState.clearCell();
 		}
 
 		if (!metaKeys.ctrl && /^[1-9]$/.test(key)) {
-			sudokuState.setElement(focused, key);
+			sudokuState.setElement(key);
 		}
 
 		sudokuState.setFocus(getNewFocused(key, focused, metaKeys));
 	}
 
 	function clearSudoku(): void {
-		sudokuState.clearCell(focused);
+		sudokuState.clearCell();
 	}
 
 	function solve(): void {
@@ -56,27 +42,13 @@
 	function onFocus(index: number): () => void {
 		return (): void => {
 			sudokuState.setFocus(index);
-			focusCapture();
 		};
 	}
-
-	function focusCapture() {
-		inputCapture?.focus();
-	}
-
-	$effect(focusCapture);
 </script>
 
-<svelte:window onmouseup={focusCapture} onfocus={focusCapture} />
 <svelte:head>
 	<title>Sudoku solver</title>
 </svelte:head>
-
-<textarea
-	bind:this={inputCapture}
-	onkeydown={handleKeyDown}
-	class="input-capture"
-></textarea>
 
 <div id="sudoku">
 	<div class="sudoku">
@@ -86,6 +58,7 @@
 				{isValid}
 				isFocused={focused === index}
 				onfocus={onFocus(index)}
+				oninput={handleInput}
 			/>
 		{/each}
 	</div>
@@ -179,15 +152,6 @@
 		&:active {
 			transform: scale(0.98, 0.98);
 		}
-	}
-
-	.input-capture {
-		height: 0;
-		width: 0;
-		outline: none;
-		border: none;
-		opacity: 0;
-		resize: none;
 	}
 
 	@media (max-width: 600px) {

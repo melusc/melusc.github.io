@@ -1,44 +1,72 @@
 <script lang="ts">
+	import type { MetaKeys } from "../util";
+
 	const {
 		isValid,
 		isFocused,
 		element,
+		oninput,
 		onfocus,
 	}: {
 		isValid: boolean;
 		isFocused: boolean;
 		element: string | undefined;
-		onfocus: () => void;
+		oninput: (key: string, meta: MetaKeys) => void;
+		onfocus: () => void,
 	} = $props();
 
-	function handleTouchStart(event: Event) {
-		event.preventDefault();
-		onfocus();
+	let inputElement = $state<HTMLInputElement>();
+
+	$effect(() => {
+		if (isFocused) {
+			inputElement?.focus();
+		}
+	})
+
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'Tab') {
+			event.preventDefault();
+		}
+
+		const key = event.key;
+		const meta: MetaKeys = {
+			alt: event.altKey,
+			ctrl: event.ctrlKey,
+			shift: event.shiftKey,
+		}
+
+		oninput(key, meta);
 	}
 </script>
 
-<div
+<input
 	class="cell"
 	class:invalid-input={!isValid}
 	class:focused-cell={isFocused}
-	onmousedown={onfocus}
-	ontouchstart={handleTouchStart}
-	role="button"
+	onkeydown={handleKeydown}
+	{onfocus}
 	tabindex="0"
->
-	{element ?? ' '}
-</div>
+	value={element}
+	readonly
+	bind:this={inputElement}
+/>
 
 <style lang="scss">
 	.cell {
 		border: var(--thin-border);
 		text-align: center;
 
+		margin: none;
+		padding: none;
 		display: flex;
 		flex: 1 1 0;
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
+		width: 100%;
+		height: 100%;
+		font: inherit;
 
 		&:nth-child(3n) {
 			border-right: var(--thick-border);

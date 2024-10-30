@@ -1,5 +1,5 @@
 import {Sudoku, type SubscriptionCallback} from '@lusc/sudoku';
-import {writable, type Subscriber, type Unsubscriber} from 'svelte/store';
+import {get, writable, type Subscriber, type Unsubscriber} from 'svelte/store';
 
 import {getCells, type Cell} from './util';
 
@@ -14,18 +14,19 @@ export function makeSudokuState(initialSudoku: Sudoku): {
 		run: Subscriber<SudokuState>,
 		invalidate?: () => void,
 	) => Unsubscriber;
-	clearCell(index: number): void;
+	clearCell(): void;
 	reset(): void;
 	setFocus(index: number): void;
-	setElement(index: number, value: string): void;
+	setElement(value: string): void;
 	solve(): void;
 } {
 	let sudoku = initialSudoku;
-	const {subscribe, set, update} = writable<SudokuState>({
+	const store = writable<SudokuState>({
 		focused: 0,
 		error: undefined,
 		cells: getCells(sudoku),
 	});
+	const {subscribe, set, update} = store;
 
 	const sudokuSubscriber: SubscriptionCallback = (sudoku_, type): void => {
 		const cells = getCells(sudoku_);
@@ -59,8 +60,8 @@ export function makeSudokuState(initialSudoku: Sudoku): {
 
 	return {
 		subscribe,
-		clearCell(index: number) {
-			sudoku.clearCell(index);
+		clearCell() {
+			sudoku.clearCell(get(store).focused);
 		},
 		reset() {
 			sudoku.unsubscribe(sudokuSubscriber);
@@ -75,8 +76,8 @@ export function makeSudokuState(initialSudoku: Sudoku): {
 		setFocus(index: number) {
 			update(state => ({...state, focused: index}));
 		},
-		setElement(index: number, value: string) {
-			sudoku.setElement(index, value);
+		setElement(value: string) {
+			sudoku.setElement(get(store).focused, value);
 		},
 		solve() {
 			sudoku.solve();
