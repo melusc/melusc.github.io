@@ -4,28 +4,30 @@
 
 	import './style.scss';
 
-	let input = JSON.stringify(
-		{
-			id: 0,
-			data: {
-				age: 20,
-				name: 'Bob Smith',
+	let input = $state(
+		JSON.stringify(
+			{
+				id: 0,
+				data: {
+					age: 20,
+					name: 'Bob Smith',
+				},
 			},
-		},
-		undefined,
-		2,
+			undefined,
+			2,
+		),
 	);
-	let invalid = false;
-	let output = '';
 
-	$: try {
-		const json = JSON.parse(input) as JsonValue;
-		invalid = false;
-
-		output = jsonDts(json);
-	} catch {
-		invalid = true;
+	function tryJsonDts(input: string) {
+		try {
+			const json = JSON.parse(input) as JsonValue;
+			return {invalid: false, output: jsonDts(json)};
+		} catch {
+			return {invalid: true, output: ''};
+		}
 	}
+
+	const {invalid, output} = $derived(tryJsonDts(input));
 </script>
 
 <svelte:head>
@@ -33,6 +35,6 @@
 </svelte:head>
 
 <div id="json-dts">
-	<textarea bind:value={input} class:invalid />
-	<textarea readonly value={output} />
+	<textarea bind:value={input} class:invalid></textarea>
+	<textarea readonly value={output}></textarea>
 </div>

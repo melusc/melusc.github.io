@@ -1,16 +1,19 @@
 <script lang="ts">
-	import {createEventDispatcher} from 'svelte';
+	const {
+		isValid,
+		isFocused,
+		element,
+		onfocus,
+	}: {
+		isValid: boolean;
+		isFocused: boolean;
+		element: string | undefined;
+		onfocus: () => void;
+	} = $props();
 
-	const dispatch = createEventDispatcher<{
-		focus: void;
-	}>();
-
-	export let isValid: boolean;
-	export let isFocused: boolean;
-	export let element: string | undefined;
-
-	function dispatchFocus(): void {
-		dispatch('focus');
+	function handleTouchStart(event: Event) {
+		event.preventDefault();
+		onfocus();
 	}
 </script>
 
@@ -18,12 +21,12 @@
 	class="cell"
 	class:invalid-input={!isValid}
 	class:focused-cell={isFocused}
-	on:mousedown={dispatchFocus}
-	on:touchstart|preventDefault={dispatchFocus}
+	onmousedown={onfocus}
+	ontouchstart={handleTouchStart}
 	role="button"
 	tabindex="0"
 >
-	{element ?? ''}
+	{element ?? ' '}
 </div>
 
 <style lang="scss">

@@ -11,12 +11,12 @@
 
 	import {browser} from '$app/environment';
 
-	let width = 1440;
-	let height = 2960;
-	$: biggestSize = Math.max(width, height);
+	let width = $state(1440);
+	let height = $state(2960);
+	const biggestSize = $derived(Math.max(width, height));
 
-	let distance = CONSTS.distance;
-	let duration = CONSTS.duration;
+	let distance = $state(CONSTS.distance);
+	let duration = $state(CONSTS.duration);
 
 	if (browser) {
 		// A bit hacky

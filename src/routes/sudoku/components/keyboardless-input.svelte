@@ -1,18 +1,22 @@
 <script lang="ts">
-	import {createEventDispatcher} from 'svelte';
-
 	import Eraser from './icons/eraser.svelte';
 
-	const dispatch = createEventDispatcher<{
-		input: string;
-	}>();
+	const {oninput}: {oninput: (value: string) => void} = $props();
 
 	function dispatchSpace(): void {
-		dispatch('input', ' ');
+		oninput(' ');
 	}
 	function dispatchIndex(index: number): () => void {
 		return (): void => {
-			dispatch('input', `${index + 1}`);
+			oninput(`${index + 1}`);
+		};
+	}
+
+	function handleKeydown(value: string) {
+		return (event: KeyboardEvent) => {
+			if (event.key === ' ' || event.key === 'Enter') {
+				oninput(value);
+			}
 		};
 	}
 </script>
@@ -22,8 +26,8 @@
 		<div
 			class="keyboardless-input"
 			title={`${index + 1}`}
-			on:click={dispatchIndex(index)}
-			on:keydown={dispatchIndex(index)}
+			onclick={dispatchIndex(index)}
+			onkeydown={handleKeydown(`${index + 1}`)}
 			role="button"
 			tabindex="0"
 		>
@@ -33,8 +37,8 @@
 	<div
 		class="keyboardless-input input-eraser"
 		title="Clear cell"
-		on:click={dispatchSpace}
-		on:keydown={dispatchSpace}
+		onclick={dispatchSpace}
+		onkeydown={handleKeydown(' ')}
 		role="button"
 		tabindex="0"
 	>

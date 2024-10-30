@@ -1,6 +1,5 @@
 <script lang="ts">
 	import {debounce} from 'lodash-es';
-	// eslint-disable-next-line import/default, import/no-named-as-default-member, import/no-named-as-default
 	import rgbHex from 'rgb-hex';
 
 	import HexInput from './components/hex-input.svelte';
@@ -10,10 +9,10 @@
 
 	import {browser} from '$app/environment';
 
-	let red = 0xFF;
-	let green = 0xFF;
-	let blue = 0xFF;
-	let alpha: number | undefined;
+	let red = $state(0xFF);
+	let green = $state(0xFF);
+	let blue = $state(0xFF);
+	let alpha = $state<number>();
 
 	function randomColour(): void {
 		const [red_, blue_, green_] = crypto.getRandomValues(new Uint8Array(3));
@@ -25,7 +24,9 @@
 		setHashInstantly(red, green, blue, alpha);
 	}
 
-	$: setHashDebounced(red, green, blue, alpha);
+	$effect(() => {
+		setHashDebounced(red, green, blue, alpha);
+	});
 
 	function setHashInstantly(
 		red: number,
@@ -105,14 +106,14 @@
 				<div class="rainbow-box">
 					<div
 						class="rainbow-text"
-						on:click={randomColour}
-						on:keydown={randomColour}
+						onclick={randomColour}
+						onkeydown={randomColour}
 						role="button"
 						tabindex="0"
 					>
 						Random colour
 					</div>
-					<div class="rainbow-bg" />
+					<div class="rainbow-bg"></div>
 				</div>
 			</div>
 		</div>

@@ -4,10 +4,9 @@
 
 	import Run from './icons/run.svelte';
 
-	export let duration: string;
-	export let distance: string;
-	let totalDuration = CONSTS.duration;
-	let maxSpeed = '0.0';
+	const {duration, distance}: {duration: string; distance: string} = $props();
+	let totalDuration = $state(CONSTS.duration);
+	let maxSpeed = $state('0.0');
 
 	function onDurationInput(event: {currentTarget: HTMLInputElement}): void {
 		const value = event.currentTarget.value;
@@ -25,14 +24,14 @@
 				<div class="table-value">{duration}</div>
 				<div class="table-explanation">Workout duration</div>
 			</div>
-			<div class="vertical-border height-22" />
+			<div class="vertical-border height-22"></div>
 			<div>
 				<input
 					class="input-remove-input-visuals table-value"
 					class:invalid={!isValidDuration(totalDuration)}
 					value={totalDuration}
 					placeholder="HH:mm:ss"
-					on:input={onDurationInput}
+					oninput={onDurationInput}
 				/>
 				<div class="table-explanation">Total duration</div>
 			</div>
@@ -43,7 +42,7 @@
 				<div class="table-value">{distance}</div>
 				<div class="table-explanation">Distance(km)</div>
 			</div>
-			<div class="vertical-border height-22" />
+			<div class="vertical-border height-22"></div>
 			<div>
 				<Run />
 			</div>
@@ -54,7 +53,7 @@
 				<div class="table-value">{toSpeed(duration, distance) || ''}</div>
 				<div class="table-explanation">Avg. speed(km/h)</div>
 			</div>
-			<div class="vertical-border height-22" />
+			<div class="vertical-border height-22"></div>
 			<div>
 				<input
 					class="input-remove-input-visuals table-value"

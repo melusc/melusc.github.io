@@ -1,9 +1,10 @@
 <script lang="ts">
 	import {IndexedError} from '@lusc/truth-table';
 
-	export let error: Error;
-	export let input: string;
-	$: console.error(error.message);
+	const {error, input}: {error: Error; input: string} = $props();
+	$inspect(error).with((_type, error) => {
+		console.error(error.message);
+	});
 </script>
 
 {#if error instanceof IndexedError}

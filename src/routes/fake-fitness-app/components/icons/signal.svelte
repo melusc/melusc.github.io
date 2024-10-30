@@ -1,5 +1,5 @@
 <script lang="ts">
-	let bars = 5;
+	let bars = $state(5);
 
 	function changeBars(): void {
 		bars = ((bars - 1) % 4) + 2;
@@ -10,8 +10,8 @@
 	fill="currentColor"
 	viewBox="0 0 20 20"
 	class="icon-reception icon-interactive"
-	on:click={changeBars}
-	on:keydown={changeBars}
+	onclick={changeBars}
+	onkeydown={changeBars}
 	role="button"
 	tabindex="0"
 >

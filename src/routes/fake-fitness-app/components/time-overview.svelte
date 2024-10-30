@@ -7,10 +7,14 @@
 
 	dayjs.extend(customParseFormat);
 
-	export let duration: string;
-	export let distance: string;
+	let {
+		duration = $bindable(),
+		distance = $bindable(),
+	}: {duration: string; distance: string} = $props();
 
-	$: timePerDistance = calculateTimePerDistance(distance, duration);
+	const timePerDistance = $derived(
+		calculateTimePerDistance(distance, duration),
+	);
 </script>
 
 <div class="time-overview">
@@ -30,7 +34,7 @@
 				placeholder="0.00"
 			/><small>km</small>
 		</div>
-		<div class="vertical-border height-12" />
+		<div class="vertical-border height-12"></div>
 		<div class="time-per-distance" class:invalid={timePerDistance === false}>
 			{timePerDistance === false ? 'Invalid' : timePerDistance}<small>/km</small
 			>

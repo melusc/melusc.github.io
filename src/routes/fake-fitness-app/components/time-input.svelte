@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import dayjs from 'dayjs';
 	import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
@@ -10,10 +10,11 @@
 <script lang="ts">
 	import {timeValid, toTime} from '../util.ts';
 
-	let className: string | undefined = undefined;
-	export {className as class};
-	export let time = timeAtLoad;
-	export let width: string | undefined = undefined;
+	let {
+		class: className,
+		time = $bindable(timeAtLoad),
+		width,
+	}: {class?: string; time?: string; width?: string} = $props();
 
 	function onInput(event: {currentTarget: HTMLInputElement}): void {
 		const value = event.currentTarget.value;
@@ -26,6 +27,6 @@
 	class:invalid={!timeValid(time)}
 	value={time}
 	placeholder="HH:mm"
-	on:input={onInput}
+	oninput={onInput}
 	style:width
 />

@@ -4,19 +4,25 @@
 	import {sortJson} from './sort.ts';
 	import './style.scss';
 
-	let input = '{}';
-	let output = '';
-	let errorMessage: undefined | string;
+	let input = $state('{}');
 
-	$: try {
-		errorMessage = undefined;
+	function trySort(input: string) {
+		try {
+			const json = sortJson(json5.parse(input));
 
-		const json = sortJson(json5.parse(input));
-
-		output = JSON.stringify(json, undefined, '\t');
-	} catch (error: unknown) {
-		errorMessage = error instanceof Error ? error.message : String(error);
+			return {
+				errorMessage: undefined,
+				output: JSON.stringify(json, undefined, '\t'),
+			};
+		} catch (error: unknown) {
+			return {
+				errorMessage: error instanceof Error ? error.message : String(error),
+				output: '',
+			};
+		}
 	}
+
+	const {output, errorMessage} = $derived(trySort(input));
 </script>
 
 <svelte:head>
@@ -24,7 +30,7 @@
 </svelte:head>
 
 <div id="sort-json5-keys">
-	<textarea placeholder="Paste JSON5 here" bind:value={input} />
+	<textarea placeholder="Paste JSON5 here" bind:value={input}></textarea>
 	<div class="error">{errorMessage ?? ''}</div>
-	<textarea readonly value={output} />
+	<textarea readonly value={output}></textarea>
 </div>

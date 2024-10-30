@@ -1,18 +1,17 @@
 <script lang="ts">
 	import DownloadIcon from './icons/download.svelte';
 
-	export let file: Blob;
-	export let name: string;
+	const {file, name}: {file: Blob; name: string} = $props();
 
-	let url: string;
+	let url = $state<string>();
 
-	$: {
+	$effect(() => {
 		if (url !== undefined) {
 			URL.revokeObjectURL(url);
 		}
 
 		url = URL.createObjectURL(file);
-	}
+	});
 </script>
 
 <a href={url} download={name}>

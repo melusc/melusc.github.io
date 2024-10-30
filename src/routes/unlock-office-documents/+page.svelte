@@ -4,9 +4,9 @@
 	import Upload from './upload.svelte';
 	import './style.scss';
 
-	let name: string;
+	let name = $state<string>();
 
-	let output: Promise<Blob> | undefined;
+	let output = $state<Promise<Blob>>();
 
 	function handleUpload(event: CustomEvent<{name: string; file: File}>): void {
 		output = unlock(event.detail.file);
@@ -23,7 +23,7 @@
 
 	{#if output}
 		{#await output then file}
-			<Download {file} {name} />
+			<Download {file} name={name!} />
 		{:catch error}
 			<div class="error">
 				{error instanceof Error ? error.message : error}

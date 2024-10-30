@@ -24,6 +24,9 @@ const config = {
 			relative: false,
 		},
 	},
+	compilerOptions: {
+		runes: true,
+	},
 };
 
 export default config;

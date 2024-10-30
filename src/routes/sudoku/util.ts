@@ -1,19 +1,21 @@
 import type {Sudoku} from '@lusc/sudoku';
 
-type Cell = {
+export type Cell = {
 	element: string | undefined;
 	isValid: boolean;
-	key: number;
+	key: string;
 };
 
 export function getCells(sudoku: Sudoku): readonly Cell[] {
 	const result: Cell[] = [];
 
 	for (const cell of sudoku.getCells()) {
+		const element = sudoku.getElement(cell);
+		const isValid = sudoku.isCellValid(cell);
 		result.push({
-			element: sudoku.getElement(cell),
-			isValid: sudoku.isCellValid(cell),
-			key: cell.index,
+			element,
+			isValid,
+			key: [cell.index, element, isValid].join(','),
 		});
 	}
 

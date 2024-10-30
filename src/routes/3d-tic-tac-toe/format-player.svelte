@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {Player} from './tic-tac-toe.ts';
 
-	export let player: Player;
+	const {player}: {player: Player} = $props();
 </script>
 
 <span class:p1={player === Player.p1} class:p2={player === Player.p2}

@@ -3,9 +3,9 @@
 	import {States, parseInput} from './parse-input.ts';
 	import './style.scss';
 
-	let input = '';
+	let input = $state('');
 
-	$: ({state, uniques} = parseInput(input));
+	const {state: state_, uniques} = $derived(parseInput(input));
 </script>
 
 <svelte:head>
@@ -16,13 +16,13 @@
 	<div class="box">
 		<input bind:value={input} placeholder="2, 5, 9-13" />
 
-		{#if state === States.tooLarge}
+		{#if state_ === States.tooLarge}
 			<div>One or more numbers were too large</div>
-		{:else if state === States.divBy0}
+		{:else if state_ === States.divBy0}
 			<div>One or more numbers were 0</div>
-		{:else if state === States.notAnInteger}
+		{:else if state_ === States.notAnInteger}
 			<div>One or more numbers were not an integer</div>
-		{:else if state === States.valid}
+		{:else if state_ === States.valid}
 			{#if uniques?.length}
 				<div>Least common multiple: {lcmArray(uniques)}</div>
 				<div>Greatest common divisor: {gcdArray(uniques)}</div>

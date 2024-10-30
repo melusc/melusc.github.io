@@ -2,10 +2,17 @@
 	import Alpha from './alpha.svelte';
 	import Rgb from './rgb.svelte';
 
-	export let red: number;
-	export let green: number;
-	export let blue: number;
-	export let alpha: number | undefined;
+	let {
+		red = $bindable(),
+		blue = $bindable(),
+		green = $bindable(),
+		alpha = $bindable(),
+	}: {
+		red: number;
+		green: number;
+		blue: number;
+		alpha: number | undefined;
+	} = $props();
 </script>
 
 <Rgb bind:value={red} name="red" />
