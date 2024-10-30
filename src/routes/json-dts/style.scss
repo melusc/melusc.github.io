@@ -2,7 +2,7 @@
 
 @use '../../common/fonts/JetBrainsMono-Regular.scss';
 
-@import '../../common/theme.scss';
+@use '../../common/theme.scss' as *;
 
 #json-dts {
 	display: flex;

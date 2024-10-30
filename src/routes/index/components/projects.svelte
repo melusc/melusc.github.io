@@ -29,7 +29,6 @@
 
 <style lang="scss">
 	@use 'sass:color';
-	@import '../../../common/theme.scss';
 
 	main {
 		display: flex !important;
