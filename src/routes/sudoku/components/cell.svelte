@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { MetaKeys } from "../util";
+	import type {MetaKeys} from '../util';
 
 	const {
 		isValid,
@@ -12,7 +12,7 @@
 		isFocused: boolean;
 		element: string | undefined;
 		oninput: (key: string, meta: MetaKeys) => void;
-		onfocus: () => void,
+		onfocus: () => void;
 	} = $props();
 
 	let inputElement = $state<HTMLInputElement>();
@@ -21,8 +21,7 @@
 		if (isFocused) {
 			inputElement?.focus();
 		}
-	})
-
+	});
 
 	function handleKeydown(event: KeyboardEvent) {
 		if (event.key === 'Tab') {
@@ -34,7 +33,7 @@
 			alt: event.altKey,
 			ctrl: event.ctrlKey,
 			shift: event.shiftKey,
-		}
+		};
 
 		oninput(key, meta);
 	}

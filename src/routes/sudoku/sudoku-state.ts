@@ -1,5 +1,7 @@
 import {Sudoku, type SubscriptionCallback} from '@lusc/sudoku';
-import {get, writable, type Subscriber, type Unsubscriber} from 'svelte/store';
+import {
+get, writable, type Subscriber, type Unsubscriber,
+} from 'svelte/store';
 
 import {getCells, type Cell} from './util';
 
