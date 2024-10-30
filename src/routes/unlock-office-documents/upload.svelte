@@ -5,12 +5,12 @@
 	import DocxIcon from './icons/docx.svelte';
 	import UploadIcon from './icons/upload.svelte';
 
-	let name: string | undefined;
-	let type: 'xlsx' | 'docx' | undefined;
-	let input: HTMLInputElement;
-	let form: HTMLFormElement;
-	let isDraggingOver = false;
-	let isInvalidFileDrag = false;
+	let name = $state<string>();
+	let type = $state<'xlsx' | 'docx'>();
+	let input = $state<HTMLInputElement>();
+	let form = $state<HTMLFormElement>();
+	let isDraggingOver = $state(false);
+	let isInvalidFileDrag = $state(false);
 
 	const dispatch = createEventDispatcher<{
 		input: {
@@ -19,8 +19,10 @@
 		};
 	}>();
 
-	$: iconComponent
-		= type === undefined ? UploadIcon : (type === 'docx' ? DocxIcon : XlsxIcon);
+	// eslint-disable-next-line @typescript-eslint/naming-convention
+	const IconComponent = $derived(
+		type === undefined ? UploadIcon : (type === 'docx' ? DocxIcon : XlsxIcon),
+	);
 
 	const types = {
 		xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -36,18 +38,22 @@
 		dispatch('input', {file, name});
 	}
 
-	function handleInput(): void {
-		const file = input.files?.[0];
+	function handleInput(event: Event): void {
+		event.preventDefault();
+
+		const file = input!.files?.[0];
 
 		if (file && isValidFile(file)) {
 			dispatchFile(file);
 		} else {
 			name = undefined;
-			form.reset();
+			form!.reset();
 		}
 	}
 
 	function handleDrop(event: DragEvent): void {
+		event.preventDefault();
+
 		const file = event.dataTransfer?.files[0];
 		if (file && isValidFile(file)) {
 			dispatchFile(file);
@@ -58,8 +64,9 @@
 	}
 
 	function handleDragOver(event: DragEvent): void {
+		event.preventDefault();
+
 		if (event.dataTransfer!.types.includes('Files')) {
-			event.preventDefault();
 			isDraggingOver = true;
 			const file = event.dataTransfer?.items[0];
 			if (file && isValidFile(file)) {
@@ -72,17 +79,19 @@
 		}
 	}
 
-	function handleDragLeave(): void {
+	function handleDragLeave(event: Event): void {
+		event.preventDefault();
+
 		isDraggingOver = false;
 		isInvalidFileDrag = false;
 	}
 
 	function handleClick(): void {
-		input.click();
+		input!.click();
 	}
 	function handleKeydown(event: KeyboardEvent): void {
 		if (event.key === 'Enter') {
-			input.click();
+			input!.click();
 		}
 	}
 </script>
@@ -91,11 +100,11 @@
 	class="upload-form"
 	class:invalid-drag={isInvalidFileDrag}
 	class:dragging-over={isDraggingOver}
-	on:click={handleClick}
-	on:keydown={handleKeydown}
-	on:drop|preventDefault={handleDrop}
-	on:dragover|preventDefault={handleDragOver}
-	on:dragleave|preventDefault={handleDragLeave}
+	onclick={handleClick}
+	onkeydown={handleKeydown}
+	ondrop={handleDrop}
+	ondragover={handleDragOver}
+	ondragleave={handleDragLeave}
 	role="button"
 	tabindex="0"
 >
@@ -105,12 +114,12 @@
 			accept=".docx,.xlsx"
 			style:display="none"
 			bind:this={input}
-			on:input={handleInput}
+			oninput={handleInput}
 		/>
 	</form>
 
 	<div class="icon">
-		<svelte:component this={iconComponent} />
+		<IconComponent />
 	</div>
 
 	<div class="upload-info">

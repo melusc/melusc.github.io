@@ -1,5 +1,5 @@
 <script lang="ts">
-	let bars = 4;
+	let bars = $state(4);
 
 	function changeBars(): void {
 		// Go 4 -> 2 -> 3 -> 4 -> ...
@@ -15,8 +15,8 @@
 	stroke-width="1.5"
 	viewBox="0 0 24 24"
 	class="icon-interactive"
-	on:click={changeBars}
-	on:keydown={changeBars}
+	onclick={changeBars}
+	onkeydown={changeBars}
 	role="button"
 	tabindex="0"
 >

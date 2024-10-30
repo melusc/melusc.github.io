@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type {ParsedTable} from '@lusc/truth-table';
 
-	export let table: ParsedTable;
+	const {table}: {table: ParsedTable} = $props();
 </script>
 
 <table>

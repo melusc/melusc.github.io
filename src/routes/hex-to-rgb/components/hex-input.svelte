@@ -1,5 +1,4 @@
 <script lang="ts">
-	// eslint-disable-next-line import/default, import/no-named-as-default-member, import/no-named-as-default
 	import rgbHex from 'rgb-hex';
 	import type {FormEventHandler} from 'svelte/elements';
 
@@ -7,13 +6,20 @@
 
 	import FancyBorder from './fancy-border.svelte';
 
-	export let red: number;
-	export let green: number;
-	export let blue: number;
-	export let alpha: number | undefined;
+	let {
+		red = $bindable(),
+		green = $bindable(),
+		blue = $bindable(),
+		alpha = $bindable(),
+	}: {
+		red: number;
+		green: number;
+		blue: number;
+		alpha: number | undefined;
+	} = $props();
 
-	$: hex = '#' + rgbHex(red, green, blue, alpha);
-	let valid = true;
+	const hex = $derived('#' + rgbHex(red, green, blue, alpha));
+	let valid = $state(true);
 
 	const handleInput: FormEventHandler<HTMLInputElement> = event => {
 		try {
@@ -31,7 +37,7 @@
 	placeholder="#"
 	name="hex"
 	class:invalid={!valid}
-	on:input={handleInput}
+	oninput={handleInput}
 	value={hex}
 />
 <FancyBorder />

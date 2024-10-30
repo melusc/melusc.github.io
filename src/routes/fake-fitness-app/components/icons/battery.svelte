@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let batteryLevel = '100%';
-	$: batteryPercent = Number(/^\d+/.exec(batteryLevel)?.[0] ?? 0);
+	const {batteryLevel = '100%'}: {batteryLevel?: string} = $props();
+	const batteryPercent = $derived(Number(/^\d+/.exec(batteryLevel)?.[0] ?? 0));
 </script>
 
 <svg

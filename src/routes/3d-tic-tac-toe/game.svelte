@@ -4,16 +4,16 @@
 	import FormatPlayer from './format-player.svelte';
 	import Rules from './rules.svelte';
 
-	let game = new TicTacToe();
-	let winner: undefined | Player;
-	let winningCells = new Set<number>();
+	let game = $state(new TicTacToe());
+	let winner = $state<Player>();
+	let winningCells = $state(new Set<number>());
 
-	$: turn = game.turn;
-	$: layers = game.getLayers();
+	const turn = $derived(game.turn);
+	const layers = $derived(game.getLayers());
 
-	function onMove(event: CustomEvent<number>): void {
+	function onMove(choice: number): void {
 		if (!game.isFinished) {
-			game.makeMove(event.detail);
+			game.makeMove(choice);
 		}
 	}
 
@@ -40,13 +40,15 @@
 	}
 
 	function newGame(): void {
+		game.off('win', onWin);
 		game = new TicTacToe();
 		winner = undefined;
-		game.off('win', onWin);
 		winningCells = new Set();
 	}
 
-	$: game.on('win', onWin);
+	$effect(() => {
+		game.on('win', onWin);
+	});
 </script>
 
 <div class="title-rules">
@@ -65,11 +67,11 @@
 			<FormatPlayer player={$turn} />&rsquo;s turn
 		{/if}
 	</div>
-	<button on:click={newGame}>New Game</button>
+	<button onclick={newGame}>New Game</button>
 </div>
 <div class="board">
 	{#each layers as layer, i (i)}
-		<Layer {layer} {winningCells} on:choice={onMove} />
+		<Layer {layer} {winningCells} onchoice={onMove} />
 	{/each}
 </div>
 

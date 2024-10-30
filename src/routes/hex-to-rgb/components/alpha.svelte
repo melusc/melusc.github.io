@@ -3,8 +3,8 @@
 
 	import FancyBorder from './fancy-border.svelte';
 
-	export let value: number | undefined;
-	let invalid = false;
+	let {value = $bindable()}: {value: number | undefined} = $props();
+	let invalid = $state(false);
 
 	function clamp(alpha: number): number {
 		alpha = Math.round(alpha * 100) / 100;
@@ -45,7 +45,7 @@
 	name="alpha"
 	class:invalid
 	value={String(value)}
-	on:wheel={handleScroll}
-	on:input={handleInput}
+	onwheel={handleScroll}
+	oninput={handleInput}
 />
 <FancyBorder />

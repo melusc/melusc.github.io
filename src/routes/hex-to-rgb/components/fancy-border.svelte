@@ -1,4 +1,4 @@
-<div class="fancy-border" />
+<div class="fancy-border"></div>
 
 <style lang="scss">
 	:global(input) + .fancy-border {

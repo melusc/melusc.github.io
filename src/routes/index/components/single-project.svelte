@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type {Project} from '../project.d.ts';
 
-	export let project: Project;
-	$: ({text, key} = project);
-	$: id = `#${key}`;
+	const {project}: {project: Project} = $props();
+	const {text, key} = $derived(project);
+	const id = $derived(`#${key}`);
 </script>
 
 {#if project.type === 'title'}

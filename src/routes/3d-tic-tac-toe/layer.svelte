@@ -2,14 +2,21 @@
 	import Cell from './cell.svelte';
 	import type {Layer as LayerType} from './tic-tac-toe.ts';
 
-	export let layer: LayerType;
-	export let winningCells: Set<number>;
+	const {
+		layer,
+		winningCells,
+		onchoice,
+	}: {
+		layer: LayerType;
+		winningCells: Set<number>;
+		onchoice: (choice: number) => void;
+	} = $props();
 </script>
 
 <div class="layer-perspective">
 	<div class="layer-tilted">
 		{#each layer as cell (cell.index)}
-			<Cell {cell} on:choice {winningCells} />
+			<Cell {cell} {onchoice} {winningCells} />
 		{/each}
 	</div>
 </div>

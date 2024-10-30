@@ -8,9 +8,9 @@
 
 	const toTimeValue = (n: number): TimeValue => [Math.floor(n / 10), n % 10];
 
-	let hour: TimeValue;
-	let min: TimeValue;
-	let sec: TimeValue;
+	let hour = $state<TimeValue>([0, 0]);
+	let min = $state<TimeValue>([0, 0]);
+	let sec = $state<TimeValue>([0, 0]);
 
 	function update(): void {
 		const date = new Date();

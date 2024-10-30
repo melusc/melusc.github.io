@@ -1,23 +1,24 @@
 <script lang="ts">
-	import {createEventDispatcher} from 'svelte';
-
 	import {Player, type Cell as CellType} from './tic-tac-toe.ts';
 	import X from './icons/x.svelte';
 	import O from './icons/o.svelte';
 
-	const dispatch = createEventDispatcher<{
-		choice: number;
-	}>();
+	const {
+		cell,
+		winningCells,
+		onchoice,
+	}: {
+		cell: CellType;
+		winningCells: Set<number>;
+		onchoice: (choice: number) => void;
+	} = $props();
 
-	export let cell: CellType;
-	export let winningCells: Set<number>;
-
-	$: content = cell.content;
-	$: index = cell.index;
+	const content = $derived(cell.content);
+	const index = $derived(cell.index);
 
 	function onClick(): void {
 		if ($content === undefined) {
-			dispatch('choice', index);
+			onchoice(index);
 		}
 	}
 
@@ -30,8 +31,8 @@
 
 <div
 	tabindex={0}
-	on:keydown={onKeydown}
-	on:click={onClick}
+	onkeydown={onKeydown}
+	onclick={onClick}
 	class="cell"
 	class:p1={$content === Player.p1}
 	class:p2={$content === Player.p2}

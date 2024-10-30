@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let input: string;
+	let {input = $bindable()}: {input: string} = $props();
 </script>
 
 <input type="text" bind:value={input} />

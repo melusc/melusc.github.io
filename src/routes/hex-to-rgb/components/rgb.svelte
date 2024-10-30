@@ -3,9 +3,8 @@
 
 	import FancyBorder from './fancy-border.svelte';
 
-	export let name: string;
-	export let value: number;
-	let valid = true;
+	let {name, value = $bindable()}: {name: string; value: number} = $props();
+	let valid = $state(true);
 
 	function clamp(value: number): number {
 		value = Math.round(value);
@@ -44,7 +43,7 @@
 	placeholder={name}
 	class:invalid={!valid}
 	value={String(value)}
-	on:wheel={handleScroll}
-	on:input={handleInput}
+	onwheel={handleScroll}
+	oninput={handleInput}
 />
 <FancyBorder />

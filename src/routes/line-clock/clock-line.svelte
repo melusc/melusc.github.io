@@ -1,6 +1,5 @@
 <script lang="ts">
-	export let to: number;
-	export let active: number;
+	const {to, active}: {to: number; active: number} = $props();
 </script>
 
 <div class="clock-row" style:--offset={active}>

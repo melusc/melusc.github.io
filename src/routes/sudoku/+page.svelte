@@ -1,64 +1,29 @@
 <script lang="ts">
-	import {Sudoku, type SubscriptionCallback} from '@lusc/sudoku';
+	import {Sudoku} from '@lusc/sudoku';
 
 	import Cell from './components/cell.svelte';
 	import KeyboardlessInput from './components/keyboardless-input.svelte';
 	import * as sudokuExamples from './sudoku-examples.ts';
-	import {getCells, getNewFocused, type MetaKeys} from './util.ts';
+	import {getNewFocused, type MetaKeys} from './util.ts';
 	import './style.scss';
+	import {makeSudokuState} from './sudoku-state';
 
-	import {browser} from '$app/environment';
+	let inputCapture = $state<HTMLTextAreaElement>();
+	const sudokuState = makeSudokuState(
+		Sudoku.fromPrefilled(sudokuExamples.sudokuExpert, 9),
+	);
+	const {cells, focused, error} = $derived($sudokuState);
 
-	let sudoku = Sudoku.fromPrefilled(sudokuExamples.sudokuExpert, 9);
-	$: cells = getCells(sudoku);
-	let error: undefined | string;
-	let focused = 0;
-
-	$: {
-		// Unfortunately I haven't found a way to easily cleanup
-		// when sudoku changes
-		// but `sudoku` shouldn't change often anyway, sometimes never
-		sudoku.subscribe(sudokuHandler);
-	}
-
-	const sudokuHandler: SubscriptionCallback = async (
-		sudoku_,
-		type,
-	): Promise<void> => {
-		sudoku = sudoku_;
-
-		switch (type) {
-			case 'change': {
-				error = undefined;
-
-				break;
-			}
-
-			case 'finish': {
-				const isSolved = sudoku_.isSolved();
-				error = isSolved ? undefined : "Sudoku wasn't solved completely.";
-
-				break;
-			}
-
-			case 'error': {
-				error = 'Sudoku is invalid!';
-
-				break;
-			}
-		}
-	};
-
-	function handleKeyDown(event_: KeyboardEvent): void {
-		if (event_.key.toLowerCase() === 'tab') {
+	function handleKeyDown(event: KeyboardEvent): void {
+		if (event.key.toLowerCase() === 'tab') {
 			// Otherwise it starts going around and focusing the buttons, the tab, the url bar
-			event_.preventDefault();
+			event.preventDefault();
 		}
 
-		handleInput(event_.key, {
-			shift: event_.shiftKey,
-			ctrl: event_.ctrlKey,
-			alt: event_.altKey,
+		handleInput(event.key, {
+			shift: event.shiftKey,
+			ctrl: event.ctrlKey,
+			alt: event.altKey,
 		});
 	}
 
@@ -70,75 +35,73 @@
 		key = key.toLowerCase();
 
 		if (key === ' ' || key === 'delete' || key === 'backspace') {
-			sudoku.clearCell(focused);
-			return;
+			sudokuState.clearCell(focused);
 		}
 
 		if (!metaKeys.ctrl && /^[1-9]$/.test(key)) {
-			sudoku.setElement(focused, key);
+			sudokuState.setElement(focused, key);
 		}
 
-		focused = getNewFocused(key, focused, metaKeys);
+		sudokuState.setFocus(getNewFocused(key, focused, metaKeys));
 	}
 
 	function clearSudoku(): void {
-		sudoku.clearAllCells();
+		sudokuState.clearCell(focused);
 	}
 
 	function solve(): void {
-		sudoku.solve();
+		sudokuState.solve();
 	}
 
 	function onFocus(index: number): () => void {
 		return (): void => {
-			focused = index;
+			sudokuState.setFocus(index);
+			focusCapture();
 		};
 	}
 
-	function onKeyboardlessInput(event: {detail: string}): void {
-		handleInput(event.detail);
+	function focusCapture() {
+		inputCapture?.focus();
 	}
 
-	if (browser) {
-		Object.assign(window, {
-			fromString(input: string) {
-				sudoku = Sudoku.fromString(input, 9);
-				focused = 0;
-				error = undefined;
-			},
-		});
-	}
+	$effect(focusCapture);
 </script>
 
-<svelte:window on:keydown={handleKeyDown} />
+<svelte:window onmouseup={focusCapture} onfocus={focusCapture} />
 <svelte:head>
 	<title>Sudoku solver</title>
 </svelte:head>
 
+<textarea
+	bind:this={inputCapture}
+	onkeydown={handleKeyDown}
+	class="input-capture"
+></textarea>
+
 <div id="sudoku">
 	<div class="sudoku">
-		{#each cells as {element, key, isValid}, index (key)}
+		{#each cells as {element, key, isValid}, index (`${key},${focused === index}`)}
 			<Cell
 				{element}
 				{isValid}
 				isFocused={focused === index}
-				on:focus={onFocus(index)}
+				onfocus={onFocus(index)}
 			/>
 		{/each}
 	</div>
 	{#if typeof error !== 'undefined'}<div class="error">{error}</div>{/if}
-	<button type="button" title="Solve sudoku" class="solve" on:click={solve}>
+	<button type="button" title="Solve sudoku" class="solve" onclick={solve}>
 		Solve
 	</button>
 	<button
 		type="button"
 		title="Clear sudoku"
 		class="clear"
-		on:click={clearSudoku}
+		onclick={clearSudoku}
 	>
 		Clear
 	</button>
-	<KeyboardlessInput on:input={onKeyboardlessInput} />
+	<KeyboardlessInput oninput={handleInput} />
 </div>
 
 <style lang="scss">
@@ -216,6 +179,15 @@
 		&:active {
 			transform: scale(0.98, 0.98);
 		}
+	}
+
+	.input-capture {
+		height: 0;
+		width: 0;
+		outline: none;
+		border: none;
+		opacity: 0;
+		resize: none;
 	}
 
 	@media (max-width: 600px) {

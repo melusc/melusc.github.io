@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let includeSteps: boolean;
+	let {includeSteps = $bindable()}: {includeSteps: boolean} = $props();
 </script>
 
 <label>

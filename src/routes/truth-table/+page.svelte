@@ -10,9 +10,9 @@
 
 	import {browser} from '$app/environment';
 
-	let input = 'a & b -> (a | b)';
-	let includeSteps = true;
-	$: parsed = tryGenerateTable(input, includeSteps);
+	let input = $state('a & b -> (a | b)');
+	let includeSteps = $state(true);
+	const parsed = $derived(tryGenerateTable(input, includeSteps));
 
 	function getInputFromHash(): void {
 		const hashInput = getHash();
@@ -24,7 +24,7 @@
 		getInputFromHash();
 	}
 
-	$: {
+	$effect(() => {
 		if (browser) {
 			const newUrl = new URL(location.href);
 
@@ -57,7 +57,7 @@
 				}
 			}
 		}
-	}
+	});
 </script>
 
 <svelte:window on:hashchange={getInputFromHash} />

@@ -8,10 +8,12 @@
 	const isValidBatteryValue = (v: string): boolean =>
 		/^([1-9]\d?|100)%$/.test(v.trim());
 
-	let batteryLevel = '100%';
-	$: inputWidth = Math.max(
-		getTextWidth(batteryLevel, `${0.9 * 2.3}vmin "Samsung Sans"`) * 1.1,
-		10,
+	let batteryLevel = $state('100%');
+	const inputWidth = $derived(
+		Math.max(
+			getTextWidth(batteryLevel, `${0.9 * 2.3}vmin "Samsung Sans"`) * 1.1,
+			10,
+		),
 	);
 </script>
 
