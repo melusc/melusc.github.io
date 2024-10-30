@@ -1,10 +1,11 @@
-@import 'vars';
+@use 'vars' as *;
+@use 'sass:list';
 
 @function reverse($list) {
 	$result: ();
 
-	@for $i from -(length($list)) through -1 {
-		$result: append($result, nth($list, -$i));
+	@for $i from -(list.length($list)) through -1 {
+		$result: list.append($result, list.nth($list, -$i));
 	}
 
 	@return $result;
@@ -13,8 +14,8 @@
 @function pop($list) {
 	$result: ();
 
-	@for $i from 1 through length($list) - 1 {
-		$result: append($result, nth($list, $i));
+	@for $i from 1 through list.length($list) - 1 {
+		$result: list.append($result, list.nth($list, $i));
 	}
 
 	@return $result;
@@ -42,7 +43,7 @@ $display-gradient: false; // Show gradient seperately instead of as text bg, for
 .rainbow-bg {
 	background-image: linear-gradient(
 		to right,
-		join($gradient, reverse(pop($gradient)), $separator: comma)
+		list.join($gradient, reverse(pop($gradient)), $separator: comma)
 	);
 	background-size: $bg-width;
 	animation: rainbow-animation 5s linear infinite;

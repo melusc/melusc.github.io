@@ -1,8 +1,8 @@
 @use 'sass:math';
 
-@use 'rainbow';
+@use 'rainbow' as *;
 
-@import 'vars';
+@use 'vars' as *;
 
 :root {
 	--red: #{$red};

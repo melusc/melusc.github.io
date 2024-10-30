@@ -2,9 +2,9 @@
 
 @use '../../common/fonts/JetBrainsMono-Regular.scss';
 
-@import './vars.scss';
-
 #truth-table {
 	font-size: 23px;
 	padding: 0.5em 1em;
+
+	--table-border: 3px solid var(--border);
 }
