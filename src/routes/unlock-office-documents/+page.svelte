@@ -34,7 +34,7 @@
 	<div class="report-issue">
 		Not working as expected?
 		<a
-			href="https://github.com/melusc/melusc.github.io/issues"
+			href="https://github.com/melusc/lusc.ch/issues"
 			target="_blank"
 			rel="noopener noreferrer"
 		>

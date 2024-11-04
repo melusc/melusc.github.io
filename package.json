@@ -35,7 +35,7 @@
 		"xo": "^0.59.3"
 	},
 	"license": "MIT",
-	"name": "melusc.github.io",
+	"name": "lusc.ch",
 	"private": true,
 	"scripts": {
 		"build": "yarn check && vite build && yarn postbuild",
