@@ -19,7 +19,6 @@
 		};
 	}>();
 
-	// eslint-disable-next-line @typescript-eslint/naming-convention
 	const IconComponent = $derived(
 		type === undefined ? UploadIcon : (type === 'docx' ? DocxIcon : XlsxIcon),
 	);

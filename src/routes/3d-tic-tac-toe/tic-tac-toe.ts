@@ -1,6 +1,4 @@
-import {
-get, writable, type Readable, type Writable,
-} from 'svelte/store';
+import {get, writable, type Readable, type Writable} from 'svelte/store';
 
 import {TypedEventTarget} from './typed-event-target.ts';
 
@@ -22,7 +20,7 @@ export type Layer = readonly Cell[];
 
 export type Group = readonly Cell[];
 
-function * getStart(direction: -1 | 0 | 1): Iterable<number> {
+function* getStart(direction: -1 | 0 | 1): Iterable<number> {
 	if (direction === 1) {
 		yield 0;
 	} else if (direction === -1) {
@@ -65,26 +63,27 @@ export class TicTacToe extends TypedEventTarget<{
 
 	readonly #cells: readonly InternalCell[] = Array.from(
 		{length: 4 ** 3},
+		// eslint-disable-next-line unicorn/consistent-function-scoping
 		(_v, index) => ({
 			index,
-			content: writable(undefined),
+			content: writable(),
 			_content: undefined,
 		}),
 	);
 
-	* getGroups(): Iterable<Group> {
-		yield * this.getGroupByDir({x: 1});
-		yield * this.getGroupByDir({y: 1});
-		yield * this.getGroupByDir({z: 1});
+	*getGroups(): Iterable<Group> {
+		yield* this.getGroupByDir({x: 1});
+		yield* this.getGroupByDir({y: 1});
+		yield* this.getGroupByDir({z: 1});
 
-		yield * this.get2dDiagonals();
-		yield * this.get3dDiagonals();
+		yield* this.get2dDiagonals();
+		yield* this.get3dDiagonals();
 	}
 
 	getLayers(): readonly Layer[] {
 		const layers: Layer[] = [];
-		for (let i = 0; i < 4; ++i) {
-			layers.push(this.#cells.slice(i * 16, (i + 1) * 16));
+		for (let index = 0; index < 4; ++index) {
+			layers.push(this.#cells.slice(index * 16, (index + 1) * 16));
 		}
 
 		return layers;
@@ -109,7 +108,7 @@ export class TicTacToe extends TypedEventTarget<{
 		this.emitOnWinner();
 	}
 
-	protected * getGroupByDir(direction: {
+	protected *getGroupByDir(direction: {
 		x?: 1 | -1;
 		y?: 1 | -1;
 		z?: 1 | -1;
@@ -126,11 +125,11 @@ export class TicTacToe extends TypedEventTarget<{
 			for (const y of getStart(directionY)) {
 				for (const z of getStart(directionZ)) {
 					const result: Cell[] = [];
-					for (let i = 0; i < 4; ++i) {
+					for (let index = 0; index < 4; ++index) {
 						result.push(
 							this.#cells[
 								// prettier-ignore
-								resolveIndex(x + (directionX * i), y + (directionY * i), z + (directionZ * i))
+								resolveIndex(x + (directionX * index), y + (directionY * index), z + (directionZ * index))
 							]!,
 						);
 					}
@@ -143,24 +142,24 @@ export class TicTacToe extends TypedEventTarget<{
 
 	// There are four diagonals, ignoring direction
 	// Always go top to bottom, so z = 1
-	protected * get3dDiagonals(): Iterable<Group> {
+	protected *get3dDiagonals(): Iterable<Group> {
 		const directions = [1, -1] as const;
 
 		for (const x of directions) {
 			for (const y of directions) {
-				yield * this.getGroupByDir({x, y, z: 1});
+				yield* this.getGroupByDir({x, y, z: 1});
 			}
 		}
 	}
 
-	protected * get2dDiagonals(): Iterable<Group> {
-		yield * this.getGroupByDir({x: 1, y: 1});
-		yield * this.getGroupByDir({x: -1, y: 1});
+	protected *get2dDiagonals(): Iterable<Group> {
+		yield* this.getGroupByDir({x: 1, y: 1});
+		yield* this.getGroupByDir({x: -1, y: 1});
 
-		yield * this.getGroupByDir({x: 1, z: 1});
-		yield * this.getGroupByDir({x: -1, z: 1});
-		yield * this.getGroupByDir({y: 1, z: 1});
-		yield * this.getGroupByDir({y: -1, z: 1});
+		yield* this.getGroupByDir({x: 1, z: 1});
+		yield* this.getGroupByDir({x: -1, z: 1});
+		yield* this.getGroupByDir({y: 1, z: 1});
+		yield* this.getGroupByDir({y: -1, z: 1});
 	}
 
 	protected isGroupWinning(group: Group): false | Player {

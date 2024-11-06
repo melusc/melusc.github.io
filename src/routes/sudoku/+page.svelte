@@ -52,7 +52,7 @@
 
 <div id="sudoku">
 	<div class="sudoku">
-		{#each cells as {element, key, isValid}, index (`${key},${focused === index}`)}
+		{#each cells as { element, key, isValid }, index (`${key},${focused === index}`)}
 			<Cell
 				{element}
 				{isValid}
