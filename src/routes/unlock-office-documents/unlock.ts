@@ -1,4 +1,3 @@
-/* eslint-disable import/no-duplicates */
 import type JSZip from 'jszip';
 import {loadAsync} from 'jszip';
 

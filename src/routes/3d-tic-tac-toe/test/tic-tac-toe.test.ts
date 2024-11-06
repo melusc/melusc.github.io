@@ -3,12 +3,12 @@ import {expect, test, vi} from 'vitest';
 import {TicTacToe, resolveIndex} from '../tic-tac-toe.ts';
 
 test('#resolveIndex', () => {
-	let i = 0;
+	let index = 0;
 
 	for (let z = 0; z < 4; ++z) {
 		for (let y = 0; y < 4; ++y) {
 			for (let x = 0; x < 4; ++x) {
-				expect(resolveIndex(x, y, z)).toStrictEqual(i++);
+				expect(resolveIndex(x, y, z)).toStrictEqual(index++);
 			}
 		}
 	}

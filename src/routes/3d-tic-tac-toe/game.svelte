@@ -70,7 +70,7 @@
 	<button onclick={newGame}>New Game</button>
 </div>
 <div class="board">
-	{#each layers as layer, i (i)}
+	{#each layers as layer, index (index)}
 		<Layer {layer} {winningCells} onchoice={onMove} />
 	{/each}
 </div>

@@ -13,7 +13,9 @@ export function gcd(a_: ExpectedNumber, b_: ExpectedNumber): bigint {
 
 	const b = absBigInt(b_);
 
+	// eslint-disable-next-line unicorn/prefer-math-min-max
 	let dividend = a > b ? a : b;
+	// eslint-disable-next-line unicorn/prefer-math-min-max
 	let divisor = a > b ? b : a;
 
 	const key = `${dividend},${divisor}`;
