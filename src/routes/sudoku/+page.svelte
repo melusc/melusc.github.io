@@ -4,9 +4,10 @@
 	import Cell from './components/cell.svelte';
 	import KeyboardlessInput from './components/keyboardless-input.svelte';
 	import * as sudokuExamples from './sudoku-examples.ts';
+	import {makeSudokuState} from './sudoku-state.ts';
 	import {getNewFocused, type MetaKeys} from './util.ts';
+
 	import './style.scss';
-	import {makeSudokuState} from './sudoku-state';
 
 	const sudokuState = makeSudokuState(
 		Sudoku.fromPrefilled(sudokuExamples.sudokuExpert, 9),

@@ -2,11 +2,11 @@
 	import dayjs from 'dayjs';
 	import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
-	import TimeInput from './time-input.svelte';
 	import Battery from './battery.svelte';
 	import Bluetooth from './icons/bluetooth.svelte';
 	import Signal from './icons/signal.svelte';
 	import Wifi from './icons/wifi.svelte';
+	import TimeInput from './time-input.svelte';
 
 	dayjs.extend(customParseFormat);
 </script>

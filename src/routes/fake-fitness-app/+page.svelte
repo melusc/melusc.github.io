@@ -1,5 +1,4 @@
 <script lang="ts">
-	import * as CONSTS from './consts.ts';
 	import Help from './components/help.svelte';
 	import MainAppDateTime from './components/main-app-date-time.svelte';
 	import Navbar from './components/navbar.svelte';
@@ -7,6 +6,8 @@
 	import TimeOverview from './components/time-overview.svelte';
 	import WorkoutDetails from './components/workout-details.svelte';
 	import WorkoutImages from './components/workout-images.svelte';
+	import * as CONSTS from './consts.ts';
+
 	import './style.scss';
 
 	import {browser} from '$app/environment';
