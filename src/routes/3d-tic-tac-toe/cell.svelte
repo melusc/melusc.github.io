@@ -1,7 +1,7 @@
 <script lang="ts">
-	import {Player, type Cell as CellType} from './tic-tac-toe.ts';
-	import X from './icons/x.svelte';
 	import O from './icons/o.svelte';
+	import X from './icons/x.svelte';
+	import {Player, type Cell as CellType} from './tic-tac-toe.ts';
 
 	const {
 		cell,

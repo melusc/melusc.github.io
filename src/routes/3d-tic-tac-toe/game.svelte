@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Layer from './layer.svelte';
-	import {TicTacToe, type Group, type Player} from './tic-tac-toe.ts';
 	import FormatPlayer from './format-player.svelte';
+	import Layer from './layer.svelte';
 	import Rules from './rules.svelte';
+	import {TicTacToe, type Group, type Player} from './tic-tac-toe.ts';
 
 	let game = $state(new TicTacToe());
 	let winner = $state<Player>();
