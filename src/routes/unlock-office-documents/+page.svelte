@@ -8,9 +8,9 @@
 
 	let output = $state<Promise<Blob>>();
 
-	function handleUpload(event: CustomEvent<{name: string; file: File}>): void {
-		output = unlock(event.detail.file);
-		name = event.detail.name;
+	function handleUpload(input: {name: string; file: File}): void {
+		output = unlock(input.file);
+		name = input.name;
 	}
 </script>
 
@@ -19,7 +19,7 @@
 </svelte:head>
 
 <div id="unlock-office-documents">
-	<Upload on:input={handleUpload} />
+	<Upload oninput={handleUpload} />
 
 	{#if output}
 		{#await output then file}

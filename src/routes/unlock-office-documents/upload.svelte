@@ -1,9 +1,13 @@
 <script lang="ts">
-	import {createEventDispatcher} from 'svelte';
-
 	import DocxIcon from './icons/docx.svelte';
 	import UploadIcon from './icons/upload.svelte';
 	import XlsxIcon from './icons/xlsx.svelte';
+
+	const {
+		oninput,
+	}: {
+		oninput: (input: {file: File; name: string}) => void;
+	} = $props();
 
 	let name = $state<string>();
 	let type = $state<'xlsx' | 'docx'>();
@@ -11,13 +15,6 @@
 	let form = $state<HTMLFormElement>();
 	let isDraggingOver = $state(false);
 	let isInvalidFileDrag = $state(false);
-
-	const dispatch = createEventDispatcher<{
-		input: {
-			file: File;
-			name: string;
-		};
-	}>();
 
 	const IconComponent = $derived(
 		type === undefined ? UploadIcon : (type === 'docx' ? DocxIcon : XlsxIcon),
@@ -34,7 +31,7 @@
 	function dispatchFile(file: File): void {
 		name = file.name;
 		type = file.type === types.docx ? 'docx' : 'xlsx';
-		dispatch('input', {file, name});
+		oninput({file, name});
 	}
 
 	function handleInput(event: Event): void {
