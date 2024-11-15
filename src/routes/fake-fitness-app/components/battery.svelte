@@ -6,7 +6,7 @@
 	// Allow all numbers from 1-100
 	// Disallow leading zeroes and zero
 	const isValidBatteryValue = (v: string): boolean =>
-		/^([1-9]\d?|100)%$/.test(v.trim());
+		/^(?:[1-9]\d?|100)%$/.test(v.trim());
 
 	let batteryLevel = $state('100%');
 	const inputWidth = $derived(
