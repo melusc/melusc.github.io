@@ -11,7 +11,7 @@
 		"jszip": "^3.10.1",
 		"lodash-es": "^4.17.21",
 		"rgb-hex": "^4.1.0",
-		"type-fest": "^4.28.1"
+		"type-fest": "^4.29.0"
 	},
 	"devDependencies": {
 		"@lusc/eslint-config": "^3.2.0",
@@ -20,15 +20,15 @@
 		"@sveltejs/kit": "^2.8.1",
 		"@sveltejs/vite-plugin-svelte": "^5.0.1",
 		"@types/lodash-es": "^4.17.12",
-		"@types/node": "^22.10.0",
+		"@types/node": "^22.10.1",
 		"@typescript-eslint/parser": "^8.16.0",
-		"eslint": "^9.15.0",
-		"eslint-plugin-svelte": "^2.46.0",
+		"eslint": "^9.16.0",
+		"eslint-plugin-svelte": "^2.46.1",
 		"prettier": "^3.4.1",
 		"prettier-plugin-svelte": "^3.3.2",
 		"rimraf": "^6.0.1",
 		"sass": "^1.81.0",
-		"svelte": "^5.2.9",
+		"svelte": "^5.2.12",
 		"svelte-check": "^4.1.0",
 		"svelte-eslint-parser": "^0.43.0",
 		"typescript": "^5.7.2",
