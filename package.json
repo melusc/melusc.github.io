@@ -17,7 +17,7 @@
 		"@lusc/eslint-config": "^3.4.0",
 		"@lusc/tsconfig": "^5.1.0",
 		"@sveltejs/adapter-static": "^3.0.6",
-		"@sveltejs/kit": "^2.8.1",
+		"@sveltejs/kit": "^2.8.3",
 		"@sveltejs/vite-plugin-svelte": "^5.0.1",
 		"@types/lodash-es": "^4.17.12",
 		"@types/node": "^22.10.1",
