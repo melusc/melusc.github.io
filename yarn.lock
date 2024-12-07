@@ -600,12 +600,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lusc/truth-table@npm:^5.2.1":
-  version: 5.2.1
-  resolution: "@lusc/truth-table@npm:5.2.1"
-  dependencies:
-    type-fest: "npm:^4.26.1"
-  checksum: 10c0/9f77c9bf623d52ebab34a8fcd3d520c486cb49692c804e76902fd335d4d585cfc80c39ee5404b4437b43d538c284e388bcd4d1d334673108ca5245dd7f62318d
+"@lusc/truth-table@npm:^5.4.0":
+  version: 5.4.0
+  resolution: "@lusc/truth-table@npm:5.4.0"
+  checksum: 10c0/392ccb965b6651aaee2ab1052606bc6fc01bf24b115fd116422dc6a0b669420396ea145f2b4497dd214d5d3988ce68e74fd574bd7d78c7b7a828f32249eb4d1a
   languageName: node
   linkType: hard
 
@@ -3229,7 +3227,7 @@ __metadata:
     "@lusc/eslint-config": "npm:^3.4.0"
     "@lusc/json-dts": "npm:^4.1.1"
     "@lusc/sudoku": "npm:^5.1.1"
-    "@lusc/truth-table": "npm:^5.2.1"
+    "@lusc/truth-table": "npm:^5.4.0"
     "@lusc/tsconfig": "npm:^5.1.0"
     "@sveltejs/adapter-static": "npm:^3.0.6"
     "@sveltejs/kit": "npm:^2.8.1"
@@ -3249,7 +3247,7 @@ __metadata:
     rgb-hex: "npm:^4.1.0"
     rimraf: "npm:^6.0.1"
     sass: "npm:^1.82.0"
-    svelte: "npm:^5.7.1"
+    svelte: "npm:^5.8.1"
     svelte-check: "npm:^4.1.1"
     svelte-eslint-parser: "npm:^0.43.0"
     type-fest: "npm:^4.30.0"
@@ -4494,9 +4492,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.7.1":
-  version: 5.7.1
-  resolution: "svelte@npm:5.7.1"
+"svelte@npm:^5.8.1":
+  version: 5.8.1
+  resolution: "svelte@npm:5.8.1"
   dependencies:
     "@ampproject/remapping": "npm:^2.3.0"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -4511,7 +4509,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10c0/4091035ddcc108f9f2608a0231c5138d1568190815eccf6137b22643caf249a76e202671f94fa884eb3354ad7ec2f1082e508453db25ab938d9f37de6cbdad9e
+  checksum: 10c0/8b1f4c93de97062aa44bfcd88d7e2ef24b785524da1e3a1f17970df88861fdd2ef5119ff95e6828505ba02356c2bd79a1f5f0a2227875779537386fba3eb4c0e
   languageName: node
   linkType: hard
 
