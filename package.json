@@ -4,7 +4,7 @@
 	"dependencies": {
 		"@lusc/json-dts": "^4.1.1",
 		"@lusc/sudoku": "^5.1.1",
-		"@lusc/truth-table": "^5.2.1",
+		"@lusc/truth-table": "^5.4.0",
 		"dayjs": "^1.11.13",
 		"hex-rgb": "^5.0.0",
 		"json5": "^2.2.3",
@@ -28,7 +28,7 @@
 		"prettier-plugin-svelte": "^3.3.2",
 		"rimraf": "^6.0.1",
 		"sass": "^1.82.0",
-		"svelte": "^5.7.1",
+		"svelte": "^5.8.1",
 		"svelte-check": "^4.1.1",
 		"svelte-eslint-parser": "^0.43.0",
 		"typescript": "^5.7.2",
