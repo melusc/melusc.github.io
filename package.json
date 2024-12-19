@@ -14,10 +14,10 @@
 		"type-fest": "^4.30.2"
 	},
 	"devDependencies": {
-		"@lusc/eslint-config": "^3.4.1",
+		"@lusc/eslint-config": "^3.4.2",
 		"@lusc/tsconfig": "^5.1.0",
 		"@sveltejs/adapter-static": "^3.0.6",
-		"@sveltejs/kit": "^2.12.1",
+		"@sveltejs/kit": "^2.13.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@types/lodash-es": "^4.17.12",
 		"@types/node": "^22.10.2",
@@ -28,11 +28,11 @@
 		"prettier-plugin-svelte": "^3.3.2",
 		"rimraf": "^6.0.1",
 		"sass": "^1.83.0",
-		"svelte": "^5.14.4",
+		"svelte": "^5.14.5",
 		"svelte-check": "^4.1.1",
 		"svelte-eslint-parser": "^0.43.0",
 		"typescript": "^5.7.2",
-		"vite": "^6.0.3",
+		"vite": "^6.0.4",
 		"vitest": "^2.1.8"
 	},
 	"license": "MIT",
